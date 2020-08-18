@@ -1,11 +1,12 @@
 package io.ace.nord;
 
-import net.minecraft.init.Blocks;
+import io.ace.nord.hacks.TestCommand;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = NordMod.MODID, name = NordMod.NAME, version = NordMod.VERSION)
 public class NordMod
@@ -19,11 +20,18 @@ public class NordMod
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
+
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
 
 
     }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(new TestCommand());
+    }
+
 }
