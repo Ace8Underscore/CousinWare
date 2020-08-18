@@ -14,6 +14,10 @@ public class CommandManager {
     public static void initClientCommands(){
         commands = new ArrayList<>();
         addCommand(new Help());
+        addCommand(new Prefix());
+        addCommand(new AllCommands());
+        addCommand(new Toggle());
+        addCommand(new Hacks());
 
     }
 
@@ -31,13 +35,13 @@ public class CommandManager {
         String args = input.substring(command.length()).trim();
         b = false;
         commands.forEach(c ->{
-            for(String s : c.getAlias()) {
+            for(String s : c.getClientAlias()) {
                 if (s.equalsIgnoreCase(command)) {
                     b = true;
                     try {
                         c.onClientCommand(args, args.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"));
                     } catch (Exception e) {
-                        Command.sendClientSideMessage(ChatFormatting.RED + c.getSyntax());
+                        Command.sendClientSideMessage(ChatFormatting.RED + c.getClientSyntax());
                     }
                 }
             }

@@ -1,7 +1,7 @@
 package io.ace.nord.event;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nord.NordMod;
+import io.ace.nord.NordClient;
 import io.ace.nord.command.Command;
 import io.ace.nord.managers.CommandManager;
 import net.minecraft.client.Minecraft;
@@ -16,7 +16,7 @@ public class EventProcessor {
 
 
     public void init(){
-        NordMod.INSTANCE.getEventManager().addEventListener(this);
+        NordClient.INSTANCE.getEventManager().addEventListener(this);
         MinecraftForge.EVENT_BUS.register(this);
     }
 

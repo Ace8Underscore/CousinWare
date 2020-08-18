@@ -4,17 +4,17 @@ import io.ace.nord.command.Command;
 
 public class Help extends Command {
     @Override
-    public String[] getAlias() {
+    public String[] getClientAlias() {
         return new String[]{"help", "command"};
     }
 
     @Override
-    public String getSyntax() {
+    public String getClientSyntax() {
         return "help";
     }
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
-        Command.sendClientSideMessage("This Client doesnt have a gui yet so its currently all command base");
+        Command.sendClientSideMessage("This Client Was Made By Ace_#1233 Enjoy :D. To see Commands Please use the command " + prefix + "commands");
     }
 }
