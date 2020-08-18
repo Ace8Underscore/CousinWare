@@ -14,8 +14,7 @@ public class TestCommand extends Hack {
             if (mc.player.isSneaking()) {
                 Command.sendClientSideMessage("Working?");
             }
-            //Command.sendClientSideMessage("Working?");
-            //event.
+
 
         }
     }
