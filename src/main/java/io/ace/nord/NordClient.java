@@ -18,7 +18,7 @@ public class NordClient
 {
     public static final String MODID = "nordclient";
     public static final String NAME = "Nord Client";
-    public static final String VERSION = "b1.0";
+    public static final String VERSION = "a1.0";
 
     private EventManager eventManager;
     EventProcessor eventProcessor;

@@ -58,6 +58,9 @@ public class Hack {
         return enabled;
     }
 
+    public boolean isDisabled(){ return !enabled; }
+
+
     public void setEnabled(boolean e){
         enabled = e;
     }
@@ -108,12 +111,11 @@ public class Hack {
 
 
     public enum Category {
-        Test,
         COMBAT,
-        //PLAYER,
-        //MOVEMENT,
-        //MISC,
-        //WORLD,
+        PLAYER,
+        MOVEMENT,
+        MISC,
+        WORLD,
         RENDER,
         GUI
     }

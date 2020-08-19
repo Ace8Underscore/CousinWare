@@ -34,7 +34,7 @@ public class Toggle extends Command {
                 }
             }
         });
-        if(!found && args.length == 1) Command.sendClientSideMessage(ChatFormatting.DARK_RED + "Module not found!");
+        if(!found && args.length == 1) Command.sendClientSideMessage(ChatFormatting.DARK_RED + "Hack not found!");
 
     }
 }

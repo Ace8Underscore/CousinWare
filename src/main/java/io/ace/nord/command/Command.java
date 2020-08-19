@@ -20,4 +20,6 @@ public abstract class Command {
     public static void setClientPrefix(String p){
         prefix = p;
     }
+
+
 }

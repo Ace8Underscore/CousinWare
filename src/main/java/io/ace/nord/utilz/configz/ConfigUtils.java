@@ -86,7 +86,7 @@ public class ConfigUtils {
 
     public void saveMods() {
         try {
-            File file = new File(this.Nord.getAbsolutePath(), "EnabledModules.txt");
+            File file = new File(this.Nord.getAbsolutePath(), "EnabledHacks.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));
             Iterator var3 = NordClient.INSTANCE.hackManager.getHacks().iterator();
 
@@ -379,7 +379,7 @@ public class ConfigUtils {
 
     public void loadMods() {
         try {
-            File file = new File(this.Nord.getAbsolutePath(), "EnabledModules.txt");
+            File file = new File(this.Nord.getAbsolutePath(), "EnabledHacks.txt");
             FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
             DataInputStream in = new DataInputStream(fstream);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -399,7 +399,7 @@ public class ConfigUtils {
             br.close();
         } catch (Exception var8) {
             var8.printStackTrace();
-            //this.saveMods();
+            //this.saveHacks();
         }
 
     }

@@ -11,7 +11,7 @@ public class Drawn extends Command{
     public String[] getClientAlias() {return new String[] {"draw", "drawn"};}
 
     @Override
-    public String getClientSyntax() {return "Draw a module if you dont want to see it in your array list";}
+    public String getClientSyntax() {return "drawn (Hack)";}
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
@@ -31,7 +31,7 @@ public class Drawn extends Command{
                 }
             }
         });
-        if(!found && args.length == 1) Command.sendClientSideMessage(ChatFormatting.DARK_RED + "Module not found!");
+        if(!found && args.length == 1) Command.sendClientSideMessage(ChatFormatting.DARK_RED + "Hack not found!");
 
     }
 }

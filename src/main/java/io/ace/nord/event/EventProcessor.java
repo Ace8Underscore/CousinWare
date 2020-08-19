@@ -42,7 +42,7 @@ public class EventProcessor {
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         if (Keyboard.getEventKeyState()) {
             if (Keyboard.getEventKey() == 0 || Keyboard.getEventKey() == Keyboard.KEY_NONE) return;
-            //Module binds
+            //Hack binds
             HackManager.onBind(Keyboard.getEventKey());
 
 

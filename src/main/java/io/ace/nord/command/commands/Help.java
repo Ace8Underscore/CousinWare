@@ -10,7 +10,7 @@ public class Help extends Command {
 
     @Override
     public String getClientSyntax() {
-        return "help";
+        return "Help";
     }
 
     @Override

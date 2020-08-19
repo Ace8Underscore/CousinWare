@@ -4,6 +4,7 @@ import io.ace.nord.hacks.Hack;
 
 import net.minecraft.client.gui.GuiCommandBlock;
 import net.minecraft.client.gui.GuiEnchantment;
+import net.minecraft.client.gui.GuiHopper;
 import net.minecraft.client.gui.inventory.*;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
@@ -44,7 +45,8 @@ public class AutoTotem extends Hack {
         }
         for (int i = 0; i < 45; i++) {
             if (totems + totemsOffHand > 0) {
-                ItemStack stacks = mc.player.openContainer.getSlot(i).getStack();
+                if (!(mc.currentScreen instanceof GuiCrafting) && !(mc.currentScreen instanceof GuiFurnace) && !(mc.currentScreen instanceof GuiBeacon) && !(mc.currentScreen instanceof GuiBrewingStand) && !(mc.currentScreen instanceof GuiChest) && !(mc.currentScreen instanceof GuiCommandBlock) && !(mc.currentScreen instanceof GuiDispenser) && !(mc.currentScreen instanceof GuiEnchantment) && !(mc.currentScreen instanceof GuiShulkerBox) && !(mc.currentScreen instanceof GuiContainerCreative) && !(mc.currentScreen instanceof GuiHopper)) {
+                    ItemStack stacks = mc.player.openContainer.getSlot(i).getStack();
 
                 if (stacks == ItemStack.EMPTY)
                     continue;
@@ -52,7 +54,6 @@ public class AutoTotem extends Hack {
                 Item itemTotem = Items.TOTEM_OF_UNDYING;
                 if (mc.player.getHeldItemOffhand().isEmpty()) {
                     totemSwtichDelay++;
-                    if (!(mc.currentScreen instanceof GuiCrafting) && !(mc.currentScreen instanceof GuiFurnace) && !(mc.currentScreen instanceof GuiBeacon) && !(mc.currentScreen instanceof GuiBrewingStand) && !(mc.currentScreen instanceof GuiChest) && !(mc.currentScreen instanceof GuiCommandBlock) && !(mc.currentScreen instanceof GuiDispenser) && !(mc.currentScreen instanceof GuiEnchantment && !(mc.currentScreen instanceof GuiShulkerBox) && !(mc.currentScreen instanceof GuiContainerCreative))) {
                         if (stacks.getItem() == itemTotem) {
                             if (totemSwtichDelay >= delay) {
                                 mc.playerController.windowClick(0, i, 1, ClickType.PICKUP, mc.player);
