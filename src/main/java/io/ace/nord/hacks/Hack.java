@@ -13,6 +13,7 @@ public class Hack {
     public Category category;
     public int bind;
     public boolean enabled;
+    public boolean drawn;
 
     public Hack(String hackName, Category hackCategory) {
         name = hackName;
@@ -20,6 +21,7 @@ public class Hack {
         category = hackCategory;
         bind = Keyboard.KEY_NONE;
         enabled = false;
+        drawn = true;
 
     }
 
@@ -29,8 +31,18 @@ public class Hack {
         category = hackCategory;
         bind = Keyboard.KEY_NONE;
         enabled = false;
+        drawn = true;
 
     }
+
+    public int getBind(){
+        return bind;
+    }
+
+    public void setBind(int b){
+        bind = b;
+    }
+
     public void onUpdate(){}
 
     public void onRender(){}
@@ -54,14 +66,14 @@ public class Hack {
     public void toggle(){
         if(isEnabled()) {
             disable();
-        }
-        if(!isEnabled()){
+        } else if (!isEnabled()){
             enable();
         }
     }
 
     public void enable() {
         NordClient.INSTANCE.getEventManager().addEventListener(this);
+        MinecraftForge.EVENT_BUS.register(this);
         setEnabled(true);
         //MinecraftForge.EVENT_BUS.register(this);
         onEnable();
@@ -69,10 +81,12 @@ public class Hack {
 
     public void disable() {
         NordClient.INSTANCE.getEventManager().removeEventListener(this);
+        MinecraftForge.EVENT_BUS.unregister(this);
         setEnabled(false);
         //MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
     }
+    public boolean isDrawn() {return drawn;}
 
     public Category getCategory(){
         return category;
@@ -86,13 +100,21 @@ public class Hack {
         return description;
     }
 
+    public String getHudInfo(){
+        return "";
+    }
+
+
+
+
     public enum Category {
         Test,
+        COMBAT,
         //PLAYER,
         //MOVEMENT,
         //MISC,
         //WORLD,
-        //RENDER,
+        RENDER,
         GUI
     }
 }

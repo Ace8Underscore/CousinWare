@@ -1,10 +1,10 @@
 package io.ace.nord;
 
 import io.ace.nord.event.EventProcessor;
-import io.ace.nord.hacks.TestCommand;
 import io.ace.nord.managers.CommandManager;
 import io.ace.nord.managers.HackManager;
-import net.minecraftforge.common.MinecraftForge;
+import io.ace.nord.utilz.configz.ConfigUtils;
+import io.ace.nord.utilz.configz.ShutDown;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -23,6 +23,9 @@ public class NordClient
     private EventManager eventManager;
     EventProcessor eventProcessor;
     public HackManager hackManager;
+    public ConfigUtils configUtils;
+
+
 
     @Mod.Instance
     public static NordClient INSTANCE;
@@ -40,6 +43,9 @@ public class NordClient
         CommandManager.initClientCommands();
 
         hackManager = new HackManager();
+
+        configUtils = new ConfigUtils();
+        Runtime.getRuntime().addShutdownHook(new ShutDown());
     }
 
     public EventManager getEventManager() {

@@ -12,6 +12,6 @@ public class AllCommands extends Command {
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
-        Command.sendClientSideMessage("Commands: Help, Prefix, Commands, Toggle, Hacks, ");
+        Command.sendClientSideMessage("Commands: Help, Prefix, Commands, Toggle, Hacks, Drawn, Bind ");
     }
 }

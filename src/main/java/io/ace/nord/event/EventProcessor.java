@@ -4,11 +4,14 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nord.NordClient;
 import io.ace.nord.command.Command;
 import io.ace.nord.managers.CommandManager;
+import io.ace.nord.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Keyboard;
 
 public class EventProcessor {
     public static final Minecraft mc = Minecraft.getMinecraft();
@@ -35,6 +38,17 @@ public class EventProcessor {
 
         }
     }
+    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
+    public void onKeyInput(InputEvent.KeyInputEvent event) {
+        if (Keyboard.getEventKeyState()) {
+            if (Keyboard.getEventKey() == 0 || Keyboard.getEventKey() == Keyboard.KEY_NONE) return;
+            //Module binds
+            HackManager.onBind(Keyboard.getEventKey());
 
 
-}
+            }
+        }
+    }
+
+
+

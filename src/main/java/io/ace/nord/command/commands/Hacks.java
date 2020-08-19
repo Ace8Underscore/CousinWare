@@ -13,6 +13,6 @@ public class Hacks extends Command {
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
-        Command.sendClientSideMessage("Hacks: TestCommand,");
+        Command.sendClientSideMessage("Hacks: TestCommand, ArrayList");
     }
 }

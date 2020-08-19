@@ -18,6 +18,8 @@ public class CommandManager {
         addCommand(new AllCommands());
         addCommand(new Toggle());
         addCommand(new Hacks());
+        addCommand(new Drawn());
+        addCommand(new Bind());
 
     }
 
