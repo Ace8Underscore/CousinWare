@@ -13,6 +13,7 @@ public class ShutDown extends Thread {
         NordClient.INSTANCE.configUtils.saveBinds();
         NordClient.INSTANCE.configUtils.saveDrawn();
         NordClient.INSTANCE.configUtils.savePrefix();
+        NordClient.INSTANCE.configUtils.saveFriends();
 
     }
 }

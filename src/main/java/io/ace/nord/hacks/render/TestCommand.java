@@ -24,7 +24,7 @@ public class TestCommand extends Hack {
             return;
 
         if (mc.currentScreen != null) {
-            mc.fontRenderer.drawStringWithShadow(mc.player.getName() + " On Top", MouseInfo.getPointerInfo().getLocation().x / 2, MouseInfo.getPointerInfo().getLocation().y / 2, 16755200);
+            mc.fontRenderer.drawStringWithShadow(mc.player.getName() + " On Top", (MouseInfo.getPointerInfo().getLocation().x / 2) + 10, (MouseInfo.getPointerInfo().getLocation().y / 2) + 6, 16755200);
             //                 mc.fontRenderer.drawStringWithShadow("HackDescriptionTest", MouseInfo.getPointerInfo().getLocation().x / 2 + 10 , MouseInfo.getPointerInfo().getLocation().y / 2, 16755200);
         }
 

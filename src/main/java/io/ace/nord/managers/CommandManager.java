@@ -20,6 +20,8 @@ public class CommandManager {
         addCommand(new Hacks());
         addCommand(new Drawn());
         addCommand(new Bind());
+        addCommand(new Friend());
+        addCommand(new FriendList());
 
     }
 

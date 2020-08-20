@@ -27,7 +27,7 @@ public class ArrayList extends Hack {
                 .filter(Hack::isDrawn)
                 .sorted(Comparator.comparing(hack -> mc.fontRenderer.getStringWidth(this.getName() + ChatFormatting.GRAY + " " + this.getHudInfo()) * (-1)))
                 .forEach(h -> {
-                    mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), 0, 3 + (hackCount * 10),16755200);
+                    mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), 1, 3 + (hackCount * 10),16755200);
                     hackCount++;
                 });
     }

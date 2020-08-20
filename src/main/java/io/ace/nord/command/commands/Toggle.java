@@ -25,7 +25,7 @@ public class Toggle extends Command {
             if (m.getName().equalsIgnoreCase(args[0])) {
                 if (m.isEnabled()) {
                     m.disable();
-                    Command.sendClientSideMessage(args[0] + " Was" + ChatFormatting.RED +" Disabled!");
+                    Command.sendClientSideMessage(args[0] + " Was" + ChatFormatting.DARK_PURPLE +" Disabled!");
                     found = true;
                 } else if (!m.isEnabled()) {
                     m.enable();

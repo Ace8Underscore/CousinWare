@@ -4,6 +4,8 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import io.ace.nord.NordClient;
 import io.ace.nord.command.Command;
+import io.ace.nord.friend.Friend;
+import io.ace.nord.friend.Friends;
 import io.ace.nord.hacks.Hack;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
@@ -34,6 +36,7 @@ public class ConfigUtils {
         loadDrawn();
         loadBinds();
         loadPrefix();
+        loadFriends();
 
     }
 
@@ -104,7 +107,7 @@ public class ConfigUtils {
 
     }
 
- /*   public void saveFriends() {
+    public void saveFriends() {
         try {
             File file = new File(this.Nord.getAbsolutePath(), "Friends.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));
@@ -120,9 +123,9 @@ public class ConfigUtils {
         } catch (Exception var5) {
         }
 
-    } */
+    }
 
- /*   public void loadFriends() {
+    public void loadFriends() {
         try {
             File file = new File(this.Nord.getAbsolutePath(), "Friends.txt");
             FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
@@ -132,7 +135,7 @@ public class ConfigUtils {
             Friends.friends.clear();
             String line;
             while((line = br.readLine()) != null) {
-                NordClient.getInstance().friends.addFriend(line);
+                NordClient.INSTANCE.friends.addFriend(line);
             }
 
             br.close();
@@ -143,7 +146,7 @@ public class ConfigUtils {
 
     }
 
-    public void saveEnemies() {
+  /*  public void saveEnemies() {
         try {
             File file = new File(this.Nord.getAbsolutePath(), "Enemies.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));

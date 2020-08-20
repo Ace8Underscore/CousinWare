@@ -4,6 +4,7 @@ import io.ace.nord.hacks.Hack;
 import io.ace.nord.hacks.combat.AutoTotem;
 import io.ace.nord.hacks.movement.Jesus;
 import io.ace.nord.hacks.render.AntiFog;
+import io.ace.nord.hacks.render.GoonSquad;
 import io.ace.nord.hacks.render.TestCommand;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class HackManager {
         addHack(new AutoTotem());
         addHack(new Jesus());
         addHack(new AntiFog());
+        addHack(new GoonSquad());
 
 
 
