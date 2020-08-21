@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "io.ace.nord.mixins",
+  "refmap": "mixins.nordclient.refmap.json",
+  "mixins": [
+
+    "MixinEntityPlayerSP"
+
+  ]
+}
