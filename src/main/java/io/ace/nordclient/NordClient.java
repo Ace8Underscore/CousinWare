@@ -1,0 +1,70 @@
+package io.ace.nordclient;
+
+import io.ace.nordclient.event.EventProcessor;
+import io.ace.nordclient.friend.Friends;
+import io.ace.nordclient.managers.CommandManager;
+import io.ace.nordclient.managers.HackManager;
+import io.ace.nordclient.utilz.configz.ConfigUtils;
+import io.ace.nordclient.utilz.configz.ShutDown;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import team.stiff.pomelo.EventManager;
+import team.stiff.pomelo.impl.annotated.AnnotatedEventManager;
+
+@Mod(modid = NordClient.MODID, name = NordClient.NAME, version = NordClient.VERSION)
+public class NordClient
+{
+    public static final String MODID = "nordclient";
+    public static final String NAME = "NordClient";
+    public static final String VERSION = "a1.0";
+
+    public static final Logger log = LogManager.getLogger(NAME);
+    private EventManager eventManager;
+    EventProcessor eventProcessor;
+    public HackManager hackManager;
+    public ConfigUtils configUtils;
+    public Friends friends;
+
+
+
+    @Mod.Instance
+    public static NordClient INSTANCE;
+
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+        eventProcessor = new EventProcessor();
+        eventProcessor.init();
+        CommandManager.initClientCommands();
+
+        hackManager = new HackManager();
+
+        configUtils = new ConfigUtils();
+        friends = new Friends();
+        Runtime.getRuntime().addShutdownHook(new ShutDown());
+    }
+
+    public EventManager getEventManager() {
+        if (this.eventManager == null) {
+            this.eventManager = new AnnotatedEventManager();
+        }
+
+        return this.eventManager;
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        //MinecraftForge.EVENT_BUS.register(new TestCommand());
+    }
+
+}
