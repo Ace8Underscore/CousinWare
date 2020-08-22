@@ -1,10 +1,12 @@
 package io.ace.nordclient.hacks.render;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.Comparator;
 
@@ -17,7 +19,7 @@ public class ArrayList extends Hack {
     }
 
     @SubscribeEvent
-    public void onRender(TickEvent.RenderTickEvent event) {
+    public void onWorldRender(TickEvent.RenderTickEvent event) {
         if (mc.world == null)
             return;
         hackCount = 0;

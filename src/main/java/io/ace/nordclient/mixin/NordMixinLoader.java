@@ -15,7 +15,7 @@ public class NordMixinLoader implements IFMLLoadingPlugin {
     public NordMixinLoader() {
         NordClient.log.info("Nord mixin initialized");
         MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.nord.json");
+        Mixins.addConfiguration("mixin.nordclient.json");
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
 
     }

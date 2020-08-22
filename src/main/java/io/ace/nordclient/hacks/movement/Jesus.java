@@ -2,6 +2,7 @@ package io.ace.nordclient.hacks.movement;
 
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
+import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;

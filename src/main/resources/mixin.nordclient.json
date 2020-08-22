@@ -2,7 +2,7 @@
   "required": true,
   "compatibilityLevel": "JAVA_8",
   "package": "io.ace.nordclient.mixin",
-  "refmap": "mixins.nord.refmap.json",
+  "refmap": "mixin.nordclient.refmap.json",
   "mixins": [
 
     "MixinEntityPlayerSP",
