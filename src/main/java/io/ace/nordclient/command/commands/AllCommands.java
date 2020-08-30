@@ -4,6 +4,11 @@ import io.ace.nordclient.command.Command;
 import io.ace.nordclient.managers.CommandManager;
 
 public class AllCommands extends Command {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     @Override
     public String[] getClientAlias() {return new String[] {"allcommand", "allcommands", "commands", "command"};}
 

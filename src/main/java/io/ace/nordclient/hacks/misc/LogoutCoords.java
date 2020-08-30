@@ -13,20 +13,29 @@ import java.awt.datatransfer.StringSelection;
 
 public class LogoutCoords extends Hack {
 
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     public LogoutCoords() {
         super("LogoutCoords", Category.MISC, "Saves your coords to the clipboard when logging out of a server");
     }
 
     @SubscribeEvent
     public void onPlayerLeaveEvent(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
-        int x = (int) mc.player.posX;
-        int y = (int) mc.player.posY;
-        int z = (int) mc.player.posZ;
-        String coords = "Logout Coords: X:" + x + ", Y:"+ y + ", Z:" + z;
+        if (!mc.isSingleplayer()) {
+            if (!mc.getCurrentServerData().serverIP.equalsIgnoreCase("2b2tpvp.net") && mc.player.dimension != 1) {
 
-        StringSelection data = new StringSelection(coords);
-        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        cb.setContents(data, data);
+                int x = (int) mc.player.posX;
+                int y = (int) mc.player.posY;
+                int z = (int) mc.player.posZ;
+                String coords = "Logout Coords: X:" + x + " Y:" + y + " Z:" + z;
 
-    } // PLEASE WORK ITS NOT WORKING WTF THE CLIENT AINT
+                StringSelection data = new StringSelection(coords);
+                Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+                cb.setContents(data, data);
+
+            }
+        }
+    }
 }

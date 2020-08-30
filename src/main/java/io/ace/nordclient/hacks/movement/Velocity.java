@@ -7,6 +7,11 @@ import net.minecraft.network.play.server.SPacketExplosion;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class Velocity extends Hack {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     public Velocity() {
         super("Velocity", Category.MOVEMENT);
     }

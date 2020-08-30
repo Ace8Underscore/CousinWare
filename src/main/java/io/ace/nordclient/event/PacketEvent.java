@@ -4,6 +4,10 @@ import net.minecraft.network.Packet;
 
 public class PacketEvent extends EventCancellable {
 
+    /**
+     * @author zeroeightsix/kami
+     */
+
     private final Packet packet;
 
     public PacketEvent(Packet packet) {

@@ -12,6 +12,10 @@ import java.util.Comparator;
 
 public class ArrayList extends Hack {
 
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     int hackCount;
 
     public ArrayList() {

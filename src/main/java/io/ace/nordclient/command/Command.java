@@ -5,6 +5,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextComponentString;
 
 public abstract class Command {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     public static final Minecraft mc = Minecraft.getMinecraft();
     public static String prefix = ".";
     public abstract String[] getClientAlias();

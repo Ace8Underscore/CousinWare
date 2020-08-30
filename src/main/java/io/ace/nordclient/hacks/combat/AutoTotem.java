@@ -15,6 +15,11 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class AutoTotem extends Hack {
 
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
+
     boolean strict = false;
     int delay = 0;
     int totems;

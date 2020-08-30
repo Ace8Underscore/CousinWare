@@ -1,7 +1,7 @@
 package io.ace.nordclient.hacks.render;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nordclient.friend.Friends;
+import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.hacks.Hack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -10,6 +10,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GoonSquad extends Hack {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     public GoonSquad() {
         super("GoonSquad", Category.RENDER);
 
@@ -27,7 +32,7 @@ public class GoonSquad extends Hack {
         for (Object o : mc.world.getLoadedEntityList()) {
             if (o instanceof EntityPlayer) {
                 if (((EntityPlayer) o).getName() != mc.player.getName()) {
-                    Friends.getFriends()
+                    FriendManager.getFriends()
                             .stream()
                             .forEach(friend -> {
                                 if (friend.getName().contains(((EntityPlayer) o).getName())) {

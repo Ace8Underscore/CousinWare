@@ -2,8 +2,8 @@ package io.ace.nordclient.utilz.configz;
 
 import io.ace.nordclient.NordClient;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.friend.Friend;
-import io.ace.nordclient.friend.Friends;
+import io.ace.nordclient.utilz.FriendUtil;
+import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.hacks.Hack;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
@@ -15,6 +15,11 @@ public class ConfigUtils {
     Minecraft mc = Minecraft.getMinecraft();
     public File Nord;
     public File Settings;
+
+    /**
+     * @author Finz0
+     *
+     **/
 
     public ConfigUtils() {
         this.Nord = new File(mc.gameDir + File.separator + "NordClient");
@@ -106,10 +111,10 @@ public class ConfigUtils {
         try {
             File file = new File(this.Nord.getAbsolutePath(), "Friends.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));
-            Iterator var3 = Friends.getFriends().iterator();
+            Iterator var3 = FriendManager.getFriends().iterator();
 
             while(var3.hasNext()) {
-                Friend f = (Friend)var3.next();
+                FriendUtil f = (FriendUtil)var3.next();
                 out.write(f.getName());
                 out.write("\r\n");
             }
@@ -127,7 +132,7 @@ public class ConfigUtils {
             DataInputStream in = new DataInputStream(fstream);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
-            Friends.friends.clear();
+            FriendManager.friends.clear();
             String line;
             while((line = br.readLine()) != null) {
                 NordClient.INSTANCE.friends.addFriend(line);

@@ -5,6 +5,11 @@ import io.ace.nordclient.command.Command;
 import io.ace.nordclient.managers.HackManager;
 
 public class Drawn extends Command{
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     private boolean found;
 
     @Override

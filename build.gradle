@@ -119,7 +119,7 @@ jar {
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'io.ace.nordclient.mixin.NordMixinLoader',
                 'ForceLoadAsMod': 'true',
-                'FMLAT': 'nord_at.cfg'
+                'FMLAT': 'nordclient_at.cfg'
         )
     }
 }

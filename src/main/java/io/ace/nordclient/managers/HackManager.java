@@ -2,9 +2,13 @@ package io.ace.nordclient.managers;
 
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.combat.AutoTotem;
+import io.ace.nordclient.hacks.combat.FastXp;
 import io.ace.nordclient.hacks.misc.LogoutCoords;
+import io.ace.nordclient.hacks.movement.FastSwim;
+import io.ace.nordclient.hacks.movement.FastWeb;
 import io.ace.nordclient.hacks.movement.Jesus;
 import io.ace.nordclient.hacks.movement.Velocity;
+import io.ace.nordclient.hacks.player.AntiVoid;
 import io.ace.nordclient.hacks.render.AntiFog;
 import io.ace.nordclient.hacks.render.GoonSquad;
 import io.ace.nordclient.hacks.render.Swing;
@@ -28,6 +32,10 @@ public class HackManager {
         addHack(new Swing());
         addHack(new Velocity());
         addHack(new LogoutCoords());
+        addHack(new AntiVoid());
+        addHack(new FastWeb());
+        addHack(new FastXp());
+        addHack(new FastSwim());
 
 
 

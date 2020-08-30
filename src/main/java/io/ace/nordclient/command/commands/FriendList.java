@@ -1,9 +1,13 @@
 package io.ace.nordclient.command.commands;
 
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.friend.Friends;
+import io.ace.nordclient.managers.FriendManager;
 
 public class FriendList extends Command {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
 
     @Override
     public String[] getClientAlias() {
@@ -17,7 +21,7 @@ public class FriendList extends Command {
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
-        Friends.getFriends()
+        FriendManager.getFriends()
                 .stream()
                 .forEach(friend ->  {
                     Command.sendClientSideMessage(friend.getName());

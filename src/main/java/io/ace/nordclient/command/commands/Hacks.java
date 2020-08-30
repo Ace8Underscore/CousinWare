@@ -6,6 +6,11 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
 
 public class Hacks extends Command {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     @Override
     public String[] getClientAlias() {
         return new String[]{"allhack", "allhacks", "hacks", "hack"};

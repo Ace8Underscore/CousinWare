@@ -8,15 +8,17 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class Swing extends Hack {
+
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     public Swing() {
         super("Swing", Category.RENDER, "Swing With Your OffHand");
     }
 
     @Listener
     public void onUpdate(UpdateEvent event) {
-        if (mc.world == null)
-            return;
-
             mc.player.swingingHand = EnumHand.OFF_HAND;
 
     }

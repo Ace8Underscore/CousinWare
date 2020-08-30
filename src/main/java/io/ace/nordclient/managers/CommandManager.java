@@ -22,6 +22,8 @@ public class CommandManager {
         addCommand(new Bind());
         addCommand(new Friend());
         addCommand(new FriendList());
+        addCommand(new Ping());
+        addCommand(new Description());
 
     }
 

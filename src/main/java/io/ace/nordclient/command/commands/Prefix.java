@@ -4,6 +4,10 @@ import io.ace.nordclient.command.Command;
 
 public class Prefix extends Command {
 
+    /**
+     * @author Ace________/Ace_#1233
+     */
+
     @Override
     public String[] getClientAlias() { return new String[] {"prefix"};}
 

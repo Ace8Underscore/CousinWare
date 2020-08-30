@@ -16,6 +16,12 @@ import org.lwjgl.input.Keyboard;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class EventProcessor {
+    /**
+     * thx finz0
+     *
+     */
+
+
     public static final Minecraft mc = Minecraft.getMinecraft();
     CommandManager commandManager = new CommandManager();
 

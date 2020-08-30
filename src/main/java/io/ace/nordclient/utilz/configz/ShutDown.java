@@ -3,6 +3,12 @@ package io.ace.nordclient.utilz.configz;
 import io.ace.nordclient.NordClient;
 
 public class ShutDown extends Thread {
+
+    /**
+     * @author Finz0
+     *
+     **/
+
     @Override
     public void run(){
         saveConfig();

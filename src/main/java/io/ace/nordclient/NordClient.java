@@ -1,7 +1,7 @@
 package io.ace.nordclient;
 
 import io.ace.nordclient.event.EventProcessor;
-import io.ace.nordclient.friend.Friends;
+import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.managers.CommandManager;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.utilz.configz.ConfigUtils;
@@ -28,7 +28,7 @@ public class NordClient
     EventProcessor eventProcessor;
     public HackManager hackManager;
     public ConfigUtils configUtils;
-    public Friends friends;
+    public FriendManager friends;
 
 
 
@@ -50,7 +50,7 @@ public class NordClient
         hackManager = new HackManager();
 
         configUtils = new ConfigUtils();
-        friends = new Friends();
+        friends = new FriendManager();
         Runtime.getRuntime().addShutdownHook(new ShutDown());
     }
 
