@@ -1,11 +1,11 @@
 package io.ace.nordclient.hacks.render;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.managers.FriendManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -24,7 +24,7 @@ public class GoonSquad extends Hack {
     private String str;
 
     @SubscribeEvent
-    public void onClientRender(TickEvent.RenderTickEvent event) {
+    public void onRenderGameOverlay(RenderGameOverlayEvent.Text event) {
         if (mc.world == null)
             return;
         AtomicInteger y = new AtomicInteger(2);
@@ -48,6 +48,7 @@ public class GoonSquad extends Hack {
 
             }
         }
+
     }
 }
 

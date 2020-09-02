@@ -1,4 +1,4 @@
-package io.ace.nordclient.utilz;
+package io.ace.nordclient.utilz.clientutil;
 
 public class FriendUtil {
 

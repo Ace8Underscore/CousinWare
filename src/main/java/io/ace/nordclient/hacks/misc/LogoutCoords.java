@@ -1,11 +1,8 @@
 package io.ace.nordclient.hacks.misc;
 
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import javafx.scene.input.ClipboardContent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;

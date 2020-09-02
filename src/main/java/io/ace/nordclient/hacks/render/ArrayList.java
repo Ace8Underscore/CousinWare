@@ -1,12 +1,12 @@
 package io.ace.nordclient.hacks.render;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nordclient.event.RenderEvent;
+import io.ace.nordclient.NordClient;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
+import io.ace.nordclient.utilz.clientutil.Setting;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.Comparator;
 
@@ -18,12 +18,20 @@ public class ArrayList extends Hack {
 
     int hackCount;
 
+
+
+    Setting x;
+    Setting y;
+
     public ArrayList() {
         super("ArrayList", Category.RENDER);
+        NordClient.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 1, 0, 1000, false, "ArrayListX"));
+        NordClient.INSTANCE.settingsManager.rSetting(y = new Setting("x", this, 3, 0, 1000, false, "ArrayListY"));
+
     }
 
     @SubscribeEvent
-    public void onWorldRender(TickEvent.RenderTickEvent event) {
+    public void onRenderGameOverlay(RenderGameOverlayEvent.Text event)  {
         if (mc.world == null)
             return;
         hackCount = 0;
@@ -33,7 +41,7 @@ public class ArrayList extends Hack {
                 .filter(Hack::isDrawn)
                 .sorted(Comparator.comparing(hack -> mc.fontRenderer.getStringWidth(this.getName() + ChatFormatting.GRAY + " " + this.getHudInfo()) * (-1)))
                 .forEach(h -> {
-                    mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), 1, 3 + (hackCount * 10),16755200);
+                    mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10),16755200);
                     hackCount++;
                 });
     }

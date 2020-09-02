@@ -2,12 +2,14 @@ package io.ace.nordclient.utilz.configz;
 
 import io.ace.nordclient.NordClient;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.utilz.FriendUtil;
-import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.managers.FriendManager;
+import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.clientutil.FriendUtil;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
+import java.awt.*;
 import java.io.*;
 import java.util.Iterator;
 
@@ -27,16 +29,18 @@ public class ConfigUtils {
             this.Nord.mkdirs();
         }
 
-       /* this.Settings = new File(mc.gameDir + File.separator + "NordClient" + File.separator + "Settings");
+       this.Settings = new File(mc.gameDir + File.separator + "NordClient" + File.separator + "Settings");
         if (!this.Settings.exists()) {
             this.Settings.mkdirs();
-        } */
+        }
 
         loadMods();
         loadDrawn();
         loadBinds();
         loadPrefix();
         loadFriends();
+        loadSettingsList();
+
 
     }
 
@@ -406,9 +410,9 @@ public class ConfigUtils {
         }
 
     }
-}
 
-  /*  public void saveSettingsList() {
+
+    public void saveSettingsList() {
         File file;
         BufferedWriter out;
         Iterator var3;
@@ -416,7 +420,7 @@ public class ConfigUtils {
         try {
             file = new File(Settings.getAbsolutePath(), "Number.txt");
             out = new BufferedWriter(new FileWriter(file));
-            var3 = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettings().iterator();
+            var3 = NordClient.INSTANCE.settingsManager.getSettings().iterator();
 
             while(var3.hasNext()) {
                 i = (Setting)var3.next();
@@ -432,7 +436,7 @@ public class ConfigUtils {
         try {
             file = new File(Settings.getAbsolutePath(), "Boolean.txt");
             out = new BufferedWriter(new FileWriter(file));
-            var3 = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettings().iterator();
+            var3 = NordClient.INSTANCE.settingsManager.getSettings().iterator();
 
             while(var3.hasNext()) {
                 i = (Setting)var3.next();
@@ -448,7 +452,7 @@ public class ConfigUtils {
         try {
             file = new File(Settings.getAbsolutePath(), "String.txt");
             out = new BufferedWriter(new FileWriter(file));
-            var3 = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettings().iterator();
+            var3 = NordClient.INSTANCE.settingsManager.getSettings().iterator();
 
             while(var3.hasNext()) {
                 i = (Setting)var3.next();
@@ -464,7 +468,7 @@ public class ConfigUtils {
         try {
             file = new File(Settings.getAbsolutePath(), "Color.txt");
             out = new BufferedWriter(new FileWriter(file));
-            var3 = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettings().iterator();
+            var3 = NordClient.INSTANCE.settingsManager.getSettings().iterator();
 
             while(var3.hasNext()) {
                 i = (Setting)var3.next();
@@ -502,9 +506,9 @@ public class ConfigUtils {
                 name = curLine.split(":")[0];
                 isOn = curLine.split(":")[1];
                 m = curLine.split(":")[2];
-                for(Module mm : NordClient.getInstance().moduleManager.getModules()) {
-                    if (mm != null && mm.getName().equalsIgnoreCase(m)) {
-                        mod = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettingByID(name);
+                for(Hack h : NordClient.INSTANCE.hackManager.getHacks()) {
+                    if (h != null && h.getName().equalsIgnoreCase(m)) {
+                        mod = NordClient.INSTANCE.settingsManager.getSettingByID(name);
                         mod.setValDouble(Double.parseDouble(isOn));
                     }
                 }
@@ -527,9 +531,9 @@ public class ConfigUtils {
                 name = curLine.split(":")[0];
                 color = Integer.parseInt(curLine.split(":")[1]);
                 m = curLine.split(":")[2];
-                for(Module mm : NordClient.getInstance().moduleManager.getModules()) {
-                    if (mm != null && mm.getName().equalsIgnoreCase(m)) {
-                        mod = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettingByID(name);
+                for(Hack h : NordClient.INSTANCE.hackManager.getHacks()) {
+                    if (h != null && h.getName().equalsIgnoreCase(m)) {
+                        mod = NordClient.INSTANCE.settingsManager.getSettingByID(name);
                         mod.setValColor(new Color(color));
                     }
                 }
@@ -552,9 +556,9 @@ public class ConfigUtils {
                 name = curLine.split(":")[0];
                 isOn = curLine.split(":")[1];
                 m = curLine.split(":")[2];
-                for(Module mm : NordClient.getInstance().moduleManager.getModules()) {
-                    if (mm != null && mm.getName().equalsIgnoreCase(m)) {
-                        mod = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettingByID(name);
+                for(Hack h : NordClient.INSTANCE.hackManager.getHacks()) {
+                    if (h != null && h.getName().equalsIgnoreCase(m)) {
+                        mod = NordClient.INSTANCE.settingsManager.getSettingByID(name);
                         mod.setValBoolean(Boolean.parseBoolean(isOn));
                     }
                 }
@@ -577,9 +581,9 @@ public class ConfigUtils {
                 name = curLine.split(":")[0];
                 isOn = curLine.split(":")[1];
                 m = curLine.split(":")[2];
-                for(Module mm : NordClient.getInstance().moduleManager.getModules()) {
-                    if (mm != null && mm.getName().equalsIgnoreCase(m)) {
-                        mod = me.finz0.Nord.NordClient.getInstance().settingsManager.getSettingByID(name);
+                for(Hack h : NordClient.INSTANCE.hackManager.getHacks()) {
+                    if (h != null && h.getName().equalsIgnoreCase(m)) {
+                        mod = NordClient.INSTANCE.settingsManager.getSettingByID(name);
                         mod.setValString(isOn);
                     }
                 }
@@ -592,4 +596,4 @@ public class ConfigUtils {
         }
 
     }
-} */
+}

@@ -1,7 +1,6 @@
 package io.ace.nordclient.hacks;
 
 import io.ace.nordclient.NordClient;
-import io.ace.nordclient.event.UpdateEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
@@ -11,7 +10,7 @@ public class Hack {
 
     public String name;
     public String description;
-    public Category category;
+    public static Category category;
     public int bind;
     public boolean enabled;
     public boolean drawn;
@@ -43,8 +42,6 @@ public class Hack {
     public void setBind(int b){
         bind = b;
     }
-
-    public void onUpdatee(UpdateEvent event){}
 
     public void onUpdate(){}
 
@@ -94,9 +91,14 @@ public class Hack {
     }
     public boolean isDrawn() {return drawn;}
 
-    public Category getCategory(){
+    public static Category getCategory(){
         return category;
     }
+
+    public void setCategory(Category c){
+        category = c;
+    }
+
 
     public String getName() {
         return name;
@@ -113,14 +115,15 @@ public class Hack {
 
 
 
+
+
     public enum Category {
         COMBAT,
         PLAYER,
         MOVEMENT,
         MISC,
-        WORLD,
         RENDER,
-        GUI
+        CLIENT
     }
 }
 

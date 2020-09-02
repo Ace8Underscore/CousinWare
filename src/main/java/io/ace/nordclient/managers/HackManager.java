@@ -4,17 +4,17 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.combat.AutoTotem;
 import io.ace.nordclient.hacks.combat.FastXp;
 import io.ace.nordclient.hacks.misc.LogoutCoords;
+import io.ace.nordclient.hacks.misc.QuickDrop;
 import io.ace.nordclient.hacks.movement.FastSwim;
 import io.ace.nordclient.hacks.movement.FastWeb;
 import io.ace.nordclient.hacks.movement.Jesus;
 import io.ace.nordclient.hacks.movement.Velocity;
 import io.ace.nordclient.hacks.player.AntiVoid;
-import io.ace.nordclient.hacks.render.AntiFog;
-import io.ace.nordclient.hacks.render.GoonSquad;
-import io.ace.nordclient.hacks.render.Swing;
-import io.ace.nordclient.hacks.render.TestCommand;
+import io.ace.nordclient.hacks.render.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class HackManager {
     public static ArrayList<Hack> hacks;
@@ -36,6 +36,9 @@ public class HackManager {
         addHack(new FastWeb());
         addHack(new FastXp());
         addHack(new FastSwim());
+        addHack(new QuickDrop());
+        addHack(new Hand());
+        addHack(new SelfParticle());
 
 
 
@@ -67,6 +70,17 @@ public class HackManager {
                 });
 
         return officialAllHackNames;
+    }
+
+    public List<Hack> getHacksInCategory(final Hack.Category category) {
+        final List<Hack> list = new ArrayList<Hack>();
+        for (final Hack h : this.hacks) {
+            if (!h.getCategory().equals(category)) {
+                continue;
+            }
+            list.add(h);
+        }
+        return list;
     }
 
     public static void onBind(int key) {

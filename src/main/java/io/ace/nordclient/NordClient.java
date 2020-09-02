@@ -1,9 +1,10 @@
 package io.ace.nordclient;
 
 import io.ace.nordclient.event.EventProcessor;
-import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.managers.CommandManager;
+import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.managers.HackManager;
+import io.ace.nordclient.managers.SettingsManager;
 import io.ace.nordclient.utilz.configz.ConfigUtils;
 import io.ace.nordclient.utilz.configz.ShutDown;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +30,10 @@ public class NordClient
     public HackManager hackManager;
     public ConfigUtils configUtils;
     public FriendManager friends;
+    public SettingsManager settingsManager;
+    //public ClickGUI clickGui;
+
+
 
 
 
@@ -46,6 +51,12 @@ public class NordClient
         eventProcessor = new EventProcessor();
         eventProcessor.init();
         CommandManager.initClientCommands();
+
+        settingsManager = new SettingsManager();
+
+        //clickGui = new ClickGUI();
+
+
 
         hackManager = new HackManager();
 

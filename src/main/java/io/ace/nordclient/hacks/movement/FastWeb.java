@@ -4,21 +4,20 @@ import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
-public class Jesus extends Hack {
+public class FastWeb extends Hack {
 
     /**
      * @author Ace________/Ace_#1233
      */
 
-    public Jesus() {
-        super("Jesus", Category.MOVEMENT, "Walk on water duh");
+    public FastWeb() {
+        super("FastWeb", Category.MOVEMENT);
     }
 
     @Listener
     public void onUpdate(UpdateEvent event) {
-
-        if (mc.player.isOverWater() && !mc.gameSettings.keyBindSneak.isKeyDown() && !mc.gameSettings.keyBindJump.isKeyDown()) {
-            mc.player.motionY = 0;
+        if (mc.player.isInWeb) {
+            mc.player.motionY = 1.1 / -5;
         }
     }
 }

@@ -4,7 +4,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.command.commands.*;
 
-
 import java.util.ArrayList;
 
 public class CommandManager {
@@ -24,6 +23,9 @@ public class CommandManager {
         addCommand(new FriendList());
         addCommand(new Ping());
         addCommand(new Description());
+        addCommand(new Stack());
+        addCommand(new Summon());
+        addCommand(new Pyro());
 
     }
 

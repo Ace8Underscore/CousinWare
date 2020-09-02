@@ -1,8 +1,6 @@
 package io.ace.nordclient.mixin;
 
 import io.ace.nordclient.NordClient;
-
-
 import io.ace.nordclient.event.EventPlayerTravel;
 import io.ace.nordclient.event.PlayerJumpEvent;
 import net.minecraft.client.Minecraft;

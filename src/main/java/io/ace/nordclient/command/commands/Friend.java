@@ -28,6 +28,7 @@ public class Friend extends Command {
             }
 
 
+
         if (args[0].equals("del")) {
             FriendManager.getFriends()
                     .stream()

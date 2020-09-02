@@ -1,12 +1,11 @@
 package io.ace.nordclient.mixin;
 
 import io.ace.nordclient.NordClient;
-import io.netty.channel.ChannelHandlerContext;
 import io.ace.nordclient.event.PacketEvent;
+import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.NetworkManager;
-
-import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.network.Packet;
+import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;

@@ -2,7 +2,6 @@ package io.ace.nordclient.mixin;
 
 import io.ace.nordclient.NordClient;
 import io.ace.nordclient.event.EventStageable;
-
 import io.ace.nordclient.event.PlayerMoveEvent;
 import io.ace.nordclient.event.UpdateEvent;
 import net.minecraft.client.entity.AbstractClientPlayer;

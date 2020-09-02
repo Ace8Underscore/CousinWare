@@ -1,6 +1,6 @@
 package io.ace.nordclient.managers;
 
-import io.ace.nordclient.utilz.FriendUtil;
+import io.ace.nordclient.utilz.clientutil.FriendUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,6 @@ public class  FriendManager {
      */
 
     public static List<FriendUtil> friends;
-    private static boolean friendValue;
     private static String friened;
     public FriendManager(){
         friends = new ArrayList<>();
@@ -32,19 +31,19 @@ public class  FriendManager {
     }
 
     public static boolean isFriend(String name) {
-        getFriends()
-                .stream()
-                .forEach(friend -> {
-                    friened = friend.getName();
-                });
+        return Boolean.parseBoolean(name = getFriends().toString());
+    }
 
-        if (!friened.equals(name)) {
-            friendValue = true;
-        } else {
-            friendValue = false;
+    public static boolean isClientFriend(String name) {
+        FriendUtil friend = null;
+        Boolean friendValue = null;
+        for (FriendUtil f : getFriends()){
+            if (f.getName().equalsIgnoreCase(name)) friendValue = true;
+            if (!f.getName().equalsIgnoreCase(name)) friendValue = false;
         }
         return friendValue;
     }
+
 
 
 
