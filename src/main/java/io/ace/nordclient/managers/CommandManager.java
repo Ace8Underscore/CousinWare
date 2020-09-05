@@ -26,6 +26,8 @@ public class CommandManager {
         addCommand(new Stack());
         addCommand(new Summon());
         addCommand(new Pyro());
+        addCommand(new Set());
+        addCommand(new Setting());
 
     }
 

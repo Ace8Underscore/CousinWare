@@ -48,7 +48,7 @@ public class SettingsManager {
                 return set;
             }
         }
-        System.err.println("[EyeHack] Error Setting NOT found: '" + name +"'!");
+        System.err.println("[Nord] Error Setting NOT found: '" + name +"'!");
         return null;
     }
 
@@ -58,7 +58,7 @@ public class SettingsManager {
                 return s;
             }
         }
-        System.err.println("[EyeHack] Error Setting NOT found: '" + id +"'!");
+        System.err.println("[Nord] Error Setting NOT found: '" + id +"'!");
         return null;
     }
 

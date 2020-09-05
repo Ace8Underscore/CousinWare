@@ -26,7 +26,7 @@ public class ArrayList extends Hack {
     public ArrayList() {
         super("ArrayList", Category.RENDER);
         NordClient.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 1, 0, 1000, false, "ArrayListX"));
-        NordClient.INSTANCE.settingsManager.rSetting(y = new Setting("x", this, 3, 0, 1000, false, "ArrayListY"));
+        NordClient.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 3, 0, 1000, false, "ArrayListY"));
 
     }
 
@@ -42,6 +42,7 @@ public class ArrayList extends Hack {
                 .sorted(Comparator.comparing(hack -> mc.fontRenderer.getStringWidth(this.getName() + ChatFormatting.GRAY + " " + this.getHudInfo()) * (-1)))
                 .forEach(h -> {
                     mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10),16755200);
+
                     hackCount++;
                 });
     }

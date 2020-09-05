@@ -1,6 +1,7 @@
 package io.ace.nordclient;
 
 import io.ace.nordclient.event.EventProcessor;
+import io.ace.nordclient.gui.ClickGUI;
 import io.ace.nordclient.managers.CommandManager;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.managers.HackManager;
@@ -31,6 +32,8 @@ public class NordClient
     public ConfigUtils configUtils;
     public FriendManager friends;
     public SettingsManager settingsManager;
+    public ClickGUI clickGui;
+
     //public ClickGUI clickGui;
 
 
@@ -54,13 +57,10 @@ public class NordClient
 
         settingsManager = new SettingsManager();
 
-        //clickGui = new ClickGUI();
-
-
 
         hackManager = new HackManager();
-
         configUtils = new ConfigUtils();
+        clickGui = new ClickGUI();
         friends = new FriendManager();
         Runtime.getRuntime().addShutdownHook(new ShutDown());
     }

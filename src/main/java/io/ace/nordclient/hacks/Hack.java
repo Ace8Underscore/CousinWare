@@ -10,7 +10,7 @@ public class Hack {
 
     public String name;
     public String description;
-    public static Category category;
+    Category category;
     public int bind;
     public boolean enabled;
     public boolean drawn;
@@ -91,7 +91,7 @@ public class Hack {
     }
     public boolean isDrawn() {return drawn;}
 
-    public static Category getCategory(){
+    public Category getCategory(){
         return category;
     }
 

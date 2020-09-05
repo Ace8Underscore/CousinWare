@@ -5,10 +5,7 @@ import io.ace.nordclient.hacks.combat.AutoTotem;
 import io.ace.nordclient.hacks.combat.FastXp;
 import io.ace.nordclient.hacks.misc.LogoutCoords;
 import io.ace.nordclient.hacks.misc.QuickDrop;
-import io.ace.nordclient.hacks.movement.FastSwim;
-import io.ace.nordclient.hacks.movement.FastWeb;
-import io.ace.nordclient.hacks.movement.Jesus;
-import io.ace.nordclient.hacks.movement.Velocity;
+import io.ace.nordclient.hacks.movement.*;
 import io.ace.nordclient.hacks.player.AntiVoid;
 import io.ace.nordclient.hacks.render.*;
 
@@ -39,6 +36,10 @@ public class HackManager {
         addHack(new QuickDrop());
         addHack(new Hand());
         addHack(new SelfParticle());
+        addHack(new ElytraFly());
+        //addHack(new ElytraFly2());
+        addHack(new SkyColor());
+        addHack(new ClickGuiHack());
 
 
 
@@ -72,16 +73,10 @@ public class HackManager {
         return officialAllHackNames;
     }
 
-    public List<Hack> getHacksInCategory(final Hack.Category category) {
-        final List<Hack> list = new ArrayList<Hack>();
-        for (final Hack h : this.hacks) {
-            if (!h.getCategory().equals(category)) {
-                continue;
-            }
-            list.add(h);
-        }
-        return list;
+    public static ArrayList<Hack> getHacksInCategory(Hack.Category c){
+        return (ArrayList<Hack>) getHacks().stream().filter(h -> h.getCategory().equals(c)).collect(Collectors.toList());
     }
+
 
     public static void onBind(int key) {
         if (key == 0) return;

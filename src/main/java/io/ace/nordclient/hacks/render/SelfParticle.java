@@ -22,7 +22,7 @@ public class SelfParticle extends Hack {
 
         int particleId = (int) ((Math.random() * ((49 - 3) + 1))+1);
 
-        if (!(particleId == 41) && !(particleId == 1) && !(particleId == 2))
+        if (!(particleId == 1) && !(particleId == 2) && !(particleId == 41))
         mc.effectRenderer.spawnEffectParticle(particleId, mc.player.posX + 1.5 +- x , mc.player.posY + y, mc.player.posZ + 1.5 +- z, 0, .5, 0, 10);
     }
 }
