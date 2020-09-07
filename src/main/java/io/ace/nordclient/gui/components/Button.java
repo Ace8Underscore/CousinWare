@@ -4,7 +4,7 @@ import io.ace.nordclient.NordClient;
 import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.gui.Frame;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.render.ClickGuiHack;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.client.gui.Gui;
 import java.awt.Color;
@@ -100,6 +100,9 @@ public class Button extends Component
     @Override
     public void updateComponent(final int mouseX, final int mouseY) {
         this.isHovered = this.isMouseOnButton(mouseX, mouseY);
+        if (this.isHovered && ClickGuiHack.descriptions.getValBoolean()) {
+            mc.fontRenderer.drawStringWithShadow(this.hack.getDescription(), mouseX + 12, mouseY + 4, -1);
+        }
         if (!this.subcomponents.isEmpty()) {
             for (final Component comp : this.subcomponents) {
                 comp.updateComponent(mouseX, mouseY);

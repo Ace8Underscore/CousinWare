@@ -15,12 +15,9 @@ public class SkyColor extends Hack {
     public SkyColor() {
         super("SkyColor", Category.RENDER, "Changes the sky's color.");
         //
-        r = new Setting("Red", this, 0, 0.0, 1.0, false, "SkyColorRed");
-        NordClient.INSTANCE.settingsManager.rSetting(r);
-        g = new Setting("Green", this, 0, 0.0, 1.0, false, "SkyColorGreen");
-        NordClient.INSTANCE.settingsManager.rSetting(g);
-        b = new Setting("Blue", this, 0, 0.0, 1.0, false, "SkyColorBlue");
-        NordClient.INSTANCE.settingsManager.rSetting(b);
+        NordClient.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 1, 0, 1, false, "SkyColorRed"));
+        NordClient.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 1, false, "SkyColorGreen"));
+        NordClient.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 1, 0, 1, false, "SkyColorBlue"));
 
 
     }

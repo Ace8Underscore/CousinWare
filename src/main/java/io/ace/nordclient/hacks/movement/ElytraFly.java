@@ -22,12 +22,13 @@ public class ElytraFly extends Hack {
     Setting noGlideAFK;
     Setting boost;
     Setting autoTakeoff;
-    Setting flyMode;
+    private Setting flyMode;
+    private int sendPacketDelay = 0;
 
     public ElytraFly() {
         super("ElytraFly", Category.MOVEMENT);
 
-        NordClient.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, .24, 0, 2, false, "ElytraFlySpeed"));
+        NordClient.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 2, 0, 10, false, "ElytraFlySpeed"));
         NordClient.INSTANCE.settingsManager.rSetting(glide = new Setting("Glide", this, true, "ElytraFlyGlide"));
         NordClient.INSTANCE.settingsManager.rSetting(glideSpeed = new Setting("GlideSpeed", this, 1, 0, 2.5, false, "ElytraFlyGlideSpeed"));
         NordClient.INSTANCE.settingsManager.rSetting(noGlideAFK = new Setting("NoGlideAFK", this, false, "ElytraFlyNoGlideAFK"));
@@ -48,19 +49,38 @@ public class ElytraFly extends Hack {
     public void onUpdate(UpdateEvent event) {
         if (mc.player.isElytraFlying() && !mc.gameSettings.keyBindSneak.isKeyDown()) {
             final float yaw = GetRotationYawForCalc();
-            if (flyMode.getCustomVal().equalsIgnoreCase("2b")) {
+            if (flyMode.getValString().equalsIgnoreCase("2b")) {
                 if (mc.player.rotationPitch > 0) {
-                    mc.player.motionX -= MathHelper.sin(yaw) * .05 / 10;
-                    mc.player.motionZ += MathHelper.cos(yaw) * .05 / 10;
+                    mc.player.motionX -= MathHelper.sin(yaw) * .18 / 10;
+                    mc.player.motionZ += MathHelper.cos(yaw) * .18 / 10;
 
 
                 }
             }
-            if (flyMode.getCustomVal().equalsIgnoreCase("creative")) {
-                final double[] dir = MathUtil.directionSpeed(speed.getValDouble());
 
+            if (flyMode.getValString().equalsIgnoreCase("plane")) {
+                final double[] dir = MathUtil.directionSpeed(speed.getValDouble());
+                mc.player.motionY *= 0;
                 mc.player.motionX = dir[0];
                 mc.player.motionZ = dir[1];
+            }
+            if (flyMode.getValString().equalsIgnoreCase("creative")) {
+                final double[] dir = MathUtil.directionSpeed(speed.getValDouble());
+                if (!boost.getValBoolean()) {
+                    mc.player.motionX = dir[0];
+                    mc.player.motionZ = dir[1];
+                } else {
+                    if (mc.player.rotationPitch > 0) {
+                        mc.player.motionX = dir[0];
+                        mc.player.motionZ = dir[1];
+
+                    }
+                    if (mc.player.rotationPitch < 0) {
+                        mc.player.motionX -= MathHelper.sin(yaw) * .08 / 10;
+                        mc.player.motionZ += MathHelper.cos(yaw) * .08 / 10;
+                    }
+
+                }
 
             }
 
@@ -75,32 +95,37 @@ public class ElytraFly extends Hack {
 
 
                 if (glide.getValBoolean()) {
-                mc.player.motionY = -glideSpeed.getValDouble() / 100;
+                mc.player.motionY = -(glideSpeed.getValDouble() / 10000);
             }
 
         }
         if (autoTakeoff.getValBoolean()) {
             if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA && mc.gameSettings.keyBindJump.isKeyDown() && !mc.player.isElytraFlying()) {
-                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
-
+                sendPacketDelay++;
+                if (sendPacketDelay > 5) {
+                    mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
+                    sendPacketDelay = 0;
+                    //
+                }
             }
         }
 
         if (mc.player.isElytraFlying() && mc.gameSettings.keyBindSneak.isKeyDown()) {
             mc.player.motionY = -.51;
         }
-        if (mc.gameSettings.keyBindJump.isKeyDown()) {
 
-        }
 
+        if (!flyMode.getValString().equalsIgnoreCase("2b"))  {
         if (mc.player.isElytraFlying() && !mc.gameSettings.keyBindForward.isKeyDown() && !mc.gameSettings.keyBindRight.isKeyDown() && !mc.gameSettings.keyBindLeft.isKeyDown() && !mc.gameSettings.keyBindBack.isKeyDown() && !mc.gameSettings.keyBindSneak.isKeyDown() && !mc.gameSettings.keyBindJump.isKeyDown()) {
             mc.player.motionX = 0;
             mc.player.motionZ = 0;
             if (noGlideAFK.getValBoolean()) {
                 mc.player.motionY = 0;
-            } else {
-                mc.player.motionY = glideSpeed.getValDouble() / 100;
             }
+        }
+
+
+            //
             //
         }
 
@@ -132,6 +157,7 @@ public class ElytraFly extends Hack {
 
     @Override
     public String getHudInfo() {
-        return flyMode.getCustomVal();
+        return "[" + flyMode.getValString() + "]";
     }
+    //
 }

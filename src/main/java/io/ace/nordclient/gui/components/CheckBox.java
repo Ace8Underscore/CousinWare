@@ -1,9 +1,12 @@
 package io.ace.nordclient.gui.components;
 
 import io.ace.nordclient.gui.Component;
-import io.ace.nordclient.hacks.render.ClickGuiHack;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;
 
@@ -29,11 +32,13 @@ public class CheckBox extends Component
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? (this.op.getValBoolean() ?
                 new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB() :
                 new Color(30, 30, 30, 150).darker().darker().getRGB()) : (this.op.getValBoolean() ?
-                new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB() :
+                new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).darker().getRGB() :
                 new Color(30, 30, 30, 150).getRGB()));
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(30, 30, 30, 150).getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValInt(), this.op.getName(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
-        mc.fontRenderer.drawStringWithShadow(this.op.getDisplayName(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
+
+        FontRenderUtil.drawCenteredStringWithShadow(this.op.getDisplayName(), this.parent.parent.getX() + 40, this.parent.parent.getY() + this.offset + 4, -1);
+
     }
     
     @Override
@@ -45,7 +50,7 @@ public class CheckBox extends Component
     public void updateComponent(final int mouseX, final int mouseY) {
         this.hovered = this.isMouseOnButton(mouseX, mouseY);
         this.y = this.parent.parent.getY() + this.offset;
-        this.x = this.parent.parent.getX();
+        this.x = this.parent.parent.getX() - 10;
     }
     
     @Override

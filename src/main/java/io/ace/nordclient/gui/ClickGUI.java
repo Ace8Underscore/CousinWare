@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.render.ClickGuiHack;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
 import net.minecraft.client.gui.GuiScreen;
 
 public class ClickGUI extends GuiScreen

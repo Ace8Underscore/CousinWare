@@ -1,16 +1,14 @@
 package io.ace.nordclient.managers;
 
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.combat.AutoTotem;
-import io.ace.nordclient.hacks.combat.FastXp;
-import io.ace.nordclient.hacks.misc.LogoutCoords;
-import io.ace.nordclient.hacks.misc.QuickDrop;
+import io.ace.nordclient.hacks.combat.*;
+import io.ace.nordclient.hacks.client.*;
+import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
-import io.ace.nordclient.hacks.player.AntiVoid;
+import io.ace.nordclient.hacks.player.*;
 import io.ace.nordclient.hacks.render.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class HackManager {
@@ -20,7 +18,7 @@ public class HackManager {
 
     public HackManager(){
         hacks = new ArrayList<>();
-        addHack(new TestCommand());
+        //addHack(new TestCommand());
         addHack(new io.ace.nordclient.hacks.render.ArrayList());
         addHack(new AutoTotem());
         addHack(new Jesus());
@@ -34,12 +32,11 @@ public class HackManager {
         addHack(new FastXp());
         addHack(new FastSwim());
         addHack(new QuickDrop());
-        addHack(new Hand());
         addHack(new SelfParticle());
         addHack(new ElytraFly());
-        //addHack(new ElytraFly2());
         addHack(new SkyColor());
         addHack(new ClickGuiHack());
+
 
 
 

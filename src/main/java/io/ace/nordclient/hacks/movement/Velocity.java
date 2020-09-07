@@ -21,8 +21,6 @@ public class Velocity extends Hack {
             if(((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId())
                 event.setCanceled(true);
         }
-        if (event.getPacket() instanceof SPacketExplosion) {
-            event.setCanceled(true);
-        }
+
     }
 }

@@ -2,6 +2,7 @@ package io.ace.nordclient.utilz.configz;
 
 import io.ace.nordclient.NordClient;
 import io.ace.nordclient.command.Command;
+import io.ace.nordclient.gui.ClickGUI;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.clientutil.Setting;
@@ -40,6 +41,7 @@ public class ConfigUtils {
         loadPrefix();
         loadFriends();
         loadSettingsList();
+
 
 
     }
@@ -222,7 +224,7 @@ public class ConfigUtils {
                 double x1 = Double.parseDouble(x);
                 double y1 = Double.parseDouble(y);
                 boolean ext = Boolean.parseBoolean(e);
-                Panel p = ClickGUI.getPanelByName(name);
+                Panel p = ClickGUI.frames.get(name);
                 if (p != null) {
                     p.x = x1;
                     p.y = y1;

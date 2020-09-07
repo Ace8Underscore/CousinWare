@@ -2,8 +2,8 @@ package io.ace.nordclient.gui;
 
 import io.ace.nordclient.gui.components.Button;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.render.ClickGuiHack;
 import io.ace.nordclient.managers.HackManager;
+import io.ace.nordclient.utilz.FontRenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.FontRenderer;
@@ -26,7 +26,7 @@ public class Frame
     public Frame(final Hack.Category cat) {
         this.components = new ArrayList<Component>();
         this.category = cat;
-        this.width = 88;
+        this.width = 80;
         this.x = 5;
         this.y = 5;
         this.barHeight = 16;
@@ -76,7 +76,7 @@ public class Frame
         Minecraft mc = Minecraft.getMinecraft();
 
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.category.name(), this.x + 2, this.y + 3, -1);
-        mc.fontRenderer.drawStringWithShadow(this.category.name(), this.x + 2, this.y + 3, -1);
+        FontRenderUtil.drawCenteredStringWithShadow(this.category.name(), this.x + 40, this.y + 3, -1);
         if (this.open && !this.components.isEmpty()) {
             for (final Component component : this.components) {
                 component.renderComponent();

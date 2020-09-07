@@ -29,7 +29,7 @@ public class Keybind extends Component
     
     @Override
     public void renderComponent() {
-        Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 15, this.hovered ? new Color(30, 30, 30, 150).darker().darker().getRGB() : new Color(30, 30, 30, 150).getRGB());
+        Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 15, this.hovered ? new Color(30, 30, 30, 150).darker().darker().darker().darker().darker().darker().getRGB() : new Color(30, 30, 30, 150).getRGB());
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(30, 30, 30, 150).getRGB());
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 15, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, new Color(10, 10, 10, 200).getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(),this.binding ? "Press a key..." : ("Key: " + ChatFormatting.GRAY + Keyboard.getKeyName(this.parent.mod.getBind())), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
@@ -40,7 +40,7 @@ public class Keybind extends Component
     public void updateComponent(final int mouseX, final int mouseY) {
         this.hovered = this.isMouseOnButton(mouseX, mouseY);
         this.y = this.parent.parent.getY() + this.offset;
-        this.x = this.parent.parent.getX();
+        this.x = this.parent.parent.getX() - 10;
     }
     
     @Override

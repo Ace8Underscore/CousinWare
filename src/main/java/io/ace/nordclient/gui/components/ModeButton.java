@@ -38,14 +38,14 @@ public class ModeButton extends Component
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? new Color(30, 30, 30, 150).darker().darker().getRGB() : new Color(30, 30, 30, 150).getRGB());
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(30, 30, 30, 150).getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.set.getName() + " " + ChatFormatting.GRAY + this.set.getValue(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
-        mc.fontRenderer.drawStringWithShadow(this.set.getDisplayName() + " " + ChatFormatting.GRAY + this.set.getCustomVal(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
+        mc.fontRenderer.drawStringWithShadow(this.set.getDisplayName() + " " + ChatFormatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
     }
     
     @Override
     public void updateComponent(final int mouseX, final int mouseY) {
         this.hovered = this.isMouseOnButton(mouseX, mouseY);
         this.y = this.parent.parent.getY() + this.offset;
-        this.x = this.parent.parent.getX();
+        this.x = this.parent.parent.getX() - 10;
     }
     
     @Override
@@ -56,7 +56,8 @@ public class ModeButton extends Component
             if (this.modeIndex > maxIndex) {
                 this.modeIndex = 0;
             }
-            this.set.setCustomVal(this.set.getOptions().get(this.modeIndex));
+            this.set.setValString(this.set.getOptions().get(this.modeIndex));
+
         }
     }
     

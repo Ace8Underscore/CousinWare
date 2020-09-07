@@ -54,14 +54,11 @@ public class NordClient
         eventProcessor = new EventProcessor();
         eventProcessor.init();
         CommandManager.initClientCommands();
-
         settingsManager = new SettingsManager();
-
-
-        hackManager = new HackManager();
-        configUtils = new ConfigUtils();
-        clickGui = new ClickGUI();
         friends = new FriendManager();
+        hackManager = new HackManager();
+        clickGui = new ClickGUI();
+        configUtils = new ConfigUtils();
         Runtime.getRuntime().addShutdownHook(new ShutDown());
     }
 
