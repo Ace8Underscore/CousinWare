@@ -28,6 +28,7 @@ public class CommandManager {
         addCommand(new Pyro());
         addCommand(new Set());
         addCommand(new Setting());
+        addCommand(new ReloadSound());
 
     }
 

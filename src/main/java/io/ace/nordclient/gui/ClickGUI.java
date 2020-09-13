@@ -4,14 +4,18 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import io.ace.nordclient.guinew.Snow;
+import io.ace.nordclient.guinew.Util;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 
 public class ClickGUI extends GuiScreen
 {
     public static ArrayList<Frame> frames;
     public static int color;
+
     
     public ClickGUI() {
         ClickGUI.frames = new ArrayList<Frame>();
@@ -22,11 +26,12 @@ public class ClickGUI extends GuiScreen
             ClickGUI.frames.add(frame);
             frameX += frame.getWidth() + 10;
         }
+
     }
     
     public void initGui() {
     }
-    
+    @Override
     public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
         ClickGUI.color = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB();
         for (final Frame frame : ClickGUI.frames) {
@@ -36,7 +41,9 @@ public class ClickGUI extends GuiScreen
                 comp.updateComponent(mouseX, mouseY);
             }
         }
-    }
+
+        }
+
     
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
         for (final Frame frame : ClickGUI.frames) {

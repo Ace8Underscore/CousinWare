@@ -6,7 +6,10 @@ import io.ace.nordclient.gui.Frame;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.clientutil.Setting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.init.SoundEvents;
+
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -114,6 +117,9 @@ public class Button extends Component
     public void mouseClicked(final int mouseX, final int mouseY, final int button) {
         if (this.isMouseOnButton(mouseX, mouseY) && button == 0) {
             this.hack.toggle();
+            if (ClickGuiHack.noise.getValBoolean()) {
+                Minecraft.getMinecraft().player.playSound(SoundEvents.UI_BUTTON_CLICK, 2f, 1f);
+            }
         }
         if (this.isMouseOnButton(mouseX, mouseY) && button == 1) {
             this.open = !this.open;

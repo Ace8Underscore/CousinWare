@@ -28,7 +28,7 @@ public class HackManager {
         addHack(new Velocity());
         addHack(new LogoutCoords());
         addHack(new AntiVoid());
-        addHack(new FastWeb());
+        //addHack(new FastWeb());
         addHack(new FastXp());
         addHack(new FastSwim());
         addHack(new QuickDrop());
@@ -36,6 +36,12 @@ public class HackManager {
         addHack(new ElytraFly());
         addHack(new SkyColor());
         addHack(new ClickGuiHack());
+        addHack(new Overlay());
+        addHack(new DonkeyAlert());
+        addHack(new ReverseStep());
+        addHack(new ArmorHud());
+        addHack(new ClientName());
+        addHack(new AutoOffHand());
 
 
 

@@ -19,7 +19,6 @@ public class AutoTotem extends Hack {
      */
 
 
-    boolean strict = false;
     int delay = 0;
     int totems;
     int totemsOffHand;
@@ -37,12 +36,6 @@ public class AutoTotem extends Hack {
         totems = mc.player.inventory.mainInventory.stream().filter(itemStack -> itemStack.getItem() == Items.TOTEM_OF_UNDYING).mapToInt(ItemStack::getCount).sum();
         totemsOffHand = mc.player.inventory.offHandInventory.stream().filter(itemStack -> itemStack.getItem() == Items.TOTEM_OF_UNDYING).mapToInt(ItemStack::getCount).sum();
 
-        if (strict) {
-
-            if (mc.player.isSprinting() && mc.player.getHeldItemOffhand().isEmpty() && totems > 0) {
-                mc.player.setSprinting(false);
-            }
-        }
         for (int i = 0; i < 45; i++) {
             if (totems + totemsOffHand > 0) {
                 if (!(mc.currentScreen instanceof GuiCrafting) && !(mc.currentScreen instanceof GuiFurnace) && !(mc.currentScreen instanceof GuiBeacon) && !(mc.currentScreen instanceof GuiBrewingStand) && !(mc.currentScreen instanceof GuiChest) && !(mc.currentScreen instanceof GuiCommandBlock) && !(mc.currentScreen instanceof GuiDispenser) && !(mc.currentScreen instanceof GuiEnchantment) && !(mc.currentScreen instanceof GuiShulkerBox) && !(mc.currentScreen instanceof GuiContainerCreative) && !(mc.currentScreen instanceof GuiHopper)) {

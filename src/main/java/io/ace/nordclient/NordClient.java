@@ -2,10 +2,13 @@ package io.ace.nordclient;
 
 import io.ace.nordclient.event.EventProcessor;
 import io.ace.nordclient.gui.ClickGUI;
+import io.ace.nordclient.gui.DrawSnow;
+import io.ace.nordclient.guinew.RubyClickGui;
 import io.ace.nordclient.managers.CommandManager;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.managers.SettingsManager;
+import io.ace.nordclient.utilz.TpsUtils;
 import io.ace.nordclient.utilz.configz.ConfigUtils;
 import io.ace.nordclient.utilz.configz.ShutDown;
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +26,7 @@ public class NordClient
 {
     public static final String MODID = "nordclient";
     public static final String NAME = "NordClient";
-    public static final String VERSION = "a1.0";
+    public static final String VERSION = "v1.0.0";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -33,6 +36,8 @@ public class NordClient
     public FriendManager friends;
     public SettingsManager settingsManager;
     public ClickGUI clickGui;
+    public static RubyClickGui rubyClickGui;
+    public DrawSnow drawSnow;
 
     //public ClickGUI clickGui;
 
@@ -54,10 +59,13 @@ public class NordClient
         eventProcessor = new EventProcessor();
         eventProcessor.init();
         CommandManager.initClientCommands();
+        TpsUtils tpsUtils = new TpsUtils();
         settingsManager = new SettingsManager();
         friends = new FriendManager();
         hackManager = new HackManager();
         clickGui = new ClickGUI();
+        //drawSnow = new DrawSnow();
+        rubyClickGui = new RubyClickGui();
         configUtils = new ConfigUtils();
         Runtime.getRuntime().addShutdownHook(new ShutDown());
     }

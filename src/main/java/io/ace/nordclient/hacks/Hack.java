@@ -1,6 +1,7 @@
 package io.ace.nordclient.hacks;
 
 import io.ace.nordclient.NordClient;
+import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
@@ -97,6 +98,10 @@ public class Hack {
 
     public void setCategory(Category c){
         category = c;
+    }
+
+    public int getLength(String name) {
+        return HackManager.getHackByName(name).getLength(name);
     }
 
 
