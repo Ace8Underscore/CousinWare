@@ -29,6 +29,7 @@ public class CommandManager {
         addCommand(new Set());
         addCommand(new Setting());
         addCommand(new ReloadSound());
+        addCommand(new Spotify());
 
     }
 

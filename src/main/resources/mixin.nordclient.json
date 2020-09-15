@@ -4,9 +4,10 @@
   "package": "io.ace.nordclient.mixin",
   "refmap": "mixin.nordclient.refmap.json",
   "mixins": [
-
     "MixinEntityPlayerSP",
-    "MixinNetworkManager"
-
+    "MixinItemRenderer",
+    "MixinNetworkManager",
+    "MixinRenderGlobal",
+    "MixinSlotShulkerBox"
   ]
 }

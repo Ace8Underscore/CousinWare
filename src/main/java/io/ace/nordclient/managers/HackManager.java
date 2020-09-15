@@ -42,6 +42,10 @@ public class HackManager {
         addHack(new ArmorHud());
         addHack(new ClientName());
         addHack(new AutoOffHand());
+        addHack(new DelayedSounds());
+        addHack(new BlockHighlight());
+        addHack(new ShulkerMod());
+        addHack(new ViewModelChanger());
 
 
 
