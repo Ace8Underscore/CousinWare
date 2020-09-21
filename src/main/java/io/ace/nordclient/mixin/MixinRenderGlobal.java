@@ -10,16 +10,15 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.minecraft.client.renderer.RenderGlobal.drawSelectionBoundingBox;
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_LINE_SMOOTH;
+import static org.lwjgl.opengl.GL11.glEnable;
 
 @Mixin(RenderGlobal.class)
 public abstract class MixinRenderGlobal {
@@ -48,8 +47,6 @@ public abstract class MixinRenderGlobal {
                     double d4 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
                     double d5 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
                     drawSelectionBoundingBox(iblockstate.getSelectedBoundingBox(this.world, blockpos).grow(0.0020000000949949026D).offset(-d3, -d4, -d5), (float) BlockHighlight.r.getValDouble(), (float) BlockHighlight.g.getValDouble(), (float) BlockHighlight.b.getValDouble(), (float) BlockHighlight.a.getValDouble());
-
-                    //drawSelectionBoundingBox(iblockstate.getSelectedBoundingBox(this.world, blockpos).grow(0.0020000000949949026D).offset(-d3, -d4, -d5), BlockHighlight.red.getValue() / 255F, BlockHighlight.green.getValue() / 255F, BlockHighlight.blue.getValue() / 255F, BlockHighlight.alpha.getValue() / 255F);
                 }
                 GlStateManager.depthMask(true);
                 GlStateManager.enableTexture2D();

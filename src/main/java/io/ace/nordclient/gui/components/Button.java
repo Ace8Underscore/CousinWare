@@ -10,7 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.init.SoundEvents;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Button extends Component

@@ -1,15 +1,12 @@
 package io.ace.nordclient.gui;
 
-import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import io.ace.nordclient.guinew.Snow;
-import io.ace.nordclient.guinew.Util;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class ClickGUI extends GuiScreen
 {

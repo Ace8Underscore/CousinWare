@@ -1,10 +1,11 @@
 package io.ace.nordclient.gui.components;
 
-import io.ace.nordclient.gui.Component;
-import org.lwjgl.input.Keyboard;
 import com.mojang.realmsclient.gui.ChatFormatting;
+import io.ace.nordclient.gui.Component;
 import net.minecraft.client.gui.Gui;
-import java.awt.Color;
+import org.lwjgl.input.Keyboard;
+
+import java.awt.*;
 
 public class Keybind extends Component
 {

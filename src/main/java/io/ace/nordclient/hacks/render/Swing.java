@@ -18,6 +18,6 @@ public class Swing extends Hack {
     @Listener
     public void onUpdate(UpdateEvent event) {
             mc.player.swingingHand = EnumHand.OFF_HAND;
-
+//
     }
 }

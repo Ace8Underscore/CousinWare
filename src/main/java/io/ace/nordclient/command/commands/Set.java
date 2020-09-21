@@ -5,7 +5,6 @@ import io.ace.nordclient.command.Command;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
 
-
 import java.awt.*;
 
 public class Set extends Command {

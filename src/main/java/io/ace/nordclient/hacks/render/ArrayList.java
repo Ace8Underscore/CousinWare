@@ -4,6 +4,7 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.NordClient;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
+import io.ace.nordclient.utilz.RainbowUtil;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,6 +28,7 @@ public class ArrayList extends Hack {
     Setting g;
     Setting b;
     Color c;
+    Setting rainbow;
 
     public ArrayList() {
         super("ArrayList", Category.RENDER);
@@ -35,10 +37,12 @@ public class ArrayList extends Hack {
         NordClient.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 255, 0, 255, true, "ArrayListRed"));
         NordClient.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 26, 0, 255, true, "ArrayListGreen"));
         NordClient.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 42, 0, 255, true, "ArrayListBlue"));
+        NordClient.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "ArrayListRainbow"));
     }
 
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent.Text event)  {
+        int[] offsetCounter = {1};
         if (mc.world == null)
             return;
         hackCount = 0;
@@ -48,10 +52,18 @@ public class ArrayList extends Hack {
                 .filter(Hack::isDrawn)
                 .sorted(Comparator.comparing(hack -> mc.fontRenderer.getStringWidth(this.getName() + ChatFormatting.GRAY + " " + this.getHudInfo()) * (-1)))
                 .forEach(h -> {
-                    c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                    mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10),c.getRGB());
+                    if (rainbow.getValBoolean()) {
+                        c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                        mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
+                        offsetCounter[0]++;
+                        hackCount++;
+                    } else {
+                        c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                        mc.fontRenderer.drawStringWithShadow("| " + h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), c.getRGB());
+                        offsetCounter[0]++;
+                        hackCount++;
 
-                    hackCount++;
+                    }
                 });
     }
 

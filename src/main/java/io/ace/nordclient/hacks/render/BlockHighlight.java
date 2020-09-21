@@ -21,4 +21,5 @@ public class BlockHighlight extends Hack {
         NordClient.INSTANCE.settingsManager.rSetting(a = new Setting("alpha", this, 1, 0, 1, false, "BlockHighlightAlpha"));
 
     }
+    //
 }

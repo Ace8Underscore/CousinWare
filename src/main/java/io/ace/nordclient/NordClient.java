@@ -26,7 +26,7 @@ public class NordClient
 {
     public static final String MODID = "nordclient";
     public static final String NAME = "NordClient";
-    public static final String VERSION = "v1.0.0";
+    public static final String VERSION = "v1.1.0";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;

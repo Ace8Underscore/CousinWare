@@ -5,7 +5,8 @@ import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.client.gui.Gui;
-import java.awt.Color;
+
+import java.awt.*;
 
 public class ModeButton extends Component
 {

@@ -2,7 +2,6 @@ package io.ace.nordclient.utilz;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 
 public class FontRenderUtil {
     private static final Minecraft mc = Minecraft.getMinecraft();

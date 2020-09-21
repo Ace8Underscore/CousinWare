@@ -5,10 +5,8 @@ import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.opengl.GL11;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class CheckBox extends Component
 {

@@ -8,12 +8,10 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
@@ -33,23 +31,8 @@ public abstract class MixinItemRenderer {
         this.renderManager = renderManager;
     }
 
-    @Inject(method = "rotateArroundXAndY", at = @At("HEAD"), cancellable = true)
-    public void rotateArroundXAndY(float angle, float angleY, CallbackInfo info) {
-        if (HackManager.getHackByName("QuickDrop").isEnabled()) {
-            GlStateManager.pushMatrix();
-            GlStateManager.rotate(angle, 10.0F, 0.0F, 0.0F);
-            GlStateManager.rotate(angleY, 0.0F, 1.0F, 0.0F);
-            RenderHelper.enableStandardItemLighting();
-            GlStateManager.popMatrix();
-        } else {
-            info.cancel();
-        }
-
-
-    }
-
     /**
-     * @author
+     * @author Ace_______
      */
     @Overwrite
     private void renderArm(EnumHandSide p_187455_1_) {
@@ -142,7 +125,7 @@ public abstract class MixinItemRenderer {
         //this.renderMapFirstPerson(stack);
         GlStateManager.popMatrix();
     } */
-   /* @Inject(method = "transformEatFirstPerson", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "transformEatFirstPerson", at = @At("HEAD"), cancellable = true)
     public void transformEatFirstPerson(float p_187454_1_, EnumHandSide hand, ItemStack stack, CallbackInfo info) {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {
             float f = (float) this.mc.player.getItemInUseCount() - p_187454_1_ + 1.0F;
@@ -159,7 +142,7 @@ public abstract class MixinItemRenderer {
             GlStateManager.rotate(f3 * 10.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate((float) i * f3 * 30.0F, 0.0F, 0.0F, 1.0F);
         }
-    } */
+    }
     @Inject(method = "transformFirstPerson", at = @At("HEAD"), cancellable = true)
     public void transformFirstPerson(EnumHandSide hand, float p_187453_2_, CallbackInfo info) {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {

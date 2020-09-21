@@ -7,6 +7,7 @@
     "MixinEntityPlayerSP",
     "MixinItemRenderer",
     "MixinNetworkManager",
+    "MixinPlayerControllerMP",
     "MixinRenderGlobal",
     "MixinSlotShulkerBox"
   ]

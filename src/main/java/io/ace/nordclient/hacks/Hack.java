@@ -1,6 +1,7 @@
 package io.ace.nordclient.hacks;
 
 import io.ace.nordclient.NordClient;
+import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -47,6 +48,9 @@ public class Hack {
     public void onUpdate(){}
 
     public void onRender(){}
+
+    public void onWorldRender(RenderEvent event) {}
+
 
     protected void onEnable(){
     }

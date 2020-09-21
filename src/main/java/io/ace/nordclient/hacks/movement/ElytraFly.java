@@ -7,7 +7,6 @@ import io.ace.nordclient.utilz.MathUtil;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.util.math.MathHelper;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;

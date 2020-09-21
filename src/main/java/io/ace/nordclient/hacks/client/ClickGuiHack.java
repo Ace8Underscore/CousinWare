@@ -1,15 +1,9 @@
 package io.ace.nordclient.hacks.client;
 
 import io.ace.nordclient.NordClient;
-import io.ace.nordclient.guinew.RubyClickGui;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.clientutil.Setting;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.init.SoundEvents;
-import net.minecraftforge.client.event.sound.SoundEvent;
 import org.lwjgl.input.Keyboard;
-
-import java.util.ArrayList;
 
 public class ClickGuiHack extends Hack {
     public ClickGuiHack INSTANCE;

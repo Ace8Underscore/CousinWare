@@ -13,7 +13,6 @@ import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntityMule;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class DonkeyAlert extends Hack {
 

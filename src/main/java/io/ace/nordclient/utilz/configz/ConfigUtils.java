@@ -2,11 +2,10 @@ package io.ace.nordclient.utilz.configz;
 
 import io.ace.nordclient.NordClient;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.gui.ClickGUI;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
-import io.ace.nordclient.utilz.clientutil.Setting;
 import io.ace.nordclient.utilz.clientutil.FriendUtil;
+import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 

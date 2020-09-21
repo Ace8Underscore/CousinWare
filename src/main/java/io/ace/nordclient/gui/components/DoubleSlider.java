@@ -1,14 +1,15 @@
 package io.ace.nordclient.gui.components;
 
-import java.math.RoundingMode;
-import java.math.BigDecimal;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraft.client.gui.Gui;
-import java.awt.Color;
+
+import java.awt.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class DoubleSlider extends Component
 {

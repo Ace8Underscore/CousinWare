@@ -5,8 +5,9 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+
 import java.util.ArrayList;
 
 public class Frame

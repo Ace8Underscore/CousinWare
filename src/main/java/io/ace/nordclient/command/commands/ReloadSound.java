@@ -1,7 +1,6 @@
 package io.ace.nordclient.command.commands;
 
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.managers.CommandManager;
 
 public class ReloadSound extends Command {
 

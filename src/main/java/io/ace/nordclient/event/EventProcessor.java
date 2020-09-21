@@ -8,6 +8,7 @@ import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -56,6 +57,12 @@ public class EventProcessor {
 
 
         }
+    }
+
+    @SubscribeEvent
+    public void onWorldRender(RenderWorldLastEvent event) {
+        if (event.isCanceled()) return;
+        HackManager.onWorldRender(event);
     }
 
     @Listener

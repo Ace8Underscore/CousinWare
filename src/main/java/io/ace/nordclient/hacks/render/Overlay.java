@@ -1,14 +1,12 @@
 package io.ace.nordclient.hacks.render;
 
 import io.ace.nordclient.NordClient;
-import io.ace.nordclient.gui.ClickGUI;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.TpsUtils;
 import io.ace.nordclient.utilz.clientutil.Setting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
