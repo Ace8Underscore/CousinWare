@@ -11,14 +11,14 @@ import java.awt.*;
 public class ClientName extends Hack {
 
     public ClientName() {
-        super("ClientName", Category.RENDER);
+        super("Watermark", Category.RENDER);
     }
 
     @SubscribeEvent
     public void onRenderWorld(RenderGameOverlayEvent.Text event) {
         Color c = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
 
-        mc.fontRenderer.drawStringWithShadow(NordClient.NAME + " " + NordClient.VERSION, 1, 1, c.getRGB());
+        mc.fontRenderer.drawStringWithShadow("CousinWare" + " " + NordClient.VERSION, 1, 1, c.getRGB());
     }
     //
 }
