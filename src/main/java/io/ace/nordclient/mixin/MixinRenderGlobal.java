@@ -46,7 +46,7 @@ public abstract class MixinRenderGlobal {
                     double d3 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
                     double d4 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
                     double d5 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
-                    drawSelectionBoundingBox(iblockstate.getSelectedBoundingBox(this.world, blockpos).grow(0.0020000000949949026D).offset(-d3, -d4, -d5), (float) BlockHighlight.r.getValDouble(), (float) BlockHighlight.g.getValDouble(), (float) BlockHighlight.b.getValDouble(), (float) BlockHighlight.a.getValDouble());
+                    drawSelectionBoundingBox(iblockstate.getSelectedBoundingBox(this.world, blockpos).grow(0.0020000000949949026D).offset(-d3, -d4, -d5), (float) BlockHighlight.r.getValDouble() / 255, (float) BlockHighlight.g.getValDouble() / 255, (float) BlockHighlight.b.getValDouble() / 255, (float) BlockHighlight.a.getValDouble());
                 }
                 GlStateManager.depthMask(true);
                 GlStateManager.enableTexture2D();

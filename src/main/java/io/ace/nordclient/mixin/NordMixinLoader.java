@@ -1,6 +1,6 @@
 package io.ace.nordclient.mixin;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;
@@ -13,7 +13,7 @@ public class NordMixinLoader implements IFMLLoadingPlugin {
     private static boolean isObfuscatedEnvironment = false;
 
     public NordMixinLoader() {
-        NordClient.log.info("Nord mixin initialized");
+        CousinWare.log.info("Nord mixin initialized");
         MixinBootstrap.init();
         Mixins.addConfiguration("mixin.nordclient.json");
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");

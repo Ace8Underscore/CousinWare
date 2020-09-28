@@ -1,8 +1,8 @@
 package io.ace.nordclient.hacks.movement;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ReverseStep extends Hack {
         fallModes.add("Medium");
         fallModes.add("Slow");
 
-        NordClient.INSTANCE.settingsManager.rSetting(fallMode = new Setting("FallModes", this,"slow" ,fallModes, "ReverseStepFallModes"));
+        CousinWare.INSTANCE.settingsManager.rSetting(fallMode = new Setting("FallModes", this,"slow" ,fallModes, "ReverseStepFallModes"));
     }
 
     @Listener

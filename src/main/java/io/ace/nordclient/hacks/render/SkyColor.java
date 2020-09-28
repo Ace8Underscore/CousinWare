@@ -1,34 +1,50 @@
 package io.ace.nordclient.hacks.render;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
+import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.RainbowUtil;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
+
+import java.awt.*;
 
 public class SkyColor extends Hack {
     //
     Setting r;
     Setting g;
     Setting b;
+    Setting rainbow;
+    Setting speed;
 
     public SkyColor() {
         super("SkyColor", Category.RENDER, "Changes the sky's color.");
         //
-        NordClient.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 1, 0, 1, false, "SkyColorRed"));
-        NordClient.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 1, false, "SkyColorGreen"));
-        NordClient.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 1, 0, 1, false, "SkyColorBlue"));
+        CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 1, 0, 255, false, "SkyColorRed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 255, false, "SkyColorGreen"));
+        CousinWare.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 1, 0, 255, false, "SkyColorBlue"));
+        CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "SkyColorRainbow"));
+        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("RainbowSpeed", this, 1, 0, 255, true, "SkyColorSpeed"));
 
+    }
 
+    @Listener
+    public void onUpdate(UpdateEvent event) {
+        if (rainbow.getValBoolean()) {
+            RainbowUtil.settingRainbow(r, g, b);
+        }
     }
 
     @SubscribeEvent
     public void fogColors(EntityViewRenderEvent.FogColors event) {
-        event.setRed((float) r.getValDouble());
-        event.setGreen((float) g.getValDouble());
-        event.setBlue((float) b.getValDouble());
+        event.setRed((float) r.getValDouble() / 255);
+        event.setGreen((float) g.getValDouble() / 255);
+        event.setBlue((float) b.getValDouble() / 255);
 
 
     }
+
 
 }

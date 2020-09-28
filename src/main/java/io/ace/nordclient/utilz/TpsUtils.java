@@ -1,6 +1,6 @@
 package io.ace.nordclient.utilz;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.PacketEvent;
 import net.minecraft.network.play.server.SPacketTimeUpdate;
 import net.minecraft.util.math.MathHelper;
@@ -20,7 +20,7 @@ public class TpsUtils {
         nextIndex = 0;
         timeLastTimeUpdate = -1L;
         Arrays.fill(tickRates, 0.0F);
-        NordClient.INSTANCE.getEventManager().addEventListener(this);
+        CousinWare.INSTANCE.getEventManager().addEventListener(this);
     }
 
     public static float getTickRate() {

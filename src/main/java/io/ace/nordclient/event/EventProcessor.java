@@ -1,7 +1,7 @@
 package io.ace.nordclient.event;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.managers.CommandManager;
 import io.ace.nordclient.managers.HackManager;
@@ -28,7 +28,7 @@ public class EventProcessor {
 
 
     public void init() {
-        NordClient.INSTANCE.getEventManager().addEventListener(this);
+        CousinWare.INSTANCE.getEventManager().addEventListener(this);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -76,7 +76,7 @@ public class EventProcessor {
 
     @SubscribeEvent
     public void onInputUpdate(InputUpdateEvent event) {
-        NordClient.INSTANCE.getEventManager().dispatchEvent(event);
+        CousinWare.INSTANCE.getEventManager().dispatchEvent(event);
     }
 }
 

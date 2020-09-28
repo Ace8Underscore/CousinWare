@@ -1,7 +1,7 @@
 package io.ace.nordclient.managers;
 
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 
 import java.util.ArrayList;
 

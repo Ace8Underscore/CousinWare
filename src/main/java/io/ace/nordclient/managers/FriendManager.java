@@ -1,6 +1,6 @@
 package io.ace.nordclient.managers;
 
-import io.ace.nordclient.utilz.clientutil.FriendUtil;
+import io.ace.nordclient.utilz.FriendUtil;
 
 import java.util.ArrayList;
 import java.util.List;

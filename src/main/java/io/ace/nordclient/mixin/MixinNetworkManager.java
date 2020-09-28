@@ -1,6 +1,6 @@
 package io.ace.nordclient.mixin;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.PacketEvent;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.NetworkManager;
@@ -16,7 +16,7 @@ public abstract class MixinNetworkManager {
     @Inject(method = "sendPacket(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
     private void onSendPacket(Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent.Send event = new PacketEvent.Send(packet);
-        NordClient.INSTANCE.getEventManager().dispatchEvent(event);
+        CousinWare.INSTANCE.getEventManager().dispatchEvent(event);
         if (event.isCanceled()) {
             callbackInfo.cancel();
         }
@@ -25,7 +25,7 @@ public abstract class MixinNetworkManager {
     @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
     private void onChannelRead(ChannelHandlerContext context, Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent.Receive event = new PacketEvent.Receive(packet);
-        NordClient.INSTANCE.getEventManager().dispatchEvent(event);
+        CousinWare.INSTANCE.getEventManager().dispatchEvent(event);
         if (event.isCanceled()) {
             callbackInfo.cancel();
         }

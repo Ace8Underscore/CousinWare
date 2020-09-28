@@ -3,6 +3,8 @@ package io.ace.nordclient.managers;
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.Colors;
+import io.ace.nordclient.hacks.combat.Surround;
 import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
@@ -58,6 +60,12 @@ public class HackManager {
         addHack(new SpeedMine());
         addHack(new MultiTask());
         addHack(new StorageESP());
+        addHack(new Surround());
+        addHack(new Scaffold());
+        //addHack(new AutoCrystal());
+        //addHack(new Reach());
+        addHack(new Colors());
+
 
 
 

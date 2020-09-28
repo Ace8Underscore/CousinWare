@@ -1,11 +1,11 @@
 package io.ace.nordclient.gui.components;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.gui.Frame;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.init.SoundEvents;
@@ -31,8 +31,8 @@ public class Button extends Component
         this.open = false;
         this.height = 16;
         int opY = offset + 16;
-        if (NordClient.INSTANCE.settingsManager.getSettingsByMod(hack) != null && !NordClient.INSTANCE.settingsManager.getSettingsByMod(hack).isEmpty()) {
-            for (final Setting s : NordClient.INSTANCE.settingsManager.getSettingsByMod(hack)) {
+        if (CousinWare.INSTANCE.settingsManager.getSettingsByMod(hack) != null && !CousinWare.INSTANCE.settingsManager.getSettingsByMod(hack).isEmpty()) {
+            for (final Setting s : CousinWare.INSTANCE.settingsManager.getSettingsByMod(hack)) {
                     if (s.isCombo()) {
                         this.subcomponents.add(new ModeButton((Setting)s, this, hack, opY));
                         opY += 16;

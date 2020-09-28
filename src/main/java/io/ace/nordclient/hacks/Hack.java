@@ -1,6 +1,6 @@
 package io.ace.nordclient.hacks;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
@@ -80,7 +80,7 @@ public class Hack {
     }
 
     public void enable() {
-        NordClient.INSTANCE.getEventManager().addEventListener(this);
+        CousinWare.INSTANCE.getEventManager().addEventListener(this);
         MinecraftForge.EVENT_BUS.register(this);
         setEnabled(true);
         //MinecraftForge.EVENT_BUS.register(this);
@@ -88,7 +88,7 @@ public class Hack {
     }
 
     public void disable() {
-        NordClient.INSTANCE.getEventManager().removeEventListener(this);
+        CousinWare.INSTANCE.getEventManager().removeEventListener(this);
         MinecraftForge.EVENT_BUS.unregister(this);
         setEnabled(false);
         //MinecraftForge.EVENT_BUS.unregister(this);

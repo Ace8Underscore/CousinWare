@@ -21,12 +21,12 @@ import org.apache.logging.log4j.Logger;
 import team.stiff.pomelo.EventManager;
 import team.stiff.pomelo.impl.annotated.AnnotatedEventManager;
 
-@Mod(modid = NordClient.MODID, name = NordClient.NAME, version = NordClient.VERSION)
-public class NordClient
+@Mod(modid = CousinWare.MODID, name = CousinWare.NAME, version = CousinWare.VERSION)
+public class CousinWare
 {
-    public static final String MODID = "nordclient";
-    public static final String NAME = "NordClient";
-    public static final String VERSION = "v1.1.0";
+    public static final String MODID = "cousinware";
+    public static final String NAME = "CousinWare";
+    public static final String VERSION = "v1.1.1";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -36,7 +36,6 @@ public class NordClient
     public FriendManager friends;
     public SettingsManager settingsManager;
     public ClickGUI clickGui;
-    public static RubyClickGui rubyClickGui;
     public DrawSnow drawSnow;
 
     //public ClickGUI clickGui;
@@ -46,7 +45,7 @@ public class NordClient
 
 
     @Mod.Instance
-    public static NordClient INSTANCE;
+    public static CousinWare INSTANCE;
 
 
     @EventHandler
@@ -65,7 +64,6 @@ public class NordClient
         hackManager = new HackManager();
         clickGui = new ClickGUI();
         //drawSnow = new DrawSnow();
-        rubyClickGui = new RubyClickGui();
         configUtils = new ConfigUtils();
         Runtime.getRuntime().addShutdownHook(new ShutDown());
     }

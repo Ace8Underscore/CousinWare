@@ -1,6 +1,6 @@
 package io.ace.nordclient.utilz.configz;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 
 public class ShutDown extends Thread {
 
@@ -15,12 +15,12 @@ public class ShutDown extends Thread {
     }
 
     public static void saveConfig(){
-        NordClient.INSTANCE.configUtils.saveMods();
-        NordClient.INSTANCE.configUtils.saveBinds();
-        NordClient.INSTANCE.configUtils.saveDrawn();
-        NordClient.INSTANCE.configUtils.savePrefix();
-        NordClient.INSTANCE.configUtils.saveFriends();
-        NordClient.INSTANCE.configUtils.saveSettingsList();
+        CousinWare.INSTANCE.configUtils.saveMods();
+        CousinWare.INSTANCE.configUtils.saveBinds();
+        CousinWare.INSTANCE.configUtils.saveDrawn();
+        CousinWare.INSTANCE.configUtils.savePrefix();
+        CousinWare.INSTANCE.configUtils.saveFriends();
+        CousinWare.INSTANCE.configUtils.saveSettingsList();
 
     }
 }

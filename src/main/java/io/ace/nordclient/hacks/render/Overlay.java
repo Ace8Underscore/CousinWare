@@ -1,11 +1,11 @@
 package io.ace.nordclient.hacks.render;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.TpsUtils;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -23,13 +23,13 @@ public class Overlay extends Hack {
 
     public Overlay() {
         super("Overlay", Category.RENDER);
-        NordClient.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "OverlayX"));
-        NordClient.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 500, 0, 1000, false, "OverlayY"));
-        NordClient.INSTANCE.settingsManager.rSetting(ping = new Setting("Ping", this, true, "OverlayPing"));
-        NordClient.INSTANCE.settingsManager.rSetting(server = new Setting("Server", this, true, "OverlayServer"));
-        NordClient.INSTANCE.settingsManager.rSetting(fps = new Setting("Fps", this, true, "OverlayFps"));
-        NordClient.INSTANCE.settingsManager.rSetting(tps = new Setting("Tps", this, true, "OverlayTps"));
-
+        CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "OverlayX"));
+        CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 530, 0, 1000, false, "OverlayY"));
+        CousinWare.INSTANCE.settingsManager.rSetting(ping = new Setting("Ping", this, true, "OverlayPing"));
+        CousinWare.INSTANCE.settingsManager.rSetting(server = new Setting("Server", this, true, "OverlayServer"));
+        CousinWare.INSTANCE.settingsManager.rSetting(fps = new Setting("Fps", this, true, "OverlayFps"));
+        CousinWare.INSTANCE.settingsManager.rSetting(tps = new Setting("Tps", this, true, "OverlayTps"));
+//
     }
 
     @SubscribeEvent

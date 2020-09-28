@@ -1,4 +1,4 @@
-package io.ace.nordclient.utilz.clientutil;
+package io.ace.nordclient.utilz;
 
 import io.ace.nordclient.hacks.Hack;
 

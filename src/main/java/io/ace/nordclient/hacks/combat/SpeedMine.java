@@ -1,12 +1,12 @@
 package io.ace.nordclient.hacks.combat;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.EventPlayerClickBlock;
 import io.ace.nordclient.event.EventPlayerDamageBlock;
 import io.ace.nordclient.event.EventPlayerResetBlockRemoving;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -21,16 +21,16 @@ import java.util.ArrayList;
 public class SpeedMine extends Hack {
     public SpeedMine() {
         super("SpeedMine", Category.COMBAT, "Mine blocks faster");
-        NordClient.INSTANCE.settingsManager.rSetting(reset = new Setting("Reset", this, true, "SpeedMineReset"));
-        NordClient.INSTANCE.settingsManager.rSetting(fastFall = new Setting("FastFall", this, false, "SpeedMineFastFall"));
-        NordClient.INSTANCE.settingsManager.rSetting(doubleBreak = new Setting("DoubleBreak", this, true, "SpeedMineDoubleBreak"));
+        CousinWare.INSTANCE.settingsManager.rSetting(reset = new Setting("Reset", this, true, "SpeedMineReset"));
+        CousinWare.INSTANCE.settingsManager.rSetting(fastFall = new Setting("FastFall", this, false, "SpeedMineFastFall"));
+        CousinWare.INSTANCE.settingsManager.rSetting(doubleBreak = new Setting("DoubleBreak", this, true, "SpeedMineDoubleBreak"));
 
 
         ArrayList<String> modes = new ArrayList<>();
         modes.add("Packet");
         modes.add("Damage");
         modes.add("Instant");
-        NordClient.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Packet", modes, "SpeedMineMode"));
+        CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Packet", modes, "SpeedMineMode"));
 
     }
 
@@ -102,7 +102,7 @@ public class SpeedMine extends Hack {
                     mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
                             event.getPos(), event.getDirection()));
                     event.setCanceled(true);
-                }
+                }//
                 if (mode.getValString().equalsIgnoreCase("Damage")) {
                      if  (mc.playerController.curBlockDamageMP >= 0.7) {
                          mc.playerController.curBlockDamageMP = 1;

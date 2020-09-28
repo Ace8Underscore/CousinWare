@@ -1,9 +1,9 @@
 package io.ace.nordclient.hacks.movement;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class FastWeb extends Hack {
         ArrayList<String> downModes = new ArrayList<>();
         downModes.add("2b");
         downModes.add("Other");
-        NordClient.INSTANCE.settingsManager.rSetting(downMode = new Setting("DownMode", this, "2b", downModes, "FastWebDownMode"));
+        CousinWare.INSTANCE.settingsManager.rSetting(downMode = new Setting("DownMode", this, "2b", downModes, "FastWebDownMode"));
 
     }
 

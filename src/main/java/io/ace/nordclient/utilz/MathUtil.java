@@ -1,6 +1,8 @@
 package io.ace.nordclient.utilz;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class MathUtil {
 
@@ -34,5 +36,13 @@ public class MathUtil {
         final double posZ = (forward * speed * sin - side * speed * cos);
         return new double[]
                 { posX, posZ };
+    }
+
+    public static float[] calcAngle(final Vec3d from, final Vec3d to) {
+        final double difX = to.x - from.x;
+        final double difY = (to.y - from.y) * -1.0;
+        final double difZ = to.z - from.z;
+        final double dist = MathHelper.sqrt(difX * difX + difZ * difZ);
+        return new float[] { (float)MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difZ, difX)) - 90.0), (float)MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difY, dist))) };
     }
 }

@@ -1,6 +1,6 @@
 package io.ace.nordclient.command.commands;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
@@ -22,7 +22,7 @@ public class Set extends Command {
     public void onClientCommand(String command, String[] args) throws Exception {
         for(Hack h : HackManager.getHacks()) {
             if(h.getName().equalsIgnoreCase(args[0])) {
-                NordClient.INSTANCE.settingsManager.getSettingsByMod(h).stream().filter(s -> s.getDisplayName().equalsIgnoreCase(args[1])).forEach(s->{
+                CousinWare.INSTANCE.settingsManager.getSettingsByMod(h).stream().filter(s -> s.getDisplayName().equalsIgnoreCase(args[1])).forEach(s->{
                     if(s.isSlider()) {
                         if(Double.parseDouble(args[2]) > s.getMax()) s.setValDouble(s.getMax());
                         if(Double.parseDouble(args[2]) < s.getMin()) s.setValDouble(s.getMin());

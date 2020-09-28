@@ -1,10 +1,11 @@
 package io.ace.nordclient.hacks.movement;
 
-import io.ace.nordclient.NordClient;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.MathUtil;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.network.play.client.CPacketEntityAction;
@@ -27,18 +28,18 @@ public class ElytraFly extends Hack {
     public ElytraFly() {
         super("ElytraFly", Category.MOVEMENT);
 
-        NordClient.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 2, 0, 10, false, "ElytraFlySpeed"));
-        NordClient.INSTANCE.settingsManager.rSetting(glide = new Setting("Glide", this, true, "ElytraFlyGlide"));
-        NordClient.INSTANCE.settingsManager.rSetting(glideSpeed = new Setting("GlideSpeed", this, 1, 0, 2.5, false, "ElytraFlyGlideSpeed"));
-        NordClient.INSTANCE.settingsManager.rSetting(noGlideAFK = new Setting("NoGlideAFK", this, false, "ElytraFlyNoGlideAFK"));
-        NordClient.INSTANCE.settingsManager.rSetting(boost = new Setting("Boost", this, true, "ElytraFlyBoost"));
-        NordClient.INSTANCE.settingsManager.rSetting(autoTakeoff = new Setting("AutoTakeOff", this, true, "ElytraFlyAutoTakeOff"));
+        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 2, 0, 10, false, "ElytraFlySpeed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(glide = new Setting("Glide", this, true, "ElytraFlyGlide"));
+        CousinWare.INSTANCE.settingsManager.rSetting(glideSpeed = new Setting("GlideSpeed", this, 1, 0, 2.5, false, "ElytraFlyGlideSpeed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(noGlideAFK = new Setting("NoGlideAFK", this, false, "ElytraFlyNoGlideAFK"));
+        CousinWare.INSTANCE.settingsManager.rSetting(boost = new Setting("Boost", this, true, "ElytraFlyBoost"));
+        CousinWare.INSTANCE.settingsManager.rSetting(autoTakeoff = new Setting("AutoTakeOff", this, true, "ElytraFlyAutoTakeOff"));
 
         ArrayList<String> flyModes = new ArrayList<>();
         flyModes.add("2b");
         flyModes.add("Creative");
         flyModes.add("Plane");
-        NordClient.INSTANCE.settingsManager.rSetting(flyMode = new Setting("FlyModes", this, "2b", flyModes, "ElytraFlyFlyModes"));
+        CousinWare.INSTANCE.settingsManager.rSetting(flyMode = new Setting("FlyModes", this, "2b", flyModes, "ElytraFlyFlyModes"));
 
 
 
@@ -156,7 +157,7 @@ public class ElytraFly extends Hack {
 
     @Override
     public String getHudInfo() {
-        return "[" + flyMode.getValString() + "]";
+        return "[" + ChatFormatting.WHITE + flyMode.getValString() + ChatFormatting.GRAY + "]";
     }
     //
 }

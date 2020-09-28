@@ -3,7 +3,7 @@ package io.ace.nordclient.gui.components;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.gui.Gui;
 
 import java.awt.*;

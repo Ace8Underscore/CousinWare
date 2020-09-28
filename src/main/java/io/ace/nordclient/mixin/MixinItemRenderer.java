@@ -78,7 +78,7 @@ public abstract class MixinItemRenderer {
     /**
      * @author
      */
-    @Inject(method = "renderItemInFirstPerson(F)V", at = @At("HEAD"), cancellable = true)
+  /*  @Inject(method = "renderItemInFirstPerson(F)V", at = @At("HEAD"), cancellable = true)
     public void renderItemInFirstPerson(float partialTicks, CallbackInfo info) {
         if (HackManager.getHackByName("QuickDrop").isEnabled()) {
             AbstractClientPlayer abstractclientplayer = this.mc.player;
@@ -98,6 +98,7 @@ public abstract class MixinItemRenderer {
             }
         }
     }
+    */
 
 
 
@@ -125,7 +126,7 @@ public abstract class MixinItemRenderer {
         //this.renderMapFirstPerson(stack);
         GlStateManager.popMatrix();
     } */
-    @Inject(method = "transformEatFirstPerson", at = @At("HEAD"), cancellable = true)
+  /*  @Inject(method = "transformEatFirstPerson", at = @At("HEAD"), cancellable = true)
     public void transformEatFirstPerson(float p_187454_1_, EnumHandSide hand, ItemStack stack, CallbackInfo info) {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {
             float f = (float) this.mc.player.getItemInUseCount() - p_187454_1_ + 1.0F;
@@ -142,7 +143,7 @@ public abstract class MixinItemRenderer {
             GlStateManager.rotate(f3 * 10.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate((float) i * f3 * 30.0F, 0.0F, 0.0F, 1.0F);
         }
-    }
+    } */
     @Inject(method = "transformFirstPerson", at = @At("HEAD"), cancellable = true)
     public void transformFirstPerson(EnumHandSide hand, float p_187453_2_, CallbackInfo info) {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {

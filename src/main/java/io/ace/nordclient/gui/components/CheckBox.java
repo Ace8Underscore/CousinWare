@@ -3,7 +3,7 @@ package io.ace.nordclient.gui.components;
 import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.utilz.FontRenderUtil;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.gui.Gui;
 
 import java.awt.*;

@@ -1,13 +1,9 @@
 package io.ace.nordclient.hacks.misc;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.item.ItemStack;
+import io.ace.nordclient.utilz.Setting;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class QuickDrop extends Hack {
@@ -17,7 +13,7 @@ public class QuickDrop extends Hack {
 
     public QuickDrop() {
         super("QuickDrop", Category.MISC, "When Holding Q items will contine to drop");
-        NordClient.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 5, 0, 5, true, "QuickDropSpeed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 5, 0, 5, true, "QuickDropSpeed"));
 
     }
 
@@ -34,7 +30,9 @@ public class QuickDrop extends Hack {
 
 
 
-        }
+        } else {
+        delay = 0;
+    }
 
     }
 }

@@ -1,8 +1,8 @@
 package io.ace.nordclient.hacks.client;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import org.lwjgl.input.Keyboard;
 
 public class ClickGuiHack extends Hack {
@@ -23,13 +23,13 @@ public class ClickGuiHack extends Hack {
 
 
         // NordClient.INSTANCE.settingsManager.rSetting(new Setting("Rainbow", this, false, "ClickGuiRainbow"));
-        NordClient.INSTANCE.settingsManager.rSetting(red = new Setting("Red", this, 255, 0, 255, true, "ClickGuiHackRed"));
-        NordClient.INSTANCE.settingsManager.rSetting(green = new Setting("Green", this, 26, 0, 255, true, "ClickGuiHackGreen"));
-        NordClient.INSTANCE.settingsManager.rSetting(blue = new Setting("Blue", this, 42, 0, 255, true, "ClickGuiHackBlue"));
-        NordClient.INSTANCE.settingsManager.rSetting(alpha = new Setting("Alpha", this, 255, 0, 255, true, "ClickGuiHackAlpha"));
+        CousinWare.INSTANCE.settingsManager.rSetting(red = new Setting("Red", this, 255, 0, 255, true, "ClickGuiHackRed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(green = new Setting("Green", this, 26, 0, 255, true, "ClickGuiHackGreen"));
+        CousinWare.INSTANCE.settingsManager.rSetting(blue = new Setting("Blue", this, 42, 0, 255, true, "ClickGuiHackBlue"));
+        CousinWare.INSTANCE.settingsManager.rSetting(alpha = new Setting("Alpha", this, 255, 0, 255, true, "ClickGuiHackAlpha"));
         //NordClient.INSTANCE.settingsManager.rSetting(customFont = new Setting("CFont", this, true, "GlickGuiCustomFont"));
-        NordClient.INSTANCE.settingsManager.rSetting(descriptions = new Setting("Descriptions", this, true, "ClickGuiHackDescriptions"));
-        NordClient.INSTANCE.settingsManager.rSetting(noise = new Setting("Sound", this, true, "ClickGuiHackSound"));
+        CousinWare.INSTANCE.settingsManager.rSetting(descriptions = new Setting("Descriptions", this, true, "ClickGuiHackDescriptions"));
+        CousinWare.INSTANCE.settingsManager.rSetting(noise = new Setting("Sound", this, true, "ClickGuiHackSound"));
 
         //NordClient.INSTANCE.settingsManager.rSetting(snow = new Setting("Snow", this, true, "ClickGuiHackSnow"));
 
@@ -45,7 +45,7 @@ public class ClickGuiHack extends Hack {
 
 
     public void onEnable() {
-        mc.displayGuiScreen(NordClient.INSTANCE.clickGui);
+        mc.displayGuiScreen(CousinWare.INSTANCE.clickGui);
         disable();
     }
 }

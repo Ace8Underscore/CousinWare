@@ -1,10 +1,11 @@
 package io.ace.nordclient.hacks.misc;
 
 
-import io.ace.nordclient.NordClient;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityDonkey;
@@ -26,10 +27,10 @@ public DonkeyAlert() {
 
         super("DonkeyAlert", Category.MISC, "Announces the location of any donkeys in the players render distance");
 
-    NordClient.INSTANCE.settingsManager.rSetting(donkeyAlert = new Setting("DonkeyAlert", this, true, "DonkeyAlertDonkeyAlert"));
-    NordClient.INSTANCE.settingsManager.rSetting(muleAlert = new Setting("MuleAlert", this, true, "DonkeyAlertMuleAlert"));
-    NordClient.INSTANCE.settingsManager.rSetting(llamaAlert = new Setting("LlamaAlert", this, true, "DonkeyAlertLlamaAlert"));
-    NordClient.INSTANCE.settingsManager.rSetting(horseAlert = new Setting("HorseAlert", this, true, "DonkeyAlertHorseAlert"));
+    CousinWare.INSTANCE.settingsManager.rSetting(donkeyAlert = new Setting("DonkeyAlert", this, true, "DonkeyAlertDonkeyAlert"));
+    CousinWare.INSTANCE.settingsManager.rSetting(muleAlert = new Setting("MuleAlert", this, true, "DonkeyAlertMuleAlert"));
+    CousinWare.INSTANCE.settingsManager.rSetting(llamaAlert = new Setting("LlamaAlert", this, true, "DonkeyAlertLlamaAlert"));
+    CousinWare.INSTANCE.settingsManager.rSetting(horseAlert = new Setting("HorseAlert", this, true, "DonkeyAlertHorseAlert"));
 
     ArrayList<String> modes = new ArrayList<>();
     modes.add("BLACK");
@@ -50,7 +51,7 @@ public DonkeyAlert() {
     modes.add("LIGHT_PURPLE");
 
 
-    NordClient.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "GREEN", modes, "DonkeyAlertColorModes"));
+    CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "GREEN", modes, "DonkeyAlertColorModes"));
 
 }
 
@@ -96,25 +97,25 @@ public DonkeyAlert() {
 
             }
         }
-    private String colorchoice(){
+    private ChatFormatting colorchoice(){
         switch (mode.getValString()){
-            case "BLACK": return "&0";
-            case "RED": return "&c";
-            case "AQUA": return "&b";
-            case "BLUE": return "&9";
-            case "GOLD": return "&6";
-            case "GRAY": return "&7";
-            case "WHITE": return "&f";
-            case "GREEN": return "&a";
-            case "YELLOW": return "&e";
-            case "DARK_RED": return "&4";
-            case "DARK_AQUA": return "&3";
-            case "DARK_BLUE": return "&1";
-            case "DARK_GRAY": return "&8";
-            case "DARK_GREEN": return "&2";
-            case "DARK_PURPLE": return "&5";
-            case "LIGHT_PURPLE": return "&d";
-            default: return "";
+            case "BLACK": return ChatFormatting.BLACK;
+            case "RED": return ChatFormatting.RED;
+            case "AQUA": return ChatFormatting.AQUA;
+            case "BLUE": return ChatFormatting.BLUE;
+            case "GOLD": return ChatFormatting.GOLD;
+            case "GRAY": return ChatFormatting.GRAY;
+            case "WHITE": return ChatFormatting.WHITE;
+            case "GREEN": return ChatFormatting.GREEN;
+            case "YELLOW": return ChatFormatting.YELLOW;
+            case "DARK_RED": return ChatFormatting.DARK_RED;
+            case "DARK_AQUA": return ChatFormatting.DARK_AQUA;
+            case "DARK_BLUE": return ChatFormatting.DARK_BLUE;
+            case "DARK_GRAY": return ChatFormatting.DARK_GRAY;
+            case "DARK_GREEN": return ChatFormatting.DARK_GREEN;
+            case "DARK_PURPLE": return ChatFormatting.LIGHT_PURPLE;
+            case "LIGHT_PURPLE": return ChatFormatting.DARK_PURPLE;
+            default: return ChatFormatting.WHITE;
         }
 
 

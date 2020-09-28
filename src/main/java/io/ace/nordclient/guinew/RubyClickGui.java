@@ -1,9 +1,9 @@
 package io.ace.nordclient.guinew;
 
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
@@ -102,8 +102,8 @@ public class RubyClickGui extends GuiScreen {
         int setY = uiY - 160;
         int setX = uiX - 107;
         if (settingListen) {
-            if (NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
-                for (Setting set : NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
+            if (CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
+                for (Setting set : CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
                     if (set != null) {
                         if (setY+15>uiY+170) {
                             setX=uiX+57;
@@ -160,8 +160,8 @@ public class RubyClickGui extends GuiScreen {
         int setY2 = uiY - 160;
         int setX2 = uiX - 107;
         if (settingListen) {
-            if (NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
-                for (Setting set : NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
+            if (CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
+                for (Setting set : CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
                     if (set != null) {
                         if (setY2+15 > uiY+170) {
                             setY2=uiY-160;
@@ -203,8 +203,8 @@ public class RubyClickGui extends GuiScreen {
         int setY = uiY - 160;
         int setX = uiX - 107;
         if (settingListen) {
-            if (NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
-                for (Setting set : NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
+            if (CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
+                for (Setting set : CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
                     if (set != null) {
                         boolean b = mouseX > setX-3 && mouseX < setX+153 && mouseY > setY + 11 && mouseY < setY + 24;
                         if (set.isSlider()) {
@@ -248,7 +248,7 @@ public class RubyClickGui extends GuiScreen {
                         Minecraft.getMinecraft().player.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5f, 0.5f);
                         //HackManager.save();
                     } else if (mouseButton==1) {
-                        if (NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(hack.getName())) != null) {
+                        if (CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(hack.getName())) != null) {
                             if (settingListen) {
                                 //Minecraft.getMinecraft().player.playSound("tile.piston.in", 0.5f, 0.1f);
                             } else {
@@ -265,8 +265,8 @@ public class RubyClickGui extends GuiScreen {
         int setY = uiY - 160;
         int setX = uiX - 107;
         if (settingListen) {
-            if (NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
-                for (Setting set : NordClient.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
+            if (CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName)) != null) {
+                for (Setting set : CousinWare.INSTANCE.settingsManager.getSettingsByMod(HackManager.getHackByName(buttonName))) {
                     if (set != null) {
                         if (setY+15 > uiY+170) {
                             setY=uiY-160;
@@ -278,7 +278,7 @@ public class RubyClickGui extends GuiScreen {
                         } else if (set.isCheck()) {
                             if (b) {
                                 if (mouseButton == 0) {
-                                    NordClient.INSTANCE.settingsManager.getSettingByDisplayName(set.getDisplayName()).setValBoolean(!set.getValBoolean());
+                                    CousinWare.INSTANCE.settingsManager.getSettingByDisplayName(set.getDisplayName()).setValBoolean(!set.getValBoolean());
                                 }
                             }
                         } else if (set.isCombo()) {
@@ -289,13 +289,13 @@ public class RubyClickGui extends GuiScreen {
                                     if (current >= set.getOptions().size()) {
                                         current = 0;
                                     }
-                                    NordClient.INSTANCE.settingsManager.getSettingByDisplayName(set.getDisplayName()).setValString(set.getOptions().get(current));
+                                    CousinWare.INSTANCE.settingsManager.getSettingByDisplayName(set.getDisplayName()).setValString(set.getOptions().get(current));
                                 } else if (mouseButton == 1) {
                                     current -= 1;
                                     if (current < 0) {
                                         current = set.getOptions().size() - 1;
                                     }
-                                    NordClient.INSTANCE.settingsManager.getSettingByDisplayName(set.getDisplayName()).setValString(set.getOptions().get(current));
+                                    CousinWare.INSTANCE.settingsManager.getSettingByDisplayName(set.getDisplayName()).setValString(set.getOptions().get(current));
                                 }
                             }
                         }

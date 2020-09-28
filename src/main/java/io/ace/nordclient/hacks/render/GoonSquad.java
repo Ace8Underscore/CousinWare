@@ -1,10 +1,10 @@
 package io.ace.nordclient.hacks.render;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nordclient.NordClient;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
-import io.ace.nordclient.utilz.clientutil.Setting;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -21,8 +21,8 @@ public class GoonSquad extends Hack {
 
     public GoonSquad() {
         super("GoonSquad", Category.RENDER);
-        NordClient.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "GoonSquadX"));
-        NordClient.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 500, 0, 1000, false, "GoonSquadY"));
+        CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "GoonSquadX"));
+        CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 500, 0, 1000, false, "GoonSquadY"));
 
     }
 
