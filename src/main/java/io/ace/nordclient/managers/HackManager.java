@@ -65,6 +65,7 @@ public class HackManager {
         //addHack(new AutoCrystal());
         //addHack(new Reach());
         addHack(new Colors());
+        addHack(new AutoTntMinecart());
 
 
 

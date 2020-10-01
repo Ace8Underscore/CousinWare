@@ -1,9 +1,11 @@
 package io.ace.nordclient.hacks.client;
 
 import io.ace.nordclient.CousinWare;
+import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import org.lwjgl.input.Keyboard;
+import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class ClickGuiHack extends Hack {
     public ClickGuiHack INSTANCE;
@@ -16,6 +18,8 @@ public class ClickGuiHack extends Hack {
     public static Setting guiModes;
     public static Setting snow;
     public static Setting noise;
+    public static Setting rainbow;
+
     public ClickGuiHack() {
         super("ClickGUI", Category.CLIENT, "Opens the ClickGUI");
         setBind(Keyboard.KEY_Y);
@@ -30,6 +34,7 @@ public class ClickGuiHack extends Hack {
         //NordClient.INSTANCE.settingsManager.rSetting(customFont = new Setting("CFont", this, true, "GlickGuiCustomFont"));
         CousinWare.INSTANCE.settingsManager.rSetting(descriptions = new Setting("Descriptions", this, true, "ClickGuiHackDescriptions"));
         CousinWare.INSTANCE.settingsManager.rSetting(noise = new Setting("Sound", this, true, "ClickGuiHackSound"));
+        CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, false, "ClickGuiHackRainbow"));
 
         //NordClient.INSTANCE.settingsManager.rSetting(snow = new Setting("Snow", this, true, "ClickGuiHackSnow"));
 
@@ -47,6 +52,11 @@ public class ClickGuiHack extends Hack {
     public void onEnable() {
         mc.displayGuiScreen(CousinWare.INSTANCE.clickGui);
         disable();
+    }
+
+    @Listener
+    public void onUpdate(UpdateEvent event) {
+
     }
 }
 

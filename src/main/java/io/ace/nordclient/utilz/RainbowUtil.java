@@ -30,10 +30,21 @@ public class RainbowUtil {
 
     public static void settingRainbow(Setting r, Setting g, Setting b) {
 
-        float[] tick_color = {(System.currentTimeMillis() % (360 * 32)) / (360f * 32)};
+        float[] tick_color = {(float) ((System.currentTimeMillis() % (360 * 32)) / (360f * 32) * Colors.speed.getValDouble())};
 
         int colorRGB = Color.HSBtoRGB(tick_color[0], (float) Colors.saturation.getValDouble(), (float) Colors.brightness.getValDouble());
 
+        r.setValDouble((colorRGB >> 16) & 0xFF);
+        g.setValDouble((colorRGB >> 8) & 0xFF);
+        b.setValDouble(colorRGB & 0xFF);
+
+    }
+
+    public static void settingRainbowArrayList(Setting r, Setting g, Setting b, int delay) {
+
+        double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
+        rainbowState %= 360;
+        int colorRGB = Color.getHSBColor((float) (rainbowState / 360.0f), (float) Colors.saturation.getValDouble(), (float) Colors.brightness.getValDouble()).getRGB();
         r.setValDouble((colorRGB >> 16) & 0xFF);
         g.setValDouble((colorRGB >> 8) & 0xFF);
         b.setValDouble(colorRGB & 0xFF);

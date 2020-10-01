@@ -55,6 +55,7 @@ public class ArrayList extends Hack {
                         c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
                         mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
                         hackCount++;
+                        RainbowUtil.settingRainbow(r, g, b);
                     } else {
                         c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
                         mc.fontRenderer.drawStringWithShadow( h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), c.getRGB());
@@ -63,5 +64,6 @@ public class ArrayList extends Hack {
                     }
                 });
     }
+    //
 
 }
