@@ -12,7 +12,7 @@ public class Hack {
 
     public String name;
     public String description;
-    Category category;
+    public Category category;
     public int bind;
     public boolean enabled;
     public boolean drawn;

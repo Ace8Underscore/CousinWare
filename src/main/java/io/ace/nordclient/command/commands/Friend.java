@@ -22,7 +22,7 @@ public class Friend extends Command {
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
-        if (args[0].equals("add")) {
+        if (args[0].equals("add") && !FriendManager.isFriend(args[1])) {
                 FriendManager.addFriend(args[1]);
                 Command.sendClientSideMessage(ChatFormatting.GREEN + args[1] + ChatFormatting.WHITE + " Has Been Added To The Friends List ");
             }

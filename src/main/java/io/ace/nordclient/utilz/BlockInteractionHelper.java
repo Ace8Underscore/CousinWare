@@ -52,6 +52,22 @@ public class BlockInteractionHelper
         }
     }
 
+    public static void placeBlockScaffoldNoRotate(final BlockPos pos) {
+        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
+        for (final EnumFacing side : EnumFacing.values()) {
+            final BlockPos neighbor = pos.offset(side);
+            final EnumFacing side2 = side.getOpposite();
+            if (canBeClicked(neighbor)) {
+                final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+                    processRightClickBlock(neighbor, side2, hitVec);
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
+                    mc.rightClickDelayTimer = 4;
+                    return;
+
+            }
+        }
+    }
+
     private static float[] getLegitRotations(final Vec3d vec) {
         final Vec3d eyesPos = getEyesPos();
         final double diffX = vec.x - eyesPos.x;

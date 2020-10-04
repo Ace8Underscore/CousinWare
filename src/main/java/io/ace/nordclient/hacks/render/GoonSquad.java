@@ -38,18 +38,13 @@ public class GoonSquad extends Hack {
         for (Object o : mc.world.getLoadedEntityList()) {
             if (o instanceof EntityPlayer) {
                 if (((EntityPlayer) o).getName() != mc.player.getName()) {
-                    FriendManager.getFriends()
-                            .stream()
-                            .forEach(friend -> {
-                                if (friend.getName().contains(((EntityPlayer) o).getName())) {
+                                if (FriendManager.isFriend(((EntityPlayer) o).getName())) {
                                     friends = ((EntityPlayer) o).getGameProfile().getName();
                                     str = " " + friends;
                                     mc.fontRenderer.drawStringWithShadow(str, x.getValInt(), y.get() + this.y.getValInt(), 16755200);
                                     y.addAndGet(12);
-                                    //}
                                 }
 
-                            });
                 }
 
             }

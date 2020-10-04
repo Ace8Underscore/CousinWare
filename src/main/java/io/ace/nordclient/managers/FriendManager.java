@@ -1,5 +1,6 @@
 package io.ace.nordclient.managers;
 
+import io.ace.nordclient.command.commands.Friend;
 import io.ace.nordclient.utilz.FriendUtil;
 
 import java.util.ArrayList;
@@ -31,8 +32,16 @@ public class  FriendManager {
     }
 
     public static boolean isFriend(String name) {
-        return Boolean.parseBoolean(name = getFriends().toString());
+        boolean b = false;
+        for(FriendUtil f : getFriends()){
+            if (f.getName().equalsIgnoreCase(name)) {
+                b = true;
+                break;
+            }
+        }
+        return b;
     }
+
 
     public static boolean isClientFriend(String name) {
         FriendUtil friend = null;

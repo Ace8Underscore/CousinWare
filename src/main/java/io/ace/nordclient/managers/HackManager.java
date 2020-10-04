@@ -66,6 +66,8 @@ public class HackManager {
         //addHack(new Reach());
         addHack(new Colors());
         addHack(new AutoTntMinecart());
+        addHack(new AutoBedBombDumb());
+        addHack(new MCF());
 
 
 
