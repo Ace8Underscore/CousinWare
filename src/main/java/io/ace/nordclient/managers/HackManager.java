@@ -68,6 +68,11 @@ public class HackManager {
         addHack(new AutoTntMinecart());
         addHack(new AutoBedBombDumb());
         addHack(new MCF());
+        addHack(new Spammer());
+        addHack(new FriendTab());
+        addHack(new Step());
+        addHack(new NoInteract());
+
 
 
 

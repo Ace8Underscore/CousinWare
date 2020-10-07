@@ -42,16 +42,16 @@ public class FastSwim extends Hack {
                         if (mc.player.isInWater() && water && !mc.player.onGround) {
                             if (mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown()) {
                                 final float yaw = GetRotationYawForCalc();
-                                mc.player.motionX -= MathHelper.sin(yaw) * .25 / 10;
-                                mc.player.motionZ += MathHelper.cos(yaw) * .25 / 10;
+                                //mc.player.motionX -= MathHelper.sin(yaw) * .25 / 10;
+                                //mc.player.motionZ += MathHelper.cos(yaw) * .25 / 10;
                             }
                         }
 
                         if (mc.player.isInLava() && lava && !mc.player.onGround) {
                             if (mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown()) {
                                 final float yaw = GetRotationYawForCalc();
-                                mc.player.motionX -= MathHelper.sin(yaw) * .7 / 10;
-                                mc.player.motionZ += MathHelper.cos(yaw) * .7 / 10;
+                                //mc.player.motionX -= MathHelper.sin(yaw) * .7 / 10;
+                               // mc.player.motionZ += MathHelper.cos(yaw) * .7 / 10;
                             }
                         }
 
@@ -70,8 +70,8 @@ public class FastSwim extends Hack {
                             //
                         }
                         if (!mc.player.isInWater() && !mc.player.isInLava()) {
-                            mc.player.motionX -= 0;
-                            mc.player.motionZ += 0;
+                            //mc.player.motionX -= 0;
+                            //mc.player.motionZ += 0;
                         }
                     }
                 }
@@ -92,16 +92,16 @@ public class FastSwim extends Hack {
                 if (mc.player.isInWater() && water) {
                     if (mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown()) {
                         final float yaw = GetRotationYawForCalc();
-                        mc.player.motionX -= MathHelper.sin(yaw) * .2 / 10;
-                        mc.player.motionZ += MathHelper.cos(yaw) * .2 / 10;
+                        //mc.player.motionX -= MathHelper.sin(yaw) * .2 / 10;
+                        //mc.player.motionZ += MathHelper.cos(yaw) * .2 / 10;
                     }
                 }
 
                 if (mc.player.isInLava() && lava && !mc.player.onGround) {
                     if (mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown()) {
                         final float yaw = GetRotationYawForCalc();
-                        mc.player.motionX -= MathHelper.sin(yaw) * .7 / 10;
-                        mc.player.motionZ += MathHelper.cos(yaw) * .7 / 10;
+                        //mc.player.motionX -= MathHelper.sin(yaw) * .7 / 10;
+                        //mc.player.motionZ += MathHelper.cos(yaw) * .7 / 10;
                     }
                 }
 
@@ -118,8 +118,8 @@ public class FastSwim extends Hack {
                     }
                 }
                 if (!mc.player.isInWater() && !mc.player.isInLava()) {
-                    mc.player.motionX -= 0;
-                    mc.player.motionZ += 0;
+                    //mc.player.motionX -= 0;
+                   // mc.player.motionZ += 0;
                 }
             }
         }
