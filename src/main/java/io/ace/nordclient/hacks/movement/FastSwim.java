@@ -1,7 +1,9 @@
 package io.ace.nordclient.hacks.movement;
 
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.util.math.MathHelper;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
@@ -11,8 +13,11 @@ public class FastSwim extends Hack {
      * @author Ace________/Ace_#1233
      */
 
+    Setting speed;
+
     public FastSwim() {
         super("FastSwim", Category.MOVEMENT);
+        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, .7, 0, 1, false, "FastSwimSpeed"));
 
     }
     int divider = 5;
@@ -50,8 +55,8 @@ public class FastSwim extends Hack {
                         if (mc.player.isInLava() && lava && !mc.player.onGround) {
                             if (mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown()) {
                                 final float yaw = GetRotationYawForCalc();
-                                //mc.player.motionX -= MathHelper.sin(yaw) * .7 / 10;
-                               // mc.player.motionZ += MathHelper.cos(yaw) * .7 / 10;
+                                mc.player.motionX -= MathHelper.sin(yaw) * speed.getValDouble() / 10;
+                                mc.player.motionZ += MathHelper.cos(yaw) * speed.getValDouble() / 10;
                             }
                         }
 
@@ -100,8 +105,8 @@ public class FastSwim extends Hack {
                 if (mc.player.isInLava() && lava && !mc.player.onGround) {
                     if (mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindBack.isKeyDown() || mc.gameSettings.keyBindLeft.isKeyDown() || mc.gameSettings.keyBindRight.isKeyDown()) {
                         final float yaw = GetRotationYawForCalc();
-                        //mc.player.motionX -= MathHelper.sin(yaw) * .7 / 10;
-                        //mc.player.motionZ += MathHelper.cos(yaw) * .7 / 10;
+                        mc.player.motionX -= MathHelper.sin(yaw) * speed.getValDouble() / 10;
+                        mc.player.motionZ += MathHelper.cos(yaw) * speed.getValDouble() / 10;
                     }
                 }
 

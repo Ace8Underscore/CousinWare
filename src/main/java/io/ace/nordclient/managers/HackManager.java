@@ -72,6 +72,7 @@ public class HackManager {
         addHack(new FriendTab());
         addHack(new Step());
         addHack(new NoInteract());
+        addHack(new Strafe());
 
 
 

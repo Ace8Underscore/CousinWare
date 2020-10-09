@@ -37,6 +37,7 @@ public class AutoOffHand extends Hack {
         ArrayList<String> modes = new ArrayList<>();
         modes.add("Crystal");
         modes.add("Gapple");
+        modes.add("Shield");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Crystal", modes, "AutoOffHandMode"));
         CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemCrystal = new Setting("CrystalHealth", this, 16, 0, 36, false, "AutoOffHandCrystalHealth"));
         CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemGap = new Setting("GapHealth", this, 6, 0, 36, false, "AutoOffHandGapHealth"));
@@ -61,6 +62,9 @@ public class AutoOffHand extends Hack {
             }
             if (mode.getValString().equalsIgnoreCase("Gapple")) {
                 offhandItem = Items.GOLDEN_APPLE;
+            }
+            if (mode.getValString().equalsIgnoreCase("Shield")) {
+                offhandItem = Items.SHIELD;
             }
         }
 

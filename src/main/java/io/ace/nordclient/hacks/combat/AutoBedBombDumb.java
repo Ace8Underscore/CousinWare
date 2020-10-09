@@ -89,7 +89,7 @@ public class AutoBedBombDumb extends Hack {
                         BlockPos eLocation = new BlockPos(e.posX, e.posY, e.posZ);
                         if (mc.world.getBlockState(eLocation).getBlock().canPlaceBlockAt(mc.world, eLocation)) {
                             placing = eLocation;
-                            if (mc.world.getBlockState(eLocation.south()).getBlock().canPlaceBlockAt(mc.world, eLocation.south())) {
+                            if (mc.world.getBlockState(eLocation.south()).getBlock().canPlaceBlockAt(mc.world, eLocation.south()) && mc.world.getBlockState(eLocation.south().down()).getBlock() != Blocks.AIR) {
                                 if (delay >= placeDelay.getValInt()) {
                                     if (rotate.getValBoolean()) {
                                         BlockInteractionHelper.placeBlockScaffold(eLocation);
@@ -109,7 +109,7 @@ public class AutoBedBombDumb extends Hack {
                                 }
                             }
 
-                            if (mc.world.getBlockState(eLocation.north()).getBlock().canPlaceBlockAt(mc.world, eLocation.north())) {
+                            if (mc.world.getBlockState(eLocation.north()).getBlock().canPlaceBlockAt(mc.world, eLocation.north()) && mc.world.getBlockState(eLocation.north().down()).getBlock() != Blocks.AIR) {
                                 if (delay >= placeDelay.getValInt()) {
                                     if (rotate.getValBoolean()) {
                                         BlockInteractionHelper.placeBlockScaffold(eLocation);
@@ -129,7 +129,7 @@ public class AutoBedBombDumb extends Hack {
                                 }
                             }
 
-                            if (mc.world.getBlockState(eLocation.east()).getBlock().canPlaceBlockAt(mc.world, eLocation.east())) {
+                            if (mc.world.getBlockState(eLocation.east()).getBlock().canPlaceBlockAt(mc.world, eLocation.east()) && mc.world.getBlockState(eLocation.east().down()).getBlock() != Blocks.AIR) {
                                 if (delay >= placeDelay.getValInt()) {
                                     if (rotate.getValBoolean()) {
                                         south = false;
@@ -149,7 +149,7 @@ public class AutoBedBombDumb extends Hack {
                                 }
                             }
 
-                                if (mc.world.getBlockState(eLocation.west()).getBlock().canPlaceBlockAt(mc.world, eLocation.west())) {
+                                if (mc.world.getBlockState(eLocation.west()).getBlock().canPlaceBlockAt(mc.world, eLocation.west()) && mc.world.getBlockState(eLocation.west().down()).getBlock() != Blocks.AIR) {
                                     if (delay >= placeDelay.getValInt()) {
 
                                         if (rotate.getValBoolean()) {
@@ -237,6 +237,10 @@ public class AutoBedBombDumb extends Hack {
     }
 
     public void onEnable() {
+        south = false;
+        north = false;
+        east = false;
+        west = false;
         if (autoSwitch.getValBoolean()) {
             int bedSlot = InventoryUtil.findItemInHotbar(Items.BED);
             if (bedSlot == -1) {
