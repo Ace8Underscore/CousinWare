@@ -10,6 +10,7 @@
     "MixinNetworkManager",
     "MixinPlayerControllerMP",
     "MixinRenderGlobal",
-    "MixinSlotShulkerBox"
+    "MixinSlotShulkerBox",
+    "MixinStateImplementation"
   ]
 }

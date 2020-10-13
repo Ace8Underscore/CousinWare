@@ -48,14 +48,14 @@ public class SpeedMine extends Hack {
     @Listener
     public void onUpdate(UpdateEvent event) {
         mc.playerController.blockHitDelay = 0;
-            if (this.reset.getValBoolean() && Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
-                mc.playerController.isHittingBlock = false;
-            }
-            if (fastFall.getValBoolean()) {
-                if (mc.player.onGround)
-                    --mc.player.motionY;
-            }
+        if (this.reset.getValBoolean() && Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
+            mc.playerController.isHittingBlock = false;
         }
+        if (fastFall.getValBoolean()) {
+            if (mc.player.onGround)
+                --mc.player.motionY;
+        }
+    }
 
 
     @Listener
@@ -68,32 +68,32 @@ public class SpeedMine extends Hack {
 
     @Listener
     public void clickBlock(EventPlayerClickBlock event) {
-             if (this.reset.getValBoolean()) {
-                    if (mc.playerController.curBlockDamageMP > 0.1f) {
-                        mc.playerController.isHittingBlock = true;
+        if (this.reset.getValBoolean()) {
+            if (mc.playerController.curBlockDamageMP > 0.1f) {
+                mc.playerController.isHittingBlock = true;
 
-                }
             }
         }
+    }
 
 
     @Listener
     public void damageBlock(EventPlayerDamageBlock event) {
-            if (canBreak(event.getPos())) {
-                if (this.reset.getValBoolean()) {
-                    mc.playerController.isHittingBlock = false;
-                }
+        if (canBreak(event.getPos())) {
+            if (this.reset.getValBoolean()) {
+                mc.playerController.isHittingBlock = false;
+            }
 
-                if (mode.getValString().equalsIgnoreCase("Instant")) {
-                    mc.player.swingArm(EnumHand.MAIN_HAND);
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(
-                            CPacketPlayerDigging.Action.START_DESTROY_BLOCK, event.getPos(), event.getDirection()));
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
-                            event.getPos(), event.getDirection()));
-                    mc.playerController.onPlayerDestroyBlock(event.getPos());
-                    mc.world.setBlockToAir(event.getPos());
-                }
-                if ((mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)) {
+            if (mode.getValString().equalsIgnoreCase("Instant")) {
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.connection.sendPacket(new CPacketPlayerDigging(
+                        CPacketPlayerDigging.Action.START_DESTROY_BLOCK, event.getPos(), event.getDirection()));
+                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
+                        event.getPos(), event.getDirection()));
+                mc.playerController.onPlayerDestroyBlock(event.getPos());
+                mc.world.setBlockToAir(event.getPos());
+            }
+            if ((mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)) {
 
                 if (mode.getValString().equalsIgnoreCase("Packet")) {
                     mc.player.swingArm(EnumHand.MAIN_HAND);
@@ -104,10 +104,10 @@ public class SpeedMine extends Hack {
                     event.setCanceled(true);
                 }//
                 if (mode.getValString().equalsIgnoreCase("Damage")) {
-                     if  (mc.playerController.curBlockDamageMP >= 0.7) {
-                         mc.playerController.curBlockDamageMP = 1;
+                    if  (mc.playerController.curBlockDamageMP >= 0.7) {
+                        mc.playerController.curBlockDamageMP = 1;
 
-                     }
+                    }
 
                 }
 

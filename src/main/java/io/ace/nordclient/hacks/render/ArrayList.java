@@ -46,7 +46,7 @@ public class ArrayList extends Hack {
         java.util.ArrayList<String> orderModes = new java.util.ArrayList<>();
         orderModes.add("Up");
         orderModes.add("Down");
-        CousinWare.INSTANCE.settingsManager.rSetting(orderMode = new Setting("Order", this, "Left", orderModes, "ArrayListOrderMode"));
+        CousinWare.INSTANCE.settingsManager.rSetting(orderMode = new Setting("Order", this, "Up", orderModes, "ArrayListOrderMode"));
 
         CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 255, 0, 255, true, "ArrayListRed"));
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 26, 0, 255, true, "ArrayListGreen"));

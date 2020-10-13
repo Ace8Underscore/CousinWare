@@ -54,18 +54,6 @@ public class Strafe extends Hack {
                 mc.player.motionX = dir[0];
                 mc.player.motionZ = dir[1];
             }
-        } else {
-            if (delay == 0 || delay == 1 || delay == 2 || delay == 3 || delay == 4) {
-                final double[] dir = MathUtil.directionSpeed(.26);
-                mc.player.motionX = dir[0];
-                mc.player.motionZ = dir[1];
-            }
-            if (delay >= 5) {
-                final double[] dir = MathUtil.directionSpeed(.30);
-                mc.player.motionX = dir[0];
-                mc.player.motionZ = dir[1];
-                delay = 0;
-            }
         }
     }
 
