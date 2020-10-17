@@ -31,6 +31,7 @@ public class CommandManager {
         addCommand(new ReloadSound());
         addCommand(new Spotify());
         addCommand(new RideEntity());
+        addCommand(new Font());
 
     }
 

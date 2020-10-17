@@ -15,8 +15,8 @@ public class FastXp extends Hack {
         super("FastXp", Category.COMBAT);
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         if (mc.player.getHeldItemMainhand().getItem() == Items.EXPERIENCE_BOTTLE) {
             mc.rightClickDelayTimer = 0;
         }

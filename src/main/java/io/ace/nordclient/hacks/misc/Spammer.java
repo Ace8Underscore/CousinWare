@@ -8,17 +8,9 @@ import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.Setting;
-import io.ace.nordclient.utilz.TpsUtils;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
@@ -53,8 +45,8 @@ public class Spammer extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         joinLeaveMsg++;
         msgDelay++;
         placeDelay++;

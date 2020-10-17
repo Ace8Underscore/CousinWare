@@ -10,8 +10,8 @@ public class SelfParticle extends Hack {
         super("SelfParticle", Category.RENDER);
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         int x = (int) ((Math.random() * ((2 - -2) + 1))+0);
         int y = (int) ((Math.random() * ((2 - 0) + 1))+1);
         int z = (int) ((Math.random() * ((2 - -2) + 1))+-1);

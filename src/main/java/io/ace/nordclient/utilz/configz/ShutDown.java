@@ -21,6 +21,9 @@ public class ShutDown extends Thread {
         CousinWare.INSTANCE.configUtils.savePrefix();
         CousinWare.INSTANCE.configUtils.saveFriends();
         CousinWare.INSTANCE.configUtils.saveSettingsList();
+        CousinWare.INSTANCE.configUtils.saveFont();
+        CousinWare.INSTANCE.configUtils.saveHuds();
+        CousinWare.INSTANCE.configUtils.saveHudPos();
 
     }
 }

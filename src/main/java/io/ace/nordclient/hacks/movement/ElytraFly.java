@@ -45,8 +45,8 @@ public class ElytraFly extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         if (mc.player.isElytraFlying() && !mc.gameSettings.keyBindSneak.isKeyDown()) {
             final float yaw = GetRotationYawForCalc();
             if (flyMode.getValString().equalsIgnoreCase("2b")) {

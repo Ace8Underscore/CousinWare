@@ -1,5 +1,6 @@
-package io.ace.nordclient.gui;
+package io.ace.nordclient.hud;
 
+import io.ace.nordclient.gui2.Component;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import net.minecraft.client.gui.GuiScreen;
@@ -8,42 +9,42 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ClickGUI extends GuiScreen
+public class ClickGuiHUD extends GuiScreen
 {
-    public static ArrayList<Frame> frames;
+    public static ArrayList<HudFrame> frames;
     public static int color;
 
-    
-    public ClickGUI() {
-        ClickGUI.frames = new ArrayList<Frame>();
+
+    public ClickGuiHUD() {
+        ClickGuiHUD.frames = new ArrayList<HudFrame>();
         int frameX = 5;
-        for (final Hack.Category category : Hack.Category.values()) {
-            final Frame frame = new Frame(category);
+        for (final Hud.Category category : Hud.Category.values()) {
+            final HudFrame frame = new HudFrame(category);
             frame.setX(frameX);
-            ClickGUI.frames.add(frame);
+            ClickGuiHUD.frames.add(frame);
             frameX += frame.getWidth() + 10;
         }
 
     }
-    
+
     public void initGui() {
     }
     @Override
     public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
-        ClickGUI.color = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB();
-        for (final Frame frame : ClickGUI.frames) {
+        ClickGuiHUD.color = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB();
+        for (final HudFrame frame : ClickGuiHUD.frames) {
             frame.renderFrame(this.fontRenderer);
             frame.updatePosition(mouseX, mouseY);
-            for (final Component comp : frame.getComponents()) {
+            for (final HudComponent comp : frame.getComponents()) {
                 comp.updateComponent(mouseX, mouseY);
             }
         }
 
         }
 
-    
+
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
-        for (final Frame frame : ClickGUI.frames) {
+        for (final HudFrame frame : ClickGuiHUD.frames) {
             if (frame.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
                 frame.setDrag(true);
                 frame.dragX = mouseX - frame.getX();
@@ -53,17 +54,17 @@ public class ClickGUI extends GuiScreen
                 frame.setOpen(!frame.isOpen());
             }
             if (frame.isOpen() && !frame.getComponents().isEmpty()) {
-                for (final Component component : frame.getComponents()) {
+                for (final HudComponent component : frame.getComponents()) {
                     component.mouseClicked(mouseX, mouseY, mouseButton);
                 }
             }
         }
     }
-    
+
     protected void keyTyped(final char typedChar, final int keyCode) {
-        for (final Frame frame : ClickGUI.frames) {
+        for (final HudFrame frame : ClickGuiHUD.frames) {
             if (frame.isOpen() && keyCode != 1 && !frame.getComponents().isEmpty()) {
-                for (final Component component : frame.getComponents()) {
+                for (final HudComponent component : frame.getComponents()) {
                     component.keyTyped(typedChar, keyCode);
                 }
             }
@@ -72,14 +73,14 @@ public class ClickGUI extends GuiScreen
             this.mc.displayGuiScreen((GuiScreen)null);
         }
     }
-    
+
     protected void mouseReleased(final int mouseX, final int mouseY, final int state) {
-        for (final Frame frame : ClickGUI.frames) {
+        for (final HudFrame frame : ClickGuiHUD.frames) {
             frame.setDrag(false);
         }
-        for (final Frame frame : ClickGUI.frames) {
+        for (final HudFrame frame : ClickGuiHUD.frames) {
             if (frame.isOpen() && !frame.getComponents().isEmpty()) {
-                for (final Component component : frame.getComponents()) {
+                for (final HudComponent component : frame.getComponents()) {
                     component.mouseReleased(mouseX, mouseY, state);
                 }
             }
@@ -91,6 +92,6 @@ public class ClickGUI extends GuiScreen
     }
     
     static {
-        ClickGUI.color = -1;
+        ClickGuiHUD.color = -1;
     }
 }

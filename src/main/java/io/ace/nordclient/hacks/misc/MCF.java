@@ -19,8 +19,8 @@ public class MCF extends Hack {
 
     private int delay = 0;
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         delay++;
         RayTraceResult object = mc.objectMouseOver;
         if(object == null) {

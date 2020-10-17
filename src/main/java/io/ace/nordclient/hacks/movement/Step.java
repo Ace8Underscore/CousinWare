@@ -1,15 +1,8 @@
 package io.ace.nordclient.hacks.movement;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.network.play.client.CPacketEntityAction;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.client.CPacketPlayerAbilities;
-import net.minecraft.network.play.client.CPacketUseEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.MathHelper;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
@@ -39,7 +32,7 @@ public class Step extends Hack {
     }
 
 
-    @Listener
+    @Override
     public void onUpdate() {
 
         if (stepOn.getValString().equalsIgnoreCase("collide") && mc.player.collidedVertically && mc.player.collidedHorizontally) {

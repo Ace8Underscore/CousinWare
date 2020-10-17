@@ -9,7 +9,6 @@ import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRail;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -48,8 +47,8 @@ public class AutoTntMinecart extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 1, 0, 7,false, "AutoTNTMinecartRange"));
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         Item railItem = Item.getItemFromBlock(Blocks.ACTIVATOR_RAIL);
         Block railBlock = Blocks.RAIL;
         Block activatorRailBlock = Blocks.ACTIVATOR_RAIL;

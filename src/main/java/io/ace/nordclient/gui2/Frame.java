@@ -2,7 +2,8 @@ package io.ace.nordclient.gui2;
 
 import io.ace.nordclient.gui2.components.Button;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.client.ClickGuiHack2;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import net.minecraft.client.Minecraft;
@@ -71,7 +72,7 @@ public class Frame
 
     public void renderFrame(final FontRenderer fontRenderer) {
         Color c = new Color(29, 37, 48, 255);
-        Color click = new Color(ClickGuiHack2.red.getValInt(), ClickGuiHack2.green.getValInt(), ClickGuiHack2.blue.getValInt(), 255);
+        Color click = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
 
         Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, c.getRGB());
         //final Color outline = new Color(10, 10, 10, 200);
@@ -83,7 +84,8 @@ public class Frame
         Minecraft mc = Minecraft.getMinecraft();
 
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.category.name(), this.x + 2, this.y + 3, -1);
-        FontRenderUtil.drawCenteredStringWithShadow(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
+        if (!Core.customFont.getValBoolean()) FontRenderUtil.drawCenteredStringWithShadow(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
+        else FontRenderUtil.drawCenteredStringWithShadowCustom(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
         if (this.open && !this.components.isEmpty()) {
             for (final Component component : this.components) {
                 component.renderComponent();

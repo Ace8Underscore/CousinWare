@@ -1,7 +1,10 @@
 package io.ace.nordclient.hacks;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
+import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.RenderEvent;
+import io.ace.nordclient.hacks.misc.ToggleMsgs;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -83,6 +86,9 @@ public class Hack {
         CousinWare.INSTANCE.getEventManager().addEventListener(this);
         MinecraftForge.EVENT_BUS.register(this);
         setEnabled(true);
+        if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
+            Command.sendClientSideMessage("Enabled " + ChatFormatting.GREEN + this.name);
+        }
         //MinecraftForge.EVENT_BUS.register(this);
         onEnable();
     }
@@ -91,6 +97,9 @@ public class Hack {
         CousinWare.INSTANCE.getEventManager().removeEventListener(this);
         MinecraftForge.EVENT_BUS.unregister(this);
         setEnabled(false);
+        if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
+            Command.sendClientSideMessage("Disabled " + ChatFormatting.RED + this.name);
+        }
         //MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
     }

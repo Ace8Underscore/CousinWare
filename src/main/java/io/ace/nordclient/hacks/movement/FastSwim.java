@@ -27,8 +27,8 @@ public class FastSwim extends Hack {
     boolean lava = true;
     boolean up = true;
     boolean down = true;
-    @Listener
-        public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
             if (only2b) {
                 if (!mc.isSingleplayer()) {
                     if (mc.getCurrentServerData().serverIP.equalsIgnoreCase("2b2t.org")) {

@@ -15,8 +15,6 @@ public class ClickGuiHack extends Hack {
     public static Setting blue;
     public static Setting alpha;
     public static Setting descriptions;
-    public static Setting guiModes;
-    public static Setting snow;
     public static Setting noise;
     public static Setting rainbow;
 
@@ -26,37 +24,34 @@ public class ClickGuiHack extends Hack {
         INSTANCE = this;
 
 
-        // NordClient.INSTANCE.settingsManager.rSetting(new Setting("Rainbow", this, false, "ClickGuiRainbow"));
-        CousinWare.INSTANCE.settingsManager.rSetting(red = new Setting("Red", this, 255, 0, 255, true, "ClickGuiHackRed"));
-        CousinWare.INSTANCE.settingsManager.rSetting(green = new Setting("Green", this, 26, 0, 255, true, "ClickGuiHackGreen"));
-        CousinWare.INSTANCE.settingsManager.rSetting(blue = new Setting("Blue", this, 42, 0, 255, true, "ClickGuiHackBlue"));
+        CousinWare.INSTANCE.settingsManager.rSetting(red = new Setting("Red", this, 165, 0, 255, true, "ClickGuiHackRed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(green = new Setting("Green", this, 147, 0, 255, true, "ClickGuiHackGreen"));
+        CousinWare.INSTANCE.settingsManager.rSetting(blue = new Setting("Blue", this, 44, 0, 255, true, "ClickGuiHackBlue"));
         CousinWare.INSTANCE.settingsManager.rSetting(alpha = new Setting("Alpha", this, 255, 0, 255, true, "ClickGuiHackAlpha"));
-        //NordClient.INSTANCE.settingsManager.rSetting(customFont = new Setting("CFont", this, true, "GlickGuiCustomFont"));
         CousinWare.INSTANCE.settingsManager.rSetting(descriptions = new Setting("Descriptions", this, true, "ClickGuiHackDescriptions"));
         CousinWare.INSTANCE.settingsManager.rSetting(noise = new Setting("Sound", this, true, "ClickGuiHackSound"));
         CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, false, "ClickGuiHackRainbow"));
-
-        //NordClient.INSTANCE.settingsManager.rSetting(snow = new Setting("Snow", this, true, "ClickGuiHackSnow"));
-
-       // ArrayList<String> guiMode = new ArrayList<>();
-       // guiMode.add("New");
-        //guiMode.add("Old");
-        //NordClient.INSTANCE.settingsManager.rSetting(guiModes = new Setting("GuiMode", this, "New", guiMode, "ClickGuiMode"));
-
 
     }
 
     public static Setting customFont;
 
-
+    @Override
     public void onEnable() {
-        mc.displayGuiScreen(CousinWare.INSTANCE.clickGui);
+        mc.displayGuiScreen(CousinWare.INSTANCE.clickGui2);
+        try {
+            if (CousinWare.INSTANCE.fontRenderer.getFontName().equalsIgnoreCase("null")) {
+                CousinWare.INSTANCE.fontRenderer.setFontName("Arial");
+                CousinWare.INSTANCE.fontRenderer.setFontSize(18);
+                CousinWare.INSTANCE.configUtils.saveFont();
+                CousinWare.INSTANCE.configUtils.loadFont();
+            }
+        } catch (Exception ignored) {
+
+
+        }
         disable();
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
-
-    }
 }
 

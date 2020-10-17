@@ -46,8 +46,8 @@ public class AutoOffHand extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
 
         if (mc.player.getHealth() + mc.player.getAbsorptionAmount() <= switchToTotemCrystal.getValDouble() && mode.getValString().equalsIgnoreCase("Crystal")) {
             offhandItem = Items.TOTEM_OF_UNDYING;

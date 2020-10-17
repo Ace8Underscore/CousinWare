@@ -30,8 +30,8 @@ public class Scaffold extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         BlockPos below = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
         BlockPos belowSouth = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ - 1);
         BlockPos belowNorth = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ + 1);
@@ -61,7 +61,7 @@ public class Scaffold extends Hack {
         }
     }
 
-    @Listener
+    @Override
     public void onWorldRender(RenderEvent event) {
         BlockPos below = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
         BlockPos belowSouth = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ - 1);

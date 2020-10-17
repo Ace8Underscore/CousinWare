@@ -4,20 +4,15 @@ import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.managers.RotationManager;
-import io.ace.nordclient.utilz.*;
+import io.ace.nordclient.utilz.BlockInteractionHelper;
+import io.ace.nordclient.utilz.NordTessellator;
+import io.ace.nordclient.utilz.Setting;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockObsidian;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemEnderPearl;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.client.CPacketEntityAction;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class Surround extends Hack {
@@ -56,8 +51,8 @@ public class Surround extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         int blockSlot = this.findObiInHotbar();
         if (blockSlot > 1) {
             delay++;
@@ -225,7 +220,7 @@ public class Surround extends Hack {
         }
     }
 
-    @Listener
+    @Override
     public void onWorldRender(RenderEvent event) {
         BlockPos side1 = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ + 1);
         BlockPos side2 = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ - 1);

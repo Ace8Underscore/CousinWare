@@ -15,6 +15,7 @@ public class Velocity extends Hack {
     public Velocity() {
         super("Velocity", Category.MOVEMENT);
     }
+
     @Listener
     public void onUpdate(PacketEvent.Receive event) {
         if (event.getPacket() instanceof SPacketEntityVelocity) {

@@ -1,19 +1,14 @@
 package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.event.PacketEvent;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import org.lwjgl.input.Mouse;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 

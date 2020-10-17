@@ -1,18 +1,14 @@
 package io.ace.nordclient.mixin;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.hacks.render.FriendTab;
 import io.ace.nordclient.managers.FriendManager;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.scoreboard.ScorePlayerTeam;
-import net.minecraft.util.text.TextFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.awt.*;
 
 
 //Credit 086

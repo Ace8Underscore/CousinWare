@@ -14,8 +14,8 @@ public class Jesus extends Hack {
         super("Jesus", Category.MOVEMENT, "Walk on water duh");
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
 
         if (mc.player.isOverWater() && !mc.gameSettings.keyBindSneak.isKeyDown() && !mc.gameSettings.keyBindJump.isKeyDown()) {
             mc.player.motionY = 0;

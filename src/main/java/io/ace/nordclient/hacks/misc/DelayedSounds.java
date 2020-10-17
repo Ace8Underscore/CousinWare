@@ -11,8 +11,8 @@ public class DelayedSounds extends Hack {
         super("DelayedSounds", Category.MISC);
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         if (mc.player.getHealth() + mc.player.getAbsorptionAmount() < 10) {
             mc.player.playSound(SoundEvents.ITEM_TOTEM_USE, 1, 1);
         }

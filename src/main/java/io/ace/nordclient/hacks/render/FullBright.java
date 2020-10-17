@@ -22,8 +22,8 @@ public class FullBright extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Gamma", modes, "FullBrightModes"));
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         if (mode.getValString().equalsIgnoreCase("gamma")) {
             mc.gameSettings.gammaSetting = 2000;
             mc.player.removeActivePotionEffect(Potion.getPotionById(16));

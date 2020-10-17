@@ -74,8 +74,8 @@ public class AutoBedBombDumb extends Hack {
 //
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         delay++;
         delayBreak++;
         for (Entity e : mc.world.loadedEntityList) {
@@ -198,7 +198,8 @@ public class AutoBedBombDumb extends Hack {
 
 
 
-    @Listener public void onUpdate(PacketEvent.Send event) {
+    @Listener
+    public void onUpdate(PacketEvent.Send event) {
         Packet packet = event.getPacket();
         if (packet instanceof CPacketPlayer) {
             if (spoofPlace.getValBoolean()) {
@@ -209,7 +210,7 @@ public class AutoBedBombDumb extends Hack {
         }
     }
 
-        @Listener
+        @Override
         public void onWorldRender(RenderEvent event) {
 
 

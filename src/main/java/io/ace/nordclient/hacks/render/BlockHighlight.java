@@ -5,11 +5,7 @@ import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.RainbowUtil;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
-
-import java.awt.*;
 
 public class BlockHighlight extends Hack {
 
@@ -30,8 +26,8 @@ public class BlockHighlight extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "BlockHighlightRainbow"));
 
     }
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         if (rainbow.getValBoolean()) {
             RainbowUtil.settingRainbow(r, g, b);
         }

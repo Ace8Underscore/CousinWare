@@ -31,8 +31,8 @@ public class AntiVoid extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         Double yLevel = mc.player.posY;
         if (downMode.getValString().equalsIgnoreCase("lagBack")) {
         if (yLevel <=.5) {

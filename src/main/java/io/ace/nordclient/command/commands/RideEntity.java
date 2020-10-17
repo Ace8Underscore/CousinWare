@@ -1,12 +1,9 @@
 package io.ace.nordclient.command.commands;
 
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.hacks.misc.DonkeyAlert;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityDonkey;
-import net.minecraft.network.play.client.*;
-import net.minecraft.network.play.server.SPacketEffect;
-import net.minecraft.util.EnumHand;
+import net.minecraft.network.play.client.CPacketEntityAction;
 
 public class RideEntity extends Command {
     @Override

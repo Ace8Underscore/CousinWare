@@ -3,9 +3,12 @@ package io.ace.nordclient.utilz.configz;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.hud.Hud;
 import io.ace.nordclient.managers.FriendManager;
+import io.ace.nordclient.managers.HudManager;
 import io.ace.nordclient.utilz.FriendUtil;
 import io.ace.nordclient.utilz.Setting;
+import io.ace.nordclient.utilz.font.CFontRenderer;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
@@ -17,6 +20,7 @@ public class ConfigUtils {
     Minecraft mc = Minecraft.getMinecraft();
     public File Nord;
     public File Settings;
+    public String publicname;
 
     /**
      * @author Finz0
@@ -40,6 +44,11 @@ public class ConfigUtils {
         loadPrefix();
         loadFriends();
         loadSettingsList();
+        loadFont();
+        loadHuds();
+        loadHudPos();
+
+
 
 
 
@@ -325,17 +334,51 @@ public class ConfigUtils {
 
     }
 
-   /* public void saveFont() {
+    public void saveFont() {
         try {
             File file = new File(this.Nord.getAbsolutePath(), "Font.txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(file));
-            out.write(NordClient.fontRenderer.getFontName() + ":" + NordClient.fontRenderer.getFontSize());
+            out.write(CousinWare.INSTANCE.fontRenderer.getFontName() + ":" + CousinWare.INSTANCE.fontRenderer.getFontSize());
             out.write("\r\n");
             out.close();
         } catch (Exception var3) {
         }
 
-    } */
+    }
+
+    public void loadFont() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "Font.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+            while((line = br.readLine()) != null) {
+                publicname = line.split(":")[0];
+                String size = line.split(":")[1];
+                int sizeInt = Integer.parseInt(size);
+                CousinWare.INSTANCE.fontRenderer = new CFontRenderer(new Font(publicname, Font.PLAIN, sizeInt), true, false);
+                CousinWare.INSTANCE.fontRenderer.setFont(new Font(publicname, Font.PLAIN, sizeInt));
+                CousinWare.INSTANCE.fontRenderer.setAntiAlias(true);
+                CousinWare.INSTANCE.fontRenderer.setFractionalMetrics(false);
+                CousinWare.INSTANCE.fontRenderer.setFontName(publicname);
+                CousinWare.INSTANCE.fontRenderer.setFontSize(sizeInt);
+                //CousinWare.INSTANCE.fontRenderer = new CFontRendererGui(new Font(name, Font.PLAIN, sizeInt), true, false);
+                CousinWare.INSTANCE.fontRenderer.setFont(new Font(publicname, Font.PLAIN, sizeInt));
+                CousinWare.INSTANCE.fontRenderer.setAntiAlias(true);
+                CousinWare.INSTANCE.fontRenderer.setFractionalMetrics(false);
+                CousinWare.INSTANCE.fontRenderer.setFontName(publicname);
+
+            }
+
+            br.close();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+            //saveFont();
+        }
+
+    }
 
 
     public void saveDrawn() {
@@ -398,6 +441,53 @@ public class ConfigUtils {
 
                 while (var6.hasNext()) {
                     Hack h = (Hack) var6.next();
+                    if (h.getName().equals(line)) {
+                        h.enable();
+                    }
+                }
+            }
+
+            br.close();
+        } catch (Exception var8) {
+            var8.printStackTrace();
+            //this.saveHacks();
+        }
+
+    }
+
+    public void saveHuds() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "EnabledHuds.txt");
+            BufferedWriter out = new BufferedWriter(new FileWriter(file));
+            Iterator var3 = CousinWare.INSTANCE.hudManager.getHuds().iterator();
+
+            while (var3.hasNext()) {
+                Hud hud = (Hud) var3.next();
+                if (hud.isEnabled()) {
+                    out.write(hud.getName());
+                    out.write("\r\n");
+                }
+            }
+
+            out.close();
+        } catch (Exception var5) {
+        }
+
+    }
+
+    public void loadHuds() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "EnabledHuds.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                Iterator var6 = CousinWare.INSTANCE.hudManager.getHuds().iterator();
+
+                while (var6.hasNext()) {
+                    Hud h = (Hud) var6.next();
                     if (h.getName().equals(line)) {
                         h.enable();
                     }
@@ -594,6 +684,52 @@ public class ConfigUtils {
         } catch (Exception var11) {
             var11.printStackTrace();
             //aveSettingsList();
+        }
+
+    }
+    public void saveHudPos() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "HudPos.txt");
+            BufferedWriter out = new BufferedWriter(new FileWriter(file));
+            Iterator var3 = CousinWare.INSTANCE.hudManager.getHuds().iterator();
+
+            while (var3.hasNext()) {
+                Hud hud = (Hud) var3.next();
+                out.write(hud.getName() + ":" + hud.x + ":" + hud.y);
+                out.write("\r\n");
+            }
+
+            out.close();
+        } catch (Exception var5) {
+        }
+
+    }
+
+    public void loadHudPos() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "HudPos.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String curLine = line.trim();
+                String name = curLine.split(":")[0];
+                String x = curLine.split(":")[1];
+                String y = curLine.split(":")[2];
+                for (Hud h : CousinWare.INSTANCE.hudManager.getHuds()) {
+                    if (h.getName().equalsIgnoreCase(name)) {
+                        h.x = Integer.parseInt(x);
+                        h.y = Integer.parseInt(y);
+                    }
+                }
+            }
+
+            br.close();
+        } catch (Exception var11) {
+            var11.printStackTrace();
+            //saveDrawn();
         }
 
     }

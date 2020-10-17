@@ -15,9 +15,8 @@ public class Swing extends Hack {
         super("Swing", Category.RENDER, "Swing With Your OffHand");
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
             mc.player.swingingHand = EnumHand.OFF_HAND;
-//
     }
 }

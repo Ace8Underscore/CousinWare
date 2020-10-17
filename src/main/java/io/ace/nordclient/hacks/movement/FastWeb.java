@@ -1,10 +1,10 @@
 package io.ace.nordclient.hacks.movement;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.AddCollisionBoxToListEvent;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.MathUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -33,8 +33,8 @@ public class FastWeb extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         if (mc.player.isInWeb) {
             if (downMode.getValString().equalsIgnoreCase("2b")) {
                 mc.player.motionY = 1.1 / -5;
@@ -61,6 +61,6 @@ public class FastWeb extends Hack {
 
     @Override
     public String getHudInfo() {
-        return "[" + downMode.getValString() + "]";
+        return "[" + ChatFormatting.WHITE +downMode.getValString() + ChatFormatting.GRAY + "]";
     }
 }

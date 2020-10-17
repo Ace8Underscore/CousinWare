@@ -17,8 +17,8 @@ public class QuickDrop extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
 
     if (mc.gameSettings.keyBindDrop.isKeyDown()) {
         //ItemStack is = new ItemStack(mc.player.getHeldItemMainhand().getItem(), mc.player.getHeldItemOffhand().getCount());

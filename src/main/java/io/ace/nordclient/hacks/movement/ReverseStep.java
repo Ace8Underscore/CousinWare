@@ -26,7 +26,7 @@ public class ReverseStep extends Hack {
 
     }
 
-    @Listener
+    @Override
     public void onUpdate() {
         if (fallMode.getValString().equalsIgnoreCase("fast"))  y = -4D;
         if (fallMode.getValString().equalsIgnoreCase("medium"))  y = -2D;

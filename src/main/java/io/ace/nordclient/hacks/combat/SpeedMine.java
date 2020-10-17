@@ -45,8 +45,8 @@ public class SpeedMine extends Hack {
     }
 
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         mc.playerController.blockHitDelay = 0;
         if (this.reset.getValBoolean() && Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown()) {
             mc.playerController.isHittingBlock = false;

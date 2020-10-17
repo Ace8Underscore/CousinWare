@@ -1,21 +1,20 @@
-package io.ace.nordclient.hacks.render;
+package io.ace.nordclient.hacks.client;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
+import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 
-public class FriendTab extends Hack {
-
+public class ClickGuiHudHack extends Hack {
 
     public static Setting mode;
+    public ClickGuiHudHack() {
+        super("Hud", Category.CLIENT);
 
-    public FriendTab() {
-        super("FriendTab", Category.RENDER);
-
-        java.util.ArrayList<String> modes = new ArrayList<>();
+        ArrayList<String> modes = new ArrayList<>();
         modes.add("BLACK");
         modes.add("RED");
         modes.add("AQUA");
@@ -32,10 +31,40 @@ public class FriendTab extends Hack {
         modes.add("DARK_GREEN");
         modes.add("DARK_PURPLE");
         modes.add("LIGHT_PURPLE");
-        modes.add("OBFUSCATED");
-        CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "GREEN", modes, "FriendTabColorModes"));
 
 
+        CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "GREEN", modes, "DonkeyAlertColorModes"));
+
+    }
+
+    public static boolean canMove = false;
+
+    @Override
+    public void onEnable() {
+        mc.displayGuiScreen(CousinWare.INSTANCE.clickGuiHUD);
+        canMove = true;
+        try {
+            if (CousinWare.INSTANCE.fontRenderer.getFontName().equalsIgnoreCase("null")) {
+                CousinWare.INSTANCE.fontRenderer.setFontName("Arial");
+                CousinWare.INSTANCE.fontRenderer.setFontSize(18);
+                CousinWare.INSTANCE.configUtils.saveFont();
+                CousinWare.INSTANCE.configUtils.loadFont();
+            }
+        } catch (Exception ignored) {
+
+
+        }
+
+    }
+    @Override
+    public void onUpdate() {
+        if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+            this.disable();
+        }
+    }
+    @Override
+    public void onDisable() {
+        canMove = false;
     }
 
     public static ChatFormatting colorchoice(){
@@ -56,7 +85,6 @@ public class FriendTab extends Hack {
             case "DARK_GREEN": return ChatFormatting.DARK_GREEN;
             case "DARK_PURPLE": return ChatFormatting.LIGHT_PURPLE;
             case "LIGHT_PURPLE": return ChatFormatting.DARK_PURPLE;
-            case "OBFUSCATED": return ChatFormatting.OBFUSCATED;
             default: return ChatFormatting.WHITE;
         }
 

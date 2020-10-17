@@ -2,11 +2,14 @@ package io.ace.nordclient.managers;
 
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.client.*;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.ClickGuiHudHack;
+import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
-import io.ace.nordclient.hacks.player.*;
+import io.ace.nordclient.hacks.player.AntiVoid;
+import io.ace.nordclient.hacks.player.Scaffold;
 import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.utilz.NordTessellator;
 import net.minecraft.client.Minecraft;
@@ -60,9 +63,7 @@ public class HackManager {
         addHack(new StorageESP());
         addHack(new Surround());
         addHack(new Scaffold());
-        //addHack(new AutoCrystal());
-        //addHack(new Reach());
-        addHack(new Colors());
+        addHack(new Core());
         addHack(new AutoTntMinecart());
         addHack(new AutoBedBombDumb());
         addHack(new MCF());
@@ -72,7 +73,8 @@ public class HackManager {
         addHack(new NoInteract());
         addHack(new Strafe());
         addHack(new FastWeb());
-        addHack(new ClickGuiHack2());
+        addHack(new ToggleMsgs());
+        addHack(new ClickGuiHudHack());
 
 
 

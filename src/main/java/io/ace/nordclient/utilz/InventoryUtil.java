@@ -1,7 +1,6 @@
 package io.ace.nordclient.utilz;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockObsidian;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -58,6 +57,13 @@ public class InventoryUtil {
 
         return slot;
 
+    }
+    public static int getItems(Item i) {
+        return mc.player.inventory.mainInventory.stream().filter(itemStack -> itemStack.getItem() == i).mapToInt(ItemStack::getCount).sum() + mc.player.inventory.offHandInventory.stream().filter(itemStack -> itemStack.getItem() == i).mapToInt(ItemStack::getCount).sum();
+    }
+
+    public static int getBlocks(Block block) {
+        return getItems(Item.getItemFromBlock(block));
     }
 }
 

@@ -1,10 +1,6 @@
 package io.ace.nordclient.utilz;
 
-import io.ace.nordclient.event.UpdateEvent;
-import io.ace.nordclient.hacks.client.Colors;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
+import io.ace.nordclient.hacks.client.Core;
 
 import java.awt.*;
 
@@ -30,9 +26,9 @@ public class RainbowUtil {
 
     public static void settingRainbow(Setting r, Setting g, Setting b) {
 
-        float[] tick_color = {(float) ((System.currentTimeMillis() % (360 * 32)) / (360f * 32) * Colors.speed.getValDouble())};
+        float[] tick_color = {(float) ((System.currentTimeMillis() % (360 * 32)) / (360f * 32) * Core.speed.getValDouble())};
 
-        int colorRGB = Color.HSBtoRGB(tick_color[0], (float) Colors.saturation.getValDouble(), (float) Colors.brightness.getValDouble());
+        int colorRGB = Color.HSBtoRGB(tick_color[0], (float) Core.saturation.getValDouble(), (float) Core.brightness.getValDouble());
 
         r.setValDouble((colorRGB >> 16) & 0xFF);
         g.setValDouble((colorRGB >> 8) & 0xFF);
@@ -44,7 +40,7 @@ public class RainbowUtil {
 
         double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
         rainbowState %= 360;
-        int colorRGB = Color.getHSBColor((float) (rainbowState / 360.0f), (float) Colors.saturation.getValDouble(), (float) Colors.brightness.getValDouble()).getRGB();
+        int colorRGB = Color.getHSBColor((float) (rainbowState / 360.0f), (float) Core.saturation.getValDouble(), (float) Core.brightness.getValDouble()).getRGB();
         r.setValDouble((colorRGB >> 16) & 0xFF);
         g.setValDouble((colorRGB >> 8) & 0xFF);
         b.setValDouble(colorRGB & 0xFF);

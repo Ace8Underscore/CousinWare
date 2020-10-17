@@ -1,9 +1,11 @@
 package io.ace.nordclient.gui2.components;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.gui2.Component;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.client.ClickGuiHack2;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.gui.Gui;
 
@@ -39,9 +41,10 @@ public class ModeButton extends Component
     public void renderComponent() {
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? new Color(29, 37, 48, 255).darker().darker().getRGB() : new Color(29, 37, 48, 255).getRGB());
         Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(29, 37, 48, 255).getRGB());
-        Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack2.red.getValInt(), ClickGuiHack2.green.getValInt(), ClickGuiHack2.blue.getValInt(), ClickGuiHack2.alpha.getValInt()).getRGB());
+        Gui.drawRect(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.set.getName() + " " + ChatFormatting.GRAY + this.set.getValue(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
-        mc.fontRenderer.drawStringWithShadow(this.set.getDisplayName() + " " + ChatFormatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
+        if (!Core.customFont.getValBoolean()) mc.fontRenderer.drawStringWithShadow(this.set.getDisplayName() + " " + ChatFormatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
+        else CousinWare.INSTANCE.fontRenderer.drawStringWithShadow(this.set.getDisplayName() + " " + ChatFormatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
     }
     
     @Override

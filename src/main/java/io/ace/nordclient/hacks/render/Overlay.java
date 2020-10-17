@@ -3,9 +3,10 @@ package io.ace.nordclient.hacks.render;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.utilz.FontRenderUtil;
-import io.ace.nordclient.utilz.TpsUtils;
 import io.ace.nordclient.utilz.Setting;
+import io.ace.nordclient.utilz.TpsUtils;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -38,7 +39,7 @@ public class Overlay extends Hack {
         String tpsString = "Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0;
         String fpsString = "Fps " + mc.getDebugFPS();
         Color c = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
-
+        if (!Core.customFont.getValBoolean()) {
         if (server.getValBoolean()) {
             if (!mc.isSingleplayer()) {
                 FontRenderUtil.drawLeftStringWithShadow("Server " + mc.getCurrentServerData().serverIP, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
@@ -74,8 +75,46 @@ public class Overlay extends Hack {
                 FontRenderUtil.drawLeftStringWithShadow("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
+        }
 
 
+        }else {
+            if (server.getValBoolean()) {
+                if (!mc.isSingleplayer()) {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Server " + mc.getCurrentServerData().serverIP, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                }
+            }
+
+            if (ping.getValBoolean()) {
+                if (mc.isSingleplayer()) {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + "0" + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                } else {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + mc.getCurrentServerData().pingToServer + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                }
+            }
+            if (tpsString.length() > fpsString.length()) {
+                if (tps.getValBoolean()) {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                }
+                if (fps.getValBoolean()) {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Fps " + mc.getDebugFPS(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                }
+
+            } else {
+                if (fps.getValBoolean()) {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Fps " + mc.getDebugFPS(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                }
+                if (tps.getValBoolean()) {
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    yOffset++;
+                }
+            }
         }
 
 

@@ -1,16 +1,12 @@
 package io.ace.nordclient.hacks.movement;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
-import io.ace.nordclient.event.PlayerMoveEvent;
 import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.MathUtil;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.util.math.MathHelper;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Strafe extends Hack {
@@ -33,8 +29,8 @@ public class Strafe extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
+    @Override
+    public void onUpdate() {
         delay++;
         mc.player.speedInAir = .021f;
         mc.player.setSprinting(true);

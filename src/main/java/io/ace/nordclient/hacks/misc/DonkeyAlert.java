@@ -63,6 +63,8 @@ public DonkeyAlert() {
     private Setting<DonkeyAlert.colour> mode = register(Settings.e("Colour", DonkeyAlert.colour.DARK_PURPLE)); */
 
     private int antiSpam;
+
+    @Override
         public void onUpdate() {
         antiSpam++;
 
