@@ -1,9 +1,7 @@
 package io.ace.nordclient.hacks.render;
 
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import net.minecraft.util.EnumHand;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class Swing extends Hack {
 

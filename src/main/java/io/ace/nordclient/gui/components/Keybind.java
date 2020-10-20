@@ -1,8 +1,8 @@
-package io.ace.nordclient.gui2.components;
+package io.ace.nordclient.gui.components;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.gui2.Component;
+import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.hacks.client.Core;
 import net.minecraft.client.gui.Gui;

@@ -1,10 +1,10 @@
-package io.ace.nordclient.gui2;
+package io.ace.nordclient.hud;
 
-import io.ace.nordclient.gui2.components.Button;
-import io.ace.nordclient.hacks.Hack;
+
+
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.hacks.client.Core;
-import io.ace.nordclient.managers.HackManager;
+import io.ace.nordclient.managers.HudManager;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -13,10 +13,10 @@ import net.minecraft.client.gui.Gui;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Frame
+public class HudFrame
 {
-    public ArrayList<Component> components;
-    public Hack.Category category;
+    public ArrayList<HudComponent> components;
+    public Hud.Category category;
     private boolean open;
     private int width;
     private int y;
@@ -27,8 +27,8 @@ public class Frame
     public int dragY;
     private int height;
     //ClickGuiHack hack = ((ClickGuiHack) HackManager.getHackByName("ClickGuiModule"));
-    public Frame(final Hack.Category cat) {
-        this.components = new ArrayList<Component>();
+    public HudFrame(final Hud.Category cat) {
+        this.components = new ArrayList<HudComponent>();
         this.category = cat;
         this.width = 95;
         this.x = 5;
@@ -38,15 +38,15 @@ public class Frame
         this.open = true;
         this.isDragging = false;
         int tY = this.barHeight;
-        for (final Hack hack : HackManager.getHacksInCategory(cat)) {
-            final Button hackButton = new Button(hack, this, tY);
-            this.components.add(hackButton);
+        for (final Hud hud : HudManager.getHudsInCategory(cat)) {
+            final Button hudButton = new Button(hud, this, tY);
+            this.components.add(hudButton);
             tY += 16;
         }
         this.refresh();
     }
 
-    public ArrayList<Component> getComponents() {
+    public ArrayList<HudComponent> getComponents() {
         return this.components;
     }
 
@@ -87,7 +87,7 @@ public class Frame
         if (!Core.customFont.getValBoolean()) FontRenderUtil.drawCenteredStringWithShadow(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
         else FontRenderUtil.drawCenteredStringWithShadowCustom(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
         if (this.open && !this.components.isEmpty()) {
-            for (final Component component : this.components) {
+            for (final HudComponent component : this.components) {
                 component.renderComponent();
             }
         }
@@ -95,7 +95,7 @@ public class Frame
     
     public void refresh() {
         int off = this.barHeight;
-        for (final Component comp : this.components) {
+        for (final HudComponent comp : this.components) {
             comp.setOff(off);
             off += comp.getHeight();
         }

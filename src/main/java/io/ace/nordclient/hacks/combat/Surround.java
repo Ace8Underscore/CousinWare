@@ -2,7 +2,6 @@ package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.RenderEvent;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.NordTessellator;
@@ -13,7 +12,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class Surround extends Hack {
     Float yaw;

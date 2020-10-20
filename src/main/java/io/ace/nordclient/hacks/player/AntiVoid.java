@@ -3,7 +3,6 @@ package io.ace.nordclient.hacks.player;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.AddCollisionBoxToListEvent;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.init.Blocks;

@@ -1,8 +1,6 @@
 package io.ace.nordclient.hacks.render;
 
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class SelfParticle extends Hack {
 

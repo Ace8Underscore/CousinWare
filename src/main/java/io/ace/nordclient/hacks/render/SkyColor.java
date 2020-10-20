@@ -1,13 +1,11 @@
 package io.ace.nordclient.hacks.render;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.RainbowUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class SkyColor extends Hack {
     //

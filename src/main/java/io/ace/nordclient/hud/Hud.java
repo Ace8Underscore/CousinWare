@@ -3,6 +3,7 @@ package io.ace.nordclient.hud;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.RenderEvent;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.common.MinecraftForge;
 
 public class Hud {
@@ -15,6 +16,7 @@ public class Hud {
     public int y;
     public int width;
     public boolean enabled;
+    public ScaledResolution resolution = new ScaledResolution(mc);
 
     public Hud(String hudName, int x, int y) {
         name = hudName;

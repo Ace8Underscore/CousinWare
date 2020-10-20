@@ -1,6 +1,6 @@
-package io.ace.nordclient.gui2.components;
+package io.ace.nordclient.gui.components;
 
-import io.ace.nordclient.gui2.Component;
+import io.ace.nordclient.gui.Component;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.utilz.FontRenderUtil;
@@ -13,7 +13,7 @@ public class CheckBox extends Component
 {
     private boolean hovered;
     private Setting op;
-    private io.ace.nordclient.gui2.components.Button parent;
+    private io.ace.nordclient.gui.components.Button parent;
     private int offset;
     private int x;
     private int y;

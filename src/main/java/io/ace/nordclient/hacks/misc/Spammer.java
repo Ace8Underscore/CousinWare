@@ -4,7 +4,6 @@ import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.PlayerJoinEvent;
 import io.ace.nordclient.event.PlayerLeaveEvent;
 import io.ace.nordclient.event.PlayerMoveEvent;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.Setting;

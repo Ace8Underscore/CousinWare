@@ -1,7 +1,5 @@
 package io.ace.nordclient.hud;
 
-import io.ace.nordclient.gui2.Component;
-import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import net.minecraft.client.gui.GuiScreen;
 

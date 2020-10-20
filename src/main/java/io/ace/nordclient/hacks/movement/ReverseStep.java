@@ -3,7 +3,6 @@ package io.ace.nordclient.hacks.movement;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 

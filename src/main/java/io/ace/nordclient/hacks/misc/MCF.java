@@ -1,6 +1,5 @@
 package io.ace.nordclient.hacks.misc;
 
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import net.minecraft.entity.Entity;
@@ -8,7 +7,6 @@ import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import org.lwjgl.input.Mouse;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class MCF extends Hack {
 

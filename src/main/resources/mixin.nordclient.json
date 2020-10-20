@@ -5,6 +5,7 @@
   "refmap": "mixin.nordclient.refmap.json",
   "mixins": [
     "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
     "MixinGuiPlayerTabOverlay",
     "MixinItemRenderer",
     "MixinNetworkManager",

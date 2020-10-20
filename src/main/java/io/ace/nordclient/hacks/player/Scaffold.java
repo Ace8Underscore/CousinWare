@@ -2,7 +2,6 @@ package io.ace.nordclient.hacks.player;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.RenderEvent;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.NordTessellator;
@@ -11,7 +10,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 

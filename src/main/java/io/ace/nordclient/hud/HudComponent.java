@@ -1,8 +1,8 @@
-package io.ace.nordclient.gui2;
+package io.ace.nordclient.hud;
 
 import net.minecraft.client.Minecraft;
 
-public class Component
+public class HudComponent
 {
 
     protected Minecraft mc = Minecraft.getMinecraft();

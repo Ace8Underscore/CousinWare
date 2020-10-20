@@ -2,7 +2,6 @@ package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
@@ -19,7 +18,6 @@ import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class AutoTntMinecart extends Hack {
 

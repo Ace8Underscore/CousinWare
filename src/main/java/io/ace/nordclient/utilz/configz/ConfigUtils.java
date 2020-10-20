@@ -5,7 +5,6 @@ import io.ace.nordclient.command.Command;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hud.Hud;
 import io.ace.nordclient.managers.FriendManager;
-import io.ace.nordclient.managers.HudManager;
 import io.ace.nordclient.utilz.FriendUtil;
 import io.ace.nordclient.utilz.Setting;
 import io.ace.nordclient.utilz.font.CFontRenderer;

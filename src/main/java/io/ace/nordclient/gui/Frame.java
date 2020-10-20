@@ -2,12 +2,15 @@ package io.ace.nordclient.gui;
 
 import io.ace.nordclient.gui.components.Button;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Frame
@@ -27,7 +30,7 @@ public class Frame
     public Frame(final Hack.Category cat) {
         this.components = new ArrayList<Component>();
         this.category = cat;
-        this.width = 80;
+        this.width = 95;
         this.x = 5;
         this.y = 5;
         this.barHeight = 16;
@@ -68,16 +71,21 @@ public class Frame
     }
 
     public void renderFrame(final FontRenderer fontRenderer) {
-        Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, ClickGUI.color);
+        Color c = new Color(29, 37, 48, 255);
+        Color click = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
+
+        Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, c.getRGB());
         //final Color outline = new Color(10, 10, 10, 200);
         //Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y, outline.getRGB());
         //Gui.drawRect(this.x - 2, this.y, this.x, this.y + this.height + 2, outline.getRGB());
         //Gui.drawRect(this.x, this.y + this.height, this.x + this.width + 2, this.y + this.height + 2, outline.getRGB());
         //Gui.drawRect(this.x + this.width, this.y, this.x + this.width + 2, this.y + this.height, outline.getRGB());
+        Gui.drawRect(this.x, this.y + 17, this.x + 80 + 15,  this.y + 15, click.getRGB() );
         Minecraft mc = Minecraft.getMinecraft();
 
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.category.name(), this.x + 2, this.y + 3, -1);
-        FontRenderUtil.drawCenteredStringWithShadow(this.category.name(), this.x + 40, this.y + 3, -1);
+        if (!Core.customFont.getValBoolean()) FontRenderUtil.drawCenteredStringWithShadow(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
+        else FontRenderUtil.drawCenteredStringWithShadowCustom(this.category.name(), (float) (this.x + 47.5), this.y + 3, -1);
         if (this.open && !this.components.isEmpty()) {
             for (final Component component : this.components) {
                 component.renderComponent();
@@ -114,6 +122,6 @@ public class Frame
     }
     
     public boolean isWithinHeader(final int x, final int y) {
-        return x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.barHeight;
+        return x >= this.x && x <= this.x + this.width + 15 && y >= this.y && y <= this.y + this.barHeight;
     }
 }

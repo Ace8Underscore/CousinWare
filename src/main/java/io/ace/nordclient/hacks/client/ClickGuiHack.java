@@ -1,11 +1,9 @@
 package io.ace.nordclient.hacks.client;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import org.lwjgl.input.Keyboard;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class ClickGuiHack extends Hack {
     public ClickGuiHack INSTANCE;

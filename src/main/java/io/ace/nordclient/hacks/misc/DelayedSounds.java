@@ -1,9 +1,7 @@
 package io.ace.nordclient.hacks.misc;
 
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import net.minecraft.init.SoundEvents;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class DelayedSounds extends Hack {
 

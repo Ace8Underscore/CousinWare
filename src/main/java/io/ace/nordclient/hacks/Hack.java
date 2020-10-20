@@ -4,7 +4,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.RenderEvent;
-import io.ace.nordclient.hacks.misc.ToggleMsgs;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;

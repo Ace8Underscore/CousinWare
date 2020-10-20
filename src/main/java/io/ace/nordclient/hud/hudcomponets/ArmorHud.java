@@ -1,15 +1,13 @@
 package io.ace.nordclient.hud.hudcomponets;
 
 import io.ace.nordclient.event.UpdateEvent;
-import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.hacks.client.ClickGuiHudHack;
-import io.ace.nordclient.hud.*;
+import io.ace.nordclient.hud.Hud;
 import io.ace.nordclient.utilz.ColorHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,21 +32,11 @@ public class ArmorHud extends Hud {
         }
 
         if (this.isMouseOnButton(mouseX, mouseY) && button == 1) {
-            //this.open = !this.open;
-            //this.parent.refresh();
+
         }
 
     }
 
-    @Listener
-    public void onUpdate(UpdateEvent event) {
-        if (Mouse.isButtonDown(0)) mouseClicked(Mouse.getX(), Mouse.getY(),0);
-
-    }
-
-   /* public boolean isMouseOnButton(final int x, final int y) {
-        return x > this.getX() && x < this.getX() + this.getWidth() && y > this.getY() + 10 && y < this.getY() + 16 + 10;
-    } */
     public boolean isMouseOnButton(final int x, final int y) {
         return x >= this.getX() - 60 && x <= this.getX() + 140 && y >= this.getY() - 40 && y <= this.getY() + 30;
     }
@@ -57,8 +45,9 @@ public class ArmorHud extends Hud {
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
+        if (Mouse.isButtonDown(0)) mouseClicked(Mouse.getX(), Mouse.getY(), 0);
 
-            RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
+        RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
             ScaledResolution resolution = new ScaledResolution(mc);
             GlStateManager.enableTexture2D();
             int i = resolution.getScaledWidth() / 2;

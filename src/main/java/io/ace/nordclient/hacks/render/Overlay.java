@@ -7,6 +7,11 @@ import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.Setting;
 import io.ace.nordclient.utilz.TpsUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -35,6 +40,7 @@ public class Overlay extends Hack {
 
     @SubscribeEvent
     public void onRenderWorld(RenderGameOverlayEvent.Text event) {
+
         int yOffset = 0;
         String tpsString = "Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0;
         String fpsString = "Fps " + mc.getDebugFPS();
@@ -52,7 +58,7 @@ public class Overlay extends Hack {
                 FontRenderUtil.drawLeftStringWithShadow("Ping " + "0" + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             } else {
-                FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getCurrentServerData().pingToServer + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime() + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
         }

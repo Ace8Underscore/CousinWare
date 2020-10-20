@@ -9,6 +9,7 @@ import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
 import io.ace.nordclient.hacks.player.AntiVoid;
+import io.ace.nordclient.hacks.player.NoSlow2b;
 import io.ace.nordclient.hacks.player.Scaffold;
 import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.utilz.NordTessellator;
@@ -28,7 +29,6 @@ public class HackManager {
 
     public HackManager(){
         hacks = new ArrayList<>();
-        //addHack(new TestCommand());
         addHack(new io.ace.nordclient.hacks.render.ArrayList());
         addHack(new AutoTotem());
         addHack(new Jesus());
@@ -38,7 +38,6 @@ public class HackManager {
         addHack(new Velocity());
         addHack(new LogoutCoords());
         addHack(new AntiVoid());
-        //addHack(new FastWeb());
         addHack(new FastXp());
         addHack(new FastSwim());
         addHack(new QuickDrop());
@@ -49,7 +48,7 @@ public class HackManager {
         addHack(new Overlay());
         addHack(new DonkeyAlert());
         addHack(new ReverseStep());
-        addHack(new ArmorHud());
+        //addHack(new ArmorHud());
         addHack(new ClientName());
         addHack(new AutoOffHand());
         addHack(new DelayedSounds());
@@ -75,6 +74,8 @@ public class HackManager {
         addHack(new FastWeb());
         addHack(new ToggleMsgs());
         addHack(new ClickGuiHudHack());
+        addHack(new NoEntityTrace());
+        addHack(new NoSlow2b());
 
 
 
@@ -90,7 +91,6 @@ public class HackManager {
         return hacks;
     }
 
-//help m e plea ssse aa
 
 
     public static Hack getHackByName(String name){

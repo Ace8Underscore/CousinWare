@@ -1,8 +1,7 @@
 package io.ace.nordclient;
 
 import io.ace.nordclient.event.EventProcessor;
-import io.ace.nordclient.gui2.ClickGUI2;
-import io.ace.nordclient.hacks.client.ClickGuiHudHack;
+import io.ace.nordclient.gui.ClickGUI2;
 import io.ace.nordclient.hud.ClickGuiHUD;
 import io.ace.nordclient.managers.*;
 import io.ace.nordclient.utilz.TpsUtils;
