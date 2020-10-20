@@ -20,7 +20,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class Gapple extends Hud {
 
     public Gapple() {
-        super("Gapple", 500, 450);
+        super("Gapple", 543, 912);
     }
 
     @Override
@@ -52,7 +52,6 @@ public class Gapple extends Hud {
         ItemStack gapple = new ItemStack(Items.GOLDEN_APPLE, 1);
         gapple.addEnchantment(Enchantments.AQUA_AFFINITY, 1);
         int grabGapCount = InventoryUtil.getItems(Items.GOLDEN_APPLE);
-
         GL11.glPushMatrix();
         GlStateManager.enableTexture2D();
         GlStateManager.enableDepth();

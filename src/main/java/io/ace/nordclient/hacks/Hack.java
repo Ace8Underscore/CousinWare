@@ -18,25 +18,27 @@ public class Hack {
     public int bind;
     public boolean enabled;
     public boolean drawn;
+    public int doc;
 
-    public Hack(String hackName, Category hackCategory) {
+    public Hack(String hackName, Category hackCategory, int doc) {
         name = hackName;
         description = " ";
         category = hackCategory;
         bind = Keyboard.KEY_NONE;
         enabled = false;
         drawn = true;
+        this.doc = doc;
 
     }
 
-    public Hack(String hackName, Category hackCategory, String hackDescription) {
+    public Hack(String hackName, Category hackCategory, String hackDescription, int doc) {
         name = hackName;
         description = hackDescription;
         category = hackCategory;
         bind = Keyboard.KEY_NONE;
         enabled = false;
         drawn = true;
-
+        this.doc = doc;
     }
 
     public int getBind(){

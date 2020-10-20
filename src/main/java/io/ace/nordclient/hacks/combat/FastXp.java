@@ -10,7 +10,7 @@ public class FastXp extends Hack {
      */
 
     public FastXp() {
-        super("FastXp", Category.COMBAT);
+        super("FastXp", Category.COMBAT, 6);
     }
 
     @Override

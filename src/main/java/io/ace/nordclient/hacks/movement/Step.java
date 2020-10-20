@@ -14,7 +14,7 @@ public class Step extends Hack {
     Setting stepOn;
 
     public Step() {
-        super("Step", Category.MOVEMENT);
+        super("Step", Category.MOVEMENT, 28);
         ArrayList<String> blocks = new ArrayList<>();
         blocks.add("2");
         blocks.add("3");

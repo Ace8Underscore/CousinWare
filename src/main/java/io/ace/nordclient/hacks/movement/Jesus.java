@@ -9,7 +9,7 @@ public class Jesus extends Hack {
      */
 
     public Jesus() {
-        super("Jesus", Category.MOVEMENT, "Walk on water duh");
+        super("Jesus", Category.MOVEMENT, "Walk on water duh", 26);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class FullBright extends Hack {
     Setting num;
 
     public FullBright() {
-        super("FullBright", Category.RENDER);
+        super("FullBright", Category.RENDER, 41);
         java.util.ArrayList<String> modes = new ArrayList<>();
         modes.add("Gamma");
         modes.add("NightVision");

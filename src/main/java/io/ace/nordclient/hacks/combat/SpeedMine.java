@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class SpeedMine extends Hack {
     public SpeedMine() {
-        super("SpeedMine", Category.COMBAT, "Mine blocks faster");
+        super("SpeedMine", Category.COMBAT, "Mine blocks faster", 10);
         CousinWare.INSTANCE.settingsManager.rSetting(reset = new Setting("Reset", this, true, "SpeedMineReset"));
         CousinWare.INSTANCE.settingsManager.rSetting(fastFall = new Setting("FastFall", this, false, "SpeedMineFastFall"));
         CousinWare.INSTANCE.settingsManager.rSetting(doubleBreak = new Setting("DoubleBreak", this, true, "SpeedMineDoubleBreak"));
@@ -101,7 +101,7 @@ public class SpeedMine extends Hack {
                     mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
                             event.getPos(), event.getDirection()));
                     event.setCanceled(true);
-                }//
+                }
                 if (mode.getValString().equalsIgnoreCase("Damage")) {
                     if  (mc.playerController.curBlockDamageMP >= 0.7) {
                         mc.playerController.curBlockDamageMP = 1;

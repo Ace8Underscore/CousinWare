@@ -13,7 +13,7 @@ public class ViewModelChanger extends Hack {
     public static Setting rotateY;
     public static Setting rotateZ;
     public ViewModelChanger() {
-        super("ViewModelChanger", Category.RENDER);
+        super("ViewModelChanger", Category.RENDER, 49);
         CousinWare.INSTANCE.settingsManager.rSetting(sizeX = new Setting("OffSetX", this, 1, -3, 3,false,"ViewModelChangerSizeX" ));
         CousinWare.INSTANCE.settingsManager.rSetting(sizeY = new Setting("OffSetY", this, 1, -3, 3,false,"ViewModelChangerSizeY" ));
         CousinWare.INSTANCE.settingsManager.rSetting(sizeZ = new Setting("Size", this, 1, 0, 4,false,"ViewModelChangerSizeZ" ));

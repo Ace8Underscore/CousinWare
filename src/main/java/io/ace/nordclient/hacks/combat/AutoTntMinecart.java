@@ -39,7 +39,7 @@ public class AutoTntMinecart extends Hack {
 
 
     public AutoTntMinecart() {
-        super("AutoTNTMinecart", Category.COMBAT);
+        super("AutoTNTMinecart", Category.COMBAT, 3);
         CousinWare.INSTANCE.settingsManager.rSetting(stopPlaceTicks = new Setting("StopPlaceTicks", this, 20, 1, 60,true, "AutoTNTMinecartStopPlacingTicks"));
         CousinWare.INSTANCE.settingsManager.rSetting(placeDelay = new Setting("PlaceDelay", this, 1, 0, 10,true, "AutoTNTMinecartPlaceDelay"));
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 1, 0, 7,false, "AutoTNTMinecartRange"));

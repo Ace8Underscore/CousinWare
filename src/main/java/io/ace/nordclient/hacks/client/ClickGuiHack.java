@@ -17,7 +17,7 @@ public class ClickGuiHack extends Hack {
     public static Setting rainbow;
 
     public ClickGuiHack() {
-        super("ClickGUI", Category.CLIENT, "Opens the ClickGUI");
+        super("ClickGUI", Category.CLIENT, "Opens the ClickGUI", 12);
         setBind(Keyboard.KEY_Y);
         INSTANCE = this;
 

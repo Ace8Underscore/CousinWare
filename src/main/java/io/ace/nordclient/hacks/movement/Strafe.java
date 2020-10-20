@@ -14,7 +14,7 @@ public class Strafe extends Hack {
     Setting speed;
 
     public Strafe() {
-        super("Speed", Category.MOVEMENT);
+        super("Speed", Category.MOVEMENT, 29);
 
         ArrayList<String> speedModes = new ArrayList<>();
         speedModes.add("Launch");

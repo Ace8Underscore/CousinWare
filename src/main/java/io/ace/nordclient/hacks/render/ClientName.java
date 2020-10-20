@@ -12,7 +12,7 @@ import java.awt.*;
 public class ClientName extends Hack {
 
     public ClientName() {
-        super("Watermark", Category.RENDER);
+        super("Watermark", Category.RENDER, 39);
     }
 
     @SubscribeEvent

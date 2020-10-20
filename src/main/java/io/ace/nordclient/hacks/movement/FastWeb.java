@@ -22,7 +22,7 @@ public class FastWeb extends Hack {
     private static final AxisAlignedBB webFloat = new AxisAlignedBB(0.D, 0.D, 0.D, 1.D, 0.999D, 1.D);
 
     public FastWeb() {
-        super("FastWeb", Category.MOVEMENT);
+        super("FastWeb", Category.MOVEMENT, 25);
 
         ArrayList<String> downModes = new ArrayList<>();
         downModes.add("2b");

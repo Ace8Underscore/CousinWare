@@ -6,7 +6,7 @@ import net.minecraft.init.SoundEvents;
 public class DelayedSounds extends Hack {
 
     public DelayedSounds() {
-        super("DelayedSounds", Category.MISC);
+        super("DelayedSounds", Category.MISC, 15);
     }
 
     @Override

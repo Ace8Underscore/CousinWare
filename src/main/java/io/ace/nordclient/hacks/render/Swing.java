@@ -10,7 +10,7 @@ public class Swing extends Hack {
      */
 
     public Swing() {
-        super("Swing", Category.RENDER, "Swing With Your OffHand");
+        super("Swing", Category.RENDER, "Swing With Your OffHand", 48);
     }
 
     @Override

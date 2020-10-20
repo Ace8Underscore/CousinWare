@@ -13,7 +13,7 @@ public class Velocity extends Hack {
      */
 
     public Velocity() {
-        super("Velocity", Category.MOVEMENT);
+        super("Velocity", Category.MOVEMENT, 30);
     }
 
     @Listener

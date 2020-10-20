@@ -18,13 +18,14 @@ public class HudManager {
 
     public HudManager(){
         hudElement = new ArrayList<>();
-        //addHud(new TestCommand());
+
         addHud(new ArmorHud());
         addHud(new Totem());
         addHud(new Gapple());
         addHud(new Exp());
         addHud(new Crystal());
         addHud(new Obsidian());
+        addHud(new GoonSquad());
 
 
 

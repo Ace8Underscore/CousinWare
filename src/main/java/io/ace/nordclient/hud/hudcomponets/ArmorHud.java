@@ -17,7 +17,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class ArmorHud extends Hud {
 
     public ArmorHud() {
-        super("ArmorHud", 600, 600);
+        super("ArmorHud", 294, 982);
     }
 
     @Override

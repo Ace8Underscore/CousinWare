@@ -12,7 +12,7 @@ public class Core extends Hack {
     public static Setting customFont;
 
     public Core() {
-        super("Core", Category.CLIENT);
+        super("Core", Category.CLIENT, 14);
 
         CousinWare.INSTANCE.settingsManager.rSetting(saturation = new Setting("Saturation", this, .8, 0, 1,false,  "ColorsSaturation"));
         CousinWare.INSTANCE.settingsManager.rSetting(brightness = new Setting("Brightness", this, .8, 0, 1,false,  "ColorsBrightness"));

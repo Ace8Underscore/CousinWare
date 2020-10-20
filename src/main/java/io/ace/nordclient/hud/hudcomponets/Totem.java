@@ -19,7 +19,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class Totem extends Hud {
 
     public Totem() {
-        super("Totem", 400, 400);
+        super("Totem", 518, 997);
     }
 
     @Override

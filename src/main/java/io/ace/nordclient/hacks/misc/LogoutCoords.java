@@ -15,7 +15,7 @@ public class LogoutCoords extends Hack {
      */
 
     public LogoutCoords() {
-        super("LogoutCoords", Category.MISC, "Saves your coords to the clipboard when logging out of a server");
+        super("LogoutCoords", Category.MISC, "Saves your coords to the clipboard when logging out of a server", 17);
     }
 
     @SubscribeEvent

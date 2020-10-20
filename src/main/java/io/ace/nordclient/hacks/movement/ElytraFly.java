@@ -24,7 +24,7 @@ public class ElytraFly extends Hack {
     private int sendPacketDelay = 0;
 
     public ElytraFly() {
-        super("ElytraFly", Category.MOVEMENT);
+        super("ElytraFly", Category.MOVEMENT, 23);
 
         CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 2, 0, 10, false, "ElytraFlySpeed"));
         CousinWare.INSTANCE.settingsManager.rSetting(glide = new Setting("Glide", this, true, "ElytraFlyGlide"));

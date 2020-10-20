@@ -35,7 +35,7 @@ public class ArrayList extends Hack {
     Setting rainbow;
 
     public ArrayList() {
-        super("ArrayList", Category.RENDER);
+        super("ArrayList", Category.RENDER, 36);
         this.drawn = true;
         CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 1, 0, 1000, false, "ArrayListX"));
         CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 3, 0, 1000, false, "ArrayListY"));

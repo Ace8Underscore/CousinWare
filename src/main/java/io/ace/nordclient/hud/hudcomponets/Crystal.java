@@ -19,7 +19,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class Crystal extends Hud {
 
     public Crystal() {
-        super("Crystal", 500, 500);
+        super("Crystal", 540, 953);
     }
 
     @Override
@@ -50,7 +50,6 @@ public class Crystal extends Hud {
         if (Mouse.isButtonDown(0)) mouseClicked(Mouse.getX(), Mouse.getY(), 0);
         RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
         ItemStack xp = new ItemStack(Items.END_CRYSTAL, 1);
-        GL11.glPushMatrix();
         GL11.glPushMatrix();
         GlStateManager.enableTexture2D();
         GlStateManager.enableDepth();

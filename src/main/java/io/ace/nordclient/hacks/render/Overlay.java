@@ -28,7 +28,7 @@ public class Overlay extends Hack {
     Setting tps;
 
     public Overlay() {
-        super("Overlay", Category.RENDER);
+        super("Overlay", Category.RENDER, 44);
         CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "OverlayX"));
         CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 530, 0, 1000, false, "OverlayY"));
         CousinWare.INSTANCE.settingsManager.rSetting(ping = new Setting("Ping", this, true, "OverlayPing"));

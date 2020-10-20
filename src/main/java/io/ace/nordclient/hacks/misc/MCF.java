@@ -11,7 +11,7 @@ import org.lwjgl.input.Mouse;
 public class MCF extends Hack {
 
     public MCF() {
-        super("MCF", Category.MISC);
+        super("MCF", Category.MISC, 18);
 
     }
 

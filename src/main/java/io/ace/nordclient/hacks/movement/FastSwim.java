@@ -14,7 +14,7 @@ public class FastSwim extends Hack {
     Setting speed;
 
     public FastSwim() {
-        super("FastSwim", Category.MOVEMENT);
+        super("FastSwim", Category.MOVEMENT, 24);
         CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, .7, 0, 1, false, "FastSwimSpeed"));
 
     }

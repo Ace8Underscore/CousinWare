@@ -12,6 +12,7 @@
     "MixinPlayerControllerMP",
     "MixinRenderGlobal",
     "MixinSlotShulkerBox",
-    "MixinStateImplementation"
+    "MixinStateImplementation",
+    "MixinTileEntityEnchantmentTableRenderer"
   ]
 }

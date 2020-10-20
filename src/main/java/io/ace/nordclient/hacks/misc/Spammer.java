@@ -38,7 +38,7 @@ public class Spammer extends Hack {
 
 
     public Spammer() {
-        super("Spammer", Category.MISC);
+        super("Spammer", Category.MISC, 21);
         CousinWare.INSTANCE.settingsManager.rSetting(movement = new Setting("Movement", this, true, "SpammerMovement"));
         CousinWare.INSTANCE.settingsManager.rSetting(delay = new Setting("Delay", this, 100, 1, 500, true, "SpammerDelay"));
 

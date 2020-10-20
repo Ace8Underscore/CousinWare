@@ -21,7 +21,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class Obsidian extends Hud {
 
     public Obsidian() {
-        super("Obsidian", 500, 550);
+        super("Obsidian", 496, 953);
     }
 
     @Override

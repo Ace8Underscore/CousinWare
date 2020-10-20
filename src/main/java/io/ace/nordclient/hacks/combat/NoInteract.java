@@ -15,7 +15,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class NoInteract extends Hack {
 
     public NoInteract() {
-        super("NoInteract", Category.COMBAT);
+        super("NoInteract", Category.COMBAT, 9);
     }
 
     @Listener

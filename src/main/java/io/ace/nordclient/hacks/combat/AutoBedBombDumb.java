@@ -51,7 +51,7 @@ public class AutoBedBombDumb extends Hack {
     public boolean south;
 
     public AutoBedBombDumb() {
-        super("AutoBedBomb", Category.COMBAT);
+        super("AutoBedBomb", Category.COMBAT, 5);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 1, 0, 7, false, "AutoBedBombRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(spoofPlace = new Setting("SpoofPlace", this, true, "AutoBedBombSpoofPlace"));
         CousinWare.INSTANCE.settingsManager.rSetting(autoSwitch = new Setting("AutoSwitch", this, true, "AutoBedBombAutoSwitch"));

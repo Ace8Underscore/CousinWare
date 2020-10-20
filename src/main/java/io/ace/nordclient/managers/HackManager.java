@@ -76,10 +76,7 @@ public class HackManager {
         addHack(new ClickGuiHudHack());
         addHack(new NoEntityTrace());
         addHack(new NoSlow2b());
-
-
-
-
+        addHack(new NoLag());
 
 
     }

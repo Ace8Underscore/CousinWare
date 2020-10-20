@@ -19,7 +19,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class Exp extends Hud {
 
     public Exp() {
-        super("XP", 500, 400);
+        super("XP", 499, 910);
     }
 
     @Override

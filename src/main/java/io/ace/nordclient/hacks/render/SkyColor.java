@@ -16,7 +16,7 @@ public class SkyColor extends Hack {
     Setting speed;
 
     public SkyColor() {
-        super("SkyColor", Category.RENDER, "Changes the sky's color.");
+        super("SkyColor", Category.RENDER, "Changes the sky's color.", 46);
         //
         CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 1, 0, 255, false, "SkyColorRed"));
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 255, false, "SkyColorGreen"));

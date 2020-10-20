@@ -5,7 +5,7 @@ import io.ace.nordclient.hacks.Hack;
 public class SelfParticle extends Hack {
 
     public SelfParticle() {
-        super("SelfParticle", Category.RENDER);
+        super("SelfParticle", Category.RENDER, 45);
     }
 
     @Override

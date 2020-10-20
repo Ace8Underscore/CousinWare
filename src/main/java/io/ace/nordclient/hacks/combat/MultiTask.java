@@ -5,6 +5,6 @@ import io.ace.nordclient.hacks.Hack;
 public class MultiTask extends Hack {
 
     public MultiTask() {
-        super("MultiTask", Category.COMBAT);
+        super("MultiTask", Category.COMBAT, 7);
     }
 }
