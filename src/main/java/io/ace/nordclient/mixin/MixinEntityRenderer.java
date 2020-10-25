@@ -1,7 +1,7 @@
 package io.ace.nordclient.mixin;
 
 import com.google.common.base.Predicate;
-import io.ace.nordclient.hacks.combat.NoEntityTrace;
+import io.ace.nordclient.hacks.misc.NoEntityTrace;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(value = EntityRenderer.class, priority = 1000000000)
+@Mixin(value = EntityRenderer.class, priority = 2147483647)
 public class MixinEntityRenderer {
 
     @Shadow @Final public Minecraft mc;

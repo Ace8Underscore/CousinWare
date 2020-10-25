@@ -45,7 +45,7 @@ public class BlockInteractionHelper
                     faceVectorPacketInstant(hitVec);
                     processRightClickBlock(neighbor, side2, hitVec);
                     mc.player.swingArm(EnumHand.MAIN_HAND);
-                    mc.rightClickDelayTimer = 4;
+                    //mc.rightClickDelayTimer = 4;
                     return;
                 }
             }
@@ -61,7 +61,7 @@ public class BlockInteractionHelper
                 final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
                     processRightClickBlock(neighbor, side2, hitVec);
                     mc.player.swingArm(EnumHand.MAIN_HAND);
-                    mc.rightClickDelayTimer = 4;
+                    //mc.rightClickDelayTimer = 4;
                     return;
 
             }

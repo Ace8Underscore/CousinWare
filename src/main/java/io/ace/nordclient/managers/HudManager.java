@@ -13,6 +13,10 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class HudManager {
     public static ArrayList<Hud> hudElement;
 

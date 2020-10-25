@@ -5,6 +5,10 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.player.NoSlow2b;
 import io.ace.nordclient.utilz.Setting;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class NoLag extends Hack {
 
     public static Setting eTable;
@@ -14,7 +18,4 @@ public class NoLag extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(eTable = new Setting("ETable", this, true, "NoLagETable"));
     }
 
-    public void onUpdate() {
-
-    }
 }

@@ -1,14 +1,21 @@
 package io.ace.nordclient.hacks.player;
 
 import io.ace.nordclient.CousinWare;
+import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.network.play.client.CPacketEntityAction;
+import net.minecraft.network.play.server.SPacketEntityMetadata;
 import net.minecraft.util.math.BlockPos;
+import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
+
+/**
+ * @author Ace________/Ace_#1233
+ */
 
 public class NoSlow2b extends Hack {
     private int delay;
@@ -65,6 +72,7 @@ public class NoSlow2b extends Hack {
 
         }
     }
+
     @Override
     public void onEnable() {
         sneaking = false;

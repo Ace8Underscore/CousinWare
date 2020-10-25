@@ -3,11 +3,11 @@ package io.ace.nordclient.hacks.render;
 import io.ace.nordclient.hacks.Hack;
 import net.minecraft.util.EnumHand;
 
-public class Swing extends Hack {
+/**
+ * @author Ace________/Ace_#1233
+ */
 
-    /**
-     * @author Ace________/Ace_#1233
-     */
+public class Swing extends Hack {
 
     public Swing() {
         super("Swing", Category.RENDER, "Swing With Your OffHand", 48);

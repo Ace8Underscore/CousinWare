@@ -12,6 +12,10 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class ElytraFly extends Hack {
 
     Setting speed;

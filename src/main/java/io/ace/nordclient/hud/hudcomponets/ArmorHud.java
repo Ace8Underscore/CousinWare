@@ -14,6 +14,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.input.Mouse;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class ArmorHud extends Hud {
 
     public ArmorHud() {

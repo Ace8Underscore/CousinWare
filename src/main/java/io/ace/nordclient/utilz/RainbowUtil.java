@@ -4,6 +4,10 @@ import io.ace.nordclient.hacks.client.Core;
 
 import java.awt.*;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class RainbowUtil {
 
     public static Color getAllRainbow() {

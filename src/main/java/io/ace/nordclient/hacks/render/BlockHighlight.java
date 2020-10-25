@@ -5,6 +5,10 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.RainbowUtil;
 import io.ace.nordclient.utilz.Setting;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class BlockHighlight extends Hack {
 
     public static Setting r;

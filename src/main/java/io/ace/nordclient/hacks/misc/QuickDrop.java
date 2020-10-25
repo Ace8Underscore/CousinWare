@@ -4,6 +4,10 @@ import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class QuickDrop extends Hack {
     int delay = 0;
     Setting speed;

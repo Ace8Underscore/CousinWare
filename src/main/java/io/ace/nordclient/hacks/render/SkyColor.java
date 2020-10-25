@@ -7,6 +7,10 @@ import io.ace.nordclient.utilz.Setting;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class SkyColor extends Hack {
     //
     Setting r;
@@ -22,7 +26,6 @@ public class SkyColor extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 255, false, "SkyColorGreen"));
         CousinWare.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 1, 0, 255, false, "SkyColorBlue"));
         CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "SkyColorRainbow"));
-        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("RainbowSpeed", this, 1, 0, 255, true, "SkyColorSpeed"));
 
     }
 

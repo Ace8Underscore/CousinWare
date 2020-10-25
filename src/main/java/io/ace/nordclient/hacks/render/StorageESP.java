@@ -11,6 +11,10 @@ import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.tileentity.TileEntityShulkerBox;
 import net.minecraft.util.math.BlockPos;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class StorageESP extends Hack {
 
     Setting eChest;

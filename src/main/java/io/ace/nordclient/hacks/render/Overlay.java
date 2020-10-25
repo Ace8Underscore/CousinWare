@@ -17,6 +17,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class Overlay extends Hack {
 
 
@@ -27,6 +31,8 @@ public class Overlay extends Hack {
     Setting fps;
     Setting tps;
 
+    int pingPlayer;
+
     public Overlay() {
         super("Overlay", Category.RENDER, 44);
         CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "OverlayX"));
@@ -36,6 +42,10 @@ public class Overlay extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(fps = new Setting("Fps", this, true, "OverlayFps"));
         CousinWare.INSTANCE.settingsManager.rSetting(tps = new Setting("Tps", this, true, "OverlayTps"));
 //
+    }
+    @Override
+    public void onUpdate() {
+        pingPlayer = mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime();
     }
 
     @SubscribeEvent
@@ -48,7 +58,7 @@ public class Overlay extends Hack {
         if (!Core.customFont.getValBoolean()) {
         if (server.getValBoolean()) {
             if (!mc.isSingleplayer()) {
-                FontRenderUtil.drawLeftStringWithShadow("Server " + mc.getCurrentServerData().serverIP, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Server " + mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
         }
@@ -58,8 +68,12 @@ public class Overlay extends Hack {
                 FontRenderUtil.drawLeftStringWithShadow("Ping " + "0" + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             } else {
-                FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime() + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
-                yOffset++;
+                for (Entity entity : mc.world.getLoadedEntityList()) {
+                    if (entity instanceof EntityPlayer && entity.getName().equalsIgnoreCase(mc.player.getName())) {
+                        FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getConnection().getPlayerInfo(entity.getUniqueID()).getResponseTime() + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                        yOffset++;
+                    }
+                }
             }
         }
         if (tpsString.length() > fpsString.length()) {

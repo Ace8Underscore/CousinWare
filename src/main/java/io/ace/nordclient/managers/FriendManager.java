@@ -5,11 +5,11 @@ import io.ace.nordclient.utilz.FriendUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class  FriendManager {
-    /**
-     * @author Ace________/Ace_#1233
-     *
-     */
 
     public static List<FriendUtil> friends;
     private static String friened;

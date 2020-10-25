@@ -8,6 +8,10 @@ import net.minecraft.potion.PotionEffect;
 
 import java.util.ArrayList;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class FullBright extends Hack {
     Setting mode;
     Setting num;

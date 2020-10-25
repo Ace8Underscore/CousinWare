@@ -15,6 +15,10 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class Spammer extends Hack {
 
     Setting movement;

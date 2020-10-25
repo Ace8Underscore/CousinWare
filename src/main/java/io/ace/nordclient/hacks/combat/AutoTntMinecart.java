@@ -19,7 +19,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class AutoTntMinecart extends Hack {
+
+
 
 
     private boolean switchedToRail;

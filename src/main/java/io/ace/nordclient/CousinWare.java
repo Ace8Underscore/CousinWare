@@ -25,7 +25,7 @@ public class CousinWare
 {
     public static final String MODID = "cousinware";
     public static final String NAME = "CousinWare";
-    public static final String VERSION = "v1.3.1";
+    public static final String VERSION = "v1.3.2";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -63,7 +63,7 @@ public class CousinWare
         CommandManager.initClientCommands();
         TpsUtils tpsUtils = new TpsUtils();
         settingsManager = new SettingsManager();
-        fontRenderer = new CFontRenderer(new Font("Arial", Font.PLAIN, 18), true, false);
+        fontRenderer = new CFontRenderer(new Font("Verdana", Font.PLAIN, 18), true, false);
         friends = new FriendManager();
         hudManager = new HudManager();
         hackManager = new HackManager();

@@ -4,6 +4,10 @@ import io.ace.nordclient.CousinWare;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class FontRenderUtil {
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final ScaledResolution sr = new ScaledResolution(mc);

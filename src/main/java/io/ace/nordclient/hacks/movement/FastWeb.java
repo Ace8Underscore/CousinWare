@@ -7,15 +7,16 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 
-public class FastWeb extends Hack {
+/**
+ * @author Ace________/Ace_#1233
+ */
 
-    /**
-     * @author Ace________/Ace_#1233
-     */
+public class FastWeb extends Hack {
 
     Setting downMode;
 
@@ -34,7 +35,12 @@ public class FastWeb extends Hack {
 
     @Override
     public void onUpdate() {
-        if (mc.player.isInWeb) {
+        if (mc.world == null || mc.player == null)
+            return;
+        BlockPos self = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
+        BlockPos selfUp = new BlockPos(mc.player.posX, mc.player.posY + 1, mc.player.posZ);
+        BlockPos selfDown = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
+        if (mc.world.getBlockState(self).getBlock().equals(Blocks.WEB) || mc.world.getBlockState(selfUp).getBlock().equals(Blocks.WEB) || mc.world.getBlockState(selfDown).getBlock().equals(Blocks.WEB)) {
             if (downMode.getValString().equalsIgnoreCase("2b")) {
                 mc.player.motionY = 1.1 / -5;
             }

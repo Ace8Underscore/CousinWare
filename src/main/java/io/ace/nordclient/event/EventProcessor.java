@@ -89,38 +89,6 @@ public class EventProcessor {
         CousinWare.INSTANCE.getEventManager().dispatchEvent(event);
     }
 
-    @Listener
-    public void onPacketRecieve(PacketEvent.Receive event) {
-        if (event.getPacket() instanceof SPacketPlayerListItem) {
-            SPacketPlayerListItem packet = (SPacketPlayerListItem) event.getPacket();
-            if (packet.getAction() == SPacketPlayerListItem.Action.ADD_PLAYER) {
-                for (SPacketPlayerListItem.AddPlayerData playerData : packet.getEntries()) {
-                    if (playerData.getProfile().getId() != mc.session.getProfile().getId()) {
-                        new Thread(() -> {
-                            String name = resolveName(playerData.getProfile().getId().toString());
-                            if (name != null) {
-                                if (mc.player != null && mc.player.ticksExisted >= 1000)
-                                    CousinWare.INSTANCE.getEventManager().dispatchEvent(new PlayerJoinEvent(name));
-                            }
-                        }).start();
-                    }
-                }
-            }
-            if (packet.getAction() == SPacketPlayerListItem.Action.REMOVE_PLAYER) {
-                for (SPacketPlayerListItem.AddPlayerData playerData : packet.getEntries()) {
-                    if (playerData.getProfile().getId() != mc.session.getProfile().getId()) {
-                        new Thread(() -> {
-                            final String name = resolveName(playerData.getProfile().getId().toString());
-                            if (name != null) {
-                                if (mc.player != null && mc.player.ticksExisted >= 1000)
-                                    CousinWare.INSTANCE.getEventManager().dispatchEvent(new PlayerLeaveEvent(name));
-                            }
-                        }).start();
-                    }
-                }
-            }
-        }
-    }
 
     private final Map<String, String> uuidNameCache = Maps.newConcurrentMap();
 

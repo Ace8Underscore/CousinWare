@@ -11,6 +11,7 @@
     "MixinNetworkManager",
     "MixinPlayerControllerMP",
     "MixinRenderGlobal",
+    "MixinRenderPlayer",
     "MixinSlotShulkerBox",
     "MixinStateImplementation",
     "MixinTileEntityEnchantmentTableRenderer"

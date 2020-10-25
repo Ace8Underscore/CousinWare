@@ -13,6 +13,10 @@ import org.lwjgl.input.Mouse;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class GoonSquad extends Hud {
 
     public GoonSquad() {

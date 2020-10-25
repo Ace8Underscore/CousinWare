@@ -2,6 +2,10 @@ package io.ace.nordclient.hacks.render;
 
 import io.ace.nordclient.hacks.Hack;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class SelfParticle extends Hack {
 
     public SelfParticle() {

@@ -55,6 +55,10 @@ public class Hack {
 
     public void onWorldRender(RenderEvent event) {}
 
+    public void renderText() {
+
+    }
+
 
     protected void onEnable(){
     }

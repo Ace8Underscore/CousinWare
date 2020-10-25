@@ -5,11 +5,11 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.util.math.MathHelper;
 
-public class FastSwim extends Hack {
+/**
+ * @author Ace________/Ace_#1233
+ */
 
-    /**
-     * @author Ace________/Ace_#1233
-     */
+public class FastSwim extends Hack {
 
     Setting speed;
 

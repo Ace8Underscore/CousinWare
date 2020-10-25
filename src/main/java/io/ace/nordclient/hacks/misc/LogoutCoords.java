@@ -8,11 +8,11 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
-public class LogoutCoords extends Hack {
+/**
+ * @author Ace________/Ace_#1233
+ */
 
-    /**
-     * @author Ace________/Ace_#1233
-     */
+public class LogoutCoords extends Hack {
 
     public LogoutCoords() {
         super("LogoutCoords", Category.MISC, "Saves your coords to the clipboard when logging out of a server", 17);

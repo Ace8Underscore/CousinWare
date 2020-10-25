@@ -13,6 +13,10 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class Scaffold extends Hack {
     int playerHotbarSlot = -1;
     int lastHotbarSlot = -1;

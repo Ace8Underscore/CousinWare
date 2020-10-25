@@ -9,6 +9,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class ClientName extends Hack {
 
     public ClientName() {
@@ -17,10 +21,10 @@ public class ClientName extends Hack {
 
     @SubscribeEvent
     public void onRenderWorld(RenderGameOverlayEvent.Text event) {
-        Color c = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
+        Color c = new Color(255, 127, 34, 255);
 
-       if (!Core.customFont.getValBoolean()) mc.fontRenderer.drawStringWithShadow("CousinWare" + " " + CousinWare.VERSION, 1, 1, c.getRGB());
-        else  CousinWare.INSTANCE.fontRenderer.drawStringWithShadow("CousinWare" + " " + CousinWare.VERSION, 1, 1, c.getRGB());
+       if (!Core.customFont.getValBoolean()) mc.fontRenderer.drawStringWithShadow("CousinWare" + " Spooky Edition", 1, 1, c.getRGB());
+        else  CousinWare.INSTANCE.fontRenderer.drawStringWithShadow("CousinWare" + " Spooky Edition", 1, 1, c.getRGB());
     }
     //
 }

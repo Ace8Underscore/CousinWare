@@ -23,6 +23,10 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class AutoBedBombDumb extends Hack {
 
     Setting range;

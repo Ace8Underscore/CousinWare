@@ -22,6 +22,10 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ace________/Ace_#1233
+ */
+
 public class HackManager {
     public static ArrayList<Hack> hacks;
     private static String allHackNames = "Hacks: ";
@@ -29,54 +33,62 @@ public class HackManager {
 
     public HackManager(){
         hacks = new ArrayList<>();
-        addHack(new io.ace.nordclient.hacks.render.ArrayList());
-        addHack(new AutoTotem());
-        addHack(new Jesus());
-        addHack(new AntiFog());
-        addHack(new GoonSquad());
-        addHack(new Swing());
-        addHack(new Velocity());
-        addHack(new LogoutCoords());
-        addHack(new AntiVoid());
-        addHack(new FastXp());
-        addHack(new FastSwim());
-        addHack(new QuickDrop());
-        addHack(new SelfParticle());
-        addHack(new ElytraFly());
-        addHack(new SkyColor());
+        //client
         addHack(new ClickGuiHack());
-        addHack(new Overlay());
-        addHack(new DonkeyAlert());
-        addHack(new ReverseStep());
-        //addHack(new ArmorHud());
-        addHack(new ClientName());
-        addHack(new AutoOffHand());
-        addHack(new DelayedSounds());
-        addHack(new BlockHighlight());
-        addHack(new ShulkerMod());
-        addHack(new ViewModelChanger());
-        addHack(new InfiniteChatlength());
-        addHack(new FullBright());
-        addHack(new SpeedMine());
-        addHack(new MultiTask());
-        addHack(new StorageESP());
-        addHack(new Surround());
-        addHack(new Scaffold());
-        addHack(new Core());
-        addHack(new AutoTntMinecart());
-        addHack(new AutoBedBombDumb());
-        addHack(new MCF());
-        addHack(new Spammer());
-        addHack(new FriendTab());
-        addHack(new Step());
-        addHack(new NoInteract());
-        addHack(new Strafe());
-        addHack(new FastWeb());
-        addHack(new ToggleMsgs());
         addHack(new ClickGuiHudHack());
+        addHack(new Core());
+        //combat
+        addHack(new AutoBedBombDumb());
+        addHack(new AutoOffHand());
+        addHack(new AutoTntMinecart());
+        addHack(new AutoTotem());
+        addHack(new Burrow());
+        addHack(new FastXp());
+        addHack(new MultiTask());
+        addHack(new SpeedMine());
+        addHack(new Surround());
+        //misc
+        addHack(new DelayedSounds());
+        addHack(new DonkeyAlert());
+        addHack(new LogoutCoords());
+        addHack(new MCF());
         addHack(new NoEntityTrace());
+        addHack(new NoInteract());
+        addHack(new QuickDrop());
+        addHack(new ShulkerMod());
+        addHack(new Spammer());
+        addHack(new ToggleMsgs());
+        //movement
+        addHack(new ElytraFly());
+        addHack(new FastSwim());
+        addHack(new FastWeb());
+        addHack(new Jesus());
+        addHack(new ReverseStep());
+        addHack(new Step());
+        addHack(new Strafe());
+        addHack(new Velocity());
+        //player
+        addHack(new AntiVoid());
         addHack(new NoSlow2b());
+        addHack(new Scaffold());
+        //render
+        addHack(new AntiFog());
+        addHack(new io.ace.nordclient.hacks.render.ArrayList());
+        addHack(new BlockHighlight());
+        addHack(new ClientName());
+        addHack(new FriendTab());
+        addHack(new FullBright());
+        //addHack(new InfiniteChatlength());
+        addHack(new ItemESP());
+        addHack(new NameTags());
         addHack(new NoLag());
+        addHack(new Overlay());
+        addHack(new PlayerESP());
+        addHack(new SelfParticle());
+        addHack(new SkyColor());
+        addHack(new StorageESP());
+        addHack(new Swing());
+        addHack(new ViewModelChanger());
 
 
     }
