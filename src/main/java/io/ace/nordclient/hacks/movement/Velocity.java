@@ -1,7 +1,7 @@
 package io.ace.nordclient.hacks.movement;
 
 import io.ace.nordclient.event.EventPlayerApplyCollision;
-import io.ace.nordclient.event.EventPlayerPushOutOfBlocks;
+import io.ace.nordclient.event.EventPlayerSPPushOutOfBlocksEvent;
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
@@ -29,7 +29,5 @@ public class Velocity extends Hack {
         event.setCanceled(true);
     }
 
-    public void onUpdate(EventPlayerPushOutOfBlocks event) {
-        event.setCanceled(true);
-    }
+    public void onUpdate(EventPlayerSPPushOutOfBlocksEvent event) {event.setCanceled(true);}
 }

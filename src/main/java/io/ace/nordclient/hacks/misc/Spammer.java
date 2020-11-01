@@ -7,6 +7,9 @@ import io.ace.nordclient.event.PlayerMoveEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.Setting;
+import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.GuiNewChat;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.*;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -29,6 +32,8 @@ public class Spammer extends Hack {
     double finalMovement;
     int msgDelay = 0;
     int placeDelay = 0;
+    int inventoryDelay = 0;
+    int chatDelay = 0;
     String statementBlock;
     boolean firstPlace = true;
     int timesPlaced = 0;
@@ -54,6 +59,8 @@ public class Spammer extends Hack {
         msgDelay++;
         placeDelay++;
         eattingDelay++;
+        inventoryDelay++;
+        chatDelay++;
         int randomNum = ThreadLocalRandom.current().nextInt(1, 10 + 1);
         if (msgDelay >= delay.getValInt()) {
             if (finalMovement >= randomNum) {
@@ -96,6 +103,18 @@ public class Spammer extends Hack {
                 }
             }
 
+        }
+        if (mc.currentScreen instanceof GuiInventory && inventoryDelay >= 40) {
+            mc.player.sendChatMessage("> I Just Opened Up My Inventory Thanks To CousinWare!");
+            inventoryDelay = 0;
+        }
+        if (mc.currentScreen instanceof GuiChat && chatDelay >= 40) {
+            mc.player.sendChatMessage("> I Just Opened Up The Chat Thanks To CousinWare!");
+            chatDelay = 0;
+        }
+        if (mc.currentScreen instanceof GuiChat || mc.currentScreen instanceof GuiInventory) {
+            chatDelay = 0;
+            inventoryDelay = 0;
         }
     }
 

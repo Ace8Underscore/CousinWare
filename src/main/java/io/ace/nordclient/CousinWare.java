@@ -2,6 +2,8 @@ package io.ace.nordclient;
 
 import io.ace.nordclient.event.EventProcessor;
 import io.ace.nordclient.gui.ClickGUI2;
+import io.ace.nordclient.gui.Frame;
+import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hud.ClickGuiHUD;
 import io.ace.nordclient.managers.*;
 import io.ace.nordclient.utilz.TpsUtils;
@@ -39,14 +41,6 @@ public class CousinWare
     public ClickGuiHUD clickGuiHUD;
     public CFontRenderer fontRenderer;
 
-
-
-    //public ClickGUI clickGui;
-
-
-
-
-
     @Mod.Instance
     public static CousinWare INSTANCE;
 
@@ -83,7 +77,7 @@ public class CousinWare
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        //MinecraftForge.EVENT_BUS.register(new TestCommand());
+
     }
 
 }

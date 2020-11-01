@@ -2,6 +2,7 @@ package io.ace.nordclient.utilz.configz;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
+import io.ace.nordclient.gui.Frame;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hud.Hud;
 import io.ace.nordclient.managers.FriendManager;
@@ -52,6 +53,9 @@ public class ConfigUtils {
 
 
     }
+
+
+
 
 
     public void saveBinds() {

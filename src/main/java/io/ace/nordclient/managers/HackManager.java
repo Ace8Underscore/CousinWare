@@ -8,9 +8,7 @@ import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
-import io.ace.nordclient.hacks.player.AntiVoid;
-import io.ace.nordclient.hacks.player.NoSlow2b;
-import io.ace.nordclient.hacks.player.Scaffold;
+import io.ace.nordclient.hacks.player.*;
 import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.utilz.NordTessellator;
 import net.minecraft.client.Minecraft;
@@ -42,12 +40,15 @@ public class HackManager {
         addHack(new AutoOffHand());
         addHack(new AutoTntMinecart());
         addHack(new AutoTotem());
+        addHack(new AutoTrap());
         addHack(new Burrow());
+        addHack(new CrystalAura());
         addHack(new FastXp());
         addHack(new MultiTask());
         addHack(new SpeedMine());
         addHack(new Surround());
         //misc
+        addHack(new AutoWither());
         addHack(new DelayedSounds());
         addHack(new DonkeyAlert());
         addHack(new LogoutCoords());
@@ -69,6 +70,8 @@ public class HackManager {
         addHack(new Velocity());
         //player
         addHack(new AntiVoid());
+        addHack(new GhostGap());
+        addHack(new NoSlow());
         addHack(new NoSlow2b());
         addHack(new Scaffold());
         //render

@@ -92,7 +92,7 @@ public class Frame
             }
         }
     }
-    
+
     public void refresh() {
         int off = this.barHeight;
         for (final Component comp : this.components) {
@@ -101,26 +101,26 @@ public class Frame
         }
         this.height = off;
     }
-    
+
     public int getX() {
         return this.x;
     }
-    
+
     public int getY() {
         return this.y;
     }
-    
+
     public int getWidth() {
         return this.width;
     }
-    
+
     public void updatePosition(final int mouseX, final int mouseY) {
         if (this.isDragging) {
             this.setX(mouseX - this.dragX);
             this.setY(mouseY - this.dragY);
         }
     }
-    
+
     public boolean isWithinHeader(final int x, final int y) {
         return x >= this.x && x <= this.x + this.width + 15 && y >= this.y && y <= this.y + this.barHeight;
     }

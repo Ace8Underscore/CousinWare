@@ -30,23 +30,26 @@ public class NoSlow2b extends Hack {
         modes.add("Spam");
         modes.add("Constant");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Constant", modes, "NoSlow2bMode"));
-        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("SpamDelay", this, 5, 0, 20, true, "NoSlow2bSpeed"));
+
+        if (mode.getValString().equalsIgnoreCase("Spam")) CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("SpamDelay", this, 5, 0, 20, true, "NoSlow2bSpeed"));
 
     }
 
     public void onUpdate() {
         delay++;
         BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
-        if (mode.getValString().equalsIgnoreCase("Constant")) {
+        if (mode.getValString().equalsIgnoreCase("Constant") && !sneaking) {
             if (mc.player.getHeldItemMainhand().getItemUseAction().equals(EnumAction.EAT) && mc.player.getHeldItemMainhand().getItem() instanceof ItemFood && mc.gameSettings.keyBindUseItem.isKeyDown()) {
                 if (delay > 5) {
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
+                    sneaking = true;
                 }
             } else {
-                if (delay > 5) {
+                if (delay > 5 && sneaking) {
 
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                     delay = 0;
+                    sneaking = false;
                 }
             }
 
@@ -55,14 +58,14 @@ public class NoSlow2b extends Hack {
 
         if (mode.getValString().equalsIgnoreCase("Spam")) {
             if (mc.player.getHeldItemMainhand().getItemUseAction().equals(EnumAction.EAT) && mc.player.getHeldItemMainhand().getItem() instanceof ItemFood && mc.gameSettings.keyBindUseItem.isKeyDown() && !sneaking) {
-                if (delay > speed.getValInt()) {
+                if (delay > speed.getValInt() && !sneaking) {
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
                     sneaking = true;
                     delay = 0;
                 }
             } else {
                 if (sneaking) {
-                    if (delay > speed.getValInt()) {
+                    if (delay > speed.getValInt() && sneaking) {
                         mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                         delay = 0;
                         sneaking = false;

@@ -4,14 +4,17 @@ import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.EventStageable;
 import io.ace.nordclient.event.PlayerMoveEvent;
 import io.ace.nordclient.event.UpdateEvent;
+import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.MoverType;
+import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityPlayerSP.class, priority = 998)
 public abstract class MixinEntityPlayerSP extends AbstractClientPlayer {
@@ -45,6 +48,12 @@ public abstract class MixinEntityPlayerSP extends AbstractClientPlayer {
     public void onUpdateElse(CallbackInfo ci) {
         UpdateEvent event = new UpdateEvent(EventStageable.EventStage.POST, this.rotationYaw, this.rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
         CousinWare.INSTANCE.getEventManager().dispatchEvent(event);
+    }
+    @Inject(method = "pushOutOfBlocks", at = @At(value = "HEAD"), cancellable = true)
+    protected void pushOutOfBlocks(double x, double y, double z, CallbackInfoReturnable infoReturnable) {
+        if (HackManager.getHackByName("Velocity").isEnabled()) {
+            infoReturnable.setReturnValue(false);
+        }
     }
 
 

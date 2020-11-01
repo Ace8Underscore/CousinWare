@@ -3,7 +3,9 @@ package io.ace.nordclient.mixin;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.EventPlayerTravel;
 import io.ace.nordclient.event.PlayerJumpEvent;
+import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +15,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EntityPlayer.class)
 public abstract class MixinEntityPlayer extends EntityLivingBase {
@@ -38,4 +41,24 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
             info.cancel();
         }
     }
+    @Inject(method = "applyEntityCollision", at = @At("HEAD"), cancellable = true)
+    public void applyEntityCollision(Entity entityIn, CallbackInfo info) {
+        if (HackManager.getHackByName("Velocity").isEnabled()) {
+            info.cancel();
+        }
+
+    }
+    @Inject(method = "isPushedByWater()Z", at = @At("HEAD"), cancellable = true)
+    public void isPushedByWater(CallbackInfoReturnable infoReturnable) {
+        if (HackManager.getHackByName("Velocity").isEnabled()) {
+            infoReturnable.setReturnValue(false);
+        }
+    }
+    @Inject(method = "collideWithPlayer", at = @At("HEAD"), cancellable = true)
+    private void collideWithPlayer(Entity entityIn, CallbackInfo info) {
+        if (HackManager.getHackByName("Velocity").isEnabled()) {
+            info.cancel();
+        }
+    }
+
 }

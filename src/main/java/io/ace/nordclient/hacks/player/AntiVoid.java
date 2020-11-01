@@ -11,11 +11,11 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 
-public class AntiVoid extends Hack {
+/**
+ * @author Ace________/Ace_#1233
+ */
 
-    /**
-     * @author Ace________/Ace_#1233
-     */
+public class AntiVoid extends Hack {
 
     Setting downMode;
     private static final AxisAlignedBB voidFloat = new AxisAlignedBB(0.D, 0.D, 0.D, 1.D, 1.D, 1.D);
