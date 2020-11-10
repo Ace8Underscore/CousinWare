@@ -1,6 +1,7 @@
 package io.ace.nordclient.mixin;
 
 import io.ace.nordclient.hacks.render.BlockHighlight;
+import io.ace.nordclient.hacks.render.SkyColor;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,6 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.minecraft.client.renderer.RenderGlobal.drawSelectionBoundingBox;
@@ -28,6 +30,8 @@ public abstract class MixinRenderGlobal {
 
     /**
      * @author Ace________
+     *
+     *
      */
 
     @Inject(method = "drawSelectionBox", at = @At("HEAD"), cancellable = true)
@@ -53,6 +57,15 @@ public abstract class MixinRenderGlobal {
                 GlStateManager.disableBlend();
             }
 
+        }
+    }
+
+    @Redirect(method = "renderCloudsFancy", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;color(FFFF)V"))
+    public void colorClouds(final float red, final float blue, final float green, final float alpha) {
+        if (HackManager.getHackByName("SkyColor").isEnabled()) {
+            GlStateManager.color((float) SkyColor.r.getValDouble() / 255, (float) SkyColor.g.getValDouble() / 255, (float) SkyColor.b.getValDouble() / 255, 255);
+        } else {
+            GlStateManager.color(red, blue, green, alpha);
         }
     }
 

@@ -74,7 +74,6 @@ public class AutoBedBombDumb extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(a = new Setting("alpha", this, 1, 0, 1, false, "BlockHighlightAlpha"));
         CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "BlockHighlightRainbow"));
 
-//
     }
 
     @Override

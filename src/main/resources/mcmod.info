@@ -9,7 +9,8 @@
     "updateUrl": "",
     "credits": "Ace________, 086, John200410, Elementars, Fleyr",
     "authorList": ["Ace________"],
-    "screenshots": [],
+    "screenshots": ["loren.PNG"],
+    "logoFile": "loren.PNG",
     "dependencies": []
   }
 ]

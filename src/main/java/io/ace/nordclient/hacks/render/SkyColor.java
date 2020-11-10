@@ -13,10 +13,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SkyColor extends Hack {
     //
-    Setting r;
-    Setting g;
-    Setting b;
-    Setting rainbow;
+    public static Setting r;
+    public static Setting g;
+    public static Setting b;
+    public static Setting rainbow;
     Setting speed;
 
     public SkyColor() {

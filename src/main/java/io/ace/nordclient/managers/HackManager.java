@@ -5,6 +5,7 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.hacks.client.ClickGuiHudHack;
 import io.ace.nordclient.hacks.client.Core;
+import io.ace.nordclient.hacks.client.FancyChat;
 import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
@@ -35,13 +36,16 @@ public class HackManager {
         addHack(new ClickGuiHack());
         addHack(new ClickGuiHudHack());
         addHack(new Core());
+        addHack(new FancyChat());
         //combat
+        addHack(new Aura());
         addHack(new AutoBedBombDumb());
         addHack(new AutoOffHand());
         addHack(new AutoTntMinecart());
         addHack(new AutoTotem());
         addHack(new AutoTrap());
         addHack(new Burrow());
+        addHack(new Criticals());
         addHack(new CrystalAura());
         addHack(new FastXp());
         addHack(new MultiTask());
@@ -49,8 +53,10 @@ public class HackManager {
         addHack(new Surround());
         //misc
         addHack(new AutoWither());
+        addHack(new BedrockFinder());
         addHack(new DelayedSounds());
         addHack(new DonkeyAlert());
+        addHack(new EnchantColor());
         addHack(new LogoutCoords());
         addHack(new MCF());
         addHack(new NoEntityTrace());
@@ -79,9 +85,10 @@ public class HackManager {
         addHack(new io.ace.nordclient.hacks.render.ArrayList());
         addHack(new BlockHighlight());
         addHack(new ClientName());
+        addHack(new Crystal());
         addHack(new FriendTab());
         addHack(new FullBright());
-        //addHack(new InfiniteChatlength());
+        addHack(new InfiniteChatlength());
         addHack(new ItemESP());
         addHack(new NameTags());
         addHack(new NoLag());

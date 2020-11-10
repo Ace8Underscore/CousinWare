@@ -47,8 +47,8 @@ public class ItemESP extends Hack {
             if (item instanceof EntityItem) {
                 if (mc.player.getDistance(item) <= range.getValDouble()) {
                      NordTessellator.drawBoundingBoxItem(item.posX, item.posY, item.posZ, 1, r.getValInt(), g.getValInt(), b.getValInt(), 255);
-                   // if (!Core.customFont.getValBoolean()) RenderUtilz.drawText((float) item.posX - (float) .5, (float) item.posY + (float) .5, (float) item.posZ - (float) .5, ChatFormatting.WHITE + ((EntityItem) item).getItem().getDisplayName() + " " + ((EntityItem) item).getItem().getCount() + "x");
-                   // else RenderUtilz.drawTextCustom((float) item.posX - (float) .5, (float) item.posY + (float) .5, (float) item.posZ - (float) .5, ChatFormatting.WHITE + ((EntityItem) item).getItem().getDisplayName() + " " + ((EntityItem) item).getItem().getCount() + "x");
+                    if (!Core.customFont.getValBoolean()) RenderUtilz.drawText((float) item.posX - (float) .5, (float) item.posY + (float) .5, (float) item.posZ - (float) .5, ChatFormatting.WHITE + ((EntityItem) item).getItem().getDisplayName() + " " + ((EntityItem) item).getItem().getCount() + "x");
+                    else RenderUtilz.drawTextCustom((float) item.posX - (float) .5, (float) item.posY + (float) .5, (float) item.posZ - (float) .5, ChatFormatting.WHITE + ((EntityItem) item).getItem().getDisplayName() + " " + ((EntityItem) item).getItem().getCount() + "x");
 
                 }
             }
