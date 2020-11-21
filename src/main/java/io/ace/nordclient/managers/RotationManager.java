@@ -11,31 +11,19 @@ public class RotationManager {
 
     private static final Minecraft mc = Minecraft.getMinecraft();
 
-    public static void rotateHead(float yaw) {
-        mc.player.setRotationYawHead(yaw);
-
-    }
-
-    public static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
+    public static double[] calculateLookAt(final double px, final double py, final double pz, final EntityPlayer me) {
         double dirx = me.posX - px;
         double diry = me.posY - py;
         double dirz = me.posZ - pz;
-
-        double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
-
+        final double len = Math.sqrt(dirx * dirx + diry * diry + dirz * dirz);
         dirx /= len;
         diry /= len;
         dirz /= len;
-
         double pitch = Math.asin(diry);
         double yaw = Math.atan2(dirz, dirx);
-
-        //to degree
-        pitch = pitch * 180.0d / Math.PI;
-        yaw = yaw * 180.0d / Math.PI;
-
-        yaw += 90f;
-
-        return new double[]{yaw,pitch};
+        pitch = pitch * 180.0 / 3.141592653589793;
+        yaw = yaw * 180.0 / 3.141592653589793;
+        yaw += 90.0;
+        return new double[] { yaw, pitch };
     }
 }

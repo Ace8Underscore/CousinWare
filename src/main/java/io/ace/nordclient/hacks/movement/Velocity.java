@@ -16,7 +16,9 @@ public class Velocity extends Hack {
 
     @Listener
     public void onUpdate(PacketEvent.Receive event) {
+        if (mc.player == null || mc.world == null) return;
         if (event.getPacket() instanceof SPacketEntityVelocity) {
+            if (((SPacketEntityVelocity) event.getPacket() == null)) return;
             if(((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId())
                 event.setCanceled(true);
         }

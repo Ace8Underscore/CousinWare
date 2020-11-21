@@ -3,6 +3,7 @@ package io.ace.nordclient.hacks.combat;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
 import io.ace.nordclient.command.commands.Set;
+import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
@@ -13,11 +14,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class AutoTrap extends Hack {
 
@@ -53,7 +56,7 @@ public class AutoTrap extends Hack {
                         if (delay >= placeDelay.getValInt()) {
                             BlockPos pos = new BlockPos(e.getPositionVector().add(placeEast[i]));
                             if (mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
-                                BlockInteractionHelper.placeBlockScaffold(pos);
+                                BlockInteractionHelper.placeBlockScaffoldNewRotations(pos);
                                 delay = 0;
 
                             }
@@ -104,6 +107,15 @@ public class AutoTrap extends Hack {
     public void onDisable() {
         mc.player.inventory.currentItem = startingHand;
 
+    }
+
+    @Listener
+    public void onUpdate(PacketEvent.Send event) {
+        Packet packet = event.getPacket();
+        if (packet instanceof CPacketPlayer) {
+            ((CPacketPlayer) packet).yaw = (float) BlockInteractionHelper.yaw;
+            ((CPacketPlayer) packet).pitch = (float) BlockInteractionHelper.pitch;
+        }
     }
 
 }

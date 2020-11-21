@@ -6,7 +6,9 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketEntityAction;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.network.play.server.SPacketEntityMetadata;
 import net.minecraft.util.math.BlockPos;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
@@ -30,22 +32,22 @@ public class NoSlow2b extends Hack {
         modes.add("Spam");
         modes.add("Constant");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Constant", modes, "NoSlow2bMode"));
-
-        if (mode.getValString().equalsIgnoreCase("Spam")) CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("SpamDelay", this, 5, 0, 20, true, "NoSlow2bSpeed"));
+        CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("SwitchDelay", this, 5, 0, 20, true, "NoSlow2bSpeed"));
 
     }
 
     public void onUpdate() {
         delay++;
-        BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
-        if (mode.getValString().equalsIgnoreCase("Constant") && !sneaking) {
+        if (mode.getValString().equalsIgnoreCase("Constant")) {
             if (mc.player.getHeldItemMainhand().getItemUseAction().equals(EnumAction.EAT) && mc.player.getHeldItemMainhand().getItem() instanceof ItemFood && mc.gameSettings.keyBindUseItem.isKeyDown()) {
-                if (delay > 5) {
+                if (delay > speed.getValInt() && !sneaking && !mc.player.onGround) {
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
+                    delay = 0;
                     sneaking = true;
                 }
-            } else {
-                if (delay > 5 && sneaking) {
+
+            }
+                if (mc.player.getHeldItemMainhand().getItemUseAction().equals(EnumAction.EAT) && delay > speed.getValInt() && sneaking && !mc.gameSettings.keyBindUseItem.isKeyDown()) {
 
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                     delay = 0;
@@ -53,7 +55,7 @@ public class NoSlow2b extends Hack {
                 }
             }
 
-        }
+
 
 
         if (mode.getValString().equalsIgnoreCase("Spam")) {

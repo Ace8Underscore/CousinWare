@@ -1,9 +1,12 @@
 package io.ace.nordclient.utilz;
 
+import io.ace.nordclient.event.PacketEvent;
+import io.ace.nordclient.managers.RotationManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -15,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +29,8 @@ public class BlockInteractionHelper
     public static final List<Block> blackList;
     public static final List<Block> shulkerList;
     private static final Minecraft mc;
+    public static double yaw;
+    public static double pitch;
 
     public static boolean hotbarSlotCheckEmpty(final ItemStack stack) {
         return stack != ItemStack.EMPTY;
@@ -65,6 +71,66 @@ public class BlockInteractionHelper
                     return;
 
             }
+        }
+    }
+
+    public static void placeBlockScaffoldNewRotations(final BlockPos pos) {
+        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
+        for (final EnumFacing side : EnumFacing.values()) {
+            final BlockPos neighbor = pos.offset(side);
+            final EnumFacing side2 = side.getOpposite();
+            if (canBeClicked(neighbor)) {
+                final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+                if (eyesPos.squareDistanceTo(hitVec) <= 18.0625) {
+                    lookAtPacket(hitVec.x + 0.5, hitVec.y - 0.5, hitVec.z + 0.5, mc.player);
+                    processRightClickBlock(neighbor, side2, hitVec);
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
+                    //mc.rightClickDelayTimer = 4;
+                    return;
+                }
+            }
+        }
+    }
+
+    public static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
+        double dirx = me.posX - px;
+        double diry = me.posY - py;
+        double dirz = me.posZ - pz;
+
+        double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
+
+        dirx /= len;
+        diry /= len;
+        dirz /= len;
+
+        double pitch = Math.asin(diry);
+        double yaw = Math.atan2(dirz, dirx);
+
+        //to degree
+        pitch = pitch * 180.0d / Math.PI;
+        yaw = yaw * 180.0d / Math.PI;
+
+        yaw += 90f;
+
+        return new double[]{yaw,pitch};
+    }
+
+    private static void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
+        double[] v = calculateLookAt(px, py, pz, me);
+        setYawAndPitch((float) v[0], (float) v[1]);
+    }
+
+    private static void setYawAndPitch(float yaw1, float pitch1) {
+        yaw = yaw1;
+        pitch = pitch1;
+    }
+
+    @Listener
+    public void onUpdate(PacketEvent.Send event) {
+        Packet packet = event.getPacket();
+        if (packet instanceof CPacketPlayer) {
+            ((CPacketPlayer) packet).yaw = (float) yaw;
+            ((CPacketPlayer) packet).pitch = (float) pitch;
         }
     }
 

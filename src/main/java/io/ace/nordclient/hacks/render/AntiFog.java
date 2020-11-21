@@ -18,5 +18,6 @@ public class AntiFog extends Hack {
     public void fogDensity(EntityViewRenderEvent.FogDensity event) {
         event.setDensity(0);
         event.setCanceled(true);
+
     }
 }

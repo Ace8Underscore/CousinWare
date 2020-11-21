@@ -17,7 +17,6 @@
     "MixinRenderItem",
     "MixinRenderPlayer",
     "MixinSlotShulkerBox",
-    "MixinStateImplementation",
     "MixinTileEntityEnchantmentTableRenderer"
   ]
 }

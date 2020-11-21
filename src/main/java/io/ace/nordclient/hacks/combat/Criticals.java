@@ -1,5 +1,6 @@
 package io.ace.nordclient.hacks.combat;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
@@ -18,16 +19,9 @@ public class Criticals extends Hack {
     public Criticals() {
         super("Critcals", Category.COMBAT, 1);
         ArrayList<String> critModes = new ArrayList<>();
-        critModes.add("norm");
-        critModes.add("2");
-        critModes.add("3");
-        critModes.add("4");
-        critModes.add("5");
-        CousinWare.INSTANCE.settingsManager.rSetting(critMode = new Setting("CritMode", this, "1", critModes, "CriticalsCritMode"));
-
-    }
-
-    public void onUpdate() {
+        critModes.add("Normal");
+        critModes.add("Strict");
+        CousinWare.INSTANCE.settingsManager.rSetting(critMode = new Setting("CritMode", this, "Strict", critModes, "CriticalsCritMode"));
 
     }
 
@@ -37,24 +31,27 @@ public class Criticals extends Hack {
             if (event.getPacket() instanceof CPacketUseEntity) {
                 final CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
                 if (packet.getAction() == CPacketUseEntity.Action.ATTACK && mc.player.onGround) {
-                    mc.player.connection.sendPacket((Packet) new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.10000000149011612, mc.player.posZ, false));
-                    mc.player.connection.sendPacket((Packet) new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.10000000149011612, mc.player.posZ, false));
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
 
                 }
             }
         }
-        if (critMode.getValString().equalsIgnoreCase("2")) {
+        if (critMode.getValString().equalsIgnoreCase("strict")) {
             if (event.getPacket() instanceof CPacketUseEntity) {
                 final CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
                 if (packet.getAction() == CPacketUseEntity.Action.ATTACK && mc.player.onGround) {
-                    mc.player.connection.sendPacket((Packet) new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.10000000149011612, mc.player.posZ, true));
-                    mc.player.connection.sendPacket((Packet) new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.10000000149011612, mc.player.posZ, false));
-                    mc.player.connection.sendPacket((Packet) new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
-                    mc.player.connection.sendPacket((Packet) new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, true));
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.06260280169278, mc.player.posZ, false));
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.0726027996066, mc.player.posZ, false));
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
 
                 }
             }
         }
     }
 
+    @Override
+    public String getHudInfo() {
+        return "[" + ChatFormatting.WHITE + critMode.getValString() + ChatFormatting.GRAY + "]";
+    }
 }

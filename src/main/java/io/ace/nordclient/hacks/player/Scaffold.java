@@ -94,11 +94,10 @@ public class Scaffold extends Hack {
 
     private int findBlockInHotbar() {
 
-        // search blocks in hotbar
         int slot = -1;
         for (int i = 0; i < 9; i++) {
 
-            // filter out non-block items
+
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
 
             if (stack == ItemStack.EMPTY || !(stack.getItem() instanceof ItemBlock)) {

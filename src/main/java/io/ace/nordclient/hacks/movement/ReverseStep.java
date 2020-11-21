@@ -31,7 +31,7 @@ public class ReverseStep extends Hack {
         if (fallMode.getValString().equalsIgnoreCase("medium"))  y = -2D;
         if (fallMode.getValString().equalsIgnoreCase("slow"))  y = -1D;
 
-        if (mc.player.onGround && !mc.player.isInWater() && !mc.player.isInLava()) {
+        if (mc.player.onGround && !mc.player.isInWater() && !mc.player.isInLava() && !fallMode.getValString().equalsIgnoreCase("2b")) {
             mc.player.motionY = y;
 
             if (fallMode.getValString().equalsIgnoreCase("2b")) {

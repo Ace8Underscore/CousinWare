@@ -27,7 +27,7 @@ public class CousinWare
 {
     public static final String MODID = "cousinware";
     public static final String NAME = "CousinWare";
-    public static final String VERSION = "v1.3.2";
+    public static final String VERSION = "v1.4";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;

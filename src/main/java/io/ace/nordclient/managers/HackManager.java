@@ -52,8 +52,10 @@ public class HackManager {
         addHack(new SpeedMine());
         addHack(new Surround());
         //misc
+        addHack(new AntiRegear());
         addHack(new AutoWither());
-        addHack(new BedrockFinder());
+        //addHack(new BedrockFinder());
+        addHack(new BoatBypass());
         addHack(new DelayedSounds());
         addHack(new DonkeyAlert());
         addHack(new EnchantColor());
@@ -65,6 +67,7 @@ public class HackManager {
         addHack(new ShulkerMod());
         addHack(new Spammer());
         addHack(new ToggleMsgs());
+        addHack(new TwoBeePacketLogger());
         //movement
         addHack(new ElytraFly());
         addHack(new FastSwim());
@@ -89,8 +92,8 @@ public class HackManager {
         addHack(new FriendTab());
         addHack(new FullBright());
         addHack(new InfiniteChatlength());
-        addHack(new ItemESP());
-        addHack(new NameTags());
+        //addHack(new ItemESP());
+        //addHack(new NameTags());
         addHack(new NoLag());
         addHack(new Overlay());
         addHack(new PlayerESP());

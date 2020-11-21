@@ -34,7 +34,4 @@ public class BlockHighlight extends Hack {
             RainbowUtil.settingRainbow(r, g, b);
         }
     }
-
-
-    //
 }

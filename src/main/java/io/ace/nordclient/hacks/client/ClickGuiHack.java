@@ -46,7 +46,7 @@ public class ClickGuiHack extends Hack {
             }
         } catch (Exception ignored) {
 
-
+//
         }
         disable();
     }
