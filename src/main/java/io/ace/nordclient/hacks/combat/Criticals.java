@@ -17,7 +17,7 @@ public class Criticals extends Hack {
     Setting critMode;
 
     public Criticals() {
-        super("Critcals", Category.COMBAT, 1);
+        super("Critcals", Category.COMBAT, 4241221);
         ArrayList<String> critModes = new ArrayList<>();
         critModes.add("Normal");
         critModes.add("Strict");
@@ -52,6 +52,6 @@ public class Criticals extends Hack {
 
     @Override
     public String getHudInfo() {
-        return "[" + ChatFormatting.WHITE + critMode.getValString() + ChatFormatting.GRAY + "]";
+        return  "\u00A77[\u00A7f" + critMode.getValString() + "\u00A77]";
     }
 }

@@ -14,7 +14,7 @@ public class NoLag extends Hack {
     public static Setting eTable;
 
     public NoLag() {
-        super("NoLag", Category.RENDER, 1);
+        super("NoLag", Category.RENDER, 10955851);
         CousinWare.INSTANCE.settingsManager.rSetting(eTable = new Setting("ETable", this, true, "NoLagETable"));
     }
 

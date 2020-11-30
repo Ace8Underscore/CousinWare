@@ -11,7 +11,7 @@ public class AntiFog extends Hack {
      */
 
     public AntiFog() {
-        super("AntiFog", Category.RENDER, "Removes Fog From Le Word", 34);
+        super("AntiFog", Category.RENDER, "Removes Fog From Le Word", 3570712);
     }
 
     @SubscribeEvent

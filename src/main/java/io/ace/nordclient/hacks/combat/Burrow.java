@@ -39,7 +39,7 @@ public class Burrow extends Hack {
 
 
     public Burrow() {
-        super("Burrow", Category.COMBAT, 1);
+        super("Burrow", Category.COMBAT, 5254300);
         CousinWare.INSTANCE.settingsManager.rSetting(delay = new Setting("Delay", this, 4, 4, 8, true, "BurrowDelay"));
         CousinWare.INSTANCE.settingsManager.rSetting(lagBackPower = new Setting("LagBackPower", this,1, .5,3, true, "BurrowLagBack"));
         CousinWare.INSTANCE.settingsManager.rSetting(noForceRotate = new Setting("NoForceRotate", this, true, "BurrowNoForceRotate"));
@@ -53,6 +53,7 @@ public class Burrow extends Hack {
             BlockInteractionHelper.placeBlockScaffold(pos);
             if (!mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
                 mc.player.motionY = lagBackPower.getValDouble();
+                //mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY - 1, mc.player.posZ, true));
                 mc.player.inventory.currentItem = startingHand;
                     this.toggle();
                 }

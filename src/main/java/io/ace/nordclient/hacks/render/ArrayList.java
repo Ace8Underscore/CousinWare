@@ -33,9 +33,10 @@ public class ArrayList extends Hack {
     Setting b;
     Color c;
     Setting rainbow;
+    Setting staticc;
 
     public ArrayList() {
-        super("ArrayList", Category.RENDER, 36);
+        super("ArrayList", Category.RENDER, 29700);
         this.drawn = true;
         CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 1, 0, 1000, false, "ArrayListX"));
         CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 3, 0, 1000, false, "ArrayListY"));
@@ -53,7 +54,8 @@ public class ArrayList extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 255, 0, 255, true, "ArrayListRed"));
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 26, 0, 255, true, "ArrayListGreen"));
         CousinWare.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 42, 0, 255, true, "ArrayListBlue"));
-        CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "ArrayListRainbow"));
+        CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, false, "ArrayListRainbow"));
+        CousinWare.INSTANCE.settingsManager.rSetting(staticc = new Setting("Static", this, true, "ArrayListStatic"));
 
     }
 
@@ -66,64 +68,64 @@ public class ArrayList extends Hack {
                 .stream()
                 .filter(Hack::isEnabled)
                 .filter(Hack::isDrawn)
-                .sorted(Comparator.comparing(hack -> mc.fontRenderer.getStringWidth(hack.getName() + hack.getHudInfo()) * (-1)))
+                .sorted(Comparator.comparing(hack -> mc.fontRenderer.getStringWidth(((Hack)hack).getName()) + ((Hack)hack).getHudInfo()).reversed())
                 .forEach(h -> {
                     if (!Core.customFont.getValBoolean()) {
                         if (orderMode.getValString().equalsIgnoreCase("up") && sideMode.getValString().equalsIgnoreCase("left")) {
-                        if (rainbow.getValBoolean()) {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
-                            hackCount++;
-                            RainbowUtil.settingRainbow(r, g, b);
-                        } else {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), c.getRGB());
-                            hackCount++;
+                            if (rainbow.getValBoolean()) {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
+                                hackCount++;
+                                RainbowUtil.settingRainbow(r, g, b);
+                            } else {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), staticc.getValBoolean() ? h.color : staticc.getValBoolean() ? h.color : c.getRGB());
+                                hackCount++;
 
+                            }
+                        }
+                        if (orderMode.getValString().equalsIgnoreCase("down") && sideMode.getValString().equalsIgnoreCase("right")) {
+                            if (rainbow.getValBoolean()) {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() - (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
+                                hackCount++;
+                                RainbowUtil.settingRainbow(r, g, b);
+                            } else {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() - (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
+                                hackCount++;
+
+                            }
+                        }
+
+                        if (orderMode.getValString().equalsIgnoreCase("up") && sideMode.getValString().equalsIgnoreCase("right")) {
+                            if (rainbow.getValBoolean()) {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
+                                hackCount++;
+                                RainbowUtil.settingRainbow(r, g, b);
+                            } else {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
+                                hackCount++;
+
+                            }
+                        }
+
+                        if (orderMode.getValString().equalsIgnoreCase("down") && sideMode.getValString().equalsIgnoreCase("left")) {
+                            if (rainbow.getValBoolean()) {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * -10), RainbowUtil.getRainbow(hackCount * 150));
+                                hackCount++;
+                                RainbowUtil.settingRainbow(r, g, b);
+                            } else {
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * -10), staticc.getValBoolean() ? h.color : c.getRGB());
+                                hackCount++;
+
+                            }
                         }
                     }
-                    if (orderMode.getValString().equalsIgnoreCase("down") && sideMode.getValString().equalsIgnoreCase("right")) {
-                        if (rainbow.getValBoolean()) {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() - (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
-                            hackCount++;
-                            RainbowUtil.settingRainbow(r, g, b);
-                        } else {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() - (hackCount * 10), c.getRGB());
-                            hackCount++;
-
-                        }
-                    }
-
-                    if (orderMode.getValString().equalsIgnoreCase("up") && sideMode.getValString().equalsIgnoreCase("right")) {
-                        if (rainbow.getValBoolean()) {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
-                            hackCount++;
-                            RainbowUtil.settingRainbow(r, g, b);
-                        } else {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            FontRenderUtil.drawLeftStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), c.getRGB());
-                            hackCount++;
-
-                        }
-                    }
-
-                    if (orderMode.getValString().equalsIgnoreCase("down") && sideMode.getValString().equalsIgnoreCase("left")) {
-                        if (rainbow.getValBoolean()) {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * -10), RainbowUtil.getRainbow(hackCount * 150));
-                            hackCount++;
-                            RainbowUtil.settingRainbow(r, g, b);
-                        } else {
-                            c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                            mc.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * -10), c.getRGB());
-                            hackCount++;
-
-                        }
-                    }
-                }
                     if (Core.customFont.getValBoolean()) {
                         if (orderMode.getValString().equalsIgnoreCase("up") && sideMode.getValString().equalsIgnoreCase("left")) {
                             if (rainbow.getValBoolean()) {
@@ -133,7 +135,7 @@ public class ArrayList extends Hack {
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
                                 c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                                CousinWare.INSTANCE.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), c.getRGB());
+                                CousinWare.INSTANCE.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
                             }
@@ -146,7 +148,7 @@ public class ArrayList extends Hack {
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
                                 c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                                FontRenderUtil.drawLeftStringWithShadowCustom(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() - (hackCount * 10), c.getRGB());
+                                FontRenderUtil.drawLeftStringWithShadowCustom(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() - (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
                             }
@@ -160,7 +162,7 @@ public class ArrayList extends Hack {
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
                                 c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                                FontRenderUtil.drawLeftStringWithShadowCustom(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), c.getRGB());
+                                FontRenderUtil.drawLeftStringWithShadowCustom(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
                             }
@@ -174,7 +176,7 @@ public class ArrayList extends Hack {
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
                                 c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
-                                CousinWare.INSTANCE.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * -10), c.getRGB());
+                                CousinWare.INSTANCE.fontRenderer.drawStringWithShadow(h.getName() + ChatFormatting.GRAY + " " + h.getHudInfo(), x.getValInt(), y.getValInt() + (hackCount * -10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
                             }

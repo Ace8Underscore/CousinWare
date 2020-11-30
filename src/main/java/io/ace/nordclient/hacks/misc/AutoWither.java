@@ -30,7 +30,7 @@ public class AutoWither extends Hack {
     Setting placeDelay;
 
     public AutoWither() {
-        super("AutoWither", Category.MISC, 1);
+        super("AutoWither", Category.MISC, 11960185);
         CousinWare.INSTANCE.settingsManager.rSetting(placeDelay = new Setting("PlaceDelay", this, 2, 0, 20, true, "AutoWitherPlaceDelay"));
     }
 

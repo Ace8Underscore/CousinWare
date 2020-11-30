@@ -10,14 +10,18 @@ public class Core extends Hack {
     public static Setting brightness;
     public static Setting speed;
     public static Setting customFont;
+    public static Setting antiAlias;
+    public static Setting fractionalMetrics;
 
     public Core() {
-        super("Core", Category.CLIENT, 14);
+        super("Core", Category.CLIENT, 10989199);
 
         CousinWare.INSTANCE.settingsManager.rSetting(saturation = new Setting("Saturation", this, .8, 0, 1,false,  "ColorsSaturation"));
         CousinWare.INSTANCE.settingsManager.rSetting(brightness = new Setting("Brightness", this, .8, 0, 1,false,  "ColorsBrightness"));
         CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 1, 0, 5,false,  "ColorsSpeed"));
         CousinWare.INSTANCE.settingsManager.rSetting(customFont = new Setting("CustomFont", this, true, "CoreCustomFont"));
+        CousinWare.INSTANCE.settingsManager.rSetting(antiAlias = new Setting("AntiAlias", this, true, "CoreAntiAlias"));
+        CousinWare.INSTANCE.settingsManager.rSetting(fractionalMetrics = new Setting("FractionalMetrics", this, true, "CoreFractionalMetrics"));
 
     }
 

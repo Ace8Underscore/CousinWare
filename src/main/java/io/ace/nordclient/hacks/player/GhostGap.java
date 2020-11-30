@@ -14,7 +14,7 @@ import net.minecraft.util.EnumHand;
 public class GhostGap extends Hack {
 
     public GhostGap() {
-        super("GhostGap", Category.PLAYER, 1);
+        super("GhostGap", Category.PLAYER, 3106299);
     }
 
     public void onUpdate() {

@@ -4,6 +4,8 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.AddCollisionBoxToListEvent;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
+import io.ace.nordclient.mixin.accessor.IEntity;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -23,7 +25,7 @@ public class FastWeb extends Hack {
     private static final AxisAlignedBB webFloat = new AxisAlignedBB(0.D, 0.D, 0.D, 1.D, 0.999D, 1.D);
 
     public FastWeb() {
-        super("FastWeb", Category.MOVEMENT, 25);
+        super("FastWeb", Category.MOVEMENT, 13032102);
 
         ArrayList<String> downModes = new ArrayList<>();
         downModes.add("2b");
@@ -37,10 +39,8 @@ public class FastWeb extends Hack {
     public void onUpdate() {
         if (mc.world == null || mc.player == null)
             return;
-        BlockPos self = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
-        BlockPos selfUp = new BlockPos(mc.player.posX, mc.player.posY + 1, mc.player.posZ);
-        BlockPos selfDown = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
-        if (mc.world.getBlockState(self).getBlock().equals(Blocks.WEB) || mc.world.getBlockState(selfUp).getBlock().equals(Blocks.WEB) || mc.world.getBlockState(selfDown).getBlock().equals(Blocks.WEB)) {
+
+        if (((IEntity) mc.player).getIsInWeb()) {
             if (downMode.getValString().equalsIgnoreCase("2b")) {
                 mc.player.motionY = 1.1 / -5;
             }
@@ -66,6 +66,6 @@ public class FastWeb extends Hack {
 
     @Override
     public String getHudInfo() {
-        return "[" + ChatFormatting.WHITE +downMode.getValString() + ChatFormatting.GRAY + "]";
+        return  "\u00A77[\u00A7f" + downMode.getValString() + "\u00A77]";
     }
 }

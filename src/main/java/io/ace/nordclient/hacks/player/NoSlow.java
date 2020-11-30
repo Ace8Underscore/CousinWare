@@ -8,7 +8,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class NoSlow extends Hack {
 
     public NoSlow() {
-        super("NoSlow", Category.PLAYER, 1);
+        super("NoSlow", Category.PLAYER, 10060642);
     }
 
     public void onUpdate() {

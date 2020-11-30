@@ -9,7 +9,7 @@ import io.ace.nordclient.hacks.Hack;
 public class ToggleMsgs extends Hack {
 
     public ToggleMsgs() {
-        super("ToggleMsgs", Category.MISC, 22);
+        super("ToggleMsgs", Category.MISC, 11396711);
         this.drawn = true;
     }
 

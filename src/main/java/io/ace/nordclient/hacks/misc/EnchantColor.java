@@ -13,7 +13,7 @@ public class EnchantColor extends Hack {
     public static Setting rainbow;
 
     public EnchantColor() {
-        super("EnchantColor", Category.MISC, 1);
+        super("EnchantColor", Category.MISC, 9300540);
         CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 255, 0, 255, false, "EnchantColorRed"));
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 255, false, "EnchantColorGreen"));
         CousinWare.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 255, 0, 255, false, "EnchantColorBlue"));

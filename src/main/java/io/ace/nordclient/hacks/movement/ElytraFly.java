@@ -28,7 +28,7 @@ public class ElytraFly extends Hack {
     private int sendPacketDelay = 0;
 
     public ElytraFly() {
-        super("ElytraFly", Category.MOVEMENT, 23);
+        super("ElytraFly", Category.MOVEMENT, 16111998);
 
         CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 2, 0, 10, false, "ElytraFlySpeed"));
         CousinWare.INSTANCE.settingsManager.rSetting(glide = new Setting("Glide", this, true, "ElytraFlyGlide"));
@@ -159,7 +159,7 @@ public class ElytraFly extends Hack {
 
     @Override
     public String getHudInfo() {
-        return "[" + ChatFormatting.WHITE + flyMode.getValString() + ChatFormatting.GRAY + "]";
+        return "\u00A77[\u00A7f" + flyMode.getValString() + "\u00A77]";
     }
     //
 }

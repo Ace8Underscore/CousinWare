@@ -19,7 +19,7 @@ public class BlockHighlight extends Hack {
 
     public BlockHighlight() {
 
-        super("BlockHighlight", Category.RENDER, 37);
+        super("BlockHighlight", Category.RENDER, 10819438);
 
         CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 1, 0, 255, false, "BlockHighlightRed"));
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 255, false, "BlockHighlightGreen"));

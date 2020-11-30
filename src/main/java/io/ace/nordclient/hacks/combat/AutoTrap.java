@@ -6,6 +6,7 @@ import io.ace.nordclient.command.commands.Set;
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
+import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.BlockUtil;
 import io.ace.nordclient.utilz.InventoryUtil;
@@ -34,7 +35,7 @@ public class AutoTrap extends Hack {
     Setting toggleTicks;
 
     public AutoTrap() {
-        super("AutoTrap", Category.COMBAT, 1);
+        super("AutoTrap", Category.COMBAT, 13648212);
         CousinWare.INSTANCE.settingsManager.rSetting(placeRange = new Setting("PlaceRange", this, 5.5, 0, 8, false, "AutoTrapPlaceRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(placeDelay = new Setting("PlaceDelay", this, 2, 0, 20, true, "AutoTrapPlaceDelay"));
         CousinWare.INSTANCE.settingsManager.rSetting(toggleTicks = new Setting("ToggleTicks", this, 8, 0, 20, true, "AutoTrapToggleTicks"));
@@ -56,7 +57,7 @@ public class AutoTrap extends Hack {
                         if (delay >= placeDelay.getValInt()) {
                             BlockPos pos = new BlockPos(e.getPositionVector().add(placeEast[i]));
                             if (mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
-                                BlockInteractionHelper.placeBlockScaffoldNewRotations(pos);
+                                BlockInteractionHelper.placeBlockScaffold(pos);
                                 delay = 0;
 
                             }
@@ -109,13 +110,5 @@ public class AutoTrap extends Hack {
 
     }
 
-    @Listener
-    public void onUpdate(PacketEvent.Send event) {
-        Packet packet = event.getPacket();
-        if (packet instanceof CPacketPlayer) {
-            ((CPacketPlayer) packet).yaw = (float) BlockInteractionHelper.yaw;
-            ((CPacketPlayer) packet).pitch = (float) BlockInteractionHelper.pitch;
-        }
-    }
 
 }

@@ -2,15 +2,6 @@ package io.ace.nordclient.managers;
 
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.client.ClickGuiHack;
-import io.ace.nordclient.hacks.client.ClickGuiHudHack;
-import io.ace.nordclient.hacks.client.Core;
-import io.ace.nordclient.hacks.client.FancyChat;
-import io.ace.nordclient.hacks.combat.*;
-import io.ace.nordclient.hacks.misc.*;
-import io.ace.nordclient.hacks.movement.*;
-import io.ace.nordclient.hacks.player.*;
-import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.utilz.NordTessellator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,81 +21,6 @@ public class HackManager {
     private static String allHackNames = "Hacks: ";
     private static String officialAllHackNames;
 
-    public HackManager(){
-        hacks = new ArrayList<>();
-        //client
-        addHack(new ClickGuiHack());
-        addHack(new ClickGuiHudHack());
-        addHack(new Core());
-        addHack(new FancyChat());
-        //combat
-        addHack(new Aura());
-        addHack(new AutoBedBombDumb());
-        addHack(new AutoOffHand());
-        addHack(new AutoTntMinecart());
-        addHack(new AutoTotem());
-        addHack(new AutoTrap());
-        addHack(new Burrow());
-        addHack(new Criticals());
-        addHack(new CrystalAura());
-        addHack(new FastXp());
-        addHack(new MultiTask());
-        addHack(new SpeedMine());
-        addHack(new Surround());
-        //misc
-        addHack(new AntiRegear());
-        addHack(new AutoWither());
-        //addHack(new BedrockFinder());
-        addHack(new BoatBypass());
-        addHack(new DelayedSounds());
-        addHack(new DonkeyAlert());
-        addHack(new EnchantColor());
-        addHack(new LogoutCoords());
-        addHack(new MCF());
-        addHack(new NoEntityTrace());
-        addHack(new NoInteract());
-        addHack(new QuickDrop());
-        addHack(new ShulkerMod());
-        addHack(new Spammer());
-        addHack(new ToggleMsgs());
-        addHack(new TwoBeePacketLogger());
-        //movement
-        addHack(new ElytraFly());
-        addHack(new FastSwim());
-        addHack(new FastWeb());
-        addHack(new Jesus());
-        addHack(new ReverseStep());
-        addHack(new Step());
-        addHack(new Strafe());
-        addHack(new Velocity());
-        //player
-        addHack(new AntiVoid());
-        addHack(new GhostGap());
-        addHack(new NoSlow());
-        addHack(new NoSlow2b());
-        addHack(new Scaffold());
-        //render
-        addHack(new AntiFog());
-        addHack(new io.ace.nordclient.hacks.render.ArrayList());
-        addHack(new BlockHighlight());
-        addHack(new ClientName());
-        addHack(new Crystal());
-        addHack(new FriendTab());
-        addHack(new FullBright());
-        addHack(new InfiniteChatlength());
-        //addHack(new ItemESP());
-        //addHack(new NameTags());
-        addHack(new NoLag());
-        addHack(new Overlay());
-        addHack(new PlayerESP());
-        addHack(new SelfParticle());
-        addHack(new SkyColor());
-        addHack(new StorageESP());
-        addHack(new Swing());
-        addHack(new ViewModelChanger());
-
-
-    }
     public static void addHack(Hack h){
         hacks.add(h);
     }
@@ -112,8 +28,6 @@ public class HackManager {
     public static ArrayList<Hack> getHacks() {
         return hacks;
     }
-
-
 
     public static Hack getHackByName(String name){
         return getHacks().stream().filter(hm->hm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);

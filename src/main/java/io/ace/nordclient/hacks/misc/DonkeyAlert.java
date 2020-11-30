@@ -29,7 +29,7 @@ public class DonkeyAlert extends Hack {
 
 public DonkeyAlert() {
 
-        super("DonkeyAlert", Category.MISC, "Announces the location of any donkeys in the players render distance", 16);
+        super("DonkeyAlert", Category.MISC, "Announces the location of any donkeys in the players render distance", 15726257);
 
     CousinWare.INSTANCE.settingsManager.rSetting(donkeyAlert = new Setting("DonkeyAlert", this, true, "DonkeyAlertDonkeyAlert"));
     CousinWare.INSTANCE.settingsManager.rSetting(muleAlert = new Setting("MuleAlert", this, true, "DonkeyAlertMuleAlert"));

@@ -5,7 +5,7 @@ import io.ace.nordclient.hacks.Hack;
 public class InfiniteChatlength extends Hack {
 
     public InfiniteChatlength() {
-        super("InfiniteChatlength", Category.RENDER, 43);
+        super("InfiniteChatlength", Category.RENDER, 8711642);
     }
 
 }

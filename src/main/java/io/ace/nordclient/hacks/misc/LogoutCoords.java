@@ -15,7 +15,7 @@ import java.awt.datatransfer.StringSelection;
 public class LogoutCoords extends Hack {
 
     public LogoutCoords() {
-        super("LogoutCoords", Category.MISC, "Saves your coords to the clipboard when logging out of a server", 17);
+        super("LogoutCoords", Category.MISC, "Saves your coords to the clipboard when logging out of a server", 14363678);
     }
 
     @SubscribeEvent

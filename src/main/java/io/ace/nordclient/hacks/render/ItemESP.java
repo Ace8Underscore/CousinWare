@@ -32,7 +32,7 @@ public class ItemESP extends Hack {
     Setting rainbow;
 
     public ItemESP() {
-        super("ItemESP", Category.RENDER, 1);
+        super("ItemESP", Category.RENDER, 10955851);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 100, 0, 400, false, "ItemESPRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(r = new Setting("Red", this, 1, 0, 255, false, "ItemESPRed"));
         CousinWare.INSTANCE.settingsManager.rSetting(g = new Setting("Green", this, 1, 0, 255, false, "ItemESPGreen"));

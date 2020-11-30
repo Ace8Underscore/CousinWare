@@ -1,4 +1,4 @@
-package io.ace.nordclient.mixin;
+package io.ace.nordclient.mixin.mixins;
 
 import io.ace.nordclient.hacks.misc.EnchantColor;
 import io.ace.nordclient.managers.HackManager;

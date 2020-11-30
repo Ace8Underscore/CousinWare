@@ -1,9 +1,11 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "io.ace.nordclient.mixin",
+  "package": "io.ace.nordclient.mixin.mixins",
   "refmap": "mixin.nordclient.refmap.json",
   "mixins": [
+    "MixinCPacketPlayer",
+    "MixinEntity",
     "MixinEntityPlayerSP",
     "MixinEntityRenderer",
     "MixinGuiNewChat",
@@ -13,8 +15,10 @@
     "MixinModelEnderCrystal",
     "MixinNetworkManager",
     "MixinPlayerControllerMP",
+    "MixinRenderFallingBlock",
     "MixinRenderGlobal",
     "MixinRenderItem",
+    "MixinRenderMinecart",
     "MixinRenderPlayer",
     "MixinSlotShulkerBox",
     "MixinTileEntityEnchantmentTableRenderer"

@@ -13,7 +13,7 @@ public class ReverseStep extends Hack {
     private Double y;
 
     public ReverseStep() {
-        super("ReverseStep", Category.MOVEMENT, 27);
+        super("ReverseStep", Category.MOVEMENT, 10820258);
         ArrayList<String> fallModes = new ArrayList<>();
         fallModes.add("Fast");
         fallModes.add("Medium");

@@ -12,7 +12,7 @@ public class ClickGuiHudHack extends Hack {
 
     public static Setting mode;
     public ClickGuiHudHack() {
-        super("Hud", Category.CLIENT, 13);
+        super("Hud", Category.CLIENT, 2348135);
 
         ArrayList<String> modes = new ArrayList<>();
         modes.add("BLACK");

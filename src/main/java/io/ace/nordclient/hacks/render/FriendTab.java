@@ -13,7 +13,7 @@ public class FriendTab extends Hack {
     public static Setting mode;
 
     public FriendTab() {
-        super("FriendTab", Category.RENDER, 40);
+        super("FriendTab", Category.RENDER, 2189725);
 
         java.util.ArrayList<String> modes = new ArrayList<>();
         modes.add("BLACK");

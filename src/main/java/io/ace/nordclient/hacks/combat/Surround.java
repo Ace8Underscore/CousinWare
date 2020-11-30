@@ -42,7 +42,7 @@ public class Surround extends Hack {
 
 
     public Surround() {
-        super("Surround", Category.COMBAT, 11);
+        super("Surround", Category.COMBAT, 2497873);
 
         CousinWare.INSTANCE.settingsManager.rSetting(renderPlace = new Setting("RenderPlace", this, true, "SurroundRenderPlace"));
 

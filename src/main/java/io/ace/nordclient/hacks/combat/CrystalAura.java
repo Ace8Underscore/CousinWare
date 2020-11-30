@@ -6,6 +6,7 @@ import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.managers.RotationManager;
+import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.NordTessellator;
 import io.ace.nordclient.utilz.Setting;
@@ -34,7 +35,7 @@ public class CrystalAura extends Hack {
     Setting rotate;
 
     public CrystalAura() {
-        super("CrystalAura", Category.COMBAT, 1);
+        super("CrystalAura", Category.COMBAT, 2794140);
         CousinWare.INSTANCE.settingsManager.rSetting(breakDelay = new Setting("BreakDelay", this, 2, 0, 20, true, "CrystalAuraBreakDelay"));
         CousinWare.INSTANCE.settingsManager.rSetting(breakRange = new Setting("BreakRange", this, 5.5, 0, 8, false, "CrystalAuraBreakRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(rotate = new Setting("Rotate", this, true, "CrystalAuraRotate"));
@@ -89,16 +90,16 @@ public class CrystalAura extends Hack {
             if (event.getPacket() instanceof CPacketPlayer && spoofRotate && rotate.getValBoolean()) {
                 sendOwnPacket = false;
                 lookAtPacket(breakX, breakY, breakZ, mc.player);
-                ((CPacketPlayer) event.getPacket()).yaw = (float) yaw;
-                ((CPacketPlayer) event.getPacket()).pitch = (float) pitch;
+                ((ICPacketPlayer) event.getPacket()).setYaw(yaw);
+                ((ICPacketPlayer) event.getPacket()).setPitch(pitch);
 
         }
             if (!(event.getPacket() instanceof CPacketPlayer) && spoofRotate && rotate.getValBoolean() && mc.player.onGround && mc.player.motionZ < .1 && mc.player.motionZ > -.1&& mc.player.motionX < .1 && mc.player.motionX > -.1) {
                 sendOwnPacket = true;
             }
         if (event.getPacket() instanceof CPacketPlayer && !spoofRotate && rotate.getValBoolean()) {
-            ((CPacketPlayer) event.getPacket()).yaw = (float) mc.player.rotationYaw;
-            ((CPacketPlayer) event.getPacket()).pitch = (float) mc.player.rotationPitch;
+            ((ICPacketPlayer) event.getPacket()).setYaw(mc.player.rotationYaw);
+            ((ICPacketPlayer) event.getPacket()).setPitch(mc.player.rotationPitch);
 
         }
 

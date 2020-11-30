@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 public class PlayerESP extends Hack {
 
     public PlayerESP() {
-        super("PlayerESP", Category.RENDER, 1);
+        super("PlayerESP", Category.RENDER, 14654750);
     }
 
     @Override

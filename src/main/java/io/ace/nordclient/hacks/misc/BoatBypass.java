@@ -12,7 +12,7 @@ import org.lwjgl.input.Mouse;
 public class BoatBypass extends Hack {
 
     public BoatBypass() {
-        super("2bBoatPlace", Category.MISC, 1);
+        super("2bBoatPlace", Category.MISC, 7338316);
     }
 
     public void onUpdate() {

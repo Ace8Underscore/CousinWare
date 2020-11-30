@@ -5,6 +5,7 @@ import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.managers.RotationManager;
+import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +25,7 @@ public class AntiRegear extends Hack {
     Setting autoSwitch;
 
     public AntiRegear() {
-        super("AntiRegear", Category.MISC, 1);
+        super("AntiRegear", Category.MISC, 9681786);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 5.5, 0, 8, false, "AntiRegearRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(autoSwitch = new Setting("AutoSwitch", this, true, "AntiRegearAutoSwitch"));
     }
@@ -89,8 +90,8 @@ public class AntiRegear extends Hack {
     public void onUpdate(PacketEvent.Send event) {
         Packet packet = event.getPacket();
         if (packet instanceof CPacketPlayer) {
-            ((CPacketPlayer) packet).yaw = yaw;
-            ((CPacketPlayer) packet).pitch = pitch;
+            ((ICPacketPlayer) packet).setYaw(yaw);
+            ((ICPacketPlayer) packet).setPitch(pitch);
         }
     }
 

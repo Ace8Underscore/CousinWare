@@ -10,7 +10,7 @@ import net.minecraft.util.EnumHand;
 public class Swing extends Hack {
 
     public Swing() {
-        super("Swing", Category.RENDER, "Swing With Your OffHand", 48);
+        super("Swing", Category.RENDER, "Swing With Your OffHand", 443646);
     }
 
     @Override

@@ -18,27 +18,27 @@ public class Hack {
     public int bind;
     public boolean enabled;
     public boolean drawn;
-    public int doc;
+    public int color;
 
-    public Hack(String hackName, Category hackCategory, int doc) {
+    public Hack(String hackName, Category hackCategory, int decimalColor) {
         name = hackName;
         description = " ";
         category = hackCategory;
         bind = Keyboard.KEY_NONE;
         enabled = false;
         drawn = true;
-        this.doc = doc;
+        this.color = decimalColor;
 
     }
 
-    public Hack(String hackName, Category hackCategory, String hackDescription, int doc) {
+    public Hack(String hackName, Category hackCategory, String hackDescription, int decimalColor) {
         name = hackName;
         description = hackDescription;
         category = hackCategory;
         bind = Keyboard.KEY_NONE;
         enabled = false;
         drawn = true;
-        this.doc = doc;
+        this.color = decimalColor;
     }
 
     public int getBind(){
@@ -50,8 +50,6 @@ public class Hack {
     }
 
     public void onUpdate(){}
-
-    public void onRender(){}
 
     public void onWorldRender(RenderEvent event) {}
 
@@ -141,7 +139,8 @@ public class Hack {
         MOVEMENT,
         MISC,
         RENDER,
-        CLIENT
+        CLIENT,
+        EXPLOIT
     }
 }
 

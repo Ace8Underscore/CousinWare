@@ -1,4 +1,4 @@
-package io.ace.nordclient.mixin;
+package io.ace.nordclient.mixin.mixins;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.EventStageable;

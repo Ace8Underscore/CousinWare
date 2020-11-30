@@ -11,7 +11,7 @@ import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 public class Velocity extends Hack {
 
     public Velocity() {
-        super("Velocity", Category.MOVEMENT, 30);
+        super("Velocity", Category.MOVEMENT, 8760553);
     }
 
     @Listener

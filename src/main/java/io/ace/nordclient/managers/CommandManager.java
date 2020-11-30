@@ -7,33 +7,8 @@ import io.ace.nordclient.command.commands.*;
 import java.util.ArrayList;
 
 public class CommandManager {
-    private static ArrayList<Command> commands;
+    public static ArrayList<Command> commands;
     boolean b;
-
-    public static void initClientCommands(){
-        commands = new ArrayList<>();
-        addCommand(new Help());
-        addCommand(new Prefix());
-        addCommand(new AllCommands());
-        addCommand(new Toggle());
-        addCommand(new Hacks());
-        addCommand(new Drawn());
-        addCommand(new Bind());
-        addCommand(new Friend());
-        addCommand(new FriendList());
-        addCommand(new Ping());
-        addCommand(new Description());
-        addCommand(new Stack());
-        addCommand(new Summon());
-        addCommand(new Pyro());
-        addCommand(new Set());
-        addCommand(new Setting());
-        addCommand(new ReloadSound());
-        addCommand(new Spotify());
-        addCommand(new RideEntity());
-        addCommand(new Font());
-
-    }
 
     public static void addCommand(Command c){
         commands.add(c);

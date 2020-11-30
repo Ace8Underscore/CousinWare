@@ -110,6 +110,8 @@ reobf {
     }
 }
 
+build.dependsOn(shadowJar)
+
 jar {
     manifest {
         attributes(
@@ -119,9 +121,7 @@ jar {
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'io.ace.nordclient.mixin.NordMixinLoader',
                 'ForceLoadAsMod': 'true',
-                'FMLAT': 'nordclient_at.cfg'
+                //'FMLAT': 'nordclient_at.cfg'
         )
     }
 }
-
-build.dependsOn(shadowJar)

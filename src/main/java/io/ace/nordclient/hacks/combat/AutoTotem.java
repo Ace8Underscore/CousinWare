@@ -23,7 +23,7 @@ public class AutoTotem extends Hack {
     int totemSwtichDelay = 0;
 
     public AutoTotem() {
-        super("AutoTotem", Category.COMBAT, 2);
+        super("AutoTotem", Category.COMBAT, 6168333);
     }
 
 

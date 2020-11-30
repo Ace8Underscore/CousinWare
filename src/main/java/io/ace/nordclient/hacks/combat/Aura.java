@@ -7,6 +7,7 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.managers.RotationManager;
+import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.Setting;
 import io.ace.nordclient.utilz.TpsUtils;
@@ -40,7 +41,7 @@ public class Aura extends Hack {
     float pitch;
 
     public Aura() {
-        super("Aura", Category.COMBAT, 1);
+        super("Aura", Category.COMBAT, 16562801);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 5.5, 0, 7, false, "AuraRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(crits = new Setting("Criticals", this, true, "AuraCriticals"));
     }
@@ -114,18 +115,11 @@ public class Aura extends Hack {
     public void onUpdate(PacketEvent.Send event) {
 
         if (event.getPacket() instanceof CPacketPlayer) {
-            ((CPacketPlayer) event.getPacket()).yaw = (float) yaw;
-            ((CPacketPlayer) event.getPacket()).pitch = (float) pitch;
+            ((ICPacketPlayer) event.getPacket()).setYaw(yaw);
+            ((ICPacketPlayer) event.getPacket()).setPitch(pitch);
 
         }
-        if (event.getPacket() instanceof CPacketUseEntity) {
-            final CPacketUseEntity packet = (CPacketUseEntity)event.getPacket();
-            if (packet.getAction() == CPacketUseEntity.Action.ATTACK && mc.player.onGround && crits.getValBoolean()) {
-                mc.player.connection.sendPacket((Packet)new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.10000000149011612, mc.player.posZ, false));
-                mc.player.connection.sendPacket((Packet)new CPacketPlayer.Position(mc.player.posX, mc.player.posY, mc.player.posZ, false));
 
-            }
-        }
     }
     @Override
     public void onEnable() {

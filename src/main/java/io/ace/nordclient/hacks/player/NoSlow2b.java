@@ -27,7 +27,7 @@ public class NoSlow2b extends Hack {
     Setting speed;
 
     public NoSlow2b() {
-        super("NoSlow2b", Category.PLAYER, 32);
+        super("NoSlow2b", Category.PLAYER, 11464533);
         ArrayList<String> modes = new ArrayList<>();
         modes.add("Spam");
         modes.add("Constant");

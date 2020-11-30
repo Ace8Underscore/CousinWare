@@ -20,21 +20,6 @@ import java.util.stream.Collectors;
 public class HudManager {
     public static ArrayList<Hud> hudElement;
 
-    public HudManager(){
-        hudElement = new ArrayList<>();
-
-        addHud(new ArmorHud());
-        addHud(new Totem());
-        addHud(new Gapple());
-        addHud(new Exp());
-        addHud(new Crystal());
-        addHud(new Obsidian());
-        addHud(new GoonSquad());
-
-
-
-
-    }
     public static void addHud(Hud h){
         hudElement.add(h);
     }
@@ -42,9 +27,6 @@ public class HudManager {
     public static ArrayList<Hud> getHuds() {
         return hudElement;
     }
-
-//help m e plea ssse aa
-
 
     public static Hud getHudByName(String name){
         return getHuds().stream().filter(hm->hm.getName().equalsIgnoreCase(name)).findFirst().orElse(null);

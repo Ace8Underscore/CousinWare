@@ -14,7 +14,7 @@ public class TwoBeePacketLogger extends Hack {
     public int useItemOnBlock = 0;
 
     public  TwoBeePacketLogger() {
-        super("2bPacketLogger", Category.MISC, 1);
+        super("2bPacketLogger", Category.MISC, 1120862);
     }
 
     public void onUpdate() {

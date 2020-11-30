@@ -13,7 +13,7 @@ import org.lwjgl.input.Mouse;
 public class FastXp extends Hack {
 
     public FastXp() {
-        super("FastXp", Category.COMBAT, 6);
+        super("FastXp", Category.COMBAT, 2301059);
     }
 
     @Override

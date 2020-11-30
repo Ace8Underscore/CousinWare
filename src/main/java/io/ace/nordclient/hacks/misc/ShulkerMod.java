@@ -9,7 +9,7 @@ import io.ace.nordclient.hacks.Hack;
 public class ShulkerMod extends Hack {
 
     public ShulkerMod() {
-        super("ShulkerMod", Category.MISC, "Allows the player to put shulkers in shulkers(Must Be In Creative)", 20);
+        super("ShulkerMod", Category.MISC, "Allows the player to put shulkers in shulkers(Must Be In Creative)", 2568772);
     }
     //
 }

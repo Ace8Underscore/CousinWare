@@ -21,7 +21,7 @@ public class Strafe extends Hack {
     Setting smartFall;
 
     public Strafe() {
-        super("Speed", Category.MOVEMENT, 29);
+        super("Speed", Category.MOVEMENT, 16617836);
 
         ArrayList<String> speedModes = new ArrayList<>();
         speedModes.add("Launch");
@@ -99,5 +99,5 @@ public class Strafe extends Hack {
                 }
             }
         }
-
+//
 }

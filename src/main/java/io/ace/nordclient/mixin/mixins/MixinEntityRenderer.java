@@ -1,4 +1,4 @@
-package io.ace.nordclient.mixin;
+package io.ace.nordclient.mixin.mixins;
 
 import com.google.common.base.Predicate;
 import io.ace.nordclient.hacks.misc.NoEntityTrace;

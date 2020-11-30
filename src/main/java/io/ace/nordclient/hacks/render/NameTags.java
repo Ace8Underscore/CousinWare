@@ -20,7 +20,7 @@ public class NameTags extends Hack {
     Setting range;
 
     public NameTags() {
-        super("NameTags", Category.RENDER, 1);
+        super("NameTags", Category.RENDER, 10955851);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 100, 0, 400, false, "NameTagsRange"));
     }
 

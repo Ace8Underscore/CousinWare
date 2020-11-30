@@ -22,7 +22,7 @@ public class AntiVoid extends Hack {
 
 
     public AntiVoid() {
-        super("AntiVoid", Category.PLAYER, 31);
+        super("AntiVoid", Category.PLAYER, 8263634);
         ArrayList<String> downModes = new ArrayList<>();
         downModes.add("lagBack");
         downModes.add("Float");

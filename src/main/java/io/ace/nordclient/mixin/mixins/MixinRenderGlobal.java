@@ -1,4 +1,4 @@
-package io.ace.nordclient.mixin;
+package io.ace.nordclient.mixin.mixins;
 
 import io.ace.nordclient.hacks.render.BlockHighlight;
 import io.ace.nordclient.hacks.render.SkyColor;
@@ -8,7 +8,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,6 +36,16 @@ public abstract class MixinRenderGlobal {
      *
      */
 
+//
+    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation("cousinware:textures/loren.png");
+    private TextureManager renderEngine;
+
+/*    @Inject(method = "renderSky(FI)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/TextureManager;bindTexture(Lnet/minecraft/util/ResourceLocation;)V"), cancellable = true)
+    public void renderSky(float partialTicks, int pass, CallbackInfo info) {
+        info.cancel();
+        this.renderEngine.bindTexture(new ResourceLocation("textures/loren.PNG"));
+    }
+ */
     @Inject(method = "drawSelectionBox", at = @At("HEAD"), cancellable = true)
     public void drawSelectionBox(EntityPlayer player, RayTraceResult movingObjectPositionIn, int execute, float partialTicks, CallbackInfo info) {
         if (HackManager.getHackByName("BlockHighlight").isEnabled()) {

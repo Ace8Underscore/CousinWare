@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class SpeedMine extends Hack {
     public SpeedMine() {
-        super("SpeedMine", Category.COMBAT, "Mine blocks faster", 10);
+        super("SpeedMine", Category.COMBAT, "Mine blocks faster", 15763555);
         CousinWare.INSTANCE.settingsManager.rSetting(reset = new Setting("Reset", this, true, "SpeedMineReset"));
         CousinWare.INSTANCE.settingsManager.rSetting(fastFall = new Setting("FastFall", this, false, "SpeedMineFastFall"));
         CousinWare.INSTANCE.settingsManager.rSetting(doubleBreak = new Setting("DoubleBreak", this, true, "SpeedMineDoubleBreak"));

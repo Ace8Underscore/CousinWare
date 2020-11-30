@@ -9,6 +9,7 @@ import io.ace.nordclient.utilz.Setting;
 import io.ace.nordclient.utilz.TpsUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +35,7 @@ public class Overlay extends Hack {
     int pingPlayer;
 
     public Overlay() {
-        super("Overlay", Category.RENDER, 44);
+        super("Overlay", Category.RENDER, 1687568);
         CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "OverlayX"));
         CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 530, 0, 1000, false, "OverlayY"));
         CousinWare.INSTANCE.settingsManager.rSetting(ping = new Setting("Ping", this, true, "OverlayPing"));
@@ -50,6 +51,7 @@ public class Overlay extends Hack {
 
     @SubscribeEvent
     public void onRenderWorld(RenderGameOverlayEvent.Text event) {
+        ScaledResolution sr = new ScaledResolution(mc);
 
         int yOffset = 0;
         String tpsString = "Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0;
@@ -58,7 +60,7 @@ public class Overlay extends Hack {
         if (!Core.customFont.getValBoolean()) {
         if (server.getValBoolean()) {
             if (!mc.isSingleplayer()) {
-                FontRenderUtil.drawLeftStringWithShadow("Server " + mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Server " + mc.getCurrentServerData().serverIP, sr.getScaledWidth() - mc.fontRenderer.getStringWidth("Server " + mc.getCurrentServerData().serverIP) + x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
         }
@@ -70,7 +72,7 @@ public class Overlay extends Hack {
             } else {
                 for (Entity entity : mc.world.getLoadedEntityList()) {
                     if (entity instanceof EntityPlayer && entity.getName().equalsIgnoreCase(mc.player.getName())) {
-                        FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getConnection().getPlayerInfo(entity.getUniqueID()).getResponseTime() + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                        FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getConnection().getPlayerInfo(entity.getUniqueID()).getResponseTime() + "ms", x.getValInt(), sr.getScaledHeight() -y.getValInt() + yOffset * -10, c.getRGB());
                         yOffset++;
                     }
                 }
@@ -78,21 +80,21 @@ public class Overlay extends Hack {
         }
         if (tpsString.length() > fpsString.length()) {
             if (tps.getValBoolean()) {
-                FontRenderUtil.drawLeftStringWithShadow("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
             if (fps.getValBoolean()) {
-                FontRenderUtil.drawLeftStringWithShadow("Fps " + mc.getDebugFPS(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Fps " + mc.getDebugFPS(), x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
 
         } else {
             if (fps.getValBoolean()) {
-                FontRenderUtil.drawLeftStringWithShadow("Fps " + mc.getDebugFPS(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Fps " + mc.getDebugFPS(), x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
             if (tps.getValBoolean()) {
-                FontRenderUtil.drawLeftStringWithShadow("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                FontRenderUtil.drawLeftStringWithShadow("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                 yOffset++;
             }
         }
@@ -101,37 +103,37 @@ public class Overlay extends Hack {
         }else {
             if (server.getValBoolean()) {
                 if (!mc.isSingleplayer()) {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Server " + mc.getCurrentServerData().serverIP, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Server " + mc.getCurrentServerData().serverIP, x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 }
             }
 
             if (ping.getValBoolean()) {
                 if (mc.isSingleplayer()) {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + "0" + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + "0" + "ms", x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 } else {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + mc.getCurrentServerData().pingToServer + "ms", x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + mc.getCurrentServerData().pingToServer + "ms", x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 }
             }
             if (tpsString.length() > fpsString.length()) {
                 if (tps.getValBoolean()) {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 }
                 if (fps.getValBoolean()) {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Fps " + mc.getDebugFPS(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Fps " + mc.getDebugFPS(), x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 }
 
             } else {
                 if (fps.getValBoolean()) {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Fps " + mc.getDebugFPS(), x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Fps " + mc.getDebugFPS(), x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 }
                 if (tps.getValBoolean()) {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Tps " + Math.round(TpsUtils.getTickRate() * 10) / 10.0, x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 }
             }

@@ -31,7 +31,7 @@ public class AutoOffHand extends Hack {
 
 
     public AutoOffHand() {
-        super("AutoOffHand", Category.COMBAT, 4);
+        super("AutoOffHand", Category.COMBAT, 4074266);
         ArrayList<String> modes = new ArrayList<>();
         modes.add("Crystal");
         modes.add("Gapple");

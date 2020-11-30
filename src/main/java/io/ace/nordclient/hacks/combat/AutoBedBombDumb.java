@@ -6,6 +6,7 @@ import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
+import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,7 +56,7 @@ public class AutoBedBombDumb extends Hack {
     public boolean south;
 
     public AutoBedBombDumb() {
-        super("AutoBedBomb", Category.COMBAT, 5);
+        super("AutoBedBomb", Category.COMBAT, 11043230);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 1, 0, 7, false, "AutoBedBombRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(spoofPlace = new Setting("SpoofPlace", this, true, "AutoBedBombSpoofPlace"));
         CousinWare.INSTANCE.settingsManager.rSetting(autoSwitch = new Setting("AutoSwitch", this, true, "AutoBedBombAutoSwitch"));
@@ -205,8 +206,8 @@ public class AutoBedBombDumb extends Hack {
         Packet packet = event.getPacket();
         if (packet instanceof CPacketPlayer) {
             if (spoofPlace.getValBoolean()) {
-                ((CPacketPlayer) packet).yaw = (float) yaw;
-                //((CPacketPlayer) packet).pitch = (float) pitch;
+                ((ICPacketPlayer) packet).setYaw(yaw);
+
 
             }
         }

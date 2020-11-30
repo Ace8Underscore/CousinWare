@@ -24,7 +24,7 @@ public class Scaffold extends Hack {
     Setting placeMode;
 
     public Scaffold() {
-        super("Scaffold", Category.PLAYER, 33);
+        super("Scaffold", Category.PLAYER, 8501181);
         ArrayList<String> placeModes = new ArrayList<>();
         placeModes.add("Old");
         placeModes.add("New");

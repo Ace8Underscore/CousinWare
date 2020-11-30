@@ -1,4 +1,4 @@
-package io.ace.nordclient.mixin;
+package io.ace.nordclient.mixin.mixins;
 
 import io.ace.nordclient.hacks.render.FriendTab;
 import io.ace.nordclient.managers.FriendManager;

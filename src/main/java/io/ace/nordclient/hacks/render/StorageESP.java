@@ -22,7 +22,7 @@ public class StorageESP extends Hack {
     Setting shulker;
 
     public StorageESP() {
-        super("StorageESP", Category.RENDER, 47);
+        super("StorageESP", Category.RENDER, 1696806);
         CousinWare.INSTANCE.settingsManager.rSetting(eChest = new Setting("EChest", this, true, "StorageESPEChest"));
         CousinWare.INSTANCE.settingsManager.rSetting(chest = new Setting("Chest", this, true, "StorageESPChest"));
         CousinWare.INSTANCE.settingsManager.rSetting(shulker = new Setting("Shulker", this, true, "StorageESPShulker"));
@@ -47,4 +47,5 @@ public class StorageESP extends Hack {
             }
         }
     }
+    //
 

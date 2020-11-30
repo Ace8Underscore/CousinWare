@@ -9,7 +9,7 @@ import io.ace.nordclient.hacks.Hack;
 public class SelfParticle extends Hack {
 
     public SelfParticle() {
-        super("SelfParticle", Category.RENDER, 45);
+        super("SelfParticle", Category.RENDER, 14147855);
     }
 
     @Override

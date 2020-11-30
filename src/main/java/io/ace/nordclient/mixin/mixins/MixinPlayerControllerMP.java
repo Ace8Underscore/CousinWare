@@ -1,4 +1,4 @@
-package io.ace.nordclient.mixin;
+package io.ace.nordclient.mixin.mixins;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.event.DestroyBlockEvent;
@@ -32,10 +32,10 @@ public abstract class MixinPlayerControllerMP{
     @Inject(method = "resetBlockRemoving", at = @At("HEAD"), cancellable = true)
     public void resetBlockRemoving(CallbackInfo p_Info) {
         EventPlayerResetBlockRemoving l_Event = new EventPlayerResetBlockRemoving();
-
         CousinWare.INSTANCE.getEventManager().dispatchEvent(l_Event);
-        if (l_Event.isCanceled() || HackManager.getHackByName("MultiTask").isEnabled()) {
+        if (l_Event.isCanceled() || HackManager.getHackByName("NoBreakLoss").isEnabled()) {
             p_Info.cancel();
+
         }
     }
 

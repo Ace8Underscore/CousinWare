@@ -16,7 +16,7 @@ import java.awt.*;
 public class ClientName extends Hack {
 
     public ClientName() {
-        super("Watermark", Category.RENDER, 39);
+        super("Watermark", Category.RENDER, 586816);
     }
 
     @SubscribeEvent

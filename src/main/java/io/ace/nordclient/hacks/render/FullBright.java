@@ -17,7 +17,7 @@ public class FullBright extends Hack {
     Setting num;
 
     public FullBright() {
-        super("FullBright", Category.RENDER, 41);
+        super("FullBright", Category.RENDER, 11658243);
         java.util.ArrayList<String> modes = new ArrayList<>();
         modes.add("Gamma");
         modes.add("NightVision");
@@ -27,16 +27,16 @@ public class FullBright extends Hack {
     @Override
     public void onUpdate() {
         if (mode.getValString().equalsIgnoreCase("gamma")) {
-            mc.gameSettings.gammaSetting = 2000;
+            mc.gameSettings.gammaSetting = 100;
             mc.player.removeActivePotionEffect(Potion.getPotionById(16));
         } else {
-            mc.gameSettings.gammaSetting = 50;
+            mc.gameSettings.gammaSetting = 0;
             mc.player.addPotionEffect(new PotionEffect(Potion.getPotionById(16), 1000, 1));
         }
     }
 
     public void onDisable() {
-        mc.gameSettings.gammaSetting = 50;
+        mc.gameSettings.gammaSetting = 0;
     }
 }
 
