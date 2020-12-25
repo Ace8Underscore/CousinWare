@@ -58,7 +58,7 @@ public class Hack {
 
     protected void onDisable(){
     }
-
+//
 
     public boolean isEnabled(){
         return enabled;

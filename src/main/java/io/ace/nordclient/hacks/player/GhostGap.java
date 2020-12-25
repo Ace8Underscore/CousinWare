@@ -22,7 +22,7 @@ public class GhostGap extends Hack {
         if (mc.player.getHeldItemMainhand().equals(gap)) {
             mc.getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
             //mc.getConnection().sendPacket(new CPacketPlayerDigging(Action., mc.player.getPosition(), EnumFacing.SOUTH));
-           // mc.getConnection().sendPacket(new SPacketEntityStatus(mc.player, (byte) 9));
+            mc.getConnection().sendPacket(new SPacketEntityStatus(mc.player, (byte) 9));
             //super.onUpdate();
         }
     }

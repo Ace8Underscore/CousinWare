@@ -14,12 +14,17 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.4-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+        classpath 'com.github.oshi:oshi-core:5.3.4'
+        classpath "org.slf4j:slf4j-simple:1.6.1"
+
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.github.johnrengelman.shadow'
+
+//apply plugin: 'com.github.oshi'
 
 version project.modVersion
 group project.modGroup // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -66,6 +71,11 @@ dependencies {
     }
     compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
     compile group: "com.googlecode.json-simple", name: "json-simple", version: "1.1.1"
+    compile group: 'com.github.oshi', name: 'oshi-core', version: '5.3.4'
+    compile group: "org.slf4j", name : "slf4j-simple", version: "1.6.1"
+
+
+
 }
 
 processResources {

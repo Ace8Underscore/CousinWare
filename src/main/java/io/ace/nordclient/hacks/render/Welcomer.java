@@ -36,9 +36,12 @@ public class Welcomer extends Hack {
         String timeMessage = "";
         long time = Calendar.getInstance().getTime().getHours();
         Color c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
-        if (time >= 0 && time <= 11) timeMessage = "Good Morning ";
-        if (time > 11 && time <= 18) timeMessage = "Good Afternoon ";
-        if (time > 18 && time < 24) timeMessage = "Good Night ";
+        //if (time >= 0 && time <= 11) timeMessage = "Good Morning ";
+        //if (time > 11 && time <= 18) timeMessage = "Good Afternoon ";
+        //if (time > 18 && time < 24) timeMessage = "Good Night ";
+        if (time >= 0 && time <= 11) timeMessage = "Merry Christmas ";
+        if (time > 11 && time <= 18) timeMessage = "Merry Christmas ";
+        if (time > 18 && time < 24) timeMessage = "Merry Christmas ";
         if (rainbow.getValBoolean()) RainbowUtil.settingRainbow(r, g, b);
 
 

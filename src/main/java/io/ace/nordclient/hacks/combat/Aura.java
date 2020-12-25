@@ -20,6 +20,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import org.spongepowered.asm.mixin.Overwrite;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 

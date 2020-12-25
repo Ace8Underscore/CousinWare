@@ -19,13 +19,16 @@ public class Sprint extends Hack {
 
     public void onUpdate() {
         if (strict.getValBoolean()) {
+            returnMessage = "Strict";
             if (mc.player.moveForward > 0 && !mc.player.collidedHorizontally) {
                 mc.player.setSprinting(true);
-                returnMessage = "Strict";
             }
-        } else if (MotionUtil.isMoving()) {
-            mc.player.setSprinting(true);
+        } else {
             returnMessage = "Rage";
+            if (MotionUtil.isMoving()) {
+                mc.player.setSprinting(true);
+
+            }
         }
 
     }

@@ -12,7 +12,7 @@ public abstract class MixinRenderFallingBlock {
 
     @Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
     private void doRender(CallbackInfo info) {
-        if (HackManager.getHackByName("NoMinecartLag").isEnabled()) {
+        if (HackManager.getHackByName("NoFallingAnimations").isEnabled()) {
             info.cancel();
         }
     }

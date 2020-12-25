@@ -1,6 +1,7 @@
 package io.ace.nordclient;
 
 import io.ace.nordclient.command.commands.*;
+import io.ace.nordclient.event.EventLaunch;
 import io.ace.nordclient.event.EventProcessor;
 import io.ace.nordclient.gui.ClickGUI2;
 import io.ace.nordclient.gui.Frame;
@@ -15,11 +16,13 @@ import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.hacks.render.Crystal;
 import io.ace.nordclient.hud.ClickGuiHUD;
 import io.ace.nordclient.hud.hudcomponets.*;
+import io.ace.nordclient.hwid.HWID;
 import io.ace.nordclient.managers.*;
 import io.ace.nordclient.utilz.TpsUtils;
 import io.ace.nordclient.utilz.configz.ConfigUtils;
 import io.ace.nordclient.utilz.configz.ShutDown;
 import io.ace.nordclient.utilz.font.CFontRenderer;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,19 +31,29 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.HardwareAbstractionLayer;
 import team.stiff.pomelo.EventManager;
 import team.stiff.pomelo.impl.annotated.AnnotatedEventManager;
 
 import java.awt.*;
 import java.awt.Font;
+import java.lang.management.ManagementFactory;
+import java.net.MalformedURLException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.UUID;
 
 @Mod(modid = CousinWare.MODID, name = CousinWare.NAME, version = CousinWare.VERSION)
 public class CousinWare
 {
     public static final String MODID = "cousinware";
     public static final String NAME = "CousinWare";
-    public static final String VERSION = "v1.4.1";
+    public static final String VERSION = "v1.5.1";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -53,14 +66,17 @@ public class CousinWare
     public ClickGUI2 clickGui2;
     public ClickGuiHUD clickGuiHUD;
     public CFontRenderer fontRenderer;
+    public HWID hwid;
 
     @Mod.Instance
     public static CousinWare INSTANCE;
 
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        Display.setTitle("CousinWare " + VERSION);
+    public void preInit(FMLPreInitializationEvent event) throws MalformedURLException {
+        Display.setTitle("CousinWare " + "Christmas Edition");
+        hwid = new HWID();
+
 
     }
 
@@ -69,18 +85,24 @@ public class CousinWare
         eventProcessor = new EventProcessor();
         eventProcessor.init();
         loadClientCommands();
+
         TpsUtils tpsUtils = new TpsUtils();
         settingsManager = new SettingsManager();
         friends = new FriendManager();
         loadHuds();
         loadHacks();
-        fontRenderer = new CFontRenderer(new Font("Verdana", Font.CENTER_BASELINE, 17), Core.antiAlias.getValBoolean(), Core.fractionalMetrics.getValBoolean());
+        fontRenderer = new CFontRenderer(new Font("Verdana", Font.CENTER_BASELINE, 17), true, false);
         clickGui2 = new ClickGUI2();
         clickGuiHUD = new ClickGuiHUD();
         configUtils = new ConfigUtils();
-        //Display.setTitle("CousinWare " + VERSION);
         Runtime.getRuntime().addShutdownHook(new ShutDown());
+
     }
+    @Mod.EventHandler
+    public void inits(FMLInitializationEvent event) throws URISyntaxException {
+        EventLaunch.init();
+    }
+    //
 
     public EventManager getEventManager() {
         if (this.eventManager == null) {
@@ -92,8 +114,17 @@ public class CousinWare
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
-
+        String currentHWID = String.valueOf(Runtime.getRuntime().availableProcessors() +
+                //System.getenv("PROCESSOR_IDENTIFIER") +
+                //System.getenv("PROCESSOR_ARCHITECTURE") +
+                //System.getenv("PROCESSOR_ARCHITEW6432") +
+                ////System.getenv("NUMBER_OF_PROCESSORS") +
+                ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize());
+        if (!HWID.isGoodHWID(currentHWID)) {
+            System.out.println(currentHWID);
+            System.exit(0);
+        }
+        //
 
     }
 
@@ -119,6 +150,7 @@ public class CousinWare
         CommandManager.addCommand(new Spotify());
         CommandManager.addCommand(new RideEntity());
         CommandManager.addCommand(new io.ace.nordclient.command.commands.Font());
+
     }
 
     public void loadHuds() {
@@ -150,6 +182,7 @@ public class CousinWare
         HackManager.addHack(new Criticals());
         HackManager.addHack(new CrystalAura());
         HackManager.addHack(new FastXp());
+        HackManager.addHack(new PistonAura());
         HackManager.addHack(new SpeedMine());
         HackManager.addHack(new Surround());
         //exploit
@@ -164,20 +197,23 @@ public class CousinWare
         HackManager.addHack(new AutoWither());
         //HackManager.addHack(new BedrockFinder());
         HackManager.addHack(new BoatBypass());
-        HackManager.addHack(new DelayedSounds());
+        HackManager.addHack(new ChatSuffix());
         HackManager.addHack(new DonkeyAlert());
         HackManager.addHack(new EnchantColor());
         HackManager.addHack(new FancyChat());
         HackManager.addHack(new LogoutCoords());
         HackManager.addHack(new MCF());
         HackManager.addHack(new NoEntityTrace());
+        HackManager.addHack(new NotResponding());
         HackManager.addHack(new NoInteract());
         HackManager.addHack(new QuickDrop());
         HackManager.addHack(new ShulkerMod());
         HackManager.addHack(new Spammer());
         HackManager.addHack(new ToggleMsgs());
-        HackManager.addHack(new TwoBeePacketLogger());
+        HackManager.addHack(new VisualRange());
+        //HackManager.addHack(new TwoBeePacketLogger());
         //movement
+        //
         HackManager.addHack(new ElytraFly());
         HackManager.addHack(new FastSwim());
         HackManager.addHack(new FastWeb());
@@ -192,9 +228,10 @@ public class CousinWare
         //player
         HackManager.addHack(new AntiVoid());
         HackManager.addHack(new Freecam());
-        HackManager.addHack(new GhostGap());
+        //HackManager.addHack(new GhostGap());
         HackManager.addHack(new NoSlow());
         HackManager.addHack(new NoSlow2b());
+        HackManager.addHack(new PacketCanceller());
         HackManager.addHack(new Scaffold());
         //render
         HackManager.addHack(new AntiFog());
@@ -219,3 +256,4 @@ public class CousinWare
     }
 
 }
+

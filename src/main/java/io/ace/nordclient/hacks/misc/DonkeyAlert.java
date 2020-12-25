@@ -53,6 +53,7 @@ public DonkeyAlert() {
     modes.add("DARK_GREEN");
     modes.add("DARK_PURPLE");
     modes.add("LIGHT_PURPLE");
+    
 
 
     CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "GREEN", modes, "DonkeyAlertColorModes"));
