@@ -72,7 +72,7 @@ public class Overlay extends Hack {
             } else {
                 for (Entity entity : mc.world.getLoadedEntityList()) {
                     if (entity instanceof EntityPlayer && entity.getName().equalsIgnoreCase(mc.player.getName())) {
-                        FontRenderUtil.drawLeftStringWithShadow("Ping " + mc.getConnection().getPlayerInfo(entity.getUniqueID()).getResponseTime() + "ms", x.getValInt(), sr.getScaledHeight() -y.getValInt() + yOffset * -10, c.getRGB());
+                        FontRenderUtil.drawLeftStringWithShadow("Ping " + ((mc.getConnection() != null && mc.player != null && mc.getConnection().getPlayerInfo(mc.player.getUniqueID()) != null) ? Integer.valueOf(mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime()) : "-1") + "ms", x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                         yOffset++;
                     }
                 }
@@ -113,8 +113,9 @@ public class Overlay extends Hack {
                     FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + "0" + "ms", x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
                 } else {
-                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + mc.getCurrentServerData().pingToServer + "ms", x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
+                    FontRenderUtil.drawLeftStringWithShadowCustom("Ping " + ((mc.getConnection() != null && mc.player != null && mc.getConnection().getPlayerInfo(mc.player.getUniqueID()) != null) ? Integer.valueOf(mc.getConnection().getPlayerInfo(mc.player.getUniqueID()).getResponseTime()) : "-1") + "ms", x.getValInt(), sr.getScaledHeight() - y.getValInt() + yOffset * -10, c.getRGB());
                     yOffset++;
+                }
                 }
             }
             if (tpsString.length() > fpsString.length()) {
@@ -143,4 +144,4 @@ public class Overlay extends Hack {
 
 
     }
-}
+

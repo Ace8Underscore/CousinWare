@@ -22,12 +22,13 @@ import java.util.ArrayList;
 
 public class FastWeb extends Hack {
 
-    Setting downMode;
+    public static Setting downMode;
 
     private static final AxisAlignedBB webFloat = new AxisAlignedBB(0.D, 0.D, 0.D, 1.D, 0.999D, 1.D);
 
     boolean collided;
     int time = 0;
+    int delay = 0;
 
     public FastWeb() {
         super("FastWeb", Category.MOVEMENT, 13032102);
@@ -71,9 +72,11 @@ public class FastWeb extends Hack {
 
             }
             if (downMode.getValString().equalsIgnoreCase("Timer")) {
-                for (int i = 0; i < 5; i++) {
-                    mc.player.motionY = 1.1 / -5;
-
+                delay++;
+                if (delay > 1) {
+                    //mc.player.motionY *= 3.25;
+                   // mc.player.motionY *= 27.3;
+                    delay = 0;
                 }
 
             }

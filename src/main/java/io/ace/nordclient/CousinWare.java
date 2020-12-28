@@ -157,12 +157,14 @@ public class CousinWare
         HudManager.hudElement = new ArrayList<>();
 
         HudManager.addHud(new ArmorHud());
-        HudManager.addHud(new Totem());
-        HudManager.addHud(new Gapple());
-        HudManager.addHud(new Exp());
         HudManager.addHud(new io.ace.nordclient.hud.hudcomponets.Crystal());
-        HudManager.addHud(new Obsidian());
+        HudManager.addHud(new Exp());
+        HudManager.addHud(new Gapple());
         HudManager.addHud(new GoonSquad());
+        HudManager.addHud(new InventoryPreview());
+        HudManager.addHud(new Obsidian());
+        HudManager.addHud(new Totem());
+
     }
 
     public void loadHacks() {
@@ -183,6 +185,7 @@ public class CousinWare
         HackManager.addHack(new CrystalAura());
         HackManager.addHack(new FastXp());
         HackManager.addHack(new PistonAura());
+        HackManager.addHack(new PistonAura2());
         HackManager.addHack(new SpeedMine());
         HackManager.addHack(new Surround());
         //exploit
@@ -241,6 +244,7 @@ public class CousinWare
         HackManager.addHack(new Crystal());
         HackManager.addHack(new FriendTab());
         HackManager.addHack(new FullBright());
+        HackManager.addHack(new HoleESP());
         HackManager.addHack(new InfiniteChatlength());
         //HackManager.addHack(new ItemESP());
         //HackManager.addHack(new NameTags());

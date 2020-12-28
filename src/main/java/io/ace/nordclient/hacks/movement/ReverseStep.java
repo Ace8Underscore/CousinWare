@@ -11,6 +11,7 @@ public class ReverseStep extends Hack {
     Setting fallMode;
     Setting speed;
     private Double y;
+    int delay = 0;
 
     public ReverseStep() {
         super("ReverseStep", Category.MOVEMENT, 10820258);
@@ -33,13 +34,18 @@ public class ReverseStep extends Hack {
 
         if (mc.player.onGround && !mc.player.isInWater() && !mc.player.isInLava() && !fallMode.getValString().equalsIgnoreCase("2b")) {
             mc.player.motionY = y;
+        }
 
-            if (fallMode.getValString().equalsIgnoreCase("2b")) {
-                mc.player.motionY *= 2;
+            if (mc.player.fallDistance > .1 && !mc.player.isInWater() && !mc.player.isInLava() && fallMode.getValString().equalsIgnoreCase("2b")) {
+                delay++;
+                if (delay > 5) {
+                    mc.player.motionY = -(speed.getValDouble());
+                    delay = 0;
+                }
             }
 
         }
 
     }
 
-}
+

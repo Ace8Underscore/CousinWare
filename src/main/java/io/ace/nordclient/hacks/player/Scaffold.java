@@ -41,6 +41,12 @@ public class Scaffold extends Hack {
         BlockPos belowWest = new BlockPos(mc.player.posX + 1, mc.player.posY - 1, mc.player.posZ);
         if (placeMode.getValString().equalsIgnoreCase("new")) {
             findDirectionLookingPlace();
+            if (mc.player.motionX == 0 && mc.player.motionZ == 0) {
+                if (mc.gameSettings.keyBindJump.isKeyDown()) {
+
+
+                    }
+                }
         } else {
             // south -z
             // north +z
@@ -61,6 +67,7 @@ public class Scaffold extends Hack {
                 }
             }
         }
+
     }
 
     @Override
@@ -153,12 +160,15 @@ public class Scaffold extends Hack {
                 if (mc.player.motionZ > .05) {
                     BlockInteractionHelper.placeBlockScaffold(belowNorth);
 
-               // }
+               // }//
             }
         }
         if (mc.player.motionX == 0 && mc.player.motionZ == 0) {
             if (mc.world.getBlockState(below).getBlock().canPlaceBlockAt(mc.world, below)) {
-                BlockInteractionHelper.placeBlockScaffold(below);
+                if (mc.gameSettings.keyBindJump.isKeyDown()) {
+                    mc.player.motionY = .3683;
+                    BlockInteractionHelper.placeBlockScaffold(below);
+                }
             }
         }
     }
