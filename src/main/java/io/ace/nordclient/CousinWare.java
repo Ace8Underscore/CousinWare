@@ -4,8 +4,6 @@ import io.ace.nordclient.command.commands.*;
 import io.ace.nordclient.event.EventLaunch;
 import io.ace.nordclient.event.EventProcessor;
 import io.ace.nordclient.gui.ClickGUI2;
-import io.ace.nordclient.gui.Frame;
-import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.*;
 import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.exploit.*;
@@ -22,7 +20,6 @@ import io.ace.nordclient.utilz.TpsUtils;
 import io.ace.nordclient.utilz.configz.ConfigUtils;
 import io.ace.nordclient.utilz.configz.ShutDown;
 import io.ace.nordclient.utilz.font.CFontRenderer;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -31,22 +28,14 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
-import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor;
-import oshi.hardware.HardwareAbstractionLayer;
 import team.stiff.pomelo.EventManager;
 import team.stiff.pomelo.impl.annotated.AnnotatedEventManager;
 
-import java.awt.*;
 import java.awt.Font;
 import java.lang.management.ManagementFactory;
 import java.net.MalformedURLException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.UUID;
 
 @Mod(modid = CousinWare.MODID, name = CousinWare.NAME, version = CousinWare.VERSION)
 public class CousinWare
@@ -184,10 +173,10 @@ public class CousinWare
         HackManager.addHack(new Criticals());
         HackManager.addHack(new CrystalAura());
         HackManager.addHack(new FastXp());
-        HackManager.addHack(new PistonAura());
         HackManager.addHack(new PistonAura2());
         HackManager.addHack(new SpeedMine());
         HackManager.addHack(new Surround());
+        HackManager.addHack(new WebFiller());
         //exploit
         HackManager.addHack(new AutoMinecartRefill());
         HackManager.addHack(new LagBar());
@@ -203,6 +192,7 @@ public class CousinWare
         HackManager.addHack(new ChatSuffix());
         HackManager.addHack(new DonkeyAlert());
         HackManager.addHack(new EnchantColor());
+        HackManager.addHack(new FakePlayer());
         HackManager.addHack(new FancyChat());
         HackManager.addHack(new LogoutCoords());
         HackManager.addHack(new MCF());

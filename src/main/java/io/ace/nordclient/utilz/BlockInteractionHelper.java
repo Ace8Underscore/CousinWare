@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -26,6 +27,7 @@ import java.util.List;
 
 public class BlockInteractionHelper
 {
+
     public static final List<Block> blackList;
     public static final List<Block> shulkerList;
     private static final Minecraft mc;
@@ -58,6 +60,24 @@ public class BlockInteractionHelper
         }
     }
 
+    public static void placeBlockScaffoldPiston(final BlockPos pos) {
+        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
+        for (final EnumFacing side : EnumFacing.values()) {
+            final BlockPos neighbor = pos.offset(side);
+            final EnumFacing side2 = side.getOpposite();
+            if (canBeClicked(neighbor)) {
+                final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.9, 0.1, 0.9).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+                if (eyesPos.squareDistanceTo(hitVec) <= 18.0625) {
+                    faceVectorPacketInstant(hitVec);
+                    processRightClickBlock(neighbor, side2, hitVec);
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
+                    //mc.rightClickDelayTimer = 4;
+                    return;
+                }
+            }
+        }
+    }
+
     public static void placeBlockScaffoldNoRotate(final BlockPos pos) {
         final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
         for (final EnumFacing side : EnumFacing.values()) {
@@ -69,6 +89,21 @@ public class BlockInteractionHelper
                     mc.player.swingArm(EnumHand.MAIN_HAND);
                     //mc.rightClickDelayTimer = 4;
                     return;
+
+            }
+        }
+    }
+    public static void placeBlockScaffoldNoRotateOffHand(final BlockPos pos) {
+        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
+        for (final EnumFacing side : EnumFacing.values()) {
+            final BlockPos neighbor = pos.offset(side);
+            final EnumFacing side2 = side.getOpposite();
+            if (canBeClicked(neighbor)) {
+                final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+                processRightClickBlock(neighbor, side2, hitVec);
+                mc.player.swingArm(EnumHand.OFF_HAND);
+                //mc.rightClickDelayTimer = 4;
+                return;
 
             }
         }

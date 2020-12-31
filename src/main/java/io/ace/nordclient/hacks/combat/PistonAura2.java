@@ -52,7 +52,7 @@ public class PistonAura2 extends Hack {
     private EntityPlayer closestTarget;
 
     public PistonAura2() {
-        super("PistonAura2", Category.COMBAT, 13632022);
+        super("PistonAura", Category.COMBAT, 13632022);
         ArrayList<String> modes = new ArrayList<String>();
         modes.add("RedstoneBlock");
         modes.add("RedstoneTorch");

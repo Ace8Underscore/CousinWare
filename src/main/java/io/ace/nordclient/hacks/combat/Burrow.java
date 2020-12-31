@@ -53,7 +53,6 @@ public class Burrow extends Hack {
             BlockInteractionHelper.placeBlockScaffold(pos);
             if (!mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
                 mc.player.motionY = lagBackPower.getValDouble();
-                //mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY - 1, mc.player.posZ, true));
                 mc.player.inventory.currentItem = startingHand;
                     this.toggle();
                 }

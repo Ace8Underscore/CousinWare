@@ -58,23 +58,17 @@ public class HoleESP extends Hack {
                 return;
             if (HoleUtil.isBedrockHole(block)) {
                 NordTessellator.prepare(7);
-                NordTessellator.drawFace(block, rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt(), 1);
+                NordTessellator.drawBoxBottom(block, rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt());
                 NordTessellator.release();
-                NordTessellator.prepare(7);
                 NordTessellator.drawBoundingBoxBottomBlockPos(block, width.getValInt(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), outlineAlpha.getValInt());
-                NordTessellator.release();
-                //NordTessellator.drawBoundingBoxBlockPos(block, 2, rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt());
             }
             if (HoleUtil.isObiHole(block)) {
                 NordTessellator.prepare(7);
-                NordTessellator.drawFace(block, rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt(), 1);
+                NordTessellator.drawBoxBottom(block, rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
                 NordTessellator.release();
-                NordTessellator.prepare(7);
                 NordTessellator.drawBoundingBoxBottomBlockPos(block, width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
-                NordTessellator.release();            }
-            if (HoleUtil.isHole(block))  {
-               // NordTessellator.drawBoundingBoxBlockPos(block, 2, 255, 0, 255, 255);
             }
+//
         }
 
     }

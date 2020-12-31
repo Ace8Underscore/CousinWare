@@ -52,12 +52,8 @@ public class ElytraFly extends Hack {
         if (mc.player.isElytraFlying() && !mc.gameSettings.keyBindSneak.isKeyDown()) {
             final float yaw = GetRotationYawForCalc();
             if (flyMode.getValString().equalsIgnoreCase("2b")) {
-                if (mc.player.rotationPitch > 0) {
-                    mc.player.motionX -= MathHelper.sin(yaw) * .18 / 10;
-                    mc.player.motionZ += MathHelper.cos(yaw) * .18 / 10;
+                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
 
-
-                }
             }
 
             if (flyMode.getValString().equalsIgnoreCase("plane")) {

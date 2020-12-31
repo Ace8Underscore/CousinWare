@@ -74,8 +74,28 @@ public class FastWeb extends Hack {
             if (downMode.getValString().equalsIgnoreCase("Timer")) {
                 delay++;
                 if (delay > 1) {
-                    //mc.player.motionY *= 3.25;
+                    mc.player.motionY *= 2.25;
                    // mc.player.motionY *= 27.3;
+
+                }
+                if (delay > 2) {
+                    mc.player.motionY *= 3.25;
+                    // mc.player.motionY *= 27.3;
+
+                }
+                if (delay > 3) {
+                    mc.player.motionY *= 2.25;
+                    // mc.player.motionY *= 27.3;
+                    delay = 0;
+                }
+                if (delay > 4) {
+                    //mc.player.motionY *= 5.25;
+                    // mc.player.motionY *= 27.3;
+
+                }
+                if (delay > 5) {
+                    //mc.player.motionY *= 6.25;
+                    // mc.player.motionY *= 27.3;
                     delay = 0;
                 }
 

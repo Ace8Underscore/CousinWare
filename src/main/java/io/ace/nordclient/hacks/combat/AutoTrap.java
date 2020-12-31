@@ -30,9 +30,12 @@ public class AutoTrap extends Hack {
     int delay = 0;
     int delayToggle = 0;
     int startingHand;
+    int obsidianSlot = 0;
     Setting placeRange;
     Setting placeDelay;
     Setting toggleTicks;
+
+    boolean packetsBeingSent;
 
     public AutoTrap() {
         super("AutoTrap", Category.COMBAT, 13648212);
@@ -57,7 +60,12 @@ public class AutoTrap extends Hack {
                         if (delay >= placeDelay.getValInt()) {
                             BlockPos pos = new BlockPos(e.getPositionVector().add(placeEast[i]));
                             if (mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
+                                mc.player.inventory.currentItem = obsidianSlot;
                                 BlockInteractionHelper.placeBlockScaffold(pos);
+                                //lookAtPacket(pos.x + .5, pos.y - .5, pos.z + .5, mc.player);
+                                //BlockInteractionHelper.placeBlockScaffoldNoRotate(pos);
+                                //resetRotation();
+                                mc.player.inventory.currentItem = startingHand;
                                 delay = 0;
 
                             }
@@ -69,16 +77,35 @@ public class AutoTrap extends Hack {
         if (delayToggle >= toggleTicks.getValInt()) {
             this.toggle();
         }
+        if (!packetsBeingSent) {
+            Command.sendClientSideMessage("Sending Packet");
+            mc.player.connection.sendPacket(new CPacketPlayer(mc.player.onGround));
+            packetsBeingSent = true;
+        }
+    }
+
+    @Listener
+    public void onUpdate(PacketEvent.Send event) {
+        if (event.getPacket() instanceof CPacketPlayer) {
+            if (isSpoofingAngles) {
+                ((ICPacketPlayer) event.getPacket()).setYaw((float) yaw);
+                ((ICPacketPlayer) event.getPacket()).setPitch((float) pitch);
+            }
+        } else if (isSpoofingAngles) {
+        packetsBeingSent = false;
+
+        }
     }
     public void onEnable() {
         startingHand = mc.player.inventory.currentItem;
         delayToggle = 0;
         delay = 0;
+        packetsBeingSent = true;
         int obsidianHand = InventoryUtil.findBlockInHotbar(Blocks.OBSIDIAN);
         if (obsidianHand == -1) {
             Command.sendClientSideMessage("No Obsidian Toggling!");
         } else {
-            mc.player.inventory.currentItem = obsidianHand;
+            obsidianSlot = obsidianHand;
         }
         int var24 = MathHelper.floor((double) (Minecraft.getMinecraft().player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
@@ -108,6 +135,54 @@ public class AutoTrap extends Hack {
     public void onDisable() {
         mc.player.inventory.currentItem = startingHand;
 
+    }
+
+    private void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
+        double[] v = calculateLookAt(px, py, pz, me);
+        setYawAndPitch((float) v[0], (float) v[1]);
+    }
+
+
+    private static boolean isSpoofingAngles;
+    private static double yaw;
+    private static double pitch;
+
+    //this modifies packets being sent so no extra ones are made. NCP used to flag with "too many packets"
+    private static void setYawAndPitch(float yaw1, float pitch1) {
+        yaw = yaw1;
+        pitch = pitch1;
+        isSpoofingAngles = true;
+    }
+
+    private static void resetRotation() {
+        if (isSpoofingAngles) {
+            yaw = mc.player.rotationYaw;
+            pitch = mc.player.rotationPitch;
+            isSpoofingAngles = false;
+        }
+    }
+
+    public static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
+        double dirx = me.posX - px;
+        double diry = me.posY - py;
+        double dirz = me.posZ - pz;
+
+        double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
+
+        dirx /= len;
+        diry /= len;
+        dirz /= len;
+
+        double pitch = Math.asin(diry);
+        double yaw = Math.atan2(dirz, dirx);
+
+        //to degree
+        pitch = pitch * 180.0d / Math.PI;
+        yaw = yaw * 180.0d / Math.PI;
+
+        yaw += 90f;
+
+        return new double[]{yaw,pitch};
     }
 
 
