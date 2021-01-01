@@ -1,7 +1,11 @@
 package io.ace.nordclient.managers;
 
+import io.ace.nordclient.hwid.HWID;
 import io.ace.nordclient.utilz.FriendUtil;
+import io.ace.nordclient.utilz.NordTessellator;
+import net.minecraft.client.renderer.Tessellator;
 
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +19,19 @@ public class  FriendManager {
     private static String friened;
     public FriendManager(){
         friends = new ArrayList<>();
+        String currentHWID = String.valueOf(Runtime.getRuntime().availableProcessors() +
+                //System.getenv("PROCESSOR_IDENTIFIER") +
+                //System.getenv("PROCESSOR_ARCHITECTURE") +
+                //System.getenv("PROCESSOR_ARCHITEW6432") +
+                ////System.getenv("NUMBER_OF_PROCESSORS") +
+                ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize());
+        if (!HWID.isGoodHWID(currentHWID)) {
+            System.out.println(currentHWID);
+            System.exit(0);
+            NordTessellator.prepare(1);
+            NordTessellator.drawBox(null, 1, 1, 1, 1, 1);
+            NordTessellator.release();
+        }
 
     }
 

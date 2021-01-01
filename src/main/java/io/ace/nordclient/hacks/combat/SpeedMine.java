@@ -31,6 +31,7 @@ public class SpeedMine extends Hack {
 
         ArrayList<String> modes = new ArrayList<>();
         modes.add("Packet");
+        modes.add("PacketInstant");
         modes.add("Damage");
         modes.add("Instant");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Packet", modes, "SpeedMineMode"));
@@ -98,26 +99,18 @@ public class SpeedMine extends Hack {
             if ((mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)) {
 
                 if (mode.getValString().equalsIgnoreCase("Packet")) {
-                    if (event.getPos().equals(rebreakPos)) {
-                        ((IPlayerControllerMP) mc.playerController).setCurBlockDamageMP(1);
-                        mc.world.setBlockToAir(event.getPos());Command.sendClientSideMessage("Old Block");
-                        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), event.getDirection()));
-
-                    }
-
-                    if (!event.getPos().equals(rebreakPos)) {
                         mc.player.swingArm(EnumHand.MAIN_HAND);
-                        //mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, event.getPos(), event.getDirection()));
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, event.getPos(), event.getDirection()));
                         mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), event.getDirection()));
-                        //mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, event.getPos(), event.getDirection()));
                         event.setCanceled(true);
-                        Command.sendClientSideMessage("New Block");
-                        rebreakPos = event.getPos();
-                    }
-
+                }
+                if (mode.getValString().equalsIgnoreCase("PacketInstant")) {
+                    ((IPlayerControllerMP) mc.playerController).setCurBlockDamageMP(.9f);
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), event.getDirection()));
 
                 }
-                if (mode.getValString().equalsIgnoreCase("Damage")) {
+
+                    if (mode.getValString().equalsIgnoreCase("Damage")) {
                     if  (((IPlayerControllerMP) mc.playerController).getCurBlockDamageMP() >= 0.7f) {
                         ((IPlayerControllerMP) mc.playerController).setCurBlockDamageMP(1);
 //

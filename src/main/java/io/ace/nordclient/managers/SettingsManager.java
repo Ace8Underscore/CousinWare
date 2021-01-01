@@ -1,8 +1,11 @@
 package io.ace.nordclient.managers;
 
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.hwid.HWID;
+import io.ace.nordclient.utilz.NordTessellator;
 import io.ace.nordclient.utilz.Setting;
 
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 
 
@@ -19,6 +22,7 @@ public class SettingsManager {
 
     public SettingsManager(){
         this.settings = new ArrayList<>();
+
     }
 
     public void rSetting(Setting in){

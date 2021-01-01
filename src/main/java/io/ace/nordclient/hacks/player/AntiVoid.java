@@ -24,7 +24,8 @@ public class AntiVoid extends Hack {
     public AntiVoid() {
         super("AntiVoid", Category.PLAYER, 8263634);
         ArrayList<String> downModes = new ArrayList<>();
-        downModes.add("lagBack");
+        downModes.add("LagBack");
+        downModes.add("LagBackStrict");
         downModes.add("Float");
         CousinWare.INSTANCE.settingsManager.rSetting(downMode = new Setting("Mode", this, "lagBack", downModes, "AntiVoidDownMode"));
 
@@ -39,6 +40,12 @@ public class AntiVoid extends Hack {
             Command.sendClientSideMessage("Attempting to get " + mc.player.getName() + " Out of the Void!");
              }
             }
+        if (downMode.getValString().equalsIgnoreCase("LagBackStrict")) {
+            if (yLevel <=.9) {
+                mc.player.jump();
+                Command.sendClientSideMessage("Attempting to get " + mc.player.getName() + " Out of the Void!");
+            }
+        }
         }
 
     @Listener
