@@ -7,10 +7,7 @@ import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.utilz.FontRenderUtil;
 import io.ace.nordclient.utilz.Setting;
 import io.ace.nordclient.utilz.TpsUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -36,8 +33,8 @@ public class Overlay extends Hack {
 
     public Overlay() {
         super("Overlay", Category.RENDER, 1687568);
-        CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 1000, false, "OverlayX"));
-        CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 530, 0, 1000, false, "OverlayY"));
+        CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 959, 0, 2000, false, "OverlayX"));
+        CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 530, 0, 2000, false, "OverlayY"));
         CousinWare.INSTANCE.settingsManager.rSetting(ping = new Setting("Ping", this, true, "OverlayPing"));
         CousinWare.INSTANCE.settingsManager.rSetting(server = new Setting("Server", this, true, "OverlayServer"));
         CousinWare.INSTANCE.settingsManager.rSetting(fps = new Setting("Fps", this, true, "OverlayFps"));

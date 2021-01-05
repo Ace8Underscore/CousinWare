@@ -2,26 +2,24 @@ package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.command.commands.Set;
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
-import io.ace.nordclient.utilz.BlockUtil;
 import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
+
+import java.util.List;
 
 public class AutoTrap extends Hack {
 
@@ -37,6 +35,8 @@ public class AutoTrap extends Hack {
 
     boolean packetsBeingSent;
 
+    private EntityPlayer closestTarget;
+
     public AutoTrap() {
         super("AutoTrap", Category.COMBAT, 13648212);
         CousinWare.INSTANCE.settingsManager.rSetting(placeRange = new Setting("PlaceRange", this, 5.5, 0, 8, false, "AutoTrapPlaceRange"));
@@ -46,6 +46,7 @@ public class AutoTrap extends Hack {
     }
 
     public void onUpdate() {
+        if (closestTarget == null) return;
         delay++;
         delayToggle++;
         Vec3d[] placeEast = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(1, 2, 0), new Vec3d(0, 2, 0)};
@@ -53,24 +54,18 @@ public class AutoTrap extends Hack {
         Vec3d[] placeSouth = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(0, 2, 1), new Vec3d(0, 2, 0)};
         Vec3d[] placeNorth = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(0, 2, -1), new Vec3d(0, 2, 0)};
 
-        for (int i = 0; i < 14; i += 1) {
-            for (Entity e : mc.world.getLoadedEntityList()) {
-                if (e instanceof EntityPlayer) {
-                    if (mc.player.getDistance(e) <= placeRange.getValDouble() && !e.getName().equalsIgnoreCase(mc.player.getName()) && !FriendManager.isFriend(e.getName())) {
-                        if (delay >= placeDelay.getValInt()) {
-                            BlockPos pos = new BlockPos(e.getPositionVector().add(placeEast[i]));
-                            if (mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
-                                mc.player.inventory.currentItem = obsidianSlot;
-                                BlockInteractionHelper.placeBlockScaffold(pos);
-                                //lookAtPacket(pos.x + .5, pos.y - .5, pos.z + .5, mc.player);
-                                //BlockInteractionHelper.placeBlockScaffoldNoRotate(pos);
-                                //resetRotation();
-                                mc.player.inventory.currentItem = startingHand;
-                                delay = 0;
+        for (Vec3d vec3d : placeEast) {
+            if (delay >= placeDelay.getValInt()) {
+                BlockPos pos = new BlockPos(closestTarget.getPositionVector().add(vec3d));
+                if (mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
+                    mc.player.inventory.currentItem = obsidianSlot;
+                    BlockInteractionHelper.placeBlockScaffold(pos);
+                    //lookAtPacket(pos.x + .5, pos.y - .5, pos.z + .5, mc.player);
+                    //BlockInteractionHelper.placeBlockScaffoldNoRotate(pos);
+                    //resetRotation();
+                    mc.player.inventory.currentItem = startingHand;
+                    delay = 0;
 
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -97,6 +92,7 @@ public class AutoTrap extends Hack {
         }
     }
     public void onEnable() {
+        findClosestTarget();
         startingHand = mc.player.inventory.currentItem;
         delayToggle = 0;
         delay = 0;
@@ -184,6 +180,31 @@ public class AutoTrap extends Hack {
 
         return new double[]{yaw,pitch};
     }
+    private void findClosestTarget() {
+        final List<EntityPlayer> playerList = (List<EntityPlayer>)mc.world.playerEntities;
+        this.closestTarget = null;
+        for (final EntityPlayer target : playerList) {
+            if (target == mc.player) {
+                continue;
+            }
+            if (FriendManager.isFriend(target.getName())) {
+                continue;
+            }
+            if (target.getHealth() <= 0.0f) {
+                continue;
+            }
+            if (this.closestTarget == null) {
+                this.closestTarget = target;
+            }
+            else {
+                if (mc.player.getDistance((Entity)target) >= mc.player.getDistance((Entity)this.closestTarget)) {
+                    continue;
+                }
+                this.closestTarget = target;
+            }
+        }
+    }
+
 
 
 }

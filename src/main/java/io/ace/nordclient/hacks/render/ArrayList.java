@@ -38,8 +38,8 @@ public class ArrayList extends Hack {
     public ArrayList() {
         super("ArrayList", Category.RENDER, 29700);
         this.drawn = true;
-        CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 1, 0, 1000, false, "ArrayListX"));
-        CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 3, 0, 1000, false, "ArrayListY"));
+        CousinWare.INSTANCE.settingsManager.rSetting(x = new Setting("x", this, 1, 0, 2000, false, "ArrayListX"));
+        CousinWare.INSTANCE.settingsManager.rSetting(y = new Setting("y", this, 3, 0, 2000, false, "ArrayListY"));
 
         java.util.ArrayList<String> sideModes = new java.util.ArrayList<>();
         sideModes.add("Left");

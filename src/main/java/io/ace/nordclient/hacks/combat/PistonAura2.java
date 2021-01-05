@@ -9,20 +9,16 @@ import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.network.play.client.*;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PistonAura2 extends Hack {
 
@@ -49,6 +45,8 @@ public class PistonAura2 extends Hack {
     Setting strict;
     Setting check;
     Setting lagComp;
+    Setting pistonRotate;
+
     private EntityPlayer closestTarget;
 
     public PistonAura2() {
@@ -63,6 +61,7 @@ public class PistonAura2 extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(strict = new Setting("StrictPlace", this, false, "PistonAura2Strict"));
         CousinWare.INSTANCE.settingsManager.rSetting(check = new Setting("Check", this, true, "PistonAura2Check"));
         CousinWare.INSTANCE.settingsManager.rSetting(lagComp = new Setting("LagComp", this, 1, 0, 20, true, "PistonAura2LagComp"));
+        CousinWare.INSTANCE.settingsManager.rSetting(pistonRotate = new Setting("PistonRotate", this, true, "PistonAura2Rotate"));
     }
 
     public void onUpdate() {
@@ -81,7 +80,8 @@ public class PistonAura2 extends Hack {
                         lookAtPacket(placePistonPos.west().getX(), placePistonPos.west().west().getY(), placePistonPos.west().west().getZ(), mc.player);
                     }
                     mc.player.connection.sendPacket(new CPacketPlayer.Rotation((int) yaw, (int) pitch, mc.player.onGround));
-                    BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
+                    if (pistonRotate.getValBoolean()) BlockInteractionHelper.placeBlockScaffold(placePistonPos);
+                    else BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
                     delay = 0;
                 }
                 if (getPistonPlaceDirection(closestTarget, placePistonPos) == EnumFacing.WEST) {
@@ -91,7 +91,8 @@ public class PistonAura2 extends Hack {
                         lookAtPacket(placePistonPos.east().east().getX(), placePistonPos.east().getY(), placePistonPos.east().east().getZ(), mc.player);
                     }
                     mc.player.connection.sendPacket(new CPacketPlayer.Rotation((int) yaw, (int) pitch, mc.player.onGround));
-                    BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
+                    if (pistonRotate.getValBoolean()) BlockInteractionHelper.placeBlockScaffold(placePistonPos);
+                    else BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
                     delay = 0;
                 }
                 if (getPistonPlaceDirection(closestTarget, placePistonPos) == EnumFacing.SOUTH) {
@@ -101,7 +102,8 @@ public class PistonAura2 extends Hack {
                         lookAtPacket(placePistonPos.north().north().getX(), placePistonPos.north().getY(), placePistonPos.north().north().getZ(), mc.player);
                     }
                     mc.player.connection.sendPacket(new CPacketPlayer.Rotation((int) yaw, (int) pitch, mc.player.onGround));
-                    BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
+                    if (pistonRotate.getValBoolean()) BlockInteractionHelper.placeBlockScaffold(placePistonPos);
+                    else BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
                     delay = 0;
                 }
                 if (getPistonPlaceDirection(closestTarget, placePistonPos) == EnumFacing.NORTH) {
@@ -111,7 +113,8 @@ public class PistonAura2 extends Hack {
                         lookAtPacket(placePistonPos.south().south().getX(), placePistonPos.south().getY(), placePistonPos.south().south().getZ(), mc.player);
                     }
                     mc.player.connection.sendPacket(new CPacketPlayer.Rotation((int) yaw, (int) pitch, mc.player.onGround));
-                    BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
+                    if (pistonRotate.getValBoolean()) BlockInteractionHelper.placeBlockScaffold(placePistonPos);
+                    else BlockInteractionHelper.placeBlockScaffoldNoRotate(placePistonPos);
                     delay = 0;
                 }
             }
@@ -259,7 +262,6 @@ public class PistonAura2 extends Hack {
                 this.disable();
             } else {
                 redstoneSlot = InventoryUtil.findBlockInHotbar(Blocks.REDSTONE_TORCH);
-                //
             }
         } else {
             if (InventoryUtil.findBlockInHotbar(Blocks.REDSTONE_BLOCK) == -1) {
@@ -328,4 +330,4 @@ public class PistonAura2 extends Hack {
         return face;
     }
 }
-
+//

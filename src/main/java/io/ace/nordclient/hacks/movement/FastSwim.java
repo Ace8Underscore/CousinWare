@@ -19,7 +19,7 @@ public class FastSwim extends Hack {
 
     }
     int divider = 5;
-    boolean only2b = true;
+    boolean only2b = false;
     boolean sprint = true;
     boolean water = false;
     boolean lava = true;

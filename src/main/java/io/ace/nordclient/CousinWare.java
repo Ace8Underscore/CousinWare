@@ -4,14 +4,16 @@ import io.ace.nordclient.command.commands.*;
 import io.ace.nordclient.event.EventLaunch;
 import io.ace.nordclient.event.EventProcessor;
 import io.ace.nordclient.gui.ClickGUI2;
-import io.ace.nordclient.hacks.client.*;
+import io.ace.nordclient.hacks.client.ClickGuiHack;
+import io.ace.nordclient.hacks.client.ClickGuiHudHack;
+import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.hacks.combat.*;
 import io.ace.nordclient.hacks.exploit.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
 import io.ace.nordclient.hacks.player.*;
-import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.hacks.render.Crystal;
+import io.ace.nordclient.hacks.render.*;
 import io.ace.nordclient.hud.ClickGuiHUD;
 import io.ace.nordclient.hud.hudcomponets.*;
 import io.ace.nordclient.hwid.HWID;
@@ -42,7 +44,7 @@ public class CousinWare
 {
     public static final String MODID = "cousinware";
     public static final String NAME = "CousinWare";
-    public static final String VERSION = "v1.5.3";
+    public static final String VERSION = "v1.5.4";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -63,10 +65,10 @@ public class CousinWare
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) throws MalformedURLException {
-        Display.setTitle("CousinWare " + "Christmas Edition");
+        Display.setTitle("CousinWare " + VERSION);
         hwid = new HWID();
 
-
+//
     }
 
     @Mod.EventHandler
@@ -173,9 +175,11 @@ public class CousinWare
         HackManager.addHack(new Criticals());
         HackManager.addHack(new CrystalAura());
         HackManager.addHack(new FastXp());
+        HackManager.addHack(new HoleFiller());
         HackManager.addHack(new PistonAura2());
         HackManager.addHack(new SpeedMine());
         HackManager.addHack(new Surround());
+        HackManager.addHack(new Surround2());
         HackManager.addHack(new WebFiller());
         //exploit
         HackManager.addHack(new AutoMinecartRefill());
@@ -226,12 +230,14 @@ public class CousinWare
         HackManager.addHack(new NoSlow2b());
         HackManager.addHack(new PacketCanceller());
         HackManager.addHack(new Scaffold());
+        HackManager.addHack(new Timer());
         //render
         HackManager.addHack(new AntiFog());
         HackManager.addHack(new io.ace.nordclient.hacks.render.ArrayList());
         HackManager.addHack(new BlockHighlight());
         HackManager.addHack(new ClientName());
         HackManager.addHack(new Crystal());
+        HackManager.addHack(new FOVchanger());
         HackManager.addHack(new FriendTab());
         HackManager.addHack(new FullBright());
         HackManager.addHack(new HoleESP());

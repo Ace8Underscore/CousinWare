@@ -21,6 +21,7 @@ public abstract class MixinCPacketPlayer implements ICPacketPlayer {
     protected float pitch;
 
 
+
     @Shadow
     protected boolean onGround;
 

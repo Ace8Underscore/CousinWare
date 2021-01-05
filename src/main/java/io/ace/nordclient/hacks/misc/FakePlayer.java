@@ -23,6 +23,8 @@ public class FakePlayer extends Hack {
     }
 
     public void onDisable() {
-        mc.world.removeEntity(entity);
+        if (mc.world.loadedEntityList.contains(entity)) {
+            mc.world.removeEntity(entity);
+        }
     }
 }

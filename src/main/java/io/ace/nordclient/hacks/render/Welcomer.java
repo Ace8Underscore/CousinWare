@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class Welcomer extends Hack {
@@ -40,6 +39,7 @@ public class Welcomer extends Hack {
         if (time > 11 && time <= 18) timeMessage = "Good Afternoon ";
         if (time > 18 && time < 24) timeMessage = "Good Night ";
         if (rainbow.getValBoolean()) RainbowUtil.settingRainbow(r, g, b);
+        //
 
 
         if (!Core.customFont.getValBoolean()) mc.fontRenderer.drawStringWithShadow(timeMessage + mc.player.getName(), (sr.getScaledWidth() - mc.fontRenderer.getStringWidth(timeMessage + mc.player.getName())) / 2, 0, c.getRGB());

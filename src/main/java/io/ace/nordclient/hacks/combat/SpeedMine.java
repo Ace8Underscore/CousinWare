@@ -1,7 +1,6 @@
 package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.EventPlayerClickBlock;
 import io.ace.nordclient.event.EventPlayerDamageBlock;
 import io.ace.nordclient.event.EventPlayerResetBlockRemoving;
@@ -27,7 +26,7 @@ public class SpeedMine extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(reset = new Setting("Reset", this, true, "SpeedMineReset"));
         CousinWare.INSTANCE.settingsManager.rSetting(fastFall = new Setting("FastFall", this, false, "SpeedMineFastFall"));
         CousinWare.INSTANCE.settingsManager.rSetting(doubleBreak = new Setting("DoubleBreak", this, true, "SpeedMineDoubleBreak"));
-
+        CousinWare.INSTANCE.settingsManager.rSetting(onlyPic = new Setting("OnlyPic", this, true, "SpeedMineOnlyPic"));
 
         ArrayList<String> modes = new ArrayList<>();
         modes.add("Packet");
@@ -42,6 +41,7 @@ public class SpeedMine extends Hack {
     Setting reset;
     Setting fastFall;
     Setting doubleBreak;
+    Setting onlyPic;
     BlockPos rebreakPos = null;
 
     @Override
@@ -80,7 +80,7 @@ public class SpeedMine extends Hack {
             }
         }
     }
-
+//
 
     @Listener
     public void damageBlock(EventPlayerDamageBlock event) {
@@ -96,7 +96,7 @@ public class SpeedMine extends Hack {
                 mc.playerController.onPlayerDestroyBlock(event.getPos());
                 mc.world.setBlockToAir(event.getPos());
             }
-            if ((mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)) {
+            if (onlyPic.getValBoolean() && (mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe)) {
 
                 if (mode.getValString().equalsIgnoreCase("Packet")) {
                         mc.player.swingArm(EnumHand.MAIN_HAND);
@@ -119,6 +119,28 @@ public class SpeedMine extends Hack {
                 }
 
             }
+            if (!onlyPic.getValBoolean()) {
+                if (mode.getValString().equalsIgnoreCase("Packet")) {
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, event.getPos(), event.getDirection()));
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), event.getDirection()));
+                    event.setCanceled(true);
+                }
+                if (mode.getValString().equalsIgnoreCase("PacketInstant")) {
+                    ((IPlayerControllerMP) mc.playerController).setCurBlockDamageMP(.9f);
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), event.getDirection()));
+
+                }
+
+                if (mode.getValString().equalsIgnoreCase("Damage")) {
+                    if  (((IPlayerControllerMP) mc.playerController).getCurBlockDamageMP() >= 0.7f) {
+                        ((IPlayerControllerMP) mc.playerController).setCurBlockDamageMP(1);
+//
+                    }
+
+                }
+
+            }
 
 
             if (this.doubleBreak.getValBoolean()) {
@@ -126,10 +148,8 @@ public class SpeedMine extends Hack {
 
                 if (canBreak(above) && mc.player.getDistance(above.getX(), above.getY(), above.getZ()) <= 5f) {
                     mc.player.swingArm(EnumHand.MAIN_HAND);
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(
-                            CPacketPlayerDigging.Action.START_DESTROY_BLOCK, above, event.getDirection()));
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK,
-                            above, event.getDirection()));
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, above, event.getDirection()));
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, above, event.getDirection()));
                     mc.playerController.onPlayerDestroyBlock(above);
                     mc.world.setBlockToAir(above);
                 }
