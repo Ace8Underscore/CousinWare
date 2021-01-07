@@ -29,19 +29,22 @@ public class Burrow extends Hack {
     boolean blockPlaced;
     boolean noForce;
     int startingHand;
+    double startingY;
+    int useItem;
 
     Setting delay;
     Setting lagBackPower;
     Setting noForceRotate;
     Setting blockMode;
     Setting lagMode;
+    Setting noJump;
 
 
 
     public Burrow() {
         super("Burrow", Category.COMBAT, 5254300);
-        CousinWare.INSTANCE.settingsManager.rSetting(delay = new Setting("Delay", this, 4, 4, 8, true, "BurrowDelay"));
-        CousinWare.INSTANCE.settingsManager.rSetting(lagBackPower = new Setting("LagBackPower", this,1, .5,3, true, "BurrowLagBack"));
+        CousinWare.INSTANCE.settingsManager.rSetting(delay = new Setting("Delay", this, 4, 0, 8, true, "BurrowDelay"));
+        CousinWare.INSTANCE.settingsManager.rSetting(lagBackPower = new Setting("LagBackPower", this,1, .5,10, true, "BurrowLagBack"));
         CousinWare.INSTANCE.settingsManager.rSetting(noForceRotate = new Setting("NoForceRotate", this, true, "BurrowNoForceRotate"));
         ArrayList<String> blockModes = new ArrayList<>();
         blockModes.add("Obi");
@@ -51,6 +54,7 @@ public class Burrow extends Hack {
         lagModes.add("Packet");
         lagModes.add("Fly");
         CousinWare.INSTANCE.settingsManager.rSetting(lagMode = new Setting("LagMode", this, "Packet", lagModes, "BurrowLagMode"));
+        CousinWare.INSTANCE.settingsManager.rSetting(noJump = new Setting("NoJump", this, true, "BurrowNoJump"));
 
     }
 
@@ -58,16 +62,26 @@ public class Burrow extends Hack {
     public void onUpdate() {
         if (mc.player == null || mc.world == null) this.disable();
         delayPlace++;
+        if (noJump.getValBoolean()) mc.player.posY = startingY;
         if (delayPlace >= delay.getValInt() && !noForce) {
             BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
-            BlockInteractionHelper.placeBlockScaffold(pos);
+            if (noJump.getValBoolean()) {
+                mc.player.posY = startingY;
+                mc.player.inventory.currentItem = useItem;
+                BlockInteractionHelper.placeBlockScaffold(pos.up());
+                mc.player.inventory.currentItem = startingHand;
+            } else  {
+                mc.player.posY = startingY;
+                mc.player.inventory.currentItem = useItem;
+                BlockInteractionHelper.placeBlockScaffold(pos);
+                mc.player.inventory.currentItem = startingHand;
+            }
             if (!mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
                 if (lagMode.getValString().equalsIgnoreCase("Fly")) {
                     mc.player.motionY = lagBackPower.getValDouble();
                 } else {
                     mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + lagBackPower.getValDouble(), mc.player.posZ, mc.player.onGround));
                 }
-                mc.player.inventory.currentItem = startingHand;
                 if (!noForceRotate.getValBoolean()) this.disable();
 
                 }
@@ -75,13 +89,14 @@ public class Burrow extends Hack {
         }
 
     public void onEnable() {
+        startingY = mc.player.posY;
         startingHand = mc.player.inventory.currentItem;
         if (blockMode.getValString().equalsIgnoreCase("Obi")) {
             if (InventoryUtil.findBlockInHotbar(Blocks.OBSIDIAN) == -1) {
                 Command.sendClientSideMessage("No Obsidian Found");
-                this.toggle();
+                this.disable();
             } else {
-                mc.player.inventory.currentItem = InventoryUtil.findBlockInHotbar(Blocks.OBSIDIAN);
+                useItem = InventoryUtil.findBlockInHotbar(Blocks.OBSIDIAN);
                 blockPlaced = false;
                 noForce = false;
                 mc.player.jump();
@@ -92,9 +107,9 @@ public class Burrow extends Hack {
         if (blockMode.getValString().equalsIgnoreCase("EChest")) {
             if (InventoryUtil.findBlockInHotbar(Blocks.ENDER_CHEST) == -1) {
                 Command.sendClientSideMessage("No EChest Found");
-                this.toggle();
+                this.disable();
             } else {
-                mc.player.inventory.currentItem = InventoryUtil.findBlockInHotbar(Blocks.ENDER_CHEST);
+                useItem = InventoryUtil.findBlockInHotbar(Blocks.ENDER_CHEST);
                 blockPlaced = false;
                 noForce = false;
                 mc.player.jump();
@@ -142,6 +157,7 @@ public class Burrow extends Hack {
             }
         }
     }
+    //
 
 }
 

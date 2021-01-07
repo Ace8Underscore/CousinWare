@@ -140,7 +140,8 @@ public class Hack {
         MISC,
         RENDER,
         CLIENT,
-        EXPLOIT
+        EXPLOIT,
+        GUI
     }
 }
 

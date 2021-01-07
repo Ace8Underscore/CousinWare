@@ -13,7 +13,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketPlayerDigging;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -32,6 +35,8 @@ public class AutoTrap extends Hack {
     Setting placeRange;
     Setting placeDelay;
     Setting toggleTicks;
+    Setting noGhostBlocks;
+
 
     boolean packetsBeingSent;
 
@@ -42,6 +47,7 @@ public class AutoTrap extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(placeRange = new Setting("PlaceRange", this, 5.5, 0, 8, false, "AutoTrapPlaceRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(placeDelay = new Setting("PlaceDelay", this, 2, 0, 20, true, "AutoTrapPlaceDelay"));
         CousinWare.INSTANCE.settingsManager.rSetting(toggleTicks = new Setting("ToggleTicks", this, 8, 0, 20, true, "AutoTrapToggleTicks"));
+        CousinWare.INSTANCE.settingsManager.rSetting(noGhostBlocks = new Setting("NoGhostBlocks", this, true, "AutoTrapNoGhostBlocks"));
 
     }
 
@@ -57,13 +63,16 @@ public class AutoTrap extends Hack {
         for (Vec3d vec3d : placeEast) {
             if (delay >= placeDelay.getValInt()) {
                 BlockPos pos = new BlockPos(closestTarget.getPositionVector().add(vec3d));
-                if (mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
+                if (mc.world.mayPlace(Blocks.OBSIDIAN, pos, false, EnumFacing.UP, mc.player)) {
                     mc.player.inventory.currentItem = obsidianSlot;
+                    mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
                     BlockInteractionHelper.placeBlockScaffold(pos);
-                    //lookAtPacket(pos.x + .5, pos.y - .5, pos.z + .5, mc.player);
-                    //BlockInteractionHelper.placeBlockScaffoldNoRotate(pos);
-                    //resetRotation();
+                    mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                     mc.player.inventory.currentItem = startingHand;
+                    if (noGhostBlocks.getValBoolean()) {
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, pos, EnumFacing.SOUTH));
+                        mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, pos, EnumFacing.SOUTH));
+                    }
                     delay = 0;
 
                 }

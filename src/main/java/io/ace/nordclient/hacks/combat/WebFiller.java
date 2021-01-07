@@ -11,6 +11,8 @@ import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.CPacketPlayerDigging;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class WebFiller extends Hack {
     Setting rotate;
     Setting webMode;
     Setting toggleTicks;
+    Setting noGhostBlocks;
 
     int webSlot = -1;
     int startingSlot = 0;
@@ -42,6 +45,7 @@ public class WebFiller extends Hack {
         webModes.add("Enemy");
         CousinWare.INSTANCE.settingsManager.rSetting(webMode = new Setting("WebModes", this, "HoleFill", webModes, "WebFillerModes"));
         CousinWare.INSTANCE.settingsManager.rSetting(toggleTicks = new Setting("ToggleTicks", this, 10, 0, 60, true, "WebFilleToggleTicks"));
+        CousinWare.INSTANCE.settingsManager.rSetting(noGhostBlocks = new Setting("NoGhostBlocks", this, true, "WebFillerNoGhostBlocks"));
 
     }
 
@@ -68,6 +72,11 @@ public class WebFiller extends Hack {
                             BlockInteractionHelper.placeBlockScaffoldNoRotate(block);
                             mc.player.inventory.currentItem = startingSlot;
                             delay = 0;
+                        }
+                        if (noGhostBlocks.getValBoolean()) {
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, block, EnumFacing.SOUTH));
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, block, EnumFacing.SOUTH));
+
                         }
                         //Command.sendClientSideMessage(String.valueOf(delay));
                     }

@@ -8,6 +8,8 @@ import io.ace.nordclient.utilz.HoleUtil;
 import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.CPacketPlayerDigging;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
@@ -19,6 +21,7 @@ public class HoleFiller extends Hack {
     Setting sDelay;
     Setting rotate;
     Setting toggleTicks;
+    Setting noGhostBlocks;
 
     int delay = 0;
     int delayT = 0;
@@ -33,6 +36,7 @@ public class HoleFiller extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(rotate = new Setting("Rotate", this, true, "HoleFillerRotate"));
 
         CousinWare.INSTANCE.settingsManager.rSetting(toggleTicks = new Setting("ToggleTicks", this, 10, 0, 60, true, "HoleFilleToggleTicks"));
+        CousinWare.INSTANCE.settingsManager.rSetting(noGhostBlocks = new Setting("NoGhostBlocks", this, true, "HoleFillerNoGhostBlocks"));
 
     }
 
@@ -52,6 +56,11 @@ public class HoleFiller extends Hack {
                         if (rotate.getValBoolean()) BlockInteractionHelper.placeBlockScaffold(block);
                         else BlockInteractionHelper.placeBlockScaffoldNoRotate(block);
                         mc.player.inventory.currentItem = startingHand;
+                        if (noGhostBlocks.getValBoolean()) {
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, block, EnumFacing.SOUTH));
+                            mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, block, EnumFacing.SOUTH));
+
+                        }
                     }
                 }
             }
