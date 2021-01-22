@@ -1,12 +1,10 @@
 package io.ace.nordclient;
 
 import io.ace.nordclient.command.commands.*;
-import io.ace.nordclient.cousingui.CousinWareGui;
 import io.ace.nordclient.event.EventLaunch;
 import io.ace.nordclient.event.EventProcessor;
 import io.ace.nordclient.gui.ClickGUI2;
 import io.ace.nordclient.hacks.client.ClickGuiHack;
-import io.ace.nordclient.hacks.client.ClickGuiHack2;
 import io.ace.nordclient.hacks.client.ClickGuiHudHack;
 import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.hacks.combat.*;
@@ -56,7 +54,7 @@ public class CousinWare
     public ConfigUtils configUtils;
     public FriendManager friends;
     public SettingsManager settingsManager;
-    public CousinWareGui cousinWareGui;
+    //public CousinWareGui cousinWareGui;
     public ClickGUI2 clickGui2;
     public ClickGuiHUD clickGuiHUD;
     public CFontRenderer fontRenderer;
@@ -86,7 +84,7 @@ public class CousinWare
         loadHuds();
         loadHacks();
         fontRenderer = new CFontRenderer(new Font("Verdana", Font.CENTER_BASELINE, 17), true, false);
-        cousinWareGui = new CousinWareGui();
+        //cousinWareGui = new CousinWareGui();
         clickGui2 = new ClickGUI2();
         clickGuiHUD = new ClickGuiHUD();
         configUtils = new ConfigUtils();
@@ -166,7 +164,7 @@ public class CousinWare
         HackManager.hacks = new ArrayList<>();
         //client
         HackManager.addHack(new ClickGuiHack());
-        HackManager.addHack(new ClickGuiHack2());
+        //HackManager.addHack(new ClickGuiHack2());
         HackManager.addHack(new ClickGuiHudHack());
         HackManager.addHack(new Core());
         //combat

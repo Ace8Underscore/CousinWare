@@ -29,6 +29,7 @@ public class Step extends Hack {
         ArrayList<String> stepOns = new ArrayList<>();
         stepOns.add("Collide");
         stepOns.add("Jump");
+        stepOns.add("Vanilla");
         CousinWare.INSTANCE.settingsManager.rSetting(stepOn = new Setting("StepOn", this, "Collide", stepOns, "StepStepOns"));
 
         CousinWare.INSTANCE.settingsManager.rSetting(toggleOnStep = new Setting("ToggleStep", this, true, "StepToggleOnStop"));
@@ -45,6 +46,14 @@ public class Step extends Hack {
         if (stepOn.getValString().equalsIgnoreCase("jump") && mc.gameSettings.keyBindJump.isPressed()) {
             doVelocity();
         }
+        if (stepOn.getValString().equals("Vanilla")){
+            mc.player.stepHeight=mc.player.onGround?2.0f:0.6f;
+        }
+    }
+
+    @Override
+    public void onDisable(){
+        mc.player.stepHeight=0.6f;
     }
 
     public void doVelocity() {
