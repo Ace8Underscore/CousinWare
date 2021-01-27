@@ -20,6 +20,7 @@ public class ChatSuffix extends Hack {
         modes.add("2b2t");
         modes.add("CousinWare");
         modes.add("AceHack");
+        modes.add("Dungannon");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "2b2t", modes, "ChatSuffixModes"));
 
     }
@@ -37,6 +38,9 @@ public class ChatSuffix extends Hack {
             }
             if (mode.getValString().equalsIgnoreCase("CousinWare")) {
                 suffix = " \uFF5C \u1d04\u1d0f\u1d1c\ua731\u026a\u0274\u1d21\u1d00\u0280\u1d07";
+            }
+            if (mode.getValString().equalsIgnoreCase("Dungannon")) {
+                suffix = " \uFF5C \u1d05\u1d1c\u0274\u0262\u1d00\u0274\u0274\u1d0f\u0274";
             }
             String message = ((CPacketChatMessage) event.getPacket()).getMessage();
             if (!message.contains(suffix) && !message.startsWith("/") && !message.startsWith(Command.getClientPrefix())) {

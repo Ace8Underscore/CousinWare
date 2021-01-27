@@ -51,6 +51,7 @@ public class AutoTrap extends Hack {
 
     }
 
+    @Override
     public void onUpdate() {
         if (closestTarget == null) return;
         delay++;
@@ -100,6 +101,7 @@ public class AutoTrap extends Hack {
 
         }
     }
+    @Override
     public void onEnable() {
         findClosestTarget();
         startingHand = mc.player.inventory.currentItem;
@@ -137,6 +139,7 @@ public class AutoTrap extends Hack {
             //South
         }
     }
+    @Override
     public void onDisable() {
         mc.player.inventory.currentItem = startingHand;
 

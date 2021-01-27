@@ -1,12 +1,9 @@
 package io.ace.nordclient.utilz;
 
-import io.ace.nordclient.event.PacketEvent;
-import io.ace.nordclient.managers.RotationManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -19,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,15 +56,18 @@ public class BlockInteractionHelper
         }
     }
 
-    public static void placeBlockScaffoldPiston(final BlockPos pos) {
+    public static void placeBlockScaffoldPiston(final BlockPos pos, final BlockPos look) {
         final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
         for (final EnumFacing side : EnumFacing.values()) {
             final BlockPos neighbor = pos.offset(side);
+            final BlockPos neighborLook = look.offset(side);
             final EnumFacing side2 = side.getOpposite();
+            final EnumFacing side2Look = side.getOpposite();
             if (canBeClicked(neighbor)) {
                 final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.9, 0.1, 0.9).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+                final Vec3d hitVecLook = new Vec3d((Vec3i)neighborLook).add(0.9, 0.1, 0.9).add(new Vec3d(side2Look.getDirectionVec()).scale(0.5));
                 if (eyesPos.squareDistanceTo(hitVec) <= 18.0625) {
-                    faceVectorPacketInstant(hitVec);
+                    faceVectorPacketInstant(hitVecLook);
                     processRightClickBlock(neighbor, side2, hitVec);
                     mc.player.swingArm(EnumHand.MAIN_HAND);
                     //mc.rightClickDelayTimer = 4;
@@ -158,15 +157,6 @@ public class BlockInteractionHelper
     private static void setYawAndPitch(float yaw1, float pitch1) {
         yaw = yaw1;
         pitch = pitch1;
-    }
-
-    @Listener
-    public void onUpdate(PacketEvent.Send event) {
-        Packet packet = event.getPacket();
-        if (packet instanceof CPacketPlayer) {
-            ((CPacketPlayer) packet).yaw = (float) yaw;
-            ((CPacketPlayer) packet).pitch = (float) pitch;
-        }
     }
 
     private static float[] getLegitRotations(final Vec3d vec) {

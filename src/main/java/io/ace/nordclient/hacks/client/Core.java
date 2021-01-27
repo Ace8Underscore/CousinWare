@@ -12,6 +12,7 @@ public class Core extends Hack {
     public static Setting customFont;
     public static Setting antiAlias;
     public static Setting fractionalMetrics;
+    public static Setting essentials;
 
     public Core() {
         super("Core", Category.CLIENT, 10989199);
@@ -22,6 +23,7 @@ public class Core extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(customFont = new Setting("CustomFont", this, true, "CoreCustomFont"));
         CousinWare.INSTANCE.settingsManager.rSetting(antiAlias = new Setting("AntiAlias", this, true, "CoreAntiAlias"));
         CousinWare.INSTANCE.settingsManager.rSetting(fractionalMetrics = new Setting("FractionalMetrics", this, true, "CoreFractionalMetrics"));
+        CousinWare.INSTANCE.settingsManager.rSetting(essentials = new Setting("Essentials", this, true, "CoreEssentials"));
 
     }
 

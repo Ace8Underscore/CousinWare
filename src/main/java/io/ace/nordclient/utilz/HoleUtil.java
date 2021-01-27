@@ -78,5 +78,20 @@ public class HoleUtil {
         return retVal;
     }
 
+    public static boolean isPlayerInHole() {
+        boolean retVal = false;
+        BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
+        if (mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR))
+        if (mc.world.getBlockState(pos.up()).getBlock().equals(Blocks.AIR))
+        if (mc.world.getBlockState(pos.down()).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos.down()).getBlock().equals(Blocks.OBSIDIAN))
+        if (mc.world.getBlockState(pos.east()).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos.east()).getBlock().equals(Blocks.OBSIDIAN))
+        if (mc.world.getBlockState(pos.west()).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos.west()).getBlock().equals(Blocks.OBSIDIAN))
+        if (mc.world.getBlockState(pos.south()).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos.south()).getBlock().equals(Blocks.OBSIDIAN))
+        if (mc.world.getBlockState(pos.north()).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos.north()).getBlock().equals(Blocks.OBSIDIAN))
+        retVal = true;
+
+        return retVal;
+    }
+
 
 }

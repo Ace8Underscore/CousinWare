@@ -1,14 +1,10 @@
 package io.ace.nordclient.hacks.player;
 
 import io.ace.nordclient.hacks.Hack;
-import net.minecraft.entity.Entity;
+import io.ace.nordclient.utilz.InventoryUtil;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.client.CPacketPlayerDigging;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
-import net.minecraft.network.play.server.SPacketAnimation;
-import net.minecraft.network.play.server.SPacketEntityStatus;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 
 public class GhostGap extends Hack {
@@ -17,23 +13,22 @@ public class GhostGap extends Hack {
         super("GhostGap", Category.PLAYER, 3106299);
     }
 
+    int startingHand;
+
+    @Override
     public void onUpdate() {
-        ItemStack gap = new ItemStack(Items.GOLDEN_APPLE);
-        if (mc.player.getHeldItemMainhand().equals(gap)) {
-            mc.getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
-            //mc.getConnection().sendPacket(new CPacketPlayerDigging(Action., mc.player.getPosition(), EnumFacing.SOUTH));
-            mc.getConnection().sendPacket(new SPacketEntityStatus(mc.player, (byte) 9));
-            //super.onUpdate();
+        int gapHand = InventoryUtil.findItemInHotbar(Items.GOLDEN_APPLE);
+        if (InventoryUtil.findItemInHotbar(Items.GOLDEN_APPLE) != -1) {
+            mc.player.connection.sendPacket(new CPacketHeldItemChange(gapHand));
+            mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+
+
+
         }
+    }
+
+    @Override
+    public void onEnable() {
+        startingHand = mc.player.inventory.currentItem;
     }
 }
-
-/*
-protected void onItemUseFinish() {
-        if (!this.activeItemStack.isEmpty() && this.isHandActive()) {
-            this.connection.sendPacket(new SPacketEntityStatus(this, (byte)9));
-            super.onItemUseFinish();
-        }
-
-    }
- */

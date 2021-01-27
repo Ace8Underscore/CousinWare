@@ -31,6 +31,7 @@ public class Surround extends Hack {
 
     private Vec3d[] placeLocation = new Vec3d[]{new Vec3d(1, 0, 0), new Vec3d(0, 0, 1), new Vec3d(-1, 0, 0), new Vec3d(0, 0, -1), new Vec3d(1, -1, 0), new Vec3d(0, -1, 1), new Vec3d(-1, -1, 0), new Vec3d(0, -1, -1)};
 
+    @Override
     public void onUpdate() {
         delay++;
         //if (!mc.player.onGround) this.disable();
@@ -55,6 +56,7 @@ public class Surround extends Hack {
 
     }
 
+    @Override
     public void onEnable() {
          obiSlot = -1;
          startingSlot = mc.player.inventory.currentItem;

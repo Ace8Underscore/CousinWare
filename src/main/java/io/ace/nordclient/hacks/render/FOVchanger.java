@@ -3,10 +3,6 @@ package io.ace.nordclient.hacks.render;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
-import scala.Double;
-import scala.tools.nsc.doc.model.Public;
-
-import javax.swing.plaf.IconUIResource;
 
 public class FOVchanger  extends Hack {
 
@@ -19,6 +15,7 @@ public class FOVchanger  extends Hack {
 
     }
 
+    @Override
     public void onUpdate(){
         mc.gameSettings.fovSetting = FOV.getValInt();
     }

@@ -24,8 +24,8 @@ public class VisualRange extends Hack {
     ArrayList<String> seenPlayers = new ArrayList<>();
     int delay = 0;
 
+    @Override
     public void onUpdate() {
-
         for (Entity player : mc.world.loadedEntityList) {
             if (player instanceof EntityPlayer) {
                 if (!FriendManager.isFriend(player.getName())) {

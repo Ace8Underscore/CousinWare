@@ -19,6 +19,8 @@ public class Hack {
     public boolean enabled;
     public boolean drawn;
     public int color;
+    public double anima;
+    public boolean visableOnArray;
 
     public Hack(String hackName, Category hackCategory, int decimalColor) {
         name = hackName;
@@ -28,7 +30,8 @@ public class Hack {
         enabled = false;
         drawn = true;
         this.color = decimalColor;
-
+        anima = 0;
+        visableOnArray = false;
     }
 
     public Hack(String hackName, Category hackCategory, String hackDescription, int decimalColor) {
@@ -39,6 +42,7 @@ public class Hack {
         enabled = false;
         drawn = true;
         this.color = decimalColor;
+
     }
 
     public int getBind(){
@@ -66,6 +70,8 @@ public class Hack {
 
     public boolean isDisabled(){ return !enabled; }
 
+    public boolean isVisableOnArray() { return visableOnArray;}
+
 
     public void setEnabled(boolean e){
         enabled = e;
@@ -83,6 +89,8 @@ public class Hack {
     public void enable() {
         CousinWare.INSTANCE.getEventManager().addEventListener(this);
         MinecraftForge.EVENT_BUS.register(this);
+        visableOnArray = true;
+        anima = 0;
         setEnabled(true);
         if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
             Command.sendClientSideMessage("Enabled " + ChatFormatting.GREEN + this.name);

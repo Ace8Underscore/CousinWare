@@ -1,6 +1,7 @@
 package io.ace.nordclient.event;
 
 import io.ace.nordclient.hwid.HWID;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.lang.management.ManagementFactory;
 import java.net.URISyntaxException;
@@ -15,12 +16,10 @@ public class EventLaunch {
                 ////System.getenv("NUMBER_OF_PROCESSORS") +
                 ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize());
         if (!HWID.isGoodHWID(currentHWID)) {
-            System.out.println(currentHWID);
-            System.exit(0);
+            FMLCommonHandler.instance().exitJava(0, true);
         }
         if (!HWID.pastebin.toString().equals("https://pastebin.com/raw/0PKUJaf5")) {
-            System.out.println(currentHWID);
-            System.exit(0);
+            FMLCommonHandler.instance().exitJava(0, true);
         }
 
 

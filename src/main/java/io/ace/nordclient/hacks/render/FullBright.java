@@ -35,6 +35,7 @@ public class FullBright extends Hack {
         }
     }
 
+    @Override
     public void onDisable() {
         mc.gameSettings.gammaSetting = 0;
     }

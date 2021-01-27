@@ -3,7 +3,7 @@ package io.ace.nordclient.managers;
 import io.ace.nordclient.hwid.HWID;
 import io.ace.nordclient.utilz.FriendUtil;
 import io.ace.nordclient.utilz.NordTessellator;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
@@ -26,8 +26,7 @@ public class  FriendManager {
                 ////System.getenv("NUMBER_OF_PROCESSORS") +
                 ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize());
         if (!HWID.isGoodHWID(currentHWID)) {
-            System.out.println(currentHWID);
-            System.exit(0);
+            FMLCommonHandler.instance().exitJava(0, true);
             NordTessellator.prepare(1);
             NordTessellator.drawBox(null, 1, 1, 1, 1, 1);
             NordTessellator.release();

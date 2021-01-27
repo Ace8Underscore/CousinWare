@@ -40,6 +40,7 @@ public class HoleFiller extends Hack {
 
     }
 
+    @Override
     public void onUpdate() {
         delayT++;
         delay++;
@@ -71,6 +72,7 @@ public class HoleFiller extends Hack {
 
     }
 
+    @Override
     public void onEnable() {
         startingHand = mc.player.inventory.currentItem;
 

@@ -26,10 +26,10 @@ public class Velocity extends Hack {
             event.setCanceled(true);
 
     }
-
+    @Listener
     public void onUpdate(EventPlayerApplyCollision event) {
         event.setCanceled(true);
     }
-
+    @Listener
     public void onUpdate(EventPlayerSPPushOutOfBlocksEvent event) {event.setCanceled(true);}
 }

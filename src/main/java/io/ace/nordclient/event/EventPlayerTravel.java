@@ -1,6 +1,6 @@
 package io.ace.nordclient.event;
 
-public class EventPlayerTravel extends EventCancellable{
+public class EventPlayerTravel extends EventCancellable {
     public float Strafe;
     public float Vertical;
     public float Forward;

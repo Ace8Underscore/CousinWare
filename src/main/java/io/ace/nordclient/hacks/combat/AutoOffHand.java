@@ -2,6 +2,7 @@ package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.utilz.HoleUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -9,6 +10,8 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ public class AutoOffHand extends Hack {
     public Setting switchToTotemCrystal;
     public Setting switchToTotemGap;
     public Setting switchBackFromTotem;
-    public Setting gapOnSword;
+    public Setting holeCheck;
 
 
     public AutoOffHand() {
@@ -36,12 +39,12 @@ public class AutoOffHand extends Hack {
         modes.add("Crystal");
         modes.add("Gapple");
         modes.add("Shield");
+        modes.add("GapRightClick");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Crystal", modes, "AutoOffHandMode"));
         CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemCrystal = new Setting("CrystalHealth", this, 16, 0, 36, false, "AutoOffHandCrystalHealth"));
         CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemGap = new Setting("GapHealth", this, 6, 0, 36, false, "AutoOffHandGapHealth"));
         CousinWare.INSTANCE.settingsManager.rSetting(switchBackFromTotem = new Setting("ItemRenable", this, 20, 0, 36, false, "AutoOffHandItemRenable"));
-        //NordClient.INSTANCE.settingsManager.rSetting(gapOnSword = new Setting("GapOnSword", this, false, "AutoOffHandGapOnSword"));
-
+        CousinWare.INSTANCE.settingsManager.rSetting(holeCheck = new Setting("HoleCheck", this, true, "AutoOffHandHoleCheck"));
     }
 
     @Override
@@ -52,6 +55,23 @@ public class AutoOffHand extends Hack {
         }
         if (mc.player.getHealth() + mc.player.getAbsorptionAmount() <= switchToTotemGap.getValDouble() && mode.getValString().equalsIgnoreCase("Gapple")) {
             offhandItem = Items.TOTEM_OF_UNDYING;
+        }
+        if (mode.getValString().equalsIgnoreCase("GapRightClick")) {
+            if (holeCheck.getValBoolean()) {
+                if (!mc.player.onGround || mc.player.getHealth() + mc.player.getAbsorptionAmount() <= switchToTotemGap.getValDouble() || !HoleUtil.isPlayerInHole() || !(mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) || !Mouse.isButtonDown(1)) {
+                    offhandItem = Items.TOTEM_OF_UNDYING;
+                }
+            }
+            if (!mc.player.onGround || mc.player.getHealth() + mc.player.getAbsorptionAmount() <= switchToTotemGap.getValDouble() || !(mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) || !Mouse.isButtonDown(1) && !holeCheck.getValBoolean()) {
+                offhandItem = Items.TOTEM_OF_UNDYING;
+            }
+            if (mc.player.onGround && mc.player.getHealth() + mc.player.getAbsorptionAmount() > switchToTotemGap.getValDouble() && holeCheck.getValBoolean() && HoleUtil.isPlayerInHole() && Mouse.isButtonDown(1) && mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
+                offhandItem = Items.GOLDEN_APPLE;
+            }
+            if (mc.player.onGround && mc.player.getHealth() + mc.player.getAbsorptionAmount() > switchToTotemGap.getValDouble() && !holeCheck.getValBoolean() && Mouse.isButtonDown(1) && mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) {
+                offhandItem = Items.GOLDEN_APPLE;
+            }
+
         }
 
         if (mc.player.getHealth() + mc.player.getAbsorptionAmount() >= switchBackFromTotem.getValDouble()) {
@@ -64,6 +84,8 @@ public class AutoOffHand extends Hack {
             if (mode.getValString().equalsIgnoreCase("Shield")) {
                 offhandItem = Items.SHIELD;
             }
+
+
         }
 
        /* if (gapOnSword.getValBoolean()) {

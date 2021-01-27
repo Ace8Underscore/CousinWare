@@ -14,10 +14,12 @@ public class Timer extends Hack {
 
     }
 
+    @Override
     public void onUpdate() {
         //((ITimer)mc.timer).setTickLength((float) (50 /speed.getValDouble()));
     }
 
+    @Override
     public void onDisable() {
        // ((ITimer)mc.timer).setTickLength(50);
 

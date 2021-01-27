@@ -49,6 +49,7 @@ public class WebFiller extends Hack {
 
     }
 
+    @Override
     public void onUpdate() {
         delay++;
         tDelay++;
@@ -128,6 +129,7 @@ public class WebFiller extends Hack {
         }
     }
 
+    @Override
     public void onEnable() {
         startingSlot = mc.player.inventory.currentItem;
         if (InventoryUtil.findBlockInHotbar(Blocks.WEB) == -1) {
@@ -138,6 +140,7 @@ public class WebFiller extends Hack {
         }
     }
 
+    @Override
     public void onDisable() {
         mc.player.inventory.currentItem = startingSlot;
         tDelay = 0;

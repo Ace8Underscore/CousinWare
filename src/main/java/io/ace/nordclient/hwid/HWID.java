@@ -17,7 +17,7 @@ public class HWID {
         try {
             pastebin = new URL("https://pastebin.com/raw/0PKUJaf5");
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+
         }
     }
 

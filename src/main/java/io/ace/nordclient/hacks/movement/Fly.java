@@ -13,15 +13,18 @@ public class Fly extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(speed = new Setting("Speed", this, 1, 0, 3, false, "FlySpeed"));
     }
 
+    @Override
     public void onUpdate() {
         mc.player.capabilities.flySpeed = (float) speed.getValDouble();
     }
 
+    @Override
     public void onEnable() {
         mc.player.capabilities.allowFlying = true;
         mc.player.capabilities.isFlying = true;
     }
 
+    @Override
     public void onDisable() {
         mc.player.capabilities.allowFlying = false;
         mc.player.capabilities.isFlying = false;

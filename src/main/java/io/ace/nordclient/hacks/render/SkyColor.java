@@ -42,7 +42,6 @@ public class SkyColor extends Hack {
         event.setGreen((float) g.getValDouble() / 255);
         event.setBlue((float) b.getValDouble() / 255);
 
-
     }
 
 

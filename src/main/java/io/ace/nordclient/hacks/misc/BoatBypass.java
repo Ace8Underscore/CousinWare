@@ -1,7 +1,6 @@
 package io.ace.nordclient.hacks.misc;
 
 import io.ace.nordclient.hacks.Hack;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemBoat;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
@@ -15,6 +14,7 @@ public class BoatBypass extends Hack {
         super("2bBoatPlace", Category.MISC, 7338316);
     }
 
+    @Override
     public void onUpdate() {
         if (mc.player.getHeldItemMainhand().getItem() instanceof ItemBoat && Mouse.isButtonDown(1)) {
             mc.getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));

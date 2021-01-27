@@ -25,6 +25,7 @@ public class FastSwim extends Hack {
     boolean lava = true;
     boolean up = true;
     boolean down = true;
+
     @Override
     public void onUpdate() {
             if (only2b) {

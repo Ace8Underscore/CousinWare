@@ -32,6 +32,7 @@ public class Freecam extends Hack {
         }
     }
 
+    @Override
     public void onEnable() {
         entity = new EntityOtherPlayerMP(mc.world, mc.getSession().getProfile());
         entity.copyLocationAndAnglesFrom(mc.player);

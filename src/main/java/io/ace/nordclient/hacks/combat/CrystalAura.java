@@ -1,16 +1,9 @@
 package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
-import io.ace.nordclient.event.PacketEvent;
-import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
-import io.ace.nordclient.managers.HackManager;
-import io.ace.nordclient.managers.RotationManager;
-import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
-import io.ace.nordclient.utilz.NordTessellator;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -20,8 +13,6 @@ import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.CombatRules;
@@ -32,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.List;
 
@@ -56,6 +46,7 @@ public class CrystalAura extends Hack {
 //
     }
 
+    @Override
     public void onUpdate() {
         delay++;
         findClosestTarget();

@@ -15,6 +15,7 @@ public class BlockHighlight extends Hack {
     public static Setting g;
     public static Setting b;
     public static Setting a;
+    public static Setting legit;
     Setting rainbow;
 
     public BlockHighlight() {
@@ -26,6 +27,7 @@ public class BlockHighlight extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(b = new Setting("Blue", this, 1, 0, 255, false, "BlockHighlightBlue"));
         CousinWare.INSTANCE.settingsManager.rSetting(a = new Setting("alpha", this, 1, 0, 1, false, "BlockHighlightAlpha"));
         CousinWare.INSTANCE.settingsManager.rSetting(rainbow = new Setting("Rainbow", this, true, "BlockHighlightRainbow"));
+        CousinWare.INSTANCE.settingsManager.rSetting(legit = new Setting("MinecraftRender", this, false, "BlockHighlightLegit"));
 
     }
     @Override

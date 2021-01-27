@@ -1,9 +1,7 @@
 package io.ace.nordclient.hacks.player;
 
-import io.ace.nordclient.event.EventPlayerTravel;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.MathUtil;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 public class NoSlow extends Hack {
 
@@ -11,6 +9,7 @@ public class NoSlow extends Hack {
         super("NoSlow", Category.PLAYER, 10060642);
     }
 
+    @Override
     public void onUpdate() {
         if (mc.player.isHandActive()) {
             final double[] dir = MathUtil.directionSpeed(.26);

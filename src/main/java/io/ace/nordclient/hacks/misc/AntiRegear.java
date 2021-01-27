@@ -34,7 +34,7 @@ public class AntiRegear extends Hack {
     float pitch;
     boolean isSpoofing;
 
-
+    @Override
     public void onUpdate() {
         if (getTargetBlock() != null) {
             if (autoSwitch.getValBoolean() && InventoryUtil.findItemInHotbar(Items.DIAMOND_PICKAXE) != -1) {
@@ -95,6 +95,7 @@ public class AntiRegear extends Hack {
         }
     }
 
+    @Override
     public void onDisable() {
         resetRotations();
     }

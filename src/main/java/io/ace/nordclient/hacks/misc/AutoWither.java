@@ -6,7 +6,6 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.InventoryUtil;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -34,6 +33,7 @@ public class AutoWither extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(placeDelay = new Setting("PlaceDelay", this, 2, 0, 20, true, "AutoWitherPlaceDelay"));
     }
 
+    @Override
     public void onUpdate() {
         delay++;
         if (blockPlaced < 4) {
@@ -127,6 +127,7 @@ public class AutoWither extends Hack {
 
 
 
+    @Override
     public void onEnable() {
         startPos = mc.objectMouseOver.hitVec;
         soulSandItem = InventoryUtil.findBlockInHotbar(Blocks.SOUL_SAND);
@@ -154,6 +155,8 @@ public class AutoWither extends Hack {
             south = true;
         }
     }
+
+    @Override
     public void onDisable() {
         north = false;
         south = false;

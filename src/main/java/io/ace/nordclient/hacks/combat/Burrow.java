@@ -84,9 +84,9 @@ public class Burrow extends Hack {
                 }
                 if (!noForceRotate.getValBoolean()) this.disable();
 
-                }
             }
         }
+    }
 
     public void onEnable() {
         startingY = mc.player.posY;
@@ -160,4 +160,3 @@ public class Burrow extends Hack {
     //
 
 }
-

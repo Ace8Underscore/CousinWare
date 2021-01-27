@@ -2,8 +2,8 @@ package io.ace.nordclient.utilz.configz;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.gui.Frame;
 import io.ace.nordclient.hacks.Hack;
+import io.ace.nordclient.hacks.render.Xray;
 import io.ace.nordclient.hud.Hud;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.FriendUtil;
@@ -47,6 +47,7 @@ public class ConfigUtils {
         loadFont();
         loadHuds();
         loadHudPos();
+        //loadXray();
 
 
 
@@ -158,7 +159,49 @@ public class ConfigUtils {
             br.close();
         } catch (Exception var6) {
             var6.printStackTrace();
-            //saveFriends();
+
+
+        }
+
+    }
+
+    public void saveXray() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "Xray.txt");
+            BufferedWriter out = new BufferedWriter(new FileWriter(file));
+
+
+            while (Xray.xrayBlocks.iterator().hasNext()) {
+                for (int i = 0; i < Xray.xrayBlocks.size(); i++) {
+                    Xray x = new Xray();
+                    out.write(Xray.xrayBlocks.get(i));
+                    out.write("\r\n");
+                }
+            }
+
+            out.close();
+        } catch (Exception var5) {
+        }
+
+    }
+
+    public void loadXray() {
+        try {
+            File file = new File(this.Nord.getAbsolutePath(), "Xray.txt");
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            FriendManager.friends.clear();
+            String line;
+            while((line = br.readLine()) != null) {
+                Xray.xrayBlocks.add(line);
+            }
+
+            br.close();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+
         }
 
     }

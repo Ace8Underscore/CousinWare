@@ -4,6 +4,7 @@
   "package": "io.ace.nordclient.mixin.mixins",
   "refmap": "mixin.nordclient.refmap.json",
   "mixins": [
+    "MixinBlockRendererDispatcher",
     "MixinCPacketPlayer",
     "MixinEntity",
     "MixinEntityPlayerSP",
@@ -24,5 +25,9 @@
     "MixinSPacketPlayerPosLook",
     "MixinTileEntityEnchantmentTableRenderer",
     "MixinTimer"
+  ],
+  "client": [
+    "MixinGuiConnecting",
+    "MixinGuiIngameMenu"
   ]
 }

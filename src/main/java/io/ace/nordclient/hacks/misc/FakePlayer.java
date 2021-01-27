@@ -14,6 +14,7 @@ public class FakePlayer extends Hack {
 
     EntityOtherPlayerMP entity;
 
+    @Override
     public void onEnable() {
         entity = new EntityOtherPlayerMP(mc.world, new GameProfile(UUID.fromString("d8d5a923-7b20-43d8-883b-1150148d6955"), "Test"));
         entity.copyLocationAndAnglesFrom(mc.player);
@@ -22,6 +23,7 @@ public class FakePlayer extends Hack {
         mc.world.addEntityToWorld(696984837, entity);
     }
 
+    @Override
     public void onDisable() {
         if (mc.world.loadedEntityList.contains(entity)) {
             mc.world.removeEntity(entity);

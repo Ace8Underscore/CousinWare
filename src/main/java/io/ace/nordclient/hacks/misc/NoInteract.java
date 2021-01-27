@@ -2,6 +2,7 @@ package io.ace.nordclient.hacks.misc;
 
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
@@ -37,6 +38,14 @@ public class NoInteract extends Hack {
                             }
                         }
                     //
+                }
+                if (mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock().equals(Blocks.ANVIL)) {
+                    if (Mouse.isButtonDown(1)) {
+                        event.setCanceled(true);
+                        mc.getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+
+
+                    }
                 }
 
             }
