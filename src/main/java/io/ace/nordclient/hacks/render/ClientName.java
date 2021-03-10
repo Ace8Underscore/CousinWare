@@ -2,7 +2,6 @@ package io.ace.nordclient.hacks.render;
 
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.hacks.client.ClickGuiHack;
 import io.ace.nordclient.hacks.client.Core;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

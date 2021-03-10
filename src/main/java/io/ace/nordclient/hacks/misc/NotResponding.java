@@ -1,25 +1,18 @@
 package io.ace.nordclient.hacks.misc;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.PacketEvent;
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.utilz.RainbowUtil;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.network.play.server.SPacketKeepAlive;
-import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.awt.*;
-import java.util.Calendar;
 
 public class NotResponding extends Hack {
 

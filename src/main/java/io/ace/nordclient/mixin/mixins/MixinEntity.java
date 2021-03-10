@@ -1,7 +1,5 @@
 package io.ace.nordclient.mixin.mixins;
 
-import io.ace.nordclient.hacks.movement.FastWeb;
-import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.mixin.accessor.IEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
@@ -10,8 +8,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)

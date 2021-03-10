@@ -11,6 +11,7 @@ import io.ace.nordclient.hacks.client.ClickGuiHack2;
 import io.ace.nordclient.hacks.client.ClickGuiHudHack;
 import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.hacks.combat.*;
+import io.ace.nordclient.hacks.exploit.SpeedMine;
 import io.ace.nordclient.hacks.exploit.*;
 import io.ace.nordclient.hacks.misc.*;
 import io.ace.nordclient.hacks.movement.*;
@@ -48,7 +49,7 @@ public class CousinWare
 {
     public static final String MODID = "cousinware";
     public static final String NAME = "CousinWare";
-    public static final String VERSION = "v1.6.1";
+    public static final String VERSION = "v1.6.4";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -176,6 +177,7 @@ public class CousinWare
         HackManager.addHack(new Aura());
         HackManager.addHack(new AutoBedBombDumb());
         HackManager.addHack(new AutoOffHand());
+        HackManager.addHack(new AutoPressurePlate());
         HackManager.addHack(new AutoTntMinecart());
         HackManager.addHack(new AutoTotem());
         HackManager.addHack(new AutoTrap());
@@ -184,37 +186,42 @@ public class CousinWare
         HackManager.addHack(new CrystalAura());
         HackManager.addHack(new FastXp());
         HackManager.addHack(new HoleFiller());
+        HackManager.addHack(new KeyPearl());
         HackManager.addHack(new PacketXp());
         HackManager.addHack(new PistonAura2());
-        HackManager.addHack(new SpeedMine());
+        HackManager.addHack(new io.ace.nordclient.hacks.combat.SpeedMine());
         HackManager.addHack(new Surround());
         HackManager.addHack(new Surround2());
         HackManager.addHack(new WebFiller());
         //exploit
-        HackManager.addHack(new AutoMinecartRefill());
+        //HackManager.addHack(new AutoMinecartRefill());
+        HackManager.addHack(new AntiDesync());
         HackManager.addHack(new Blink());
-        HackManager.addHack(new LagBar());
+        //HackManager.addHack(new LagBar());
         HackManager.addHack(new Lagger());
         HackManager.addHack(new NoBreakLoss());
         HackManager.addHack(new NoFallingAni());
         HackManager.addHack(new NoMinecartLag());
         HackManager.addHack(new NoSlowBypass());
+        HackManager.addHack(new SpeedMine());
         //misc
         HackManager.addHack(new AntiRegear());
         HackManager.addHack(new AutoWither());
         //HackManager.addHack(new BedrockFinder());
-        HackManager.addHack(new BoatBypass());
+        //HackManager.addHack(new BoatBypass());
         HackManager.addHack(new ChatSuffix());
         HackManager.addHack(new DonkeyAlert());
         HackManager.addHack(new DungannonSpammer());
         HackManager.addHack(new EnchantColor());
         HackManager.addHack(new FakePlayer());
+        //HackManager.addHack(new HotbarRefill());
         HackManager.addHack(new FancyChat());
         HackManager.addHack(new IllegalFinder());
         HackManager.addHack(new LogoutCoords());
         HackManager.addHack(new MCF());
         HackManager.addHack(new NoEntityTrace());
         HackManager.addHack(new NotResponding());
+       // HackManager.addHack(new PlayerEffects());
         HackManager.addHack(new NoInteract());
         HackManager.addHack(new QuickDrop());
         HackManager.addHack(new ShulkerMod());

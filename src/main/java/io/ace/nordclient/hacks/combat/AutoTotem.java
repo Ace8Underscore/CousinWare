@@ -41,7 +41,6 @@ public class AutoTotem extends Hack {
 
                 if (stacks == ItemStack.EMPTY)
                     continue;
-//
                 Item itemTotem = Items.TOTEM_OF_UNDYING;
                 if (mc.player.getHeldItemOffhand().isEmpty()) {
                     totemSwtichDelay++;

@@ -22,6 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AutoTrap extends Hack {
@@ -36,6 +37,8 @@ public class AutoTrap extends Hack {
     Setting placeDelay;
     Setting toggleTicks;
     Setting noGhostBlocks;
+    Setting directionalTrap;
+    Setting headFixMode;
 
 
     boolean packetsBeingSent;
@@ -48,26 +51,62 @@ public class AutoTrap extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(placeDelay = new Setting("PlaceDelay", this, 2, 0, 20, true, "AutoTrapPlaceDelay"));
         CousinWare.INSTANCE.settingsManager.rSetting(toggleTicks = new Setting("ToggleTicks", this, 8, 0, 20, true, "AutoTrapToggleTicks"));
         CousinWare.INSTANCE.settingsManager.rSetting(noGhostBlocks = new Setting("NoGhostBlocks", this, true, "AutoTrapNoGhostBlocks"));
+        CousinWare.INSTANCE.settingsManager.rSetting(directionalTrap = new Setting("DirectionTrap", this, true, "AutoTrapDirectionalTrap"));
+        ArrayList<String> headFixModes = new ArrayList<>();
+        headFixModes.add("Off");
+        headFixModes.add("On");
+        headFixModes.add("Auto");
+        CousinWare.INSTANCE.settingsManager.rSetting(headFixMode = new Setting("HeadFix", this, "Auto", headFixModes, "AutoTrapHeadFixModes"));
+
 
     }
 
     @Override
     public void onUpdate() {
         if (closestTarget == null) return;
+        BlockPos posc = new BlockPos(closestTarget.getPositionVector());
         delay++;
         delayToggle++;
-        Vec3d[] placeEast = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(1, 2, 0), new Vec3d(0, 2, 0)};
-        Vec3d[] placeWest = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(-1, 2, 0), new Vec3d(0, 2, 0)};
-        Vec3d[] placeSouth = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(0, 2, 1), new Vec3d(0, 2, 0)};
-        Vec3d[] placeNorth = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(0, 2, -1), new Vec3d(0, 2, 0)};
+        Vec3d[] placeDirection = null;
+        if (directionalTrap.getValBoolean()) {
+            if (BlockInteractionHelper.findBlockFacingLocationPlayer(posc) == 1)
+                placeDirection = new Vec3d[]{new Vec3d(-1, 0, 0), new Vec3d(0, 0, 1), new Vec3d(0, 0, -1), new Vec3d(1, 0, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(-1, 2, 0), new Vec3d(0, 2, 0), new Vec3d(1, 1, 0)};
+            if (BlockInteractionHelper.findBlockFacingLocationPlayer(posc) == 2)
+                placeDirection = new Vec3d[]{new Vec3d(1, 0, 0), new Vec3d(0, 0, 1), new Vec3d(0, 0, -1), new Vec3d(-1, 0, 0), new Vec3d(1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(1, 2, 0), new Vec3d(0, 2, 0), new Vec3d(-1, 1, 0),};
+            if (BlockInteractionHelper.findBlockFacingLocationPlayer(posc) == 3)
+                placeDirection = new Vec3d[]{new Vec3d(0, 0, -1), new Vec3d(-1, 0, 0), new Vec3d(1, 0, 0), new Vec3d(0, 0, 1), new Vec3d(0, 1, -1), new Vec3d(-1, 1, 0), new Vec3d(1, 1, 0), new Vec3d(0, 2, -1), new Vec3d(0, 2, 0), new Vec3d(0, 1, 1),};
 
-        for (Vec3d vec3d : placeEast) {
+            if (BlockInteractionHelper.findBlockFacingLocationPlayer(posc) == 4)
+                placeDirection = new Vec3d[]{new Vec3d(0, 0, 1), new Vec3d(-1, 0, 0), new Vec3d(1, 0, 0), new Vec3d(0, 0, -1), new Vec3d(0, 1, 1), new Vec3d(-1, 1, 0), new Vec3d(1, 1, 0), new Vec3d(0, 2, 1), new Vec3d(0, 2, 0), new Vec3d(0, 1, -1)};
+        } else {
+            placeDirection = new Vec3d[]{new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(1, 2, 0), new Vec3d(0, 2, 0)};
+        }
+        // Vec3d[] placeSouth = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(0, 2, 1), new Vec3d(0, 2, 0)};
+        //Vec3d[] placeNorth = new Vec3d[]{ new Vec3d(1, -1, 0), new Vec3d(1, 0, 0), new Vec3d(-1, -1, 0), new Vec3d(-1, 0, 0), new Vec3d(0, -1, 1), new Vec3d(0, 0, 1), new Vec3d(0, -1, -1), new Vec3d(0, 0, -1), new Vec3d(1, 1, 0), new Vec3d(-1, 1, 0), new Vec3d(0, 1, 1), new Vec3d(0, 1, -1), new Vec3d(0, 2, -1), new Vec3d(0, 2, 0)};
+        if (placeDirection == null) return;
+        for (Vec3d vec3d : placeDirection) {
             if (delay >= placeDelay.getValInt()) {
                 BlockPos pos = new BlockPos(closestTarget.getPositionVector().add(vec3d));
                 if (mc.world.mayPlace(Blocks.OBSIDIAN, pos, false, EnumFacing.UP, mc.player)) {
                     mc.player.inventory.currentItem = obsidianSlot;
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
-                    BlockInteractionHelper.placeBlockScaffold(pos);
+                    if (headFixMode.getValString().equalsIgnoreCase("on")) {
+                        if (vec3d.equals(new Vec3d(-1, 2, 0)) || vec3d.equals(new Vec3d(1, 2, 0)) || vec3d.equals(new Vec3d(0, 2, 1)) || vec3d.equals(new Vec3d(0, 2, -1))) {
+                            mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.41999998688698D, mc.player.posZ, true));
+                            mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.7531999805211997D, mc.player.posZ, true));
+
+                        }
+                    }
+                    if (headFixMode.getValString().equalsIgnoreCase("auto")) {
+                        if (mc.player.posY <= (closestTarget.posY - .6)) {
+                            if (vec3d.equals(new Vec3d(-1, 2, 0)) || vec3d.equals(new Vec3d(1, 2, 0)) || vec3d.equals(new Vec3d(0, 2, 1)) || vec3d.equals(new Vec3d(0, 2, -1))) {
+                                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.41999998688698D, mc.player.posZ, true));
+                                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.7531999805211997D, mc.player.posZ, true));
+                            }
+                        }
+                    }
+
+                        BlockInteractionHelper.placeBlockScaffold(pos);
                     mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                     mc.player.inventory.currentItem = startingHand;
                     if (noGhostBlocks.getValBoolean()) {

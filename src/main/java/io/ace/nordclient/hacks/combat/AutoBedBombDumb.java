@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.tileentity.TileEntity;
@@ -49,6 +50,7 @@ public class AutoBedBombDumb extends Hack {
     private int delayBreak = 0;
 
     public BlockPos placing;
+    int bedSlot;
 
     public boolean east;
     public boolean west;
@@ -79,6 +81,14 @@ public class AutoBedBombDumb extends Hack {
 
     @Override
     public void onUpdate() {
+        if (autoSwitch.getValBoolean()) {
+            bedSlot = InventoryUtil.findItemInHotbar(Items.BED);
+            if (bedSlot == -1) {
+                this.disable();
+            } else {
+                mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
+            }
+        }
         delay++;
         delayBreak++;
         for (Entity e : mc.world.loadedEntityList) {
@@ -95,13 +105,18 @@ public class AutoBedBombDumb extends Hack {
                             if (mc.world.getBlockState(eLocation.south()).getBlock().canPlaceBlockAt(mc.world, eLocation.south()) && mc.world.getBlockState(eLocation.south().down()).getBlock() != Blocks.AIR) {
                                 if (delay >= placeDelay.getValInt()) {
                                     if (rotate.getValBoolean()) {
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                         BlockInteractionHelper.placeBlockScaffold(eLocation);
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
+
                                         south = true;
                                         north = false;
                                         east = false;
                                         west = false;
                                     } else {
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                         BlockInteractionHelper.placeBlockScaffoldNoRotate(eLocation);
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                         south = true;
                                         north = false;
                                         east = false;
@@ -115,13 +130,17 @@ public class AutoBedBombDumb extends Hack {
                             if (mc.world.getBlockState(eLocation.north()).getBlock().canPlaceBlockAt(mc.world, eLocation.north()) && mc.world.getBlockState(eLocation.north().down()).getBlock() != Blocks.AIR) {
                                 if (delay >= placeDelay.getValInt()) {
                                     if (rotate.getValBoolean()) {
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                         BlockInteractionHelper.placeBlockScaffold(eLocation);
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                         south = false;
                                         north = true;
                                         east = false;
                                         west = false;
                                     } else {
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                         BlockInteractionHelper.placeBlockScaffoldNoRotate(eLocation);
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                         south = false;
                                         north = true;
                                         east = false;
@@ -139,9 +158,13 @@ public class AutoBedBombDumb extends Hack {
                                         north = false;
                                         east = true;
                                         west = false;
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                         BlockInteractionHelper.placeBlockScaffold(eLocation);
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                     } else {
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                         BlockInteractionHelper.placeBlockScaffoldNoRotate(eLocation);
+                                        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                         south = false;
                                         north = false;
                                         east = true;
@@ -160,9 +183,13 @@ public class AutoBedBombDumb extends Hack {
                                             north = false;
                                             east = false;
                                             west = true;
+                                            mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                             BlockInteractionHelper.placeBlockScaffold(eLocation);
+                                            mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                         } else {
+                                            mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
                                             BlockInteractionHelper.placeBlockScaffoldNoRotate(eLocation);
+                                            mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
                                             south = false;
                                             north = false;
                                             east = false;
@@ -197,7 +224,7 @@ public class AutoBedBombDumb extends Hack {
         if (rainbow.getValBoolean()) {
             RainbowUtil.settingRainbow(r, g, b);
         }
-        }
+    }
 
 
 
@@ -240,19 +267,38 @@ public class AutoBedBombDumb extends Hack {
         // West = 180
     }
 
+    public void swtichToBed() {
+        if (autoSwitch.getValBoolean()) {
+            bedSlot = InventoryUtil.findItemInHotbar(Items.BED);
+            if (bedSlot == -1) {
+            } else {
+                mc.player.connection.sendPacket(new CPacketHeldItemChange(bedSlot));
+            }
+        }
+    }
+
+    public void switchBackBed() {
+        mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
+    }
+
     public void onEnable() {
         south = false;
         north = false;
         east = false;
         west = false;
         if (autoSwitch.getValBoolean()) {
-            int bedSlot = InventoryUtil.findItemInHotbar(Items.BED);
+            bedSlot = InventoryUtil.findItemInHotbar(Items.BED);
             if (bedSlot == -1) {
                 Command.sendClientSideMessage("No Beds Found Toggling!");
                 this.toggle();
             } else {
-                mc.player.inventory.currentItem = bedSlot;
+
             }
         }
+    }
+
+    @Override
+    public void onDisable() {
+        switchBackBed();
     }
 }

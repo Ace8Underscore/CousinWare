@@ -1,6 +1,5 @@
 package io.ace.nordclient.hacks.movement;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.MathUtil;

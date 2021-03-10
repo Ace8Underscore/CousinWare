@@ -7,7 +7,6 @@ import io.ace.nordclient.command.Command;
 import io.ace.nordclient.managers.CommandManager;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.play.server.SPacketPlayerListItem;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -77,8 +76,6 @@ public class EventProcessor {
 
     @Listener
     public void onUpdate(UpdateEvent event) {
-        //rainbow stuff
-
         if (mc.player != null || mc.world != null) {
             HackManager.onUpdate();
         }

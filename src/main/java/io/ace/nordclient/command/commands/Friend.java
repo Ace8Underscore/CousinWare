@@ -17,16 +17,15 @@ public class Friend extends Command {
 
     @Override
     public String getClientSyntax() {
-        return "Friend (add/del) (Name)";
+        return "";
     }
 
     @Override
     public void onClientCommand(String command, String[] args) throws Exception {
         if (args[0].equals("add") && !FriendManager.isFriend(args[1])) {
-                FriendManager.addFriend(args[1]);
-                Command.sendClientSideMessage(ChatFormatting.GREEN + args[1] + ChatFormatting.WHITE + " Has Been Added To The Friends List ");
-            }
-
+            FriendManager.addFriend(args[1]);
+            Command.sendClientSideMessage(ChatFormatting.GREEN + args[1] + ChatFormatting.WHITE + " Has Been Added To The Friends List ");
+        }
 
 
         if (args[0].equals("del")) {
@@ -41,5 +40,23 @@ public class Friend extends Command {
                     });
 
         }
+        if (!args[0].equals("add") && !args[0].equals("del")) {
+            if (!FriendManager.isFriend(args[0])) {
+                FriendManager.addFriend(args[0]);
+                Command.sendClientSideMessage(ChatFormatting.GREEN + args[0] + ChatFormatting.WHITE + " Has Been Added To The Friends List ");
+
+            } else {
+                FriendManager.getFriends()
+                        .stream()
+                        .forEach(friend -> {
+                            if (friend.getName().contains(args[0])) {
+                                FriendManager.removeFriend(args[0]);
+                                Command.sendClientSideMessage(ChatFormatting.DARK_RED + args[0] + " Has Been UnFriended");
+
+                            }
+                        });
+            }
+        }
+//    }
     }
 }

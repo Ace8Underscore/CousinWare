@@ -1,21 +1,15 @@
 package io.ace.nordclient.hacks.render;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.HoleUtil;
 import io.ace.nordclient.utilz.NordTessellator;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class HoleESP extends Hack {
 

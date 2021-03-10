@@ -1,5 +1,6 @@
 package io.ace.nordclient.utilz;
 
+import io.ace.nordclient.command.Command;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -12,10 +13,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +54,181 @@ public class BlockInteractionHelper
         }
     }
 
+    public static void placeBlockScaffoldStrictRaytrace(final BlockPos pos) {
+        BlockPos neighbor = null;
+        EnumFacing side2 = null;
+        if (findBlockFacingLocationBlock(pos) == 1) {
+            // block pos west and EnumFacing east
+            neighbor = pos.west();
+            side2 = EnumFacing.EAST;
+        }
+        if (findBlockFacingLocationBlock(pos) == 2) {
+            // block pos east and EnumFacing west
+            neighbor = pos.east();
+            side2 = EnumFacing.WEST;
+
+        }
+        if (findBlockFacingLocationBlock(pos) == 3) {
+            // block pos north and EnumFacing south
+            neighbor = pos.north();
+            side2 = EnumFacing.SOUTH;
+
+        }
+        if (findBlockFacingLocationBlock(pos) == 4) {
+            // block pos south and EnumFacing north
+            neighbor = pos.south();
+            side2 = EnumFacing.NORTH;
+
+        }
+        double y = 0;
+        if (neighbor.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) < 1) y = .95;
+        if (neighbor.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) > 1 && neighbor.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) < 2) y = .85;
+        if (neighbor.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) > 2 && neighbor.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) < 3) y = .75;
+        if (neighbor.getDistance((int)mc.player.posX, (int)mc.player.posY, (int)mc.player.posZ) > 3) y = .65;
+
+
+        RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double) neighbor.getX() + .5, (double) pos.north().getY() + y, (double) neighbor.getZ() + .5));
+
+            final Vec3d hitVec = new Vec3d((Vec3i) neighbor).add(.5, y, .5).add(new Vec3d(result.sideHit.getDirectionVec()).scale(0.5));
+            faceVectorPacketInstant(hitVec);
+            processRightClickBlock(neighbor, side2, hitVec);
+            mc.player.swingArm(EnumHand.MAIN_HAND);
+
+    }
+    public static void placeBlockScaffoldStrict(final BlockPos pos) {
+        BlockPos neighbor = null;
+        EnumFacing side2 = null;
+        if (findBlockFacingLocationBlock(pos) == 1) {
+            // block pos west and EnumFacing east
+            neighbor = pos.west();
+            side2 = EnumFacing.EAST;
+        }
+        if (findBlockFacingLocationBlock(pos) == 2) {
+            // block pos east and EnumFacing west
+            neighbor = pos.east();
+            side2 = EnumFacing.WEST;
+
+        }
+        if (findBlockFacingLocationBlock(pos) == 3) {
+            // block pos north and EnumFacing south
+            neighbor = pos.north();
+            side2 = EnumFacing.SOUTH;
+
+        }
+        if (findBlockFacingLocationBlock(pos) == 4) {
+            // block pos south and EnumFacing north
+            neighbor = pos.south();
+            side2 = EnumFacing.NORTH;
+
+        }
+        final Vec3d hitVec = new Vec3d((Vec3i) neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+        Command.sendClientSideMessage("Placing at " + pos);
+        faceVectorPacketInstant(hitVec);
+        processRightClickBlock(neighbor, side2, hitVec);
+        mc.player.swingArm(EnumHand.MAIN_HAND);
+
+    }
+
+
+
+    public static int findBlockFacingLocationBlock(final BlockPos pos) {
+        double playerX = 0;
+        double posX = 0;
+        double distanceX = 0;
+        double playerZ = 0;
+        double posZ = 0;
+        double distanceZ = 0;
+        int direction = 0;
+
+         playerX = mc.player.posX;
+         posX = pos.getX();
+
+        if (playerX > posX) {
+            distanceX = playerX - posX;
+
+        } else {
+            distanceX = posX - playerX;
+        }
+
+         playerZ = mc.player.posZ;
+         posZ = pos.getZ();
+
+        if (playerZ > posZ) {
+            distanceZ = playerZ - posZ;
+
+        } else {
+            distanceZ = posZ - playerZ;
+        }
+
+        if (distanceX > distanceZ) {
+            if (playerX > posX) {
+                direction = 1;
+
+            } else {
+                direction = 2;
+            }
+
+        } else {
+            if (playerZ > posZ) {
+                direction = 3;
+
+            } else {
+                direction = 4;
+            }
+        }
+
+        return direction;
+    }
+
+    public static int findBlockFacingLocationPlayer(final BlockPos pos) {
+        double playerX = 0;
+        double enemyX = 0;
+        double distanceX = 0;
+        double playerZ = 0;
+        double enemyZ = 0;
+        double distanceZ = 0;
+        int direction = 0;
+
+        playerX = mc.player.posX;
+        enemyX = pos.getX();
+
+        if (playerX > enemyX) {
+            distanceX = playerX - enemyX;
+
+        } else {
+            distanceX = enemyX - playerX;
+        }
+
+        playerZ = mc.player.posZ;
+        enemyZ = pos.getZ();
+
+        if (playerZ > enemyZ) {
+            distanceZ = playerZ - enemyZ;
+
+        } else {
+            distanceZ = enemyZ - playerZ;
+        }
+
+        if (distanceX > distanceZ) {
+            if (playerX > enemyX) {
+                direction = 1;
+
+            } else {
+                direction = 2;
+            }
+
+        } else {
+            if (playerZ > enemyZ) {
+                direction = 3;
+
+            } else {
+                direction = 4;
+            }
+        }
+
+        return direction;
+    }
+
     public static void placeBlockScaffoldPiston(final BlockPos pos, final BlockPos look) {
         final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
         for (final EnumFacing side : EnumFacing.values()) {
@@ -89,39 +262,6 @@ public class BlockInteractionHelper
                     //mc.rightClickDelayTimer = 4;
                     return;
 
-            }
-        }
-    }
-    public static void placeBlockScaffoldNoRotateOffHand(final BlockPos pos) {
-        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
-        for (final EnumFacing side : EnumFacing.values()) {
-            final BlockPos neighbor = pos.offset(side);
-            final EnumFacing side2 = side.getOpposite();
-            if (canBeClicked(neighbor)) {
-                final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
-                processRightClickBlock(neighbor, side2, hitVec);
-                mc.player.swingArm(EnumHand.OFF_HAND);
-                //mc.rightClickDelayTimer = 4;
-                return;
-
-            }
-        }
-    }
-
-    public static void placeBlockScaffoldNewRotations(final BlockPos pos) {
-        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
-        for (final EnumFacing side : EnumFacing.values()) {
-            final BlockPos neighbor = pos.offset(side);
-            final EnumFacing side2 = side.getOpposite();
-            if (canBeClicked(neighbor)) {
-                final Vec3d hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
-                if (eyesPos.squareDistanceTo(hitVec) <= 18.0625) {
-                    lookAtPacket(hitVec.x + 0.5, hitVec.y - 0.5, hitVec.z + 0.5, mc.player);
-                    processRightClickBlock(neighbor, side2, hitVec);
-                    mc.player.swingArm(EnumHand.MAIN_HAND);
-                    //mc.rightClickDelayTimer = 4;
-                    return;
-                }
             }
         }
     }
@@ -282,5 +422,13 @@ public class BlockInteractionHelper
         blackList = Arrays.asList(Blocks.ENDER_CHEST, (Block) Blocks.CHEST, Blocks.TRAPPED_CHEST, Blocks.CRAFTING_TABLE, Blocks.ANVIL, Blocks.BREWING_STAND, (Block) Blocks.HOPPER, Blocks.DROPPER, Blocks.DISPENSER, Blocks.TRAPDOOR, Blocks.ENCHANTING_TABLE);
         shulkerList = Arrays.asList(Blocks.WHITE_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.SILVER_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.BLACK_SHULKER_BOX);
         mc = Minecraft.getMinecraft();
+    }
+
+    public static boolean rayTracePlaceCheck(BlockPos pos, boolean shouldCheck, float height) {
+        return !shouldCheck || mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double)mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double)pos.getX(), (double)((float)pos.getY() + height), (double)pos.getZ()), false, true, false) == null;
+    }
+
+    public static boolean rayTracePlaceCheck(BlockPos pos, boolean shouldCheck) {
+        return rayTracePlaceCheck(pos, shouldCheck, 1.0f);
     }
 }

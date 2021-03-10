@@ -2,8 +2,6 @@ package io.ace.nordclient.hacks.misc;
 
 import io.ace.nordclient.hacks.Hack;
 
-import java.util.Scanner;
-
 public class FancyChat extends Hack {
 
     public FancyChat() {

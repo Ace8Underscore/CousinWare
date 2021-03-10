@@ -2,7 +2,6 @@ package io.ace.nordclient.managers;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import io.ace.nordclient.command.Command;
-import io.ace.nordclient.command.commands.*;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,10 @@ public class CommandManager {
                     try {
                         c.onClientCommand(args, args.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"));
                     } catch (Exception e) {
-                        Command.sendClientSideMessage(ChatFormatting.RED + c.getClientSyntax());
+                        if (!s.equalsIgnoreCase("friend")) {
+                            Command.sendClientSideMessage(ChatFormatting.RED + c.getClientSyntax());
+                        }
+
                     }
                 }
             }

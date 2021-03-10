@@ -3,7 +3,6 @@ package io.ace.nordclient.hacks.render;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.client.settings.GameSettings;
 
 public class Crystal extends Hack {
 

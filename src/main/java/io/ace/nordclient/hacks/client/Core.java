@@ -23,7 +23,7 @@ public class Core extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(customFont = new Setting("CustomFont", this, true, "CoreCustomFont"));
         CousinWare.INSTANCE.settingsManager.rSetting(antiAlias = new Setting("AntiAlias", this, true, "CoreAntiAlias"));
         CousinWare.INSTANCE.settingsManager.rSetting(fractionalMetrics = new Setting("FractionalMetrics", this, true, "CoreFractionalMetrics"));
-        CousinWare.INSTANCE.settingsManager.rSetting(essentials = new Setting("Essentials", this, true, "CoreEssentials"));
+        CousinWare.INSTANCE.settingsManager.rSetting(essentials = new Setting("Essentials", this, false, "CoreEssentials"));
 
     }
 

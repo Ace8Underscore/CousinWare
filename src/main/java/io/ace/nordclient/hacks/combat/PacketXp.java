@@ -19,13 +19,11 @@ public class PacketXp extends Hack {
     }
     int xpHand;
     int startingHand;
-    int delay = 0;
     boolean spoofPitch;
 
     @Override
     public void onUpdate() {
         xpHand = InventoryUtil.findItemInHotbar(Items.EXPERIENCE_BOTTLE);
-        delay++;
         if (Keyboard.isKeyDown(this.getBind())) {
             if (InventoryUtil.findItemInHotbar(Items.EXPERIENCE_BOTTLE) != -1) {
                 spoofPitch = true;

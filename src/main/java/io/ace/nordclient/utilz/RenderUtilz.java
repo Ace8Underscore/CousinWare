@@ -4,7 +4,6 @@ import io.ace.nordclient.CousinWare;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
 
 public class RenderUtilz {
     private static final Minecraft mc = Minecraft.getMinecraft();

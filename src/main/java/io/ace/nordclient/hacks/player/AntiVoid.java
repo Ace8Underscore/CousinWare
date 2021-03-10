@@ -1,7 +1,6 @@
 package io.ace.nordclient.hacks.player;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.AddCollisionBoxToListEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
@@ -25,7 +24,7 @@ public class AntiVoid extends Hack {
         super("AntiVoid", Category.PLAYER, 8263634);
         ArrayList<String> downModes = new ArrayList<>();
         downModes.add("LagBack");
-        downModes.add("LagBackStrict");
+        downModes.add("Strict");
         downModes.add("Float");
         CousinWare.INSTANCE.settingsManager.rSetting(downMode = new Setting("Mode", this, "lagBack", downModes, "AntiVoidDownMode"));
 
@@ -37,13 +36,13 @@ public class AntiVoid extends Hack {
         if (downMode.getValString().equalsIgnoreCase("lagBack")) {
         if (yLevel <=.5) {
             mc.player.jump();
-            Command.sendClientSideMessage("Attempting to get " + mc.player.getName() + " Out of the Void!");
+            //Command.sendClientSideMessage("Attempting to get " + mc.player.getName() + " Out of the Void!");
              }
             }
-        if (downMode.getValString().equalsIgnoreCase("LagBackStrict")) {
+        if (downMode.getValString().equalsIgnoreCase("strict")) {
             if (yLevel <=.9) {
                 mc.player.jump();
-                Command.sendClientSideMessage("Attempting to get " + mc.player.getName() + " Out of the Void!");
+                //Command.sendClientSideMessage("Attempting to get " + mc.player.getName() + " Out of the Void!");
             }
         }
         }

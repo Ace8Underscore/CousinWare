@@ -3,7 +3,6 @@ package io.ace.nordclient.hacks.movement;
 import io.ace.nordclient.CousinWare;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.network.play.client.CPacketPlayer;
 
 import java.util.ArrayList;
 

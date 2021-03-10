@@ -14,6 +14,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class WebFiller extends Hack {
     Setting range;
     Setting yRange;
     Setting sDelay;
-    Setting rotate;
+    Setting placeMode;
     Setting webMode;
     Setting toggleTicks;
     Setting noGhostBlocks;
@@ -38,11 +40,18 @@ public class WebFiller extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 5, 1, 8, false, "WebFillerRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(yRange = new Setting("Y-Range", this, 3, 1, 5, true, "WebFillerY-Range"));
         CousinWare.INSTANCE.settingsManager.rSetting(sDelay = new Setting("Delay", this, 1, 0, 20, true, "WebFillerDelay"));
-        CousinWare.INSTANCE.settingsManager.rSetting(rotate = new Setting("Rotate", this, true, "WebFillerRotate"));
+        ArrayList<String> placeModes = new ArrayList<>();
+        placeModes.add("NoRotate");
+        placeModes.add("Rotate");
+        placeModes.add("Strict");
+        placeModes.add("StrictBeta");
+        CousinWare.INSTANCE.settingsManager.rSetting(placeMode = new Setting("PlaceModes", this, "Strict", placeModes, "WebFillerPlaceModes"));
+
         ArrayList<String> webModes = new ArrayList<>();
         webModes.add("HoleFill");
         webModes.add("Self");
         webModes.add("Enemy");
+        webModes.add("Slackin");
         CousinWare.INSTANCE.settingsManager.rSetting(webMode = new Setting("WebModes", this, "HoleFill", webModes, "WebFillerModes"));
         CousinWare.INSTANCE.settingsManager.rSetting(toggleTicks = new Setting("ToggleTicks", this, 10, 0, 60, true, "WebFilleToggleTicks"));
         CousinWare.INSTANCE.settingsManager.rSetting(noGhostBlocks = new Setting("NoGhostBlocks", this, true, "WebFillerNoGhostBlocks"));
@@ -51,6 +60,10 @@ public class WebFiller extends Hack {
 
     @Override
     public void onUpdate() {
+        if (InventoryUtil.findBlockInHotbar(Blocks.WEB) == -1) {
+            Command.sendClientSideMessage("No Webs");
+            this.disable();
+        }
         delay++;
         tDelay++;
         double x = mc.player.posX;
@@ -63,23 +76,35 @@ public class WebFiller extends Hack {
             if (delay >= sDelay.getValInt()) {
             for (BlockPos block : blocks) {
                 if (HoleUtil.isHole(block)) {
-                        if (rotate.getValBoolean()) {
+                        if (placeMode.getValString().equalsIgnoreCase("rotate")) {
                             mc.player.inventory.currentItem = webSlot;
                             BlockInteractionHelper.placeBlockScaffold(block);
                             mc.player.inventory.currentItem = startingSlot;
                             delay = 0;
-                        } else {
+                        }
+                        if (placeMode.getValString().equalsIgnoreCase("norotate")) {
                             mc.player.inventory.currentItem = webSlot;
                             BlockInteractionHelper.placeBlockScaffoldNoRotate(block);
                             mc.player.inventory.currentItem = startingSlot;
                             delay = 0;
                         }
+                        if (placeMode.getValString().equalsIgnoreCase("strict")) {
+                                mc.player.inventory.currentItem = webSlot;
+                                BlockInteractionHelper.placeBlockScaffoldStrict(block);
+                                mc.player.inventory.currentItem = startingSlot;
+                                delay = 0;
+                        }
+                    if (placeMode.getValString().equalsIgnoreCase("raytrace")) {
+                        mc.player.inventory.currentItem = webSlot;
+                        BlockInteractionHelper.placeBlockScaffoldStrictRaytrace(block);
+                        mc.player.inventory.currentItem = startingSlot;
+                        delay = 0;
+                    }
                         if (noGhostBlocks.getValBoolean()) {
                             mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, block, EnumFacing.SOUTH));
                             mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, block, EnumFacing.SOUTH));
 
                         }
-                        //Command.sendClientSideMessage(String.valueOf(delay));
                     }
 
                 }
@@ -88,11 +113,12 @@ public class WebFiller extends Hack {
         if (webMode.getValString().equalsIgnoreCase("Self")) {
             if (delay >= sDelay.getValInt()) {
                 if (!((IEntity) mc.player).getIsInWeb()) {
-                    if (rotate.getValBoolean()) {
+                    if (placeMode.getValString().equalsIgnoreCase("rotate") || placeMode.getValString().equalsIgnoreCase("strict") || placeMode.getValString().equalsIgnoreCase("strictbeta")) {
                         mc.player.inventory.currentItem = webSlot;
                         BlockInteractionHelper.placeBlockScaffold(playerPos);
                         mc.player.inventory.currentItem = startingSlot;
-                    } else {
+                    }
+                    if (placeMode.getValString().equalsIgnoreCase("norotate")) {
                         mc.player.inventory.currentItem = webSlot;
                         BlockInteractionHelper.placeBlockScaffoldNoRotate(playerPos);
                         mc.player.inventory.currentItem = startingSlot;
@@ -108,14 +134,16 @@ public class WebFiller extends Hack {
                         if (delay >= sDelay.getValInt()) {
                             BlockPos enemyPos = new BlockPos(e.posX, e.posY, e.posZ);
                             if (!mc.world.getBlockState(enemyPos).getBlock().equals(Blocks.WEB)) {
-                                if (rotate.getValBoolean()) {
+                                if (placeMode.getValString().equalsIgnoreCase("rotate") || placeMode.getValString().equalsIgnoreCase("strict") || placeMode.getValString().equalsIgnoreCase("strictbeta")) {
                                     mc.player.inventory.currentItem = webSlot;
                                     BlockInteractionHelper.placeBlockScaffold(enemyPos);
                                     mc.player.inventory.currentItem = startingSlot;
-                                } else {
+                                }
+                                if (placeMode.getValString().equalsIgnoreCase("norotate")) {
                                     mc.player.inventory.currentItem = webSlot;
                                     BlockInteractionHelper.placeBlockScaffoldNoRotate(enemyPos);
                                     mc.player.inventory.currentItem = startingSlot;
+                                }
                                 }
                                 delay = 0;
                             }
@@ -123,11 +151,68 @@ public class WebFiller extends Hack {
                     }
                 }
             }
+        if (webMode.getValString().equalsIgnoreCase("Slackin")) {
+            BlockPos place = null;
+            if (delay >= sDelay.getValInt()) {
+                for (Entity e : mc.world.playerEntities) {
+                    if (!FriendManager.isFriend(e.getName())) {
+                        if (!e.getName().equalsIgnoreCase(mc.player.getName())) {
+                            BlockPos enemyPos = new BlockPos(e.posX, e.posY, e.posZ);
+                            for (BlockPos block : blocks) {
+                                if (HoleUtil.isHole(block)) {
+                                    if (HoleUtil.isHole(enemyPos) || HoleUtil.isHole(enemyPos.down()) ) {
+                                        if (HoleUtil.isHole(enemyPos)) {
+                                            place = new BlockPos(enemyPos.getX(), enemyPos.getY(), enemyPos.getZ());
+                                        } else {
+                                            place = new BlockPos(enemyPos.getX(), enemyPos.down().getY(), enemyPos.getZ());
+
+                                        }
+                                        if (block.getDistance((int) e.posX, (int) e.posY, (int) e.posZ) < 3 && e.posY > block.getY() + .3) {
+                                            if (placeMode.getValString().equalsIgnoreCase("rotate")) {
+                                                mc.player.inventory.currentItem = webSlot;
+                                                BlockInteractionHelper.placeBlockScaffold(place);
+                                                mc.player.inventory.currentItem = startingSlot;
+                                                delay = 0;
+                                            }
+                                            if (placeMode.getValString().equalsIgnoreCase("norotate")) {
+                                                mc.player.inventory.currentItem = webSlot;
+                                                BlockInteractionHelper.placeBlockScaffoldNoRotate(place);
+                                                mc.player.inventory.currentItem = startingSlot;
+                                                delay = 0;
+                                            }
+                                            if (placeMode.getValString().equalsIgnoreCase("strict")) {
+                                                mc.player.inventory.currentItem = webSlot;
+                                                BlockInteractionHelper.placeBlockScaffoldStrict(place);
+                                                mc.player.inventory.currentItem = startingSlot;
+                                                delay = 0;
+                                            }
+                                            if (placeMode.getValString().equalsIgnoreCase("strictbeta")) {
+                                                mc.player.inventory.currentItem = webSlot;
+                                                BlockInteractionHelper.placeBlockScaffoldStrictRaytrace(place);
+                                                mc.player.inventory.currentItem = startingSlot;
+                                                delay = 0;
+                                            }
+                                            if (noGhostBlocks.getValBoolean()) {
+                                                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, place, EnumFacing.SOUTH));
+                                                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, place, EnumFacing.SOUTH));
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
-        if (tDelay >= toggleTicks.getValInt()) {
+
+        if (tDelay >= toggleTicks.getValInt() && toggleTicks.getValInt() != 0) {
             this.disable();
         }
     }
+
 
     @Override
     public void onEnable() {
@@ -146,4 +231,48 @@ public class WebFiller extends Hack {
         tDelay = 0;
 //
     }
+    @SubscribeEvent
+    public void onPlayerLeaveEvent(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
+        this.disable();
+    }
 }
+
+/*
+if (webMode.getValString().equalsIgnoreCase("Slackin")) {
+            if (delay >= sDelay.getValInt()) {
+                for (Entity e : mc.world.playerEntities) {
+                    if (!FriendManager.isFriend(e.getName())) {
+                        if (!e.getName().equalsIgnoreCase(mc.player.getName())) {
+                            BlockPos enemyPos = new BlockPos(e.posX, e.posY, e.posZ);
+                            if (HoleUtil.isHole(enemyPos) || HoleUtil.isHole(enemyPos.down())) {
+                                if (placeMode.getValString().equalsIgnoreCase("rotate")) {
+                                    mc.player.inventory.currentItem = webSlot;
+                                    BlockInteractionHelper.placeBlockScaffold(enemyPos);
+                                    mc.player.inventory.currentItem = startingSlot;
+                                    delay = 0;
+                                }
+                                if (placeMode.getValString().equalsIgnoreCase("norotate")) {
+                                    mc.player.inventory.currentItem = webSlot;
+                                    BlockInteractionHelper.placeBlockScaffoldNoRotate(enemyPos);
+                                    mc.player.inventory.currentItem = startingSlot;
+                                    delay = 0;
+                                }
+                                if (placeMode.getValString().equalsIgnoreCase("strict")) {
+                                    mc.player.inventory.currentItem = webSlot;
+                                    BlockInteractionHelper.placeBlockScaffoldStrict(enemyPos);
+                                    mc.player.inventory.currentItem = startingSlot;
+                                    delay = 0;
+                                }
+                                if (noGhostBlocks.getValBoolean()) {
+                                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, enemyPos, EnumFacing.SOUTH));
+                                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, enemyPos, EnumFacing.SOUTH));
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+ */

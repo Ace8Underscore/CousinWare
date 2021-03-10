@@ -22,6 +22,7 @@
     "MixinRenderMinecart",
     "MixinRenderPlayer",
     "MixinSlotShulkerBox",
+    "MixinSPacketEntityVelocity",
     "MixinSPacketPlayerPosLook",
     "MixinTileEntityEnchantmentTableRenderer",
     "MixinTimer"

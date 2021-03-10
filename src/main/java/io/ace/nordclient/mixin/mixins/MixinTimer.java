@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Timer.class)
 public abstract class MixinTimer implements ITimer {
+
     @Shadow protected float tickLength;
 
 
@@ -14,7 +15,8 @@ public abstract class MixinTimer implements ITimer {
     public void setTickLength(float tickLength) {
         this.tickLength = tickLength;
     }
-    @Override public float getTickLength() {
+
+    public float getTickLength() {
         return tickLength;
     }
 }

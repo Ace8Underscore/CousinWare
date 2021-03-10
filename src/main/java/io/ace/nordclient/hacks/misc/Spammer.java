@@ -8,7 +8,6 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
 import io.ace.nordclient.utilz.Setting;
 import net.minecraft.client.gui.GuiChat;
-import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.*;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;

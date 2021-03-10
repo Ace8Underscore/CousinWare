@@ -1,27 +1,18 @@
 package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.managers.FriendManager;
-import io.ace.nordclient.managers.HackManager;
 import io.ace.nordclient.managers.RotationManager;
 import io.ace.nordclient.mixin.accessor.ICPacketPlayer;
-import io.ace.nordclient.utilz.BlockInteractionHelper;
 import io.ace.nordclient.utilz.Setting;
 import io.ace.nordclient.utilz.TpsUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSword;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
-import org.spongepowered.asm.mixin.Overwrite;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 import java.util.Comparator;

@@ -6,7 +6,6 @@ import io.ace.nordclient.event.EventPlayerClickBlock;
 import io.ace.nordclient.event.EventPlayerDamageBlock;
 import io.ace.nordclient.event.EventPlayerResetBlockRemoving;
 import io.ace.nordclient.managers.HackManager;
-import io.ace.nordclient.mixin.accessor.IEntity;
 import io.ace.nordclient.mixin.accessor.IPlayerControllerMP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.util.EnumFacing;

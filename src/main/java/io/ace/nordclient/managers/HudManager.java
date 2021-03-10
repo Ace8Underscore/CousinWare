@@ -2,7 +2,6 @@ package io.ace.nordclient.managers;
 
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hud.Hud;
-import io.ace.nordclient.hud.hudcomponets.*;
 import io.ace.nordclient.utilz.NordTessellator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

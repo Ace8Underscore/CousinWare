@@ -7,7 +7,6 @@ import io.ace.nordclient.hacks.Hack;
 import io.ace.nordclient.hacks.client.Core;
 import io.ace.nordclient.utilz.RenderUtilz;
 import io.ace.nordclient.utilz.Setting;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 

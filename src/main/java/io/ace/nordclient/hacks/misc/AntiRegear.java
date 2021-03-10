@@ -23,11 +23,13 @@ public class AntiRegear extends Hack {
 
     Setting range;
     Setting autoSwitch;
+    Setting rotate;
 
     public AntiRegear() {
         super("AntiRegear", Category.MISC, 9681786);
         CousinWare.INSTANCE.settingsManager.rSetting(range = new Setting("Range", this, 5.5, 0, 8, false, "AntiRegearRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(autoSwitch = new Setting("AutoSwitch", this, true, "AntiRegearAutoSwitch"));
+        CousinWare.INSTANCE.settingsManager.rSetting(rotate = new Setting("Rotate", this, false, "AntiReagearRotate"));
     }
 
     float yaw;
@@ -41,15 +43,19 @@ public class AntiRegear extends Hack {
                 int pickSlot = InventoryUtil.findItemInHotbar(Items.DIAMOND_PICKAXE);
                 mc.player.inventory.currentItem = pickSlot;
             }
-            isSpoofing = true;
-            lookAtPacket(getTargetBlock().getPos().getX() + .5, getTargetBlock().getPos().getY() - 1, getTargetBlock().getPos().getZ() + .5, mc.player);
+            if (rotate.getValBoolean()) {
+                isSpoofing = true;
+                lookAtPacket(getTargetBlock().getPos().getX() + .5, getTargetBlock().getPos().getY() - 1, getTargetBlock().getPos().getZ() + .5, mc.player);
+            }
             mc.player.swingArm(HackManager.getHackByName("Swing").isEnabled() ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND);
             mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, getTargetBlock().getPos(), EnumFacing.SOUTH));
             mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, getTargetBlock().getPos(), EnumFacing.SOUTH));
 
         }
+        if (rotate.getValBoolean()) {
         if (getTargetBlock() == null) {
             resetRotations();
+        }
         }
 
     }
@@ -88,16 +94,20 @@ public class AntiRegear extends Hack {
 
     @Listener
     public void onUpdate(PacketEvent.Send event) {
-        Packet packet = event.getPacket();
-        if (packet instanceof CPacketPlayer) {
-            ((ICPacketPlayer) packet).setYaw(yaw);
-            ((ICPacketPlayer) packet).setPitch(pitch);
+        if (rotate.getValBoolean()) {
+            Packet packet = event.getPacket();
+            if (packet instanceof CPacketPlayer) {
+                ((ICPacketPlayer) packet).setYaw(yaw);
+                ((ICPacketPlayer) packet).setPitch(pitch);
+            }
         }
     }
 
     @Override
     public void onDisable() {
-        resetRotations();
+        if (rotate.getValBoolean()) {
+            resetRotations();
+        }
     }
 
 

@@ -12,7 +12,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketConfirmTeleport;
 import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
@@ -62,34 +65,37 @@ public class Burrow extends Hack {
     public void onUpdate() {
         if (mc.player == null || mc.world == null) this.disable();
         delayPlace++;
-        if (noJump.getValBoolean()) mc.player.posY = startingY;
         if (delayPlace >= delay.getValInt() && !noForce) {
             BlockPos pos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
             if (noJump.getValBoolean()) {
-                mc.player.posY = startingY;
                 mc.player.inventory.currentItem = useItem;
+                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.41999998688698D, mc.player.posZ, true));
+                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 0.7531999805211997D, mc.player.posZ, true));
+                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 1.00133597911214D, mc.player.posZ, true));
+                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 1.16610926093821D, mc.player.posZ, true));
                 BlockInteractionHelper.placeBlockScaffold(pos.up());
+                mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                 mc.player.inventory.currentItem = startingHand;
             } else  {
-                mc.player.posY = startingY;
                 mc.player.inventory.currentItem = useItem;
                 BlockInteractionHelper.placeBlockScaffold(pos);
                 mc.player.inventory.currentItem = startingHand;
             }
-            if (!mc.world.getBlockState(pos).getBlock().canPlaceBlockAt(mc.world, pos)) {
                 if (lagMode.getValString().equalsIgnoreCase("Fly")) {
                     mc.player.motionY = lagBackPower.getValDouble();
-                } else {
-                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + lagBackPower.getValDouble(), mc.player.posZ, mc.player.onGround));
+                } else if (lagMode.getValString().equalsIgnoreCase("Packet")) {
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + lagBackPower.getValDouble(), mc.player.posZ, false));
+                } else if (lagMode.getValString().equalsIgnoreCase("Auto")){
+                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX,  mc.player.posY + (127 - mc.player.posY) + 1, mc.player.posZ, false));
+
                 }
                 if (!noForceRotate.getValBoolean()) this.disable();
 
-            }
+
         }
     }
 
     public void onEnable() {
-        startingY = mc.player.posY;
         startingHand = mc.player.inventory.currentItem;
         if (blockMode.getValString().equalsIgnoreCase("Obi")) {
             if (InventoryUtil.findBlockInHotbar(Blocks.OBSIDIAN) == -1) {
@@ -99,7 +105,7 @@ public class Burrow extends Hack {
                 useItem = InventoryUtil.findBlockInHotbar(Blocks.OBSIDIAN);
                 blockPlaced = false;
                 noForce = false;
-                mc.player.jump();
+                if (!noJump.getValBoolean()) mc.player.jump();
                 delayPlace = 0;
             }
         }
@@ -112,7 +118,7 @@ public class Burrow extends Hack {
                 useItem = InventoryUtil.findBlockInHotbar(Blocks.ENDER_CHEST);
                 blockPlaced = false;
                 noForce = false;
-                mc.player.jump();
+                if (!noJump.getValBoolean()) mc.player.jump();
                 delayPlace = 0;
             }
         }

@@ -1,13 +1,11 @@
 package io.ace.nordclient.hud.hudcomponets;
 
-import io.ace.nordclient.event.UpdateEvent;
 import io.ace.nordclient.hacks.client.ClickGuiHudHack;
 import io.ace.nordclient.hud.Hud;
 import io.ace.nordclient.utilz.InventoryUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -16,7 +14,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
 
 /**
  * @author Ace________/Ace_#1233
