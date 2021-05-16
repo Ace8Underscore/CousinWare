@@ -44,7 +44,7 @@ public class WebFiller extends Hack {
         placeModes.add("NoRotate");
         placeModes.add("Rotate");
         placeModes.add("Strict");
-        placeModes.add("StrictBeta");
+        placeModes.add("Raytrace");
         CousinWare.INSTANCE.settingsManager.rSetting(placeMode = new Setting("PlaceModes", this, "Strict", placeModes, "WebFillerPlaceModes"));
 
         ArrayList<String> webModes = new ArrayList<>();
@@ -160,42 +160,44 @@ public class WebFiller extends Hack {
                             BlockPos enemyPos = new BlockPos(e.posX, e.posY, e.posZ);
                             for (BlockPos block : blocks) {
                                 if (HoleUtil.isHole(block)) {
-                                    if (HoleUtil.isHole(enemyPos) || HoleUtil.isHole(enemyPos.down()) ) {
-                                        if (HoleUtil.isHole(enemyPos)) {
-                                            place = new BlockPos(enemyPos.getX(), enemyPos.getY(), enemyPos.getZ());
-                                        } else {
-                                            place = new BlockPos(enemyPos.getX(), enemyPos.down().getY(), enemyPos.getZ());
+                                    if (HoleUtil.isHole(enemyPos) || HoleUtil.isHole(enemyPos.down())) {
+                                        if (!mc.world.getBlockState(enemyPos).getBlock().equals(Blocks.WEB) && !mc.world.getBlockState(enemyPos.down()).getBlock().equals(Blocks.WEB)) {
+                                            if (HoleUtil.isHole(enemyPos)) {
+                                                place = new BlockPos(enemyPos.getX(), enemyPos.getY(), enemyPos.getZ());
+                                            } else {
+                                                place = new BlockPos(enemyPos.getX(), enemyPos.down().getY(), enemyPos.getZ());
 
-                                        }
-                                        if (block.getDistance((int) e.posX, (int) e.posY, (int) e.posZ) < 3 && e.posY > block.getY() + .3) {
-                                            if (placeMode.getValString().equalsIgnoreCase("rotate")) {
-                                                mc.player.inventory.currentItem = webSlot;
-                                                BlockInteractionHelper.placeBlockScaffold(place);
-                                                mc.player.inventory.currentItem = startingSlot;
-                                                delay = 0;
                                             }
-                                            if (placeMode.getValString().equalsIgnoreCase("norotate")) {
-                                                mc.player.inventory.currentItem = webSlot;
-                                                BlockInteractionHelper.placeBlockScaffoldNoRotate(place);
-                                                mc.player.inventory.currentItem = startingSlot;
-                                                delay = 0;
-                                            }
-                                            if (placeMode.getValString().equalsIgnoreCase("strict")) {
-                                                mc.player.inventory.currentItem = webSlot;
-                                                BlockInteractionHelper.placeBlockScaffoldStrict(place);
-                                                mc.player.inventory.currentItem = startingSlot;
-                                                delay = 0;
-                                            }
-                                            if (placeMode.getValString().equalsIgnoreCase("strictbeta")) {
-                                                mc.player.inventory.currentItem = webSlot;
-                                                BlockInteractionHelper.placeBlockScaffoldStrictRaytrace(place);
-                                                mc.player.inventory.currentItem = startingSlot;
-                                                delay = 0;
-                                            }
-                                            if (noGhostBlocks.getValBoolean()) {
-                                                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, place, EnumFacing.SOUTH));
-                                                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, place, EnumFacing.SOUTH));
+                                            if (block.getDistance((int) e.posX, (int) e.posY, (int) e.posZ) < 3 && e.posY > block.getY() + .3) {
+                                                if (placeMode.getValString().equalsIgnoreCase("rotate")) {
+                                                    mc.player.inventory.currentItem = webSlot;
+                                                    BlockInteractionHelper.placeBlockScaffold(place);
+                                                    mc.player.inventory.currentItem = startingSlot;
+                                                    delay = 0;
+                                                }
+                                                if (placeMode.getValString().equalsIgnoreCase("norotate")) {
+                                                    mc.player.inventory.currentItem = webSlot;
+                                                    BlockInteractionHelper.placeBlockScaffoldNoRotate(place);
+                                                    mc.player.inventory.currentItem = startingSlot;
+                                                    delay = 0;
+                                                }
+                                                if (placeMode.getValString().equalsIgnoreCase("strict")) {
+                                                    mc.player.inventory.currentItem = webSlot;
+                                                    BlockInteractionHelper.placeBlockScaffoldStrict(place);
+                                                    mc.player.inventory.currentItem = startingSlot;
+                                                    delay = 0;
+                                                }
+                                                if (placeMode.getValString().equalsIgnoreCase("strictbeta")) {
+                                                    mc.player.inventory.currentItem = webSlot;
+                                                    BlockInteractionHelper.placeBlockScaffoldStrictRaytrace(place);
+                                                    mc.player.inventory.currentItem = startingSlot;
+                                                    delay = 0;
+                                                }
+                                                if (noGhostBlocks.getValBoolean()) {
+                                                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, place, EnumFacing.SOUTH));
+                                                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, place, EnumFacing.SOUTH));
 
+                                                }
                                             }
                                         }
                                     }
@@ -204,8 +206,8 @@ public class WebFiller extends Hack {
                         }
                     }
                 }
-            }
 
+            }
         }
 
         if (tDelay >= toggleTicks.getValInt() && toggleTicks.getValInt() != 0) {

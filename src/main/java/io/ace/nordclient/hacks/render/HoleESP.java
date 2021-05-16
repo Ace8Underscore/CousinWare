@@ -13,6 +13,7 @@ import java.util.List;
 
 public class HoleESP extends Hack {
 
+    Setting doubleHole;
     Setting radius;
     Setting rObi;
     Setting gObi;
@@ -26,6 +27,7 @@ public class HoleESP extends Hack {
 
     public HoleESP() {
         super("HoleESP", Category.RENDER, 3639503);
+        CousinWare.INSTANCE.settingsManager.rSetting(doubleHole = new Setting("DoubleHole", this, true, "HoleESPDoubleHole"));
         CousinWare.INSTANCE.settingsManager.rSetting(radius = new Setting("Radius", this, 5, 1, 20, false, "HoleESPRadius"));
         CousinWare.INSTANCE.settingsManager.rSetting(rObi = new Setting("RedObi", this, 255, 0, 255, true, "HoleESPRedObi"));
         CousinWare.INSTANCE.settingsManager.rSetting(gObi = new Setting("GreenObi", this, 26, 0, 255, true, "HoleESPGreenObi"));
@@ -37,7 +39,6 @@ public class HoleESP extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(outlineAlpha = new Setting("OutlineAlpha", this, 200, 0, 255, true, "HoleESPOutlineAlpha"));
         CousinWare.INSTANCE.settingsManager.rSetting(width = new Setting("Width", this, 2, 0, 10, true, "HoleESPWidth"));
     }
-
 
 
     @Override
@@ -62,9 +63,69 @@ public class HoleESP extends Hack {
                 NordTessellator.release();
                 NordTessellator.drawBoundingBoxBottomBlockPos(block, width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
             }
+            if (doubleHole.getValBoolean()) {
+            if (HoleUtil.isBedrockEastHole(block) && HoleUtil.isBedrockWestHole(block.west())) {
+                NordTessellator.prepare(7);
+                NordTessellator.drawBoxBottom(block.west(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt());
+                NordTessellator.drawBoxBottom(block, rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt());
+                NordTessellator.release();
+                NordTessellator.drawBoundingBoxBottomBlockPosEast(block, width.getValInt(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), outlineAlpha.getValInt());
+                NordTessellator.drawBoundingBoxBottomBlockPosWest(block.west(), width.getValInt(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), outlineAlpha.getValInt());
+
+            }
+            if (HoleUtil.isBedrockNorthHole(block) && HoleUtil.isBedrockSouthHole(block.south())) {
+                NordTessellator.prepare(7);
+                NordTessellator.drawBoxBottom(block.south(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt());
+                NordTessellator.drawBoxBottom(block, rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), alpha.getValInt());
+                NordTessellator.release();
+                NordTessellator.drawBoundingBoxBottomBlockPosNorth(block, width.getValInt(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), outlineAlpha.getValInt());
+                NordTessellator.drawBoundingBoxBottomBlockPosSouth(block.south(), width.getValInt(), rRock.getValInt(), gRock.getValInt(), bRock.getValInt(), outlineAlpha.getValInt());
+
+            }
+            if (HoleUtil.isObiEastHole(block) && HoleUtil.isObiWestHole(block.west())) {
+                NordTessellator.prepare(7);
+                NordTessellator.drawBoxBottom(block.west(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                NordTessellator.drawBoxBottom(block, rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                NordTessellator.release();
+                NordTessellator.drawBoundingBoxBottomBlockPosEast(block, width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+                NordTessellator.drawBoundingBoxBottomBlockPosWest(block.west(), width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
 //
+            }
+
+            if (HoleUtil.isObiNorthHole(block) && HoleUtil.isObiSouthHole(block.south())) {
+                NordTessellator.prepare(7);
+                NordTessellator.drawBoxBottom(block.south(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                NordTessellator.drawBoxBottom(block, rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                NordTessellator.release();
+                NordTessellator.drawBoundingBoxBottomBlockPosNorth(block, width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+                NordTessellator.drawBoundingBoxBottomBlockPosSouth(block.south(), width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+
+
+            }
+            if (!(HoleUtil.isObiNorthHole(block) && HoleUtil.isObiSouthHole(block.south())) && !(HoleUtil.isObiEastHole(block) && HoleUtil.isObiWestHole(block.west())) && !(HoleUtil.isBedrockNorthHole(block) && HoleUtil.isBedrockSouthHole(block.south())) && !(HoleUtil.isBedrockEastHole(block) && HoleUtil.isBedrockWestHole(block.west()))) {
+
+                if ((HoleUtil.isObiNorthHole(block) || HoleUtil.isBedrockNorthHole(block)) && (HoleUtil.isObiSouthHole(block.south()) || HoleUtil.isBedrockSouthHole(block.south()))) {
+                    NordTessellator.prepare(7);
+                    NordTessellator.drawBoxBottom(block.south(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                    NordTessellator.drawBoxBottom(block, rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                    NordTessellator.release();
+                    NordTessellator.drawBoundingBoxBottomBlockPosNorth(block, width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+                    NordTessellator.drawBoundingBoxBottomBlockPosSouth(block.south(), width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+
+                }
+
+                if ((HoleUtil.isObiEastHole(block) || HoleUtil.isBedrockEastHole(block)) && (HoleUtil.isObiWestHole(block.west()) || HoleUtil.isBedrockWestHole(block.west()))) {
+                    NordTessellator.prepare(7);
+                    NordTessellator.drawBoxBottom(block.west(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                    NordTessellator.drawBoxBottom(block, rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), alpha.getValInt());
+                    NordTessellator.release();
+                    NordTessellator.drawBoundingBoxBottomBlockPosEast(block, width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+                    NordTessellator.drawBoundingBoxBottomBlockPosWest(block.west(), width.getValInt(), rObi.getValInt(), gObi.getValInt(), bObi.getValInt(), outlineAlpha.getValInt());
+
+                }
+            }
+
+            }
         }
-
     }
-
 }

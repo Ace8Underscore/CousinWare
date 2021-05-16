@@ -1,5 +1,6 @@
 package io.ace.nordclient.mixin.mixins;
 
+import io.ace.nordclient.hacks.render.NoRender;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.renderer.entity.RenderFallingBlock;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +13,7 @@ public abstract class MixinRenderFallingBlock {
 
     @Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
     private void doRender(CallbackInfo info) {
-        if (HackManager.getHackByName("NoFallingAnimations").isEnabled()) {
+        if (NoRender.fallingAni.getValBoolean() && HackManager.getHackByName("NoRender").isEnabled()) {
             info.cancel();
         }
     }

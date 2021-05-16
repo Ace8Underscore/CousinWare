@@ -1,6 +1,5 @@
 package io.ace.nordclient.utilz;
 
-import io.ace.nordclient.command.Command;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -122,7 +121,6 @@ public class BlockInteractionHelper
 
         }
         final Vec3d hitVec = new Vec3d((Vec3i) neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
-        Command.sendClientSideMessage("Placing at " + pos);
         faceVectorPacketInstant(hitVec);
         processRightClickBlock(neighbor, side2, hitVec);
         mc.player.swingArm(EnumHand.MAIN_HAND);

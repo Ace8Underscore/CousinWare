@@ -113,7 +113,7 @@ public class ConfigUtils {
 
             while (var3.hasNext()) {
                 Hack hack = (Hack) var3.next();
-                if (hack.isEnabled()) {
+                if (hack.isEnabled() && !hack.getName().equalsIgnoreCase("crystalaura")) {
                     out.write(hack.getName());
                     out.write("\r\n");
                 }

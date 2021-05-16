@@ -28,7 +28,7 @@ public abstract class MixinEntityPlayerSP extends AbstractClientPlayer {
         super.move(type, moveEvent.x, moveEvent.y, moveEvent.z);
     }
 
-    @Inject(method = "onUpdate()V", at = @At(value = "FIELD", target = "net/minecraft/client/entity/EntityPlayerSP.connection:Lnet/minecraft/client/network/NetHandlerPlayClient;", ordinal = 0, shift = At.Shift.BEFORE))
+    @Inject(method = "onUpdate()V", at = @At(value = "FIELD", target = "net/minecraft/client/entity/EntityPlayerSP.connection:Lnet/minecraft/client/network/NetHandlerPlayClient;", ordinal = 0, shift = At.Shift.BEFORE), cancellable = true)
     public void onUpdatePre(CallbackInfo ci) { //support for haram pigs: makes it so that the event still runs when riding entities, or bad shit will happen lol
         UpdateEvent event = new UpdateEvent(EventStageable.EventStage.PRE, this.rotationYaw, this.rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
         CousinWare.INSTANCE.getEventManager().dispatchEvent(event);

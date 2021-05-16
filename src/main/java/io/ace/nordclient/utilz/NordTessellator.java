@@ -283,6 +283,138 @@ public class NordTessellator
         GlStateManager.popMatrix();
     }
 
+    public static void drawBoundingBoxBottomBlockPosSouth(BlockPos bp, float width, int r, int g, int b, int alpha) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 0, 1);
+        GlStateManager.disableTexture2D();
+        GlStateManager.depthMask(false);
+        GL11.glEnable(2848);
+        GL11.glHint(3154,  4354);
+        GL11.glLineWidth(width);
+        Minecraft mc = Minecraft.getMinecraft();
+        double x = (double) bp.getX() - mc.getRenderManager().viewerPosX;
+        double y = (double) bp.getY() - mc.getRenderManager().viewerPosY;
+        double z = (double) bp.getZ() - mc.getRenderManager().viewerPosZ;
+        AxisAlignedBB bb = new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0);
+        net.minecraft.client.renderer.Tessellator tessellator = net.minecraft.client.renderer.Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        tessellator.draw();
+        GL11.glDisable(2848);
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
+
+    public static void drawBoundingBoxBottomBlockPosNorth(BlockPos bp, float width, int r, int g, int b, int alpha) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 0, 1);
+        GlStateManager.disableTexture2D();
+        GlStateManager.depthMask(false);
+        GL11.glEnable(2848);
+        GL11.glHint(3154,  4354);
+        GL11.glLineWidth(width);
+        Minecraft mc = Minecraft.getMinecraft();
+        double x = (double) bp.getX() - mc.getRenderManager().viewerPosX;
+        double y = (double) bp.getY() - mc.getRenderManager().viewerPosY;
+        double z = (double) bp.getZ() - mc.getRenderManager().viewerPosZ;
+        AxisAlignedBB bb = new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0);
+        net.minecraft.client.renderer.Tessellator tessellator = net.minecraft.client.renderer.Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.minZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.maxZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.minZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        //bufferbuilder.pos(bb.minX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        //bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        tessellator.draw();
+        GL11.glDisable(2848);
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
+
+    public static void drawBoundingBoxBottomBlockPosEast(BlockPos bp, float width, int r, int g, int b, int alpha) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 0, 1);
+        GlStateManager.disableTexture2D();
+        GlStateManager.depthMask(false);
+        GL11.glEnable(2848);
+        GL11.glHint(3154,  4354);
+        GL11.glLineWidth(width);
+        Minecraft mc = Minecraft.getMinecraft();
+        double x = (double) bp.getX() - mc.getRenderManager().viewerPosX;
+        double y = (double) bp.getY() - mc.getRenderManager().viewerPosY;
+        double z = (double) bp.getZ() - mc.getRenderManager().viewerPosZ;
+        AxisAlignedBB bb = new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0);
+        net.minecraft.client.renderer.Tessellator tessellator = net.minecraft.client.renderer.Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        //bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        tessellator.draw();
+        GL11.glDisable(2848);
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
+
+    public static void drawBoundingBoxBottomBlockPosWest(BlockPos bp, float width, int r, int g, int b, int alpha) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 0, 1);
+        GlStateManager.disableTexture2D();
+        GlStateManager.depthMask(false);
+        GL11.glEnable(2848);
+        GL11.glHint(3154,  4354);
+        GL11.glLineWidth(width);
+        Minecraft mc = Minecraft.getMinecraft();
+        double x = (double) bp.getX() - mc.getRenderManager().viewerPosX;
+        double y = (double) bp.getY() - mc.getRenderManager().viewerPosY;
+        double z = (double) bp.getZ() - mc.getRenderManager().viewerPosZ;
+        AxisAlignedBB bb = new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0);
+        net.minecraft.client.renderer.Tessellator tessellator = net.minecraft.client.renderer.Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.minZ).color(r, g, b, alpha / 2).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        //bufferbuilder.pos(bb.maxX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.minX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        bufferbuilder.pos(bb.maxX, bb.minY, bb.maxZ).color(r, g, b, alpha).endVertex();
+        //bufferbuilder.pos(bb.minX, bb.minY, bb.minZ).color(r, g, b, alpha).endVertex();
+        tessellator.draw();
+        GL11.glDisable(2848);
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
+
     public static void drawBoundingBoxBlockPosHalf(BlockPos bp, float width, int r, int g, int b, int alpha) {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();

@@ -56,6 +56,7 @@ public class Burrow extends Hack {
         ArrayList<String> lagModes = new ArrayList<>();
         lagModes.add("Packet");
         lagModes.add("Fly");
+        lagModes.add("Smart");
         CousinWare.INSTANCE.settingsManager.rSetting(lagMode = new Setting("LagMode", this, "Packet", lagModes, "BurrowLagMode"));
         CousinWare.INSTANCE.settingsManager.rSetting(noJump = new Setting("NoJump", this, true, "BurrowNoJump"));
 
@@ -85,9 +86,9 @@ public class Burrow extends Hack {
                     mc.player.motionY = lagBackPower.getValDouble();
                 } else if (lagMode.getValString().equalsIgnoreCase("Packet")) {
                     mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + lagBackPower.getValDouble(), mc.player.posZ, false));
-                } else if (lagMode.getValString().equalsIgnoreCase("Auto")){
-                    mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX,  mc.player.posY + (127 - mc.player.posY) + 1, mc.player.posZ, false));
-
+                } else if (lagMode.getValString().equalsIgnoreCase("Smart")){
+                    if (mc.player.posY >= 118) mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, mc.player.posY + 10, mc.player.posZ, false));
+                    else mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, findTpBlocks().getY(), mc.player.posY + 3 , false));
                 }
                 if (!noForceRotate.getValBoolean()) this.disable();
 
@@ -163,6 +164,42 @@ public class Burrow extends Hack {
             }
         }
     }
+
+    private float getCenterModX(BlockPos pos) {
+        float mod = 0;
+        if (pos.getX() > 0) mod = (float) (pos.getX() + .5);
+        if (pos.getX() < 0) mod = (float) (pos.getX() - .5);
+        return mod;
+    }
+    private float getCenterModZ(BlockPos pos) {
+        float mod = 0;
+        if (pos.getZ() > 0) mod = (float) (pos.getZ() + .5);
+        if (pos.getZ() < 0) mod = (float) (pos.getZ() - .5);
+        return mod;
+    }
+
+    private boolean canTpBlock(BlockPos blockPos) {
+        BlockPos boost = blockPos.add(0, 1, 0);
+        BlockPos boost2 = blockPos.add(0, 2, 0);
+        if ((mc.world.getBlockState(boost).getBlock() != Blocks.AIR
+                || mc.world.getBlockState(boost2).getBlock() != Blocks.AIR)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static BlockPos getPlayerPos() {
+        return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
+    }
+
+    private BlockPos findTpBlocks() {
+        BlockPos positions = null;
+        for (BlockPos pos : BlockInteractionHelper.getSphere(getPlayerPos(), (float) lagBackPower.getValInt() / 2, lagBackPower.getValInt(), false, true, 1))
+            if (pos.getY() > mc.player.posY + 1)
+                if (mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(pos.up()).getBlock().equals(Blocks.AIR)) positions = pos;
+        return positions;
+    }
+
     //
 
 }

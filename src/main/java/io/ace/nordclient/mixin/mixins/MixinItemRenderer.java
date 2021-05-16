@@ -1,5 +1,6 @@
 package io.ace.nordclient.mixin.mixins;
 
+import io.ace.nordclient.hacks.render.NoRender;
 import io.ace.nordclient.hacks.render.ViewModelChanger;
 import io.ace.nordclient.managers.HackManager;
 import net.minecraft.client.Minecraft;
@@ -9,6 +10,8 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -121,8 +124,8 @@ public abstract class MixinItemRenderer {
         //this.renderMapFirstPerson(stack);
         GlStateManager.popMatrix();
     } */
-  /*  @Inject(method = "transformEatFirstPerson", at = @At("HEAD"), cancellable = true)
-    public void transformEatFirstPerson(float p_187454_1_, EnumHandSide hand, ItemStack stack, CallbackInfo info) {
+    @Inject(method = "transformEatFirstPerson", at = @At("HEAD"), cancellable = true)
+    private void transformEatFirstPerson(float p_187454_1_, EnumHandSide hand, ItemStack stack, CallbackInfo ci) {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {
             float f = (float) this.mc.player.getItemInUseCount() - p_187454_1_ + 1.0F;
             float f1 = f / (float) stack.getMaxItemUseDuration();
@@ -131,14 +134,16 @@ public abstract class MixinItemRenderer {
                 f3 = MathHelper.abs(MathHelper.cos(f / 4.0F * 3.1415927F) * 0.1F);
                 GlStateManager.translate(0.0F, f3, 0.0F);
             }
+
             f3 = 1.0F - (float) Math.pow((double) f1, 27.0D);
             int i = hand == EnumHandSide.RIGHT ? 1 : -1;
-            GlStateManager.translate(f3 * 0.6F * (float) i, f3 * -0.5F, f3 * 0.0F);
+            GlStateManager.translate(f3 * (ViewModelChanger.sizeX.getValDouble() * .6F) * (float) i, f3 * (-ViewModelChanger.sizeYMain.getValDouble() *.5), f3 * ViewModelChanger.sizeZMain.getValDouble());
             GlStateManager.rotate((float) i * f3 * 90.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(f3 * 10.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate((float) i * f3 * 30.0F, 0.0F, 0.0F, 1.0F);
         }
-    } */
+    }
+
     @Inject(method = "transformFirstPerson", at = @At("HEAD"), cancellable = true)
     public void transformFirstPerson(EnumHandSide hand, float p_187453_2_, CallbackInfo info) {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {
@@ -146,10 +151,11 @@ public abstract class MixinItemRenderer {
             float f = MathHelper.sin(p_187453_2_ * p_187453_2_ * 3.1415927F);
             GlStateManager.rotate((float) i * (-45.0f + f * -20.0F), 0.0F, 100.0F, 0.0F);
             float f1 = MathHelper.sin(MathHelper.sqrt(p_187453_2_) * 3.1415927F);
-            GlStateManager.rotate((float)i * f1 * -ViewModelChanger.rotateX.getValInt(), 0.0F, 0.0F, 1.0F);
-            GlStateManager.rotate(f1 * -ViewModelChanger.rotateY.getValInt(), 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate((float)i * f1 * -20.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate((float) i * ViewModelChanger.rotateZ.getValInt(), 0.0F, 1.0F, 0.0F);
             // still gotta find what does pitch
+            GlStateManager.scale(ViewModelChanger.sizeXMain.getValDouble(), ViewModelChanger.sizeYMain.getValDouble(), ViewModelChanger.sizeZMain.getValDouble());
         }
     }
 
@@ -158,8 +164,26 @@ public abstract class MixinItemRenderer {
         if (HackManager.getHackByName("ViewModelChanger").isEnabled()) {
             int i = hand == EnumHandSide.RIGHT ? 1 : -1;
             GlStateManager.translate((float) i * ViewModelChanger.sizeX.getValDouble(), -ViewModelChanger.sizeY.getValDouble() + p_187459_2_ * .6, ViewModelChanger.sizeZ.getValDouble() * -1);
+
         }
     }
+
+    @Inject(method = "renderSuffocationOverlay", at = @At("HEAD"), cancellable = true)
+    public void renderSuffocationOverlay(TextureAtlasSprite sprite, CallbackInfo info) {
+        if (NoRender.suffocateScreen.getValBoolean() && HackManager.getHackByName("NoRender").isEnabled()) {
+            info.cancel();
+        }
+    }
+
+    @Inject(method = "renderFireInFirstPerson", at = @At("HEAD"), cancellable = true)
+    public void renderFireInFirstPerson(CallbackInfo ci) {
+        if (NoRender.fire.getValBoolean() && HackManager.getHackByName("NoRender").isEnabled()) {
+            ci.cancel();
+        }
+    }
+
+
+
 
 }
 

@@ -256,6 +256,11 @@ public class AutoTrap extends Hack {
         }
     }
 
+    @Override
+    public String getHudInfo() {
+        if (closestTarget == null) return "\u00A77[\u00A7f" + "No Target" + "\u00A77]";
+        else return "\u00A77[\u00A7f" + closestTarget.getName() + "\u00A77]";
+    }
 
 
 }

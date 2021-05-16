@@ -153,7 +153,10 @@ public class AutoOffHand extends Hack {
 
     }
 
-
+    @Override
+    public String getHudInfo() {
+        return "\u00A77[\u00A7f" + mode.getValString() + "\u00A77]";
+    }
 
 }
 

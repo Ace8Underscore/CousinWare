@@ -49,7 +49,7 @@ public class CousinWare
 {
     public static final String MODID = "cousinware";
     public static final String NAME = "CousinWare";
-    public static final String VERSION = "v1.6.4";
+    public static final String VERSION = "v1.6.5";
 
     public static final Logger log = LogManager.getLogger(NAME);
     private EventManager eventManager;
@@ -59,6 +59,7 @@ public class CousinWare
     public ConfigUtils configUtils;
     public FriendManager friends;
     public SettingsManager settingsManager;
+    public RotationManager rotationManager;
     public CousinWareGui cousinWareGui;
     public ClickGUI2 clickGui2;
     public ClickGuiHUD clickGuiHUD;
@@ -82,7 +83,7 @@ public class CousinWare
         eventProcessor = new EventProcessor();
         eventProcessor.init();
         loadClientCommands();
-
+        rotationManager = new RotationManager();
         TpsUtils tpsUtils = new TpsUtils();
         settingsManager = new SettingsManager();
         friends = new FriendManager();
@@ -176,6 +177,7 @@ public class CousinWare
         //combat
         HackManager.addHack(new Aura());
         HackManager.addHack(new AutoBedBombDumb());
+        HackManager.addHack(new AutoHeadCrystal());
         HackManager.addHack(new AutoOffHand());
         HackManager.addHack(new AutoPressurePlate());
         HackManager.addHack(new AutoTntMinecart());
@@ -194,17 +196,16 @@ public class CousinWare
         HackManager.addHack(new Surround2());
         HackManager.addHack(new WebFiller());
         //exploit
-        //HackManager.addHack(new AutoMinecartRefill());
+        HackManager.addHack(new AutoMinecartRefill());
         HackManager.addHack(new AntiDesync());
         HackManager.addHack(new Blink());
-        //HackManager.addHack(new LagBar());
+        HackManager.addHack(new LagBar());
         HackManager.addHack(new Lagger());
         HackManager.addHack(new NoBreakLoss());
-        HackManager.addHack(new NoFallingAni());
-        HackManager.addHack(new NoMinecartLag());
         HackManager.addHack(new NoSlowBypass());
         HackManager.addHack(new SpeedMine());
         //misc
+        //
         HackManager.addHack(new AntiRegear());
         HackManager.addHack(new AutoWither());
         //HackManager.addHack(new BedrockFinder());
@@ -264,7 +265,7 @@ public class CousinWare
         HackManager.addHack(new InfiniteChatlength());
         //HackManager.addHack(new ItemESP());
         //HackManager.addHack(new NameTags());
-        HackManager.addHack(new NoLag());
+        HackManager.addHack(new NoRender());
         HackManager.addHack(new Overlay());
         HackManager.addHack(new PlayerESP());
         HackManager.addHack(new SelfParticle());

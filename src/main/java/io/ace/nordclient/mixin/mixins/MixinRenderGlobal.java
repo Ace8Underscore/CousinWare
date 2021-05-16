@@ -99,6 +99,5 @@ public abstract class MixinRenderGlobal {
             GlStateManager.color(red, blue, green, alpha);
         }
     }
-
-    }
+}
 

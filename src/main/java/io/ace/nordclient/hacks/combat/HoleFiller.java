@@ -70,7 +70,6 @@ public class HoleFiller extends Hack {
                             mc.player.inventory.currentItem = obiHand;
                         if (placeMode.getValString().equalsIgnoreCase("raytrace")) {
                             BlockInteractionHelper.placeBlockScaffoldStrictRaytrace(block);
-
                         }
                         if (placeMode.getValString().equalsIgnoreCase("strict")) BlockInteractionHelper.placeBlockScaffoldStrict(block);
                         if (placeMode.getValString().equalsIgnoreCase("rotate")) BlockInteractionHelper.placeBlockScaffold(block);
@@ -88,10 +87,14 @@ public class HoleFiller extends Hack {
             }
 
         }
-        if (delayT > toggleTicks.getValInt()) {
+        if (delayT > toggleTicks.getValInt() + 1) {
             this.disable();
         }
 
+    }
+
+    @Override
+    public void onDisable() {
     }
 
     @Override

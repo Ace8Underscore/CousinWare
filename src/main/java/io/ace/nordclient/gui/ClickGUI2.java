@@ -42,6 +42,8 @@ public class ClickGUI2 extends GuiScreen
         }
 
 
+
+
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
         for (final io.ace.nordclient.gui.Frame frame : ClickGUI2.frames) {
             if (frame.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {

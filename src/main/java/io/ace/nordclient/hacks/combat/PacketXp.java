@@ -48,8 +48,9 @@ public class PacketXp extends Hack {
     @Override
     public void onEnable() {
         spoofPitch = false;
+        mc.player.rotationPitch += 0.0004;
         startingHand = mc.player.inventory.currentItem;
-        mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.cameraYaw, 90, mc.player.onGround));
+        //mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.cameraYaw, 90, mc.player.onGround));
 
     }
 

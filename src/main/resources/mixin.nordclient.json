@@ -6,6 +6,7 @@
   "mixins": [
     "MixinBlockRendererDispatcher",
     "MixinCPacketPlayer",
+    "MixinCPacketUseEntity",
     "MixinEntity",
     "MixinEntityPlayerSP",
     "MixinEntityRenderer",
@@ -15,6 +16,7 @@
     "MixinLayerArmorBase",
     "MixinModelEnderCrystal",
     "MixinNetworkManager",
+    "MixinParticleManager",
     "MixinPlayerControllerMP",
     "MixinRenderFallingBlock",
     "MixinRenderGlobal",
