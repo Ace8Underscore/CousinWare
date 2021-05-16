@@ -1,7 +1,6 @@
 package io.ace.nordclient.hacks.combat;
 
 import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
 import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.event.RenderEvent;
 import io.ace.nordclient.hacks.Hack;
@@ -267,7 +266,6 @@ public class CrystalAura extends Hack {
         double blockDensity = entity.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
         if (((IEntity) mc.player).getIsInWeb()) {
             blockDensity = 1;
-            Command.sendClientSideMessage("in web");
         }
         final double v = (1.0 - distancedsize) * blockDensity;
         final float damage = (float)(int)((v * v + v) / 2.0 * 7.0 * doubleExplosionSize + 1.0);
