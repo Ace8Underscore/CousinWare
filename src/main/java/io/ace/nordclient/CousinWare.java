@@ -203,6 +203,7 @@ public class CousinWare
         HackManager.addHack(new Lagger());
         HackManager.addHack(new NoBreakLoss());
         HackManager.addHack(new NoSlowBypass());
+        HackManager.addHack(new SecretMine());
         HackManager.addHack(new SpeedMine());
         //misc
         //
