@@ -1,23 +1,26 @@
 # CousinWare
-What's CousinWare? It's the client I've been working on for about 9 month
-CousinWare was a client made for my friends but seeing as how Im leaving the community and already have thought I'd post this
 
-Is this a rat? No why would I do that I'm leaving but if you don't belive me you have commit history for the past 9 months
+CousinWare is the client I've been working on for about 9 months. It was originally a client made for my friends but seeing as how I'm leaving the community (and already have), thought I'd make it public.
 
-Is this client the leaked private client that will change pvp for history? No but there are some unique things so please take a look around
-Personally mine is the block placements I've added being able to bypass most strict ncp servers and work more than any other client on oldfag a really strict server
-Okay sorry about bragging about the placements
+## FAQ
 
-Is this client going to be updated? Kinda when I'm really bored I might open up IntelliJ to mess with something's if I do I'll push the changes.
+| Question | Answer |
+| -------- | ------ |
+| Is this a rat? | No, why would I do that, I'm leaving the community. But if you don't belive me, you have commit history for the past 9 months. |
+| Is this client the leaked private client that will change pvp for history? | No, but there are some unique things so please take a look around. Personally my favorite is the block placements I've added, as they're able to bypass most strict NCP servers. They also work better than any other client on Oldfag which has a really strict NCP config. (Okay sorry about bragging about the placements) |
+| Is this client going to be updated? | Kinda, when I'm really bored I might open up IntelliJ to mess with something. If I do, I'll push the changes. |
+| What if the server updates to 1.16? | I've also uploaded [my 1.16 port](https://github.com/Ace8Underscore/CousinWare1.16.4) which is missing a lot of stuff, but you can continue off of that if you wish. |
 
-If the server does update to 1.16 I've posted my 1.16 port which is missing a lot of stuff but you can continue off of that if anyone chooses
+## Special thanks
 
-Thanks to the following people for helping me with issues on this project or on my journey to this point -
-John200410
-Fleyr_
-Elementars 
+Thanks to the following people for helping me with issues on this project or on my journey to this point:
 
-Thanks to the following CousinWare users for support.
+- [John200410](https://github.com/John200410)
+- [Fleyr_](https://github.com/xFleyr)
+- [Elementars](https://github.com/Elementars)
+
+And an extra special thanks to the following CousinWare users for their support:
+
 - Cacti
 - Halee
 - Chae
@@ -31,8 +34,8 @@ Thanks to the following CousinWare users for support.
 - Kildrio
 - Takeouts
 
+## Credits
 
-Credits - 
-Hero code - for the settings and the file manager
-Memeszz - for letting me use and modify the aurora gui
-Osiris dev - for the command system
+- **Hero code** - for the settings and the file manager
+- **Memeszz** - for letting me use and modify the aurora gui
+- **Osiris dev** - for the command system
