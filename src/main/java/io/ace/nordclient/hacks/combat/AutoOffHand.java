@@ -44,9 +44,9 @@ public class AutoOffHand extends Hack {
         modes.add("Shield");
         modes.add("GapRightClick");
         CousinWare.INSTANCE.settingsManager.rSetting(mode = new Setting("Mode", this, "Crystal", modes, "AutoOffHandMode"));
-        CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemCrystal = new Setting("CrystalHealth", this, 16, 0, 36, false, "AutoOffHandCrystalHealth"));
-        CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemGap = new Setting("GapHealth", this, 6, 0, 36, false, "AutoOffHandGapHealth"));
-        CousinWare.INSTANCE.settingsManager.rSetting(switchBackFromTotem = new Setting("ItemRenable", this, 20, 0, 36, false, "AutoOffHandItemRenable"));
+        CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemCrystal = new Setting("CrystalHealth", this, 16, 0, 36, true, "AutoOffHandCrystalHealth"));
+        CousinWare.INSTANCE.settingsManager.rSetting(switchToTotemGap = new Setting("GapHealth", this, 6, 0, 36, true, "AutoOffHandGapHealth"));
+        CousinWare.INSTANCE.settingsManager.rSetting(switchBackFromTotem = new Setting("ItemRenable", this, 20, 0, 36, true, "AutoOffHandItemRenable"));
         CousinWare.INSTANCE.settingsManager.rSetting(holeCheck = new Setting("HoleCheck", this, true, "AutoOffHandHoleCheck"));
         CousinWare.INSTANCE.settingsManager.rSetting(onlyInventory = new Setting("NoHotBar", this, true, "AutoOffHandInventoryOnly"));
     }//

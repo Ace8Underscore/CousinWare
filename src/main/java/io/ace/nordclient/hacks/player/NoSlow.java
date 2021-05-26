@@ -1,10 +1,8 @@
 package io.ace.nordclient.hacks.player;
 
-import io.ace.nordclient.event.PacketEvent;
 import io.ace.nordclient.hacks.Hack;
-import io.ace.nordclient.utilz.MathUtil;
-import net.minecraft.network.play.client.CPacketPlayer;
-import team.stiff.pomelo.impl.annotated.handler.annotation.Listener;
+import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class NoSlow extends Hack {
 
@@ -12,22 +10,11 @@ public class NoSlow extends Hack {
         super("NoSlow", Category.PLAYER, 10060642);
     }
 
-    @Override
-    public void onUpdate() {
-        if (mc.player.isHandActive()) {
-            final double[] dir = MathUtil.directionSpeed(.26);
-            mc.player.motionX = dir[0];
-            mc.player.motionZ = dir[1];
-        }
-
-    }
-    @Listener
-    public void onUpdate(PacketEvent.Send event) {
-        if (event.getPacket() instanceof CPacketPlayer) {
-            if (((CPacketPlayer) event.getPacket()).onGround) {
-                //event.setCanceled(true);
-                //mc.player.connection.sendPacket(new CPacketPlayer(((CPacketPlayer) event.getPacket()).onGround));
-            }
+    @SubscribeEvent
+    public void onInput(InputUpdateEvent event) {
+        if (mc.player.isHandActive() && !mc.player.isRiding()) {
+            event.getMovementInput().moveStrafe *= 5.0f;
+            event.getMovementInput().moveForward *= 5.0f;
         }
     }
 }

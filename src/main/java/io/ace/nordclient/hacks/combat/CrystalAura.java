@@ -74,7 +74,7 @@ public class CrystalAura extends Hack {
         CousinWare.INSTANCE.settingsManager.rSetting(maxDmg = new Setting("MaxSelfDmg", this, 5, 0, 20, false, "CrystalAuraMaxDmg"));
         CousinWare.INSTANCE.settingsManager.rSetting(multiPlace = new Setting("MultiPlace", this, false, "CrystalAuraMultiPlace"));
         CousinWare.INSTANCE.settingsManager.rSetting(fastBreak = new Setting("FastBreak", this, true, "CrystalAuraFastBreak"));
-        CousinWare.INSTANCE.settingsManager.rSetting(autoSwitch = new Setting("AutoSwitch", this, true, "CrystalAuraRotate"));
+        CousinWare.INSTANCE.settingsManager.rSetting(autoSwitch = new Setting("AutoSwitch", this, true, "CrystalAuraAutoSwitch"));
         CousinWare.INSTANCE.settingsManager.rSetting(antiWeakness = new Setting("AntiWeakness", this, true, "CrystalAuraAntiWeakness"));
         CousinWare.INSTANCE.settingsManager.rSetting(enemyRange = new Setting("EnemyRange", this, 5.5, 0, 8, false, "CrystalAuraEnemyRange"));
         CousinWare.INSTANCE.settingsManager.rSetting(renderPlace = new Setting("RenderPlace", this, true, "CrystalAuraRenderPlace"));
@@ -189,6 +189,8 @@ public class CrystalAura extends Hack {
                         .filter(entity -> entity instanceof EntityEnderCrystal)
                         .filter(entity -> mc.player.getDistance(entity) <= breakRange.getValDouble())
                         .filter(entity -> mc.player.canEntityBeSeen(entity))
+                        .filter(entity -> calculateDamage(entity.posX, entity.posY, entity.posZ, mc.player) <= maxDmg.getValDouble())
+                        .filter(entity -> calculateDamage(entity.posX, entity.posY, entity.posZ, entity1) >= minDmg.getValDouble() + 4.5)
                         .map(entity -> (EntityEnderCrystal) entity)
                         .max(Comparator.comparing(c -> calculateDamage(c.posX, c.posY, c.posZ, entity1)))
                         .orElse(null);
@@ -288,7 +290,7 @@ public class CrystalAura extends Hack {
                         for (BlockPos pos : findCrystalBlocks()) {
 
                             float dmgs = calculateDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, entity);
-                            if (dmgs > minDmg.getValDouble() && dmgs > t && calculateDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player) < maxDmg.getValDouble()) {
+                            if (dmgs > minDmg.getValDouble() + 4.5 && dmgs > t && calculateDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player) < maxDmg.getValDouble()) {
                                 t = dmgs;
                                 retVal = pos;
                             }

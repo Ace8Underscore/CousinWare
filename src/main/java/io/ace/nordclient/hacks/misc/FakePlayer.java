@@ -22,6 +22,7 @@ public class FakePlayer extends Hack {
         entity.copyLocationAndAnglesFrom(mc.player);
         entity.rotationYaw = mc.player.rotationYaw;
         entity.rotationYawHead = mc.player.rotationYawHead;
+        entity.inventory = mc.player.inventory;
         mc.world.addEntityToWorld(69698067, entity);
     }
 
