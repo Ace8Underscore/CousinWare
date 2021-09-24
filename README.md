@@ -2,6 +2,8 @@
 
 CousinWare is the client I've been working on for about 9 months. It was originally a client made for my friends but seeing as how I'm leaving the community (and already have), thought I'd make it public.
 
+## [UPDATED VERSION ](https://github.com/Ace8Underscore/CousinWarePriv)
+
 ## FAQ
 
 | Question | Answer |
